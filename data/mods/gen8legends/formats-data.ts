@@ -125,7 +125,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         tier: "NFE",
     },
     crobat: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     drifloon: {
@@ -586,7 +586,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         tier: "NFE",
     },
     empoleon: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     mantyke: {
@@ -901,7 +901,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
     },
     enamorustherian: {
 		isNonstandard: null,
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     dialga: {
