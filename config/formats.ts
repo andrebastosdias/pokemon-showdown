@@ -55,13 +55,6 @@ export const Formats: FormatList = [
 		ruleset: ['Little Cup', 'Standard'],
 	},
 	{
-		name: "[Gen 8 Legends] Anything Goes",
-
-		mod: 'gen8legends',
-		searchShow: false,
-		ruleset: ['EV Limit = 0', 'Obtainable', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
-	},
-	{
 		section: "Legends: Arceus Doubles",
 	},
 	{
