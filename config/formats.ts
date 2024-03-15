@@ -22,7 +22,7 @@ export const Formats: FormatList = [
 		section: "Legends: Z-A",
 	},
 	{
-		section: "Legends: Arceus Singles",
+		section: "Legends: Arceus",
 	},
 	{
 		name: "[Gen 8 Legends] OU",
@@ -53,9 +53,6 @@ export const Formats: FormatList = [
 		mod: 'gen8legends',
 		searchShow: false,
 		ruleset: ['Little Cup', 'Standard'],
-	},
-	{
-		section: "Legends: Arceus Doubles",
 	},
 	{
 		name: "[Gen 8 Legends] Doubles OU",
