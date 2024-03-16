@@ -46,7 +46,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         tier: "NFE",
     },
     staraptor: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     shinx: {
@@ -374,7 +374,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         tier: "NFE",
     },
     gardevoir: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     gallade: {
