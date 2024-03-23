@@ -29,8 +29,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen8legends',
 		team: 'random',
-		ruleset: ['[Gen 8] Random Battle', '!PotD'],
-		// ruleset: ['Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+		ruleset: ['Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
 	},
 	{
 		name: "[Gen 8 Legends] OU",
