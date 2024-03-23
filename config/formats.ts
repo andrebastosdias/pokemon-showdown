@@ -25,7 +25,7 @@ export const Formats: FormatList = [
 		section: "Legends: Arceus Singles",
 	},
 	{
-		name: "[Gen 8] Random Battle",
+		name: "[Gen 8 Legends] Random Battle",
 
 		mod: 'gen8legends',
 		team: 'random',
