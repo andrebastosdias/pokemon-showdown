@@ -906,26 +906,33 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
     },
     dialga: {
         tier: "Uber",
+        doublesTier: "DUber",
     },
     dialgaorigin: {
 		isNonstandard: null,
         tier: "Uber",
+        doublesTier: "DUber",
     },
     palkia: {
         tier: "Uber",
+        doublesTier: "DUber",
     },
     palkiaorigin: {
 		isNonstandard: null,
         tier: "Uber",
+        doublesTier: "DUber",
     },
     giratina: {
         tier: "Uber",
+        doublesTier: "DUber",
     },
     giratinaorigin: {
         tier: "Uber",
+        doublesTier: "DUber",
     },
     arceus: {
         tier: "Uber",
+        doublesTier: "DUber",
     },
 	arceusbug: {
 	},

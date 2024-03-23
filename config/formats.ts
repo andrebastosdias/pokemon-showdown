@@ -25,6 +25,14 @@ export const Formats: FormatList = [
 		section: "Legends: Arceus Singles",
 	},
 	{
+		name: "[Gen 8] Random Battle",
+
+		mod: 'gen8legends',
+		team: 'random',
+		ruleset: ['[Gen 8] Random Battle', '!PotD'],
+		// ruleset: ['Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+	},
+	{
 		name: "[Gen 8 Legends] OU",
 
 		mod: 'gen8legends',
@@ -55,6 +63,14 @@ export const Formats: FormatList = [
 		ruleset: ['Little Cup', 'Standard'],
 	},
 	{
+		name: "[Gen 8 Legends] Monotype",
+
+		mod: 'gen8',
+		searchShow: false,
+		ruleset: ['Standard', 'Same Type Clause'],
+		banlist: ['Arceus', 'Dialga', 'Dialga-Origin', 'Giratina', 'Giratina-Origin', 'Palkia', 'Palkia-Origin'],
+	},
+	{
 		section: "Legends: Arceus Doubles",
 	},
 	{
@@ -62,7 +78,6 @@ export const Formats: FormatList = [
 
 		mod: 'gen8legends',
 		gameType: 'doubles',
-		searchShow: false,
 		ruleset: ['Standard Doubles'],
 		banlist: ['DUber'],
 	},
