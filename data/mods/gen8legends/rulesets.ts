@@ -15,8 +15,7 @@ export const Rulesets: {[k: string]: ModdedFormatData} = {
 		onTeamPreview() {
 			this.add('clearpoke');
 			for (const pokemon of this.getAllPokemon()) {
-				const details = pokemon.details.replace(', shiny', '');
-				this.add('poke', pokemon.side.id, details, '');
+				this.add('poke', pokemon.side.id, pokemon.details, '');
 			}
 			this.makeRequest('teampreview');
 		},
