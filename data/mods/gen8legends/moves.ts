@@ -50,6 +50,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     barbbarrage: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     bite: {
         inherit: true,
@@ -58,10 +59,12 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     bittermalice: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     bleakwindstorm: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     blizzard: {
         inherit: true,
@@ -98,6 +101,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     ceaselessedge: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     chargebeam: {
         inherit: true,
@@ -106,6 +110,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     chloroblast: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     closecombat: {
         inherit: true,
@@ -142,6 +147,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     direclaw: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     doubleedge: {
         inherit: true,
@@ -186,6 +192,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     esperwing: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     extrasensory: {
         inherit: true,
@@ -242,6 +249,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     headlongrush: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     headsmash: {
         inherit: true,
@@ -306,6 +314,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     infernalparade: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     irondefense: {
         inherit: true,
@@ -351,6 +360,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     lunarblessing: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     machpunch: {
         inherit: true,
@@ -379,6 +389,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     mountaingale: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     mudbomb: {
         inherit: true,
@@ -395,6 +406,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     mysticalpower: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     nastyplot: {
         inherit: true,
@@ -459,6 +471,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     powershift: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     psychic: {
         inherit: true,
@@ -471,6 +484,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     psyshieldbash: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     quickattack: {
         inherit: true,
@@ -479,6 +493,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     ragingfury: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     recover: {
         inherit: true,
@@ -511,6 +526,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     sandsearstorm: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     seedflare: {
         inherit: true,
@@ -539,6 +555,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     shelter: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     silverwind: {
         inherit: true,
@@ -587,6 +604,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     springtidestorm: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     stealthrock: {
         inherit: true,
@@ -599,6 +617,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     stoneaxe: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     stoneedge: {
         inherit: true,
@@ -631,6 +650,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     takeheart: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     teleport: {
         inherit: true,
@@ -667,6 +687,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     triplearrows: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     twister: {
         inherit: true,
@@ -679,6 +700,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     victorydance: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     volttackle: {
         inherit: true,
@@ -691,10 +713,12 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     wavecrash: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     wildboltstorm: {
         inherit: true,
         isNonstandard: null,
+        gen: 8,
     },
     wildcharge: {
         inherit: true,
