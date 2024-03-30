@@ -91,7 +91,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         doublesTier: "DOU",
     },
     jolteon: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     flareon: {
@@ -227,7 +227,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         tier: "NFE",
     },
     infernape: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     buneary: {
@@ -331,7 +331,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         tier: "NFE",
     },
     roserade: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     carnivine: {
@@ -350,7 +350,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         tier: "LC",
     },
     tangrowth: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     barboach: {
@@ -467,7 +467,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         tier: "NFE",
     },
     togekiss: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     turtwig: {
@@ -545,7 +545,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
     },
     arcaninehisui: {
 		isNonstandard: null,
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     glameow: {
@@ -645,7 +645,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         tier: "NFE",
     },
     magmortar: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     magnemite: {
@@ -662,7 +662,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         tier: "LC",
     },
     bronzong: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     elekid: {
@@ -672,7 +672,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         tier: "NFE",
     },
     electivire: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     gligar: {
@@ -689,7 +689,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         tier: "NFE",
     },
     garchomp: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     nosepass: {
@@ -705,7 +705,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
     },
     electrodehisui: {
 		isNonstandard: null,
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     rotom: {
@@ -713,11 +713,11 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         doublesTier: "DOU",
     },
     rotomheat: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     rotomwash: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     rotomfrost: {
@@ -729,7 +729,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         doublesTier: "DOU",
     },
     rotommow: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     chingling: {
@@ -843,7 +843,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         tier: "LC",
     },
     lucario: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     uxie: {
@@ -851,7 +851,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         doublesTier: "DOU",
     },
     mesprit: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     azelf: {
