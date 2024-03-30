@@ -4,12 +4,14 @@ export const Scripts: ModdedBattleScriptsData = {
 	init() {
 		this.modData('Abilities', 'noability').isNonstandard = null;
 		for (const i in this.data.Abilities) {
+			// No Ability, Slow Start, Multitype, Flower Gift
 			if (![0, 112, 121, 122].includes(this.modData('Abilities', i).num)) {
 				this.modData('Abilities', i).isNonstandard = "Past";
 			}
 		}
 
 		for (const i in this.data.Pokedex) {
+			// Cherrim, Regigigas, Arceus
 			if (![421, 486, 493].includes(this.modData('Pokedex', i).num)) {
 				this.modData('Pokedex', i).abilities = {0: 'No Ability'};
 			}
