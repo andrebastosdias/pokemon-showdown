@@ -1,7 +1,6 @@
 export const Conditions: {[id: string]: ModdedConditionData} = {
 	arceus: {
-		name: 'Arceus',
-		onTypePriority: 1,
+		inherit: true,
 		onType(types, pokemon) {
 			if (pokemon.ability !== 'multitype') return types;
 			let type: string | undefined = 'Normal';
