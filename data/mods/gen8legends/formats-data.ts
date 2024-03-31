@@ -311,7 +311,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
     },
     overqwil: {
 		isNonstandard: null,
-        tier: "UU",
+        tier: "(OU)",
         doublesTier: "DOU",
     },
     happiny: {
