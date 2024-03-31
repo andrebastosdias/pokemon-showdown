@@ -1576,6 +1576,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
         inherit: true,
         isNonstandard: "Past",
     },
+    flowershield: {
+		inherit: true,
+		isNonstandard: "Past",
+	},
     fdropshield: {
         inherit: true,
         isNonstandard: "Past",
