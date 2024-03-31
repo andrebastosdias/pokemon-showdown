@@ -871,11 +871,11 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
         doublesTier: "DOU",
     },
     tornadus: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     tornadustherian: {
-        tier: "UU",
+        tier: "OU",
         doublesTier: "DOU",
     },
     thundurus: {
