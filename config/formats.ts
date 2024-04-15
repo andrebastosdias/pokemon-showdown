@@ -69,15 +69,4 @@ export const Formats: FormatList = [
 		ruleset: ['Standard', 'Same Type Clause'],
 		banlist: ['Arceus', 'Dialga', 'Dialga-Origin', 'Giratina', 'Giratina-Origin', 'Palkia', 'Palkia-Origin'],
 	},
-	{
-		section: "Legends: Arceus Doubles",
-	},
-	{
-		name: "[Gen 8 Legends] Doubles OU",
-
-		mod: 'gen8legends',
-		gameType: 'doubles',
-		ruleset: ['Standard Doubles'],
-		banlist: ['DUber'],
-	},
 ];
