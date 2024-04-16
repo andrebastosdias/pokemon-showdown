@@ -9,20 +9,16 @@ export const Rulesets: {[k: string]: ModdedFormatData} = {
 			if (!Object.values(species.abilities).includes(ability.name)) {
 				return [`${set.species} can't have ${set.ability}.`];
 			}
-
-			if (species.baseSpecies === "Enamorus" && set.shiny) {
-				return [`${set.species} must not be shiny.`]
-			}
 		},
 	},
-	teampreview: {
-		inherit: true,
-		onTeamPreview() {
-			this.add('clearpoke');
-			for (const pokemon of this.getAllPokemon()) {
-				this.add('poke', pokemon.side.id, pokemon.details, '');
-			}
-			this.makeRequest('teampreview');
-		},
-	},
+	// teampreview: {
+	// 	inherit: true,
+	// 	onTeamPreview() {
+	// 		this.add('clearpoke');
+	// 		for (const pokemon of this.getAllPokemon()) {
+	// 			this.add('poke', pokemon.side.id, pokemon.details, '');
+	// 		}
+	// 		this.makeRequest('teampreview');
+	// 	},
+	// },
 };
