@@ -52,7 +52,7 @@ export const Formats: FormatList = [
 		mod: 'gen8legends',
 		searchShow: false,
 		ruleset: ['[Gen 8 Legends] OU'],
-		banlist: ['OU'],
+		banlist: ['OU', 'UUBL'],
 	},
 	{
 		name: "[Gen 8 Legends] LC",
@@ -66,7 +66,6 @@ export const Formats: FormatList = [
 
 		mod: 'gen8legends',
 		searchShow: false,
-		ruleset: ['Standard', 'Same Type Clause'],
-		banlist: ['Arceus', 'Dialga', 'Dialga-Origin', 'Giratina', 'Giratina-Origin', 'Palkia', 'Palkia-Origin'],
+		ruleset: ['[Gen 8 Legends] OU', 'Same Type Clause'],
 	},
 ];
