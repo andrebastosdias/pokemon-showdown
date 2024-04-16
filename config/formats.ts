@@ -64,7 +64,7 @@ export const Formats: FormatList = [
 	{
 		name: "[Gen 8 Legends] Monotype",
 
-		mod: 'gen8',
+		mod: 'gen8legends',
 		searchShow: false,
 		ruleset: ['Standard', 'Same Type Clause'],
 		banlist: ['Arceus', 'Dialga', 'Dialga-Origin', 'Giratina', 'Giratina-Origin', 'Palkia', 'Palkia-Origin'],
