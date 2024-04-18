@@ -1,4 +1,8 @@
 export const Pokedex: {[k: string]: ModdedSpeciesData} = {
+	pikachu: {
+		inherit: true,
+		evos: ["Raichu"],
+	},
 	alakazam: {
 		inherit: true,
 		evoType: "useItem",
@@ -38,6 +42,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		evoType: "useItem",
 		evoItem: "Metal Coat",
+	},
+	mimejr: {
+		inherit: true,
+		evos: ["Mr. Mime"],
 	},
 	weavile: {
 		inherit: true,
