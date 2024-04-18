@@ -33,6 +33,18 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 				['recover', 'roost', 'softboiled'].some(moveid => movePool.includes(moveid)) &&
 				!['alakazam', 'gardevoir', 'lilliganthisui', 'porygonz', 'shayminsky', 'staraptor'].includes(species.id)
 			),
+			setup: (movePool, moves, abilities, types, counter, species, teamDetails) => (
+				(
+					PHYSICAL_SETUP.some(moveid => movePool.includes(moveid)) ||
+					SPECIAL_SETUP.some(moveid => movePool.includes(moveid))
+				) && !(
+					(
+						['ceaselessedge', 'spikes'].some(move => movePool.includes(move)) && !teamDetails.spikes
+					) || (
+						['stealthrock', 'stoneaxe'].some(move => movePool.includes(move)) && !teamDetails.stealthRock
+					)
+				)
+			),
 			Bug: (movePool, moves, abilities, types, counter) => !counter.get('Bug'),
 			Dark: (movePool, moves, abilities, types, counter) => !counter.get('Dark'),
 			Dragon: (movePool, moves, abilities, types, counter) => !counter.get('Dragon'),
@@ -178,13 +190,6 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 			return {cull: true};
 		}
 		if (movePool.includes('thunderwave')) {
-			return {cull: true};
-		}
-
-		if (movePool.includes('takeheart')) {
-			return {cull: true};
-		}
-		if (movePool.includes('victorydance')) {
 			return {cull: true};
 		}
 
@@ -375,7 +380,7 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 				)) {
 					if (
 						(!counter.get('stab') && counter.get('physicalpool') + counter.get('specialpool') > 0) ||
-						runEnforcementChecker('recovery')
+						runEnforcementChecker('recovery') || runEnforcementChecker('setup')
 					) {
 						cull = true;
 					} else {
