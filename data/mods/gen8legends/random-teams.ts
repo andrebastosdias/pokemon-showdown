@@ -66,98 +66,6 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 		};
 	}
 
-	queryMoves(
-		moves: Set<string> | null,
-		types: string[],
-		abilities: Set<string> = new Set(),
-		movePool: string[] = []
-	): MoveCounter {
-		// This is primarily a helper function for random setbuilder functions.
-		const counter = new MoveCounter();
-
-		if (!moves?.size) return counter;
-
-		const categories = {Physical: 0, Special: 0, Status: 0};
-
-		// Iterate through all moves we've chosen so far and keep track of what they do:
-		for (const moveid of moves) {
-			let move = this.dex.moves.get(moveid);
-
-			let moveType = move.type;
-			if (moveid === 'judgment') moveType = types[0];
-			if (move.damage || move.damageCallback) {
-				// Moves that do a set amount of damage:
-				counter.add('damage');
-				counter.damagingMoves.add(move);
-			} else {
-				// Are Physical/Special/Status moves:
-				categories[move.category]++;
-			}
-			// Moves that hit up to 5 times:
-			if (move.recoil || move.hasCrashDamage) counter.add('recoil');
-			if (move.drain) counter.add('drain');
-			// Moves which have a base power, but aren't super-weak like Rapid Spin:
-			if (move.basePower > 30 || move.multihit || move.basePowerCallback) {
-				counter.add(moveType);
-				if (types.includes(moveType)) {
-					// STAB:
-					// Certain moves aren't acceptable as a Pokemon's only STAB attack
-					if (!NO_STAB.includes(moveid) && (!moveid.startsWith('hiddenpower') || types.length === 1)) {
-						counter.add('stab');
-						// Ties between Physical and Special setup should broken in favor of STABs
-						categories[move.category] += 0.1;
-					}
-				}
-				if (move.priority > 0) {
-					counter.add('priority');
-				}
-				counter.damagingMoves.add(move);
-			}
-			// Moves with low accuracy:
-			if (move.accuracy && move.accuracy !== true && move.accuracy < 90) counter.add('inaccurate');
-
-			// Moves that change stats:
-			if (RECOVERY_MOVES.includes(moveid)) counter.add('recovery');
-			if (PHYSICAL_SETUP.includes(moveid)) {
-				counter.add('physicalsetup');
-				counter.setupType = 'Physical';
-			} else if (SPECIAL_SETUP.includes(moveid)) {
-				counter.add('specialsetup');
-				counter.setupType = 'Special';
-			}
-
-			if (HAZARDS.includes(moveid)) counter.add('hazards');
-		}
-
-		// Keep track of the available moves
-		for (const moveid of movePool) {
-			const move = this.dex.moves.get(moveid);
-			if (move.damageCallback) continue;
-			if (move.category === 'Physical') counter.add('physicalpool');
-			if (move.category === 'Special') counter.add('specialpool');
-		}
-
-		// Choose a setup type:
-		if (counter.get('physicalsetup') && counter.get('specialsetup')) {
-			const pool = {
-				Physical: categories['Physical'] + counter.get('physicalpool'),
-				Special: categories['Special'] + counter.get('specialpool'),
-			};
-			if (pool.Physical === pool.Special) {
-				if (categories['Physical'] > categories['Special']) counter.setupType = 'Physical';
-				if (categories['Special'] > categories['Physical']) counter.setupType = 'Special';
-			} else {
-				counter.setupType = pool.Physical > pool.Special ? 'Physical' : 'Special';
-			}
-		}
-
-		counter.set('Physical', Math.floor(categories['Physical']));
-		counter.set('Special', Math.floor(categories['Special']));
-		counter.set('Status', categories['Status']);
-
-		return counter;
-	}
-
 	shouldCullMove(
 		move: Move,
 		types: Set<string>,
@@ -318,7 +226,6 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 		const rejectedPool = [];
 
 		const types = new Set(species.types);
-		const abilities = new Set(Object.values(species.abilities));
 
 		const moves = new Set<string>();
 		let counter : MoveCounter;
@@ -337,18 +244,18 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 				moves.add(moveid);
 			}
 
-			counter = this.queryMoves(moves, species.types, abilities, movePool);
+			counter = this.queryMoves(moves, species.types, new Set(), movePool);
 			const runEnforcementChecker = (checkerName: string) => {
 				if (!this.moveEnforcementCheckers[checkerName]) return false;
 				return this.moveEnforcementCheckers[checkerName](
-					movePool, moves, abilities, types, counter, species as Species, teamDetails
+					movePool, moves, new Set(), types, counter, species as Species, teamDetails
 				);
 			};
 
 			// Iterate through the moves again, this time to cull them:
 			for (const moveid of moves) {
 				const move = this.dex.moves.get(moveid);
-				let {cull, isSetup} = this.shouldCullMove(move, types, moves, abilities, counter, movePool, teamDetails, species);
+				let {cull, isSetup} = this.shouldCullMove(move, types, moves, new Set(), counter, movePool, teamDetails, species);
 
 				if (
 					!isSetup &&
@@ -409,12 +316,6 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 
 		const level: number = this.getLevel(species);
 
-		if (abilities.size !== 1) {
-			// sanity check
-			throw new Error(`${species.id} has ${abilities.size} abilities`);
-		}
-		const ability = species.abilities[0];
-
 		const ivs = {hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31};
 		// Minimize confusion damage
 		if (!counter.get('Physical')) ivs.atk = 0;
@@ -426,7 +327,7 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 			shiny: this.randomChance(1, 1024),
 			level,
 			moves: Array.from(moves),
-			ability,
+			ability: 'No Ability',
 			evs: {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0},
 			ivs,
 			item: '',

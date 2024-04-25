@@ -258,7 +258,7 @@
         "moves": ["airslash", "hydropump", "icebeam", "roost"]
     },
     "magmortar": {
-        "moves": ["fireblast", "flamethrower", "poisongas", "psychic", "thunderbolt"]
+        "moves": ["fireblast", "flamethrower", "psychic", "thunderbolt"]
     },
     "magnezone": {
         "moves": ["flashcannon", "steelbeam", "thunderbolt", "thunderwave"]
