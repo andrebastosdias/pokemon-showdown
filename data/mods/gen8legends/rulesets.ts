@@ -5,11 +5,12 @@ export const Rulesets: {[k: string]: ModdedFormatData} = {
 		inherit: true,
 		ruleset: ['Obtainable Moves', 'Obtainable Formes', 'EV Limit = 0', 'Obtainable Misc'],
 		onValidateSet(set) {
+			const species = this.dex.species.get(set.species);
 			let item = this.dex.items.get(Utils.getString(set.item));
 			if (item.id) {
 				set.item = '';
 			}
-			set.ability = 'No Ability';
+			set.ability = species.abilities['0'];
 		},
 	},
 	// teampreview: {
