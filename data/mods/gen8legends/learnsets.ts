@@ -213,7 +213,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             crosspoison: ["8L25"],
             gust: ["8L1"],
             hypnosis: ["8L6"],
-              leechlife: ["8T", "8L43"],
+            leechlife: ["8T", "8L43"],
             ominouswind: ["8T"],
             rest: ["8T"],
             shadowball: ["8T"],
@@ -233,7 +233,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             gust: ["8L1"],
             hyperbeam: ["8T"],
             hypnosis: ["8L6"],
-              leechlife: ["8T", "8L43"],
+            leechlife: ["8T", "8L43"],
             ominouswind: ["8T"],
             rest: ["8T"],
             shadowball: ["8T"],
@@ -248,7 +248,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             aerialace: ["8T"],
             energyball: ["8T", "8L47"],
             falseswipe: ["8T"],
-              leechlife: ["8T"],
+            leechlife: ["8T"],
             poisonpowder: ["8L9"],
             rest: ["8T"],
             rocksmash: ["8T"],
@@ -268,7 +268,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             falseswipe: ["8T"],
             gigaimpact: ["8T"],
             hyperbeam: ["8T"],
-              leechlife: ["8T"],
+            leechlife: ["8T"],
             poisonpowder: ["8L9"],
             rest: ["8T"],
             rocksmash: ["8T"],
@@ -1047,7 +1047,11 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderpunch: ["8T"],
         },
     },
-    magikarp: { learnset: { splash: ["8L1"] } },
+    magikarp: {
+        learnset: {
+            splash: ["8L1"],
+        },
+    },
     gyarados: {
         learnset: {
             aquatail: ["8T", "8L29"],
@@ -1286,7 +1290,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             gust: ["8L1"],
             hyperbeam: ["8T"],
             hypnosis: ["8L6"],
-              leechlife: ["8T", "8L43"],
+            leechlife: ["8T", "8L43"],
             ominouswind: ["8T"],
             rest: ["8T"],
             shadowball: ["8T"],
@@ -1441,7 +1445,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             bugbuzz: ["8L43"],
             gust: ["8L6"],
             hypnosis: ["8L18"],
-              leechlife: ["8T"],
+            leechlife: ["8T"],
             ominouswind: ["8T"],
             psychic: ["8T"],
             quickattack: ["8L1"],
@@ -1536,7 +1540,11 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderbolt: ["8T"],
         },
     },
-    unown: { learnset: { hiddenpower: ["8L1"] } },
+    unown: {
+        learnset: {
+            hiddenpower: ["8L1"],
+        },
+    },
     gligar: {
         learnset: {
             aerialace: ["8T", "8L11"],
@@ -1981,7 +1989,12 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             zenheadbutt: ["8T"],
         },
     },
-    wurmple: { learnset: { poisonsting: ["8L1"], tackle: ["8L6"] } },
+    wurmple: {
+        learnset: {
+            poisonsting: ["8L1"],
+            tackle: ["8L6"],
+        },
+    },
     silcoon: {
         learnset: {
             irondefense: ["8L0"],
@@ -1999,7 +2012,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             gigaimpact: ["8T"],
             hyperbeam: ["8T"],
             irondefense: ["8L6"],
-              leechlife: ["8T"],
+            leechlife: ["8T"],
             ominouswind: ["8T"],
             poisonsting: ["8L1"],
             psychic: ["8T"],
@@ -2202,7 +2215,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             hex: ["8L11"],
             icebeam: ["8T"],
             icywind: ["8T"],
-              leechlife: ["8T", "8L18"],
+            leechlife: ["8T", "8L18"],
             ominouswind: ["8T"],
             psychic: ["8T", "8L43"],
             rest: ["8T"],
@@ -2224,7 +2237,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             icebeam: ["8T"],
             icepunch: ["8T"],
             icywind: ["8T"],
-              leechlife: ["8T", "8L18"],
+            leechlife: ["8T", "8L18"],
             ominouswind: ["8T"],
             powershift: ["8T"],
             psychic: ["8T", "8L43"],
@@ -2307,7 +2320,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             icebeam: ["8T", "8L34"],
             icywind: ["8T"],
             irontail: ["8T"],
-              liquidation: ["8L25"],
+            liquidation: ["8L25"],
             powdersnow: ["8L6"],
             rest: ["8T", "8L18"],
             rockslide: ["8T"],
@@ -2326,7 +2339,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             icebeam: ["8T", "8L34"],
             icywind: ["8T"],
             irontail: ["8T"],
-              liquidation: ["8L25"],
+            liquidation: ["8L25"],
             powdersnow: ["8L6"],
             rest: ["8T", "8L18"],
             rockslide: ["8T"],
@@ -2349,7 +2362,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             icywind: ["8T"],
             ironhead: ["8T"],
             irontail: ["8T"],
-              liquidation: ["8L25"],
+            liquidation: ["8L25"],
             powdersnow: ["8L6"],
             rest: ["8T", "8L18"],
             rockslide: ["8T"],
@@ -2366,8 +2379,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             earthpower: ["8T"],
             energyball: ["8T"],
             irontail: ["8T"],
-              leafage: ["8L6"],
-              leafblade: ["8L34"],
+            leafage: ["8L6"],
+            leafblade: ["8L34"],
             rest: ["8T"],
             rocksmash: ["8T"],
             sleeppowder: ["8L25"],
@@ -2383,8 +2396,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             earthpower: ["8T"],
             energyball: ["8T"],
             irontail: ["8T"],
-              leafage: ["8L6"],
-              leafblade: ["8L34"],
+            leafage: ["8L6"],
+            leafblade: ["8L34"],
             rest: ["8T"],
             rocksmash: ["8T"],
             sleeppowder: ["8L25"],
@@ -2404,8 +2417,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             hyperbeam: ["8T"],
             ironhead: ["8T"],
             irontail: ["8T"],
-              leafage: ["8L6"],
-              leafblade: ["8L34"],
+            leafage: ["8L6"],
+            leafblade: ["8L34"],
             outrage: ["8T"],
             rest: ["8T"],
             rockslide: ["8T"],
@@ -2503,7 +2516,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             doubleedge: ["8L43"],
             icebeam: ["8T"],
             icywind: ["8T"],
-              liquidation: ["8L34"],
+            liquidation: ["8L34"],
             rest: ["8T"],
             rocksmash: ["8T"],
             roost: ["8L25"],
@@ -2520,7 +2533,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             doubleedge: ["8L43"],
             icebeam: ["8T"],
             icywind: ["8T"],
-              liquidation: ["8L34"],
+            liquidation: ["8L34"],
             rest: ["8T"],
             rocksmash: ["8T"],
             roost: ["8L25"],
@@ -2543,7 +2556,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             hyperbeam: ["8T"],
             icebeam: ["8T"],
             icywind: ["8T"],
-              liquidation: ["8L34"],
+            liquidation: ["8L34"],
             rest: ["8T"],
             rockslide: ["8T"],
             rocksmash: ["8T"],
@@ -2650,7 +2663,12 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             waterpulse: ["8T", "8L0"],
         },
     },
-    kricketot: { learnset: { absorb: ["8L1"], tackle: ["8L5"] } },
+    kricketot: {
+        learnset: {
+            absorb: ["8L1"],
+            tackle: ["8L5"],
+        },
+    },
     kricketune: {
         learnset: {
             absorb: ["8L1"],
@@ -2660,7 +2678,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             focusenergy: ["8T"],
             gigaimpact: ["8T"],
             hyperbeam: ["8T"],
-              leechlife: ["8T"],
+            leechlife: ["8T"],
             nightslash: ["8L21"],
             rest: ["8T"],
             rocksmash: ["8T"],
@@ -2883,7 +2901,11 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderbolt: ["8T"],
         },
     },
-    burmy: { learnset: { strugglebug: ["8L1"] } },
+    burmy: {
+        learnset: {
+            strugglebug: ["8L1"],
+        },
+    },
     wormadam: {
         learnset: {
             bugbuzz: ["8L43"],
@@ -3764,7 +3786,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             hyperbeam: ["8T"],
             icefang: ["8T"],
             irontail: ["8T"],
-              leechlife: ["8T"],
+            leechlife: ["8T"],
             poisonjab: ["8T"],
             poisonsting: ["8L1"],
             rest: ["8T"],
@@ -3839,7 +3861,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             energyball: ["8T", "8L43"],
             gigaimpact: ["8T"],
             hyperbeam: ["8T"],
-              leechlife: ["8T"],
+            leechlife: ["8T"],
             magicalleaf: ["8T"],
             rest: ["8T"],
             sleeppowder: ["8L34"],
@@ -3914,7 +3936,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             iciclecrash: ["8L18"],
             icywind: ["8T"],
             irontail: ["8T"],
-              leafage: ["8L6"],
+            leafage: ["8L6"],
             magicalleaf: ["8T"],
             powdersnow: ["8L1"],
             rest: ["8T"],
@@ -3937,7 +3959,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             iciclecrash: ["8L18"],
             icywind: ["8T"],
             irontail: ["8T"],
-              leafage: ["8L6"],
+            leafage: ["8L6"],
             magicalleaf: ["8T"],
             outrage: ["8T"],
             powdersnow: ["8L1"],
@@ -4169,7 +4191,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             gust: ["8L6"],
             hyperbeam: ["8T"],
             hypnosis: ["8L18"],
-              leechlife: ["8T"],
+            leechlife: ["8T"],
             ominouswind: ["8T"],
             psychic: ["8T"],
             quickattack: ["8L1"],
@@ -4190,8 +4212,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             gigaimpact: ["8T"],
             hyperbeam: ["8T"],
             irontail: ["8T"],
-              leafage: ["8L0"],
-              leafblade: ["8L25"],
+            leafage: ["8L0"],
+            leafblade: ["8L25"],
             magicalleaf: ["8T"],
             mimic: ["8L25"],
             quickattack: ["8L6"],
@@ -4332,7 +4354,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             icebeam: ["8T"],
             icepunch: ["8T"],
             icywind: ["8T"],
-              leafblade: ["8L43"],
+            leafblade: ["8L43"],
             magicalleaf: ["8T"],
             poisonjab: ["8T"],
             psychic: ["8T", "8L34"],
@@ -4393,7 +4415,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             icebeam: ["8T"],
             icepunch: ["8T"],
             icywind: ["8T"],
-              leechlife: ["8T", "8L18"],
+            leechlife: ["8T", "8L18"],
             ominouswind: ["8T"],
             powershift: ["8T"],
             psychic: ["8T", "8L43"],
@@ -4444,11 +4466,31 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderwave: ["8L18"],
         },
     },
-    rotomheat: { learnset: { overheat: ["8T"] } },
-    rotomwash: { learnset: { hydropump: ["8T"] } },
-    rotomfrost: { learnset: { blizzard: ["8T"] } },
-    rotomfan: { learnset: { airslash: ["8T"] } },
-    rotommow: { learnset: { leafstorm: ["8T"] } },
+    rotomheat: {
+        learnset: {
+            overheat: ["8T"],
+        },
+    },
+    rotomwash: {
+        learnset: {
+            hydropump: ["8T"],
+        },
+    },
+    rotomfrost: {
+        learnset: {
+            blizzard: ["8T"],
+        },
+    },
+    rotomfan: {
+        learnset: {
+            airslash: ["8T"],
+        },
+    },
+    rotommow: {
+        learnset: {
+            leafstorm: ["8T"],
+        },
+    },
     uxie: {
         learnset: {
             calmmind: ["8T", "8L36"],
@@ -4480,6 +4522,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             waterpulse: ["8T"],
             zenheadbutt: ["8T"],
         },
+        eventData: [
+			{generation: 8, level: 70, moves: ["hypnosis", "mysticalpower", "calmmind", "triattack"]},
+		],
     },
     mesprit: {
         learnset: {
@@ -4512,6 +4557,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             waterpulse: ["8T"],
             zenheadbutt: ["8T"],
         },
+        eventData: [
+			{generation: 8, level: 70, moves: ["recover", "mysticalpower", "calmmind", "triattack"]},
+		],
     },
     azelf: {
         learnset: {
@@ -4546,6 +4594,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             waterpulse: ["8T"],
             zenheadbutt: ["8T"],
         },
+        eventData: [
+			{generation: 8, level: 70, moves: ["selfdestruct", "mysticalpower", "nastyplot", "triattack"]},
+		],
     },
     dialga: {
         learnset: {
@@ -4579,6 +4630,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderbolt: ["8T"],
             twister: ["8L1"],
         },
+        eventData: [
+			{generation: 8, level: 65, moves: ["roaroftime", "flashcannon", "irontail", "earthpower"]},
+		],
     },
     dialgaorigin: {},
     palkia: {
@@ -4611,6 +4665,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             twister: ["8L1"],
             waterpulse: ["8T"],
         },
+        eventData: [
+			{generation: 8, level: 65, moves: ["spacialrend", "hydropump", "aquatail", "earthpower"]},
+		],
     },
     palkiaorigin: {},
     heatran: {
@@ -4636,6 +4693,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             steelbeam: ["8T"],
             stoneedge: ["8T"],
         },
+        eventData: [
+			{generation: 8, level: 70, moves: ["magmastorm", "earthpower", "crunch", "ironhead"]},
+		],
     },
     regigigas: {
         learnset: {
@@ -4662,6 +4722,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderpunch: ["8T"],
             zenheadbutt: ["8T", "8L27"],
         },
+        eventData: [
+			{generation: 8, level: 70, moves: ["gigaimpact", "crushgrip", "ironhead", "zenheadbutt"]},
+		],
     },
     giratina: {
         learnset: {
@@ -4697,6 +4760,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T"],
             thunderbolt: ["8T"],
         },
+        eventData: [
+			{generation: 8, level: 70, moves: ["shadowforce", "earthpower", "dragonpulse", "dragonclaw"]},
+		],
     },
     giratinaorigin: {},
     cresselia: {
@@ -4709,7 +4775,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             hyperbeam: ["8T"],
             icebeam: ["8T"],
             icywind: ["8T"],
-              lunarblessing: ["8L57"],
+            lunarblessing: ["8L57"],
             moonblast: ["8L46"],
             powershift: ["8T"],
             psychic: ["8T", "8L36"],
@@ -4722,6 +4788,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             tackle: ["8L1"],
             zenheadbutt: ["8T"],
         },
+        eventData: [
+			{generation: 8, level: 70, moves: ["lunarblessing", "moonblast", "psychic", "recover"]},
+		],
     },
     phione: {
         learnset: {
@@ -4763,6 +4832,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             waterpulse: ["8T", "8L12"],
             zenheadbutt: ["8T", "8L27"],
         },
+        eventData: [
+			{generation: 8, level: 50, moves: ["takeheart", "moonblast", "zenheadbutt", "acidarmor"]},
+		],
     },
     darkrai: {
         learnset: {
@@ -4794,6 +4866,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderbolt: ["8T"],
             xscissor: ["8T"],
         },
+        eventData: [
+			{generation: 8, level: 70, moves: ["darkvoid", "psychic", "darkpulse", "nastyplot"]},
+		],
     },
     shaymin: {
         learnset: {
@@ -4805,7 +4880,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             energyball: ["8T", "8L36"],
             gigaimpact: ["8T"],
             hyperbeam: ["8T"],
-              leafage: ["8L1"],
+            leafage: ["8L1"],
             magicalleaf: ["8T"],
             ominouswind: ["8T"],
             playrough: ["8T"],
@@ -4818,6 +4893,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T"],
             zenheadbutt: ["8T"],
         },
+        eventData: [
+			{generation: 8, level: 70, moves: ["seedflare", "earthpower", "energyball", "recover"]},
+		],
     },
     shayminsky: {},
     arceus: {
@@ -4867,6 +4945,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             xscissor: ["8T"],
             zenheadbutt: ["8T"],
         },
+        eventData: [
+			{generation: 8, level: 70, moves: ["hyperbeam", "judgment", "extrasensory", "calmmind"]},
+		],
     },
     arceusbug: {},
     arceusdark: {},
@@ -4958,8 +5039,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             absorb: ["8L1"],
             babydolleyes: ["8T"],
             energyball: ["8T", "8L21"],
-              leafage: ["8L5"],
-              leafstorm: ["8L47"],
+            leafage: ["8L5"],
+            leafstorm: ["8L47"],
             magicalleaf: ["8T"],
             poisonpowder: ["8L15"],
             recover: ["8L37"],
@@ -4979,9 +5060,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             focusenergy: ["8T"],
             gigaimpact: ["8T"],
             hyperbeam: ["8T"],
-              leafage: ["8L5"],
-              leafblade: ["8L37"],
-              leafstorm: ["8L47"],
+            leafage: ["8L5"],
+            leafblade: ["8L37"],
+            leafstorm: ["8L47"],
             magicalleaf: ["8T"],
             petaldance: ["8L53"],
             poisonjab: ["8T"],
@@ -5122,6 +5203,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             tackle: ["8L1"],
             twister: ["8L11"],
         },
+        eventData: [
+			{generation: 8, level: 70, moves: ["bleakwindstorm", "hurricane", "crunch", "extrasensory"]},
+		],
     },
     tornadustherian: {},
     thundurus: {
@@ -5151,6 +5235,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             wildboltstorm: ["8L52"],
             wildcharge: ["8T"],
         },
+        eventData: [
+			{generation: 8, level: 70, moves: ["wildboltstorm", "thunder", "crunch", "extrasensory"]},
+		],
     },
     thundurustherian: {},
     landorus: {
@@ -5177,6 +5264,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             tackle: ["8L1"],
             twister: ["8L11"],
         },
+        eventData: [
+			{generation: 8, level: 70, moves: ["sandsearstorm", "earthpower", "crunch", "extrasensory"]},
+		],
     },
     landorustherian: {},
     sylveon: {
@@ -5328,9 +5418,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             airslash: ["8L25"],
             falseswipe: ["8T"],
             gust: ["8L1"],
-              leafage: ["8L6"],
-              leafblade: ["8L34"],
-              leafstorm: ["8L43"],
+            leafage: ["8L6"],
+            leafblade: ["8L34"],
+            leafstorm: ["8L43"],
             magicalleaf: ["8T", "8L21"],
             psychocut: ["8T"],
             rest: ["8T"],
@@ -5346,9 +5436,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             energyball: ["8T"],
             falseswipe: ["8T"],
             gust: ["8L1"],
-              leafage: ["8L6"],
-              leafblade: ["8L34"],
-              leafstorm: ["8L43"],
+            leafage: ["8L6"],
+            leafblade: ["8L34"],
+            leafstorm: ["8L43"],
             magicalleaf: ["8T", "8L21"],
             psychocut: ["8T"],
             rest: ["8T"],
@@ -5370,9 +5460,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             gigaimpact: ["8T"],
             gust: ["8L1"],
             hyperbeam: ["8T"],
-              leafage: ["8L6"],
-              leafblade: ["8L34"],
-              leafstorm: ["8L43"],
+            leafage: ["8L6"],
+            leafblade: ["8L34"],
+            leafstorm: ["8L43"],
             magicalleaf: ["8T", "8L21"],
             psychocut: ["8T"],
             rest: ["8T"],
@@ -5588,6 +5678,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             twister: ["8L11"],
             zenheadbutt: ["8T"],
         },
+        eventData: [
+			{generation: 8, level: 70, moves: ["springtidestorm", "moonblast", "crunch", "extrasensory"]},
+		],
     },
     enamorustherian: {},
 };
