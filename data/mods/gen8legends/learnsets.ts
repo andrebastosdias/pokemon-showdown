@@ -19,8 +19,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thundershock: ["8L1"],
             thunderwave: ["8L9"],
             volttackle: ["8T"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     raichu: {
         learnset: {
@@ -42,8 +42,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thundershock: ["8L1"],
             thunderwave: ["8L9"],
             volttackle: ["8T"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     clefairy: {
         learnset: {
@@ -76,8 +76,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderpunch: ["8T"],
             triattack: ["8T"],
             waterpulse: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     clefable: {
         learnset: {
@@ -112,8 +112,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderpunch: ["8T"],
             triattack: ["8T"],
             waterpulse: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     vulpix: {
         learnset: {
@@ -133,8 +133,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             quickattack: ["8L5"],
             rest: ["8T"],
             swift: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     vulpixalola: {
         learnset: {
@@ -153,8 +153,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             quickattack: ["8L5"],
             rest: ["8T"],
             swift: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     ninetales: {
         learnset: {
@@ -178,8 +178,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             shadowball: ["8T"],
             swift: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     ninetalesalola: {
         learnset: {
@@ -201,8 +201,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             quickattack: ["8L5"],
             rest: ["8T"],
             swift: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     zubat: {
         learnset: {
@@ -219,8 +219,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T"],
             sludgebomb: ["8T"],
             swift: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     golbat: {
         learnset: {
@@ -239,8 +239,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T"],
             sludgebomb: ["8T"],
             swift: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     paras: {
         learnset: {
@@ -257,8 +257,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             spore: ["8L29"],
             stunspore: ["8L5"],
             venoshock: ["8L15"],
-            xscissor: ["8T", "8L37"]
-        }
+            xscissor: ["8T", "8L37"],
+        },
     },
     parasect: {
         learnset: {
@@ -277,8 +277,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             spore: ["8L29"],
             stunspore: ["8L5"],
             venoshock: ["8L15"],
-            xscissor: ["8T", "8L37"]
-        }
+            xscissor: ["8T", "8L37"],
+        },
     },
     psyduck: {
         learnset: {
@@ -300,8 +300,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T"],
             triattack: ["8T"],
             waterpulse: ["8T", "8L11"],
-            zenheadbutt: ["8T", "8L25"]
-        }
+            zenheadbutt: ["8T", "8L25"],
+        },
     },
     golduck: {
         learnset: {
@@ -325,8 +325,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T"],
             triattack: ["8T"],
             waterpulse: ["8T", "8L11"],
-            zenheadbutt: ["8T", "8L25"]
-        }
+            zenheadbutt: ["8T", "8L25"],
+        },
     },
     growlithehisui: {
         learnset: {
@@ -347,8 +347,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             snarl: ["8T"],
             swift: ["8T"],
             tackle: ["8L1"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     arcaninehisui: {
         learnset: {
@@ -376,8 +376,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T"],
             tackle: ["8L1"],
             thunderfang: ["8T"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     abra: {
         learnset: {
@@ -396,8 +396,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             teleport: ["8L1"],
             thunderpunch: ["8T"],
             triattack: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     kadabra: {
         learnset: {
@@ -420,8 +420,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             teleport: ["8L1"],
             thunderpunch: ["8T"],
             triattack: ["8T"],
-            zenheadbutt: ["8T", "8L25"]
-        }
+            zenheadbutt: ["8T", "8L25"],
+        },
     },
     alakazam: {
         learnset: {
@@ -446,8 +446,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             teleport: ["8L1"],
             thunderpunch: ["8T"],
             triattack: ["8T"],
-            zenheadbutt: ["8T", "8L25"]
-        }
+            zenheadbutt: ["8T", "8L25"],
+        },
     },
     machop: {
         learnset: {
@@ -467,8 +467,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rockslide: ["8T"],
             rocksmash: ["8T", "8L6"],
             tackle: ["8L1"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     machoke: {
         learnset: {
@@ -488,8 +488,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rockslide: ["8T"],
             rocksmash: ["8T", "8L6"],
             tackle: ["8L1"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     machamp: {
         learnset: {
@@ -514,8 +514,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T", "8L6"],
             stoneedge: ["8T"],
             tackle: ["8L1"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     tentacool: {
         learnset: {
@@ -530,8 +530,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             poisonsting: ["8L1"],
             rest: ["8T"],
             sludgebomb: ["8T"],
-            waterpulse: ["8T", "8L11"]
-        }
+            waterpulse: ["8T", "8L11"],
+        },
     },
     tentacruel: {
         learnset: {
@@ -548,8 +548,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             poisonsting: ["8L1"],
             rest: ["8T"],
             sludgebomb: ["8T"],
-            waterpulse: ["8T", "8L11"]
-        }
+            waterpulse: ["8T", "8L11"],
+        },
     },
     geodude: {
         learnset: {
@@ -568,8 +568,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stealthrock: ["8T", "8L29"],
             stoneedge: ["8T"],
             tackle: ["8L5"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     graveler: {
         learnset: {
@@ -588,8 +588,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stealthrock: ["8T", "8L29"],
             stoneedge: ["8T"],
             tackle: ["8L5"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     golem: {
         learnset: {
@@ -611,8 +611,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stealthrock: ["8T", "8L29"],
             stoneedge: ["8T", "8L57"],
             tackle: ["8L5"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     ponyta: {
         learnset: {
@@ -630,8 +630,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             swift: ["8T"],
             tackle: ["8L1"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     rapidash: {
         learnset: {
@@ -653,8 +653,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             swift: ["8T"],
             tackle: ["8L1"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     magnemite: {
         learnset: {
@@ -669,8 +669,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderbolt: ["8T", "8L34"],
             thundershock: ["8L1"],
             thunderwave: ["8L11"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     magneton: {
         learnset: {
@@ -688,8 +688,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thundershock: ["8L1"],
             thunderwave: ["8L11"],
             triattack: ["8T", "8L25"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     gastly: {
         learnset: {
@@ -711,8 +711,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             sludgebomb: ["8T"],
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
-            venoshock: ["8L18"]
-        }
+            venoshock: ["8L18"],
+        },
     },
     haunter: {
         learnset: {
@@ -735,8 +735,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             sludgebomb: ["8T"],
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
-            venoshock: ["8L18"]
-        }
+            venoshock: ["8L18"],
+        },
     },
     gengar: {
         learnset: {
@@ -764,8 +764,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             sludgebomb: ["8T"],
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
-            venoshock: ["8L18"]
-        }
+            venoshock: ["8L18"],
+        },
     },
     onix: {
         learnset: {
@@ -782,8 +782,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rollout: ["8L1"],
             stealthrock: ["8T", "8L25"],
             stoneedge: ["8T"],
-            tackle: ["8L6"]
-        }
+            tackle: ["8L6"],
+        },
     },
     voltorbhisui: {
         learnset: {
@@ -800,8 +800,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderbolt: ["8T", "8L29"],
             thundershock: ["8L1"],
             thunderwave: ["8L9"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     electrodehisui: {
         learnset: {
@@ -821,8 +821,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderbolt: ["8T", "8L29"],
             thundershock: ["8L1"],
             thunderwave: ["8L9"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     lickitung: {
         learnset: {
@@ -845,8 +845,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             tackle: ["8L1"],
             thunderpunch: ["8T"],
             waterpulse: ["8T"],
-            zenheadbutt: ["8T", "8L18"]
-        }
+            zenheadbutt: ["8T", "8L18"],
+        },
     },
     rhyhorn: {
         learnset: {
@@ -870,8 +870,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stealthrock: ["8T", "8L18"],
             stoneedge: ["8T"],
             tackle: ["8L1"],
-            thunderfang: ["8T"]
-        }
+            thunderfang: ["8T"],
+        },
     },
     rhydon: {
         learnset: {
@@ -901,8 +901,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stoneedge: ["8T"],
             tackle: ["8L1"],
             thunderfang: ["8T"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     chansey: {
         learnset: {
@@ -936,8 +936,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             triattack: ["8T"],
             waterpulse: ["8T"],
             wildcharge: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     tangela: {
         learnset: {
@@ -953,8 +953,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             sleeppowder: ["8L43"],
             sludgebomb: ["8T"],
-            stunspore: ["8L6"]
-        }
+            stunspore: ["8L6"],
+        },
     },
     mrmime: {
         learnset: {
@@ -981,8 +981,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T"],
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
-            zenheadbutt: ["8T", "8L18"]
-        }
+            zenheadbutt: ["8T", "8L18"],
+        },
     },
     scyther: {
         learnset: {
@@ -1003,8 +1003,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             silverwind: ["8L6"],
             swift: ["8T"],
             swordsdance: ["8L25"],
-            xscissor: ["8T", "8L34"]
-        }
+            xscissor: ["8T", "8L34"],
+        },
     },
     electabuzz: {
         learnset: {
@@ -1025,8 +1025,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderpunch: ["8T", "8L25"],
             thundershock: ["8L1"],
             thunderwave: ["8L18"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     magmar: {
         learnset: {
@@ -1044,8 +1044,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             rocksmash: ["8T"],
             tackle: ["8L6"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     magikarp: { learnset: { splash: ["8L1"] } },
     gyarados: {
@@ -1073,8 +1073,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stoneedge: ["8T"],
             thunderbolt: ["8T"],
             twister: ["8L5"],
-            waterpulse: ["8T", "8L0"]
-        }
+            waterpulse: ["8T", "8L0"],
+        },
     },
     eevee: {
         learnset: {
@@ -1088,8 +1088,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             shadowball: ["8T"],
             swift: ["8T", "8L11"],
-            tackle: ["8L1"]
-        }
+            tackle: ["8L1"],
+        },
     },
     vaporeon: {
         learnset: {
@@ -1111,8 +1111,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T"],
             swift: ["8T", "8L11"],
             tackle: ["8L1"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     jolteon: {
         learnset: {
@@ -1134,8 +1134,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderbolt: ["8T", "8L25"],
             thunderfang: ["8T"],
             thundershock: ["8L0"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     flareon: {
         learnset: {
@@ -1157,8 +1157,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             shadowball: ["8T"],
             swift: ["8T", "8L11"],
-            tackle: ["8L1"]
-        }
+            tackle: ["8L1"],
+        },
     },
     porygon: {
         learnset: {
@@ -1179,8 +1179,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thundershock: ["8L5"],
             thunderwave: ["8L9"],
             triattack: ["8T", "8L21"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     snorlax: {
         learnset: {
@@ -1210,8 +1210,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderpunch: ["8T"],
             waterpulse: ["8T"],
             wildcharge: ["8T"],
-            zenheadbutt: ["8T", "8L29"]
-        }
+            zenheadbutt: ["8T", "8L29"],
+        },
     },
     cyndaquil: {
         learnset: {
@@ -1225,8 +1225,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             rollout: ["8L11"],
             swift: ["8T", "8L25"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     quilava: {
         learnset: {
@@ -1241,8 +1241,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             rollout: ["8L11"],
             swift: ["8T", "8L25"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     typhlosionhisui: {
         learnset: {
@@ -1271,8 +1271,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowclaw: ["8T"],
             swift: ["8T", "8L25"],
             thunderpunch: ["8T"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     crobat: {
         learnset: {
@@ -1293,8 +1293,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             sludgebomb: ["8T"],
             swift: ["8T"],
             xscissor: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     pichu: {
         learnset: {
@@ -1312,8 +1312,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thundershock: ["8L1"],
             thunderwave: ["8L9"],
             volttackle: ["8T"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     cleffa: {
         learnset: {
@@ -1334,8 +1334,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T"],
             tackle: ["8L1"],
             waterpulse: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     togepi: {
         learnset: {
@@ -1357,8 +1357,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             tackle: ["8L1"],
             triattack: ["8T"],
             waterpulse: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     togetic: {
         learnset: {
@@ -1388,8 +1388,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             tackle: ["8L1"],
             triattack: ["8T"],
             waterpulse: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     sudowoodo: {
         learnset: {
@@ -1410,8 +1410,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stoneedge: ["8T"],
             tackle: ["8L5"],
             thunderpunch: ["8T"],
-            woodhammer: ["8L57"]
-        }
+            woodhammer: ["8L57"],
+        },
     },
     aipom: {
         learnset: {
@@ -1431,8 +1431,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T", "8L11"],
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     yanma: {
         learnset: {
@@ -1448,8 +1448,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             shadowball: ["8T"],
             silverwind: ["8L11"],
-            swift: ["8T"]
-        }
+            swift: ["8T"],
+        },
     },
     espeon: {
         learnset: {
@@ -1470,8 +1470,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T"],
             swift: ["8T", "8L11"],
             tackle: ["8L1"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     umbreon: {
         learnset: {
@@ -1492,8 +1492,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T"],
             snarl: ["8T", "8L0"],
             swift: ["8T", "8L11"],
-            tackle: ["8L1"]
-        }
+            tackle: ["8L1"],
+        },
     },
     murkrow: {
         learnset: {
@@ -1511,8 +1511,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             roost: ["8L11"],
             shadowball: ["8T"],
             snarl: ["8T", "8L6"],
-            swift: ["8T"]
-        }
+            swift: ["8T"],
+        },
     },
     misdreavus: {
         learnset: {
@@ -1533,8 +1533,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T", "8L43"],
             shadowsneak: ["8L1"],
             swift: ["8T"],
-            thunderbolt: ["8T"]
-        }
+            thunderbolt: ["8T"],
+        },
     },
     unown: { learnset: { hiddenpower: ["8L1"] } },
     gligar: {
@@ -1558,8 +1558,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stealthrock: ["8T"],
             stoneedge: ["8T"],
             swift: ["8T"],
-            xscissor: ["8T", "8L43"]
-        }
+            xscissor: ["8T", "8L43"],
+        },
     },
     steelix: {
         learnset: {
@@ -1585,8 +1585,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             steelbeam: ["8T"],
             stoneedge: ["8T"],
             tackle: ["8L6"],
-            thunderfang: ["8T"]
-        }
+            thunderfang: ["8T"],
+        },
     },
     qwilfishhisui: {
         learnset: {
@@ -1606,8 +1606,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             sludgebomb: ["8T"],
             spikes: ["8T", "8L5"],
             swift: ["8T"],
-            waterpulse: ["8T", "8L21"]
-        }
+            waterpulse: ["8T", "8L21"],
+        },
     },
     scizor: {
         learnset: {
@@ -1632,8 +1632,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             steelbeam: ["8T"],
             swift: ["8T"],
             swordsdance: ["8L25"],
-            xscissor: ["8T", "8L34"]
-        }
+            xscissor: ["8T", "8L34"],
+        },
     },
     heracross: {
         learnset: {
@@ -1658,8 +1658,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             spikes: ["8T"],
             stoneedge: ["8T"],
             swordsdance: ["8L29"],
-            tackle: ["8L1"]
-        }
+            tackle: ["8L1"],
+        },
     },
     sneasel: {
         learnset: {
@@ -1684,8 +1684,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             snarl: ["8T"],
             swift: ["8T", "8L11"],
             swordsdance: ["8L34"],
-            xscissor: ["8T"]
-        }
+            xscissor: ["8T"],
+        },
     },
     sneaselhisui: {
         learnset: {
@@ -1707,8 +1707,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             snarl: ["8T"],
             swift: ["8T", "8L11"],
             swordsdance: ["8L34"],
-            xscissor: ["8T"]
-        }
+            xscissor: ["8T"],
+        },
     },
     teddiursa: {
         learnset: {
@@ -1729,8 +1729,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             slash: ["8L18"],
             swift: ["8T"],
             tackle: ["8L1"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     ursaring: {
         learnset: {
@@ -1754,8 +1754,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stoneedge: ["8T"],
             swift: ["8T"],
             tackle: ["8L1"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     swinub: {
         learnset: {
@@ -1774,8 +1774,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rockslide: ["8T"],
             rocksmash: ["8T"],
             stealthrock: ["8T"],
-            tackle: ["8L1"]
-        }
+            tackle: ["8L1"],
+        },
     },
     piloswine: {
         learnset: {
@@ -1798,8 +1798,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             stealthrock: ["8T"],
             stoneedge: ["8T"],
-            tackle: ["8L1"]
-        }
+            tackle: ["8L1"],
+        },
     },
     remoraid: {
         learnset: {
@@ -1814,8 +1814,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             psychic: ["8T"],
             rest: ["8T"],
             swift: ["8T"],
-            waterpulse: ["8T", "8L18"]
-        }
+            waterpulse: ["8T", "8L18"],
+        },
     },
     octillery: {
         learnset: {
@@ -1836,8 +1836,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             sludgebomb: ["8T"],
             swift: ["8T"],
-            waterpulse: ["8T", "8L18"]
-        }
+            waterpulse: ["8T", "8L18"],
+        },
     },
     mantine: {
         learnset: {
@@ -1859,8 +1859,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             roost: ["8L29"],
             swift: ["8T"],
             tackle: ["8L1"],
-            waterpulse: ["8T", "8L15"]
-        }
+            waterpulse: ["8T", "8L15"],
+        },
     },
     porygon2: {
         learnset: {
@@ -1882,8 +1882,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thundershock: ["8L5"],
             thunderwave: ["8L9"],
             triattack: ["8T", "8L21"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     stantler: {
         learnset: {
@@ -1906,8 +1906,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             tackle: ["8L1"],
             thunderbolt: ["8T"],
             wildcharge: ["8T"],
-            zenheadbutt: ["8T", "8L37"]
-        }
+            zenheadbutt: ["8T", "8L37"],
+        },
     },
     elekid: {
         learnset: {
@@ -1925,8 +1925,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderpunch: ["8T", "8L25"],
             thundershock: ["8L1"],
             thunderwave: ["8L18"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     magby: {
         learnset: {
@@ -1942,8 +1942,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             rocksmash: ["8T"],
             tackle: ["8L6"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     blissey: {
         learnset: {
@@ -1978,16 +1978,16 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             triattack: ["8T"],
             waterpulse: ["8T"],
             wildcharge: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     wurmple: { learnset: { poisonsting: ["8L1"], tackle: ["8L6"] } },
     silcoon: {
         learnset: {
             irondefense: ["8L0"],
             poisonsting: ["8L1"],
-            tackle: ["8L6"]
-        }
+            tackle: ["8L6"],
+        },
     },
     beautifly: {
         learnset: {
@@ -2009,15 +2009,15 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stunspore: ["8L11"],
             swift: ["8T"],
             tackle: ["8L6"],
-            venoshock: ["8L25"]
-        }
+            venoshock: ["8L25"],
+        },
     },
     cascoon: {
         learnset: {
             irondefense: ["8L0"],
             poisonsting: ["8L1"],
-            tackle: ["8L6"]
-        }
+            tackle: ["8L6"],
+        },
     },
     dustox: {
         learnset: {
@@ -2039,8 +2039,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             sludgebomb: ["8T"],
             swift: ["8T"],
             tackle: ["8L6"],
-            venoshock: ["8L25"]
-        }
+            venoshock: ["8L25"],
+        },
     },
     ralts: {
         learnset: {
@@ -2062,8 +2062,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             teleport: ["8L6"],
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     kirlia: {
         learnset: {
@@ -2085,8 +2085,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             teleport: ["8L6"],
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     gardevoir: {
         learnset: {
@@ -2115,8 +2115,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             teleport: ["8L6"],
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     nosepass: {
         learnset: {
@@ -2137,8 +2137,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             tackle: ["8L1"],
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
-            thunderwave: ["8L6"]
-        }
+            thunderwave: ["8L6"],
+        },
     },
     roselia: {
         learnset: {
@@ -2156,8 +2156,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             spikes: ["8T"],
             stunspore: ["8L18"],
             swift: ["8T"],
-            venoshock: ["8L25"]
-        }
+            venoshock: ["8L25"],
+        },
     },
     barboach: {
         learnset: {
@@ -2170,8 +2170,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             mudslap: ["8L1"],
             rest: ["8T", "8L18"],
             waterpulse: ["8T", "8L6"],
-            zenheadbutt: ["8T", "8L25"]
-        }
+            zenheadbutt: ["8T", "8L25"],
+        },
     },
     whiscash: {
         learnset: {
@@ -2190,8 +2190,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             stoneedge: ["8T"],
             waterpulse: ["8T", "8L6"],
-            zenheadbutt: ["8T", "8L25"]
-        }
+            zenheadbutt: ["8T", "8L25"],
+        },
     },
     duskull: {
         learnset: {
@@ -2207,8 +2207,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             psychic: ["8T", "8L43"],
             rest: ["8T"],
             shadowball: ["8T", "8L34"],
-            shadowsneak: ["8L6"]
-        }
+            shadowsneak: ["8L6"],
+        },
     },
     dusclops: {
         learnset: {
@@ -2233,8 +2233,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             shadowball: ["8T", "8L34"],
             shadowsneak: ["8L6"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     chimecho: {
         learnset: {
@@ -2254,8 +2254,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T"],
             swift: ["8T"],
             tackle: ["8L1"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     snorunt: {
         learnset: {
@@ -2271,8 +2271,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             shadowball: ["8T"],
             spikes: ["8T"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     glalie: {
         learnset: {
@@ -2294,8 +2294,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             shadowball: ["8T"],
             spikes: ["8T"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     spheal: {
         learnset: {
@@ -2313,8 +2313,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rockslide: ["8T"],
             rocksmash: ["8T"],
             rollout: ["8L1"],
-            waterpulse: ["8T", "8L11"]
-        }
+            waterpulse: ["8T", "8L11"],
+        },
     },
     sealeo: {
         learnset: {
@@ -2332,8 +2332,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rockslide: ["8T"],
             rocksmash: ["8T"],
             rollout: ["8L1"],
-            waterpulse: ["8T", "8L11"]
-        }
+            waterpulse: ["8T", "8L11"],
+        },
     },
     walrein: {
         learnset: {
@@ -2355,8 +2355,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rockslide: ["8T"],
             rocksmash: ["8T"],
             rollout: ["8L1"],
-            waterpulse: ["8T", "8L11"]
-        }
+            waterpulse: ["8T", "8L11"],
+        },
     },
     turtwig: {
         learnset: {
@@ -2372,8 +2372,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             sleeppowder: ["8L25"],
             stealthrock: ["8T"],
-            tackle: ["8L1"]
-        }
+            tackle: ["8L1"],
+        },
     },
     grotle: {
         learnset: {
@@ -2389,8 +2389,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             sleeppowder: ["8L25"],
             stealthrock: ["8T"],
-            tackle: ["8L1"]
-        }
+            tackle: ["8L1"],
+        },
     },
     torterra: {
         learnset: {
@@ -2414,8 +2414,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stealthrock: ["8T"],
             stoneedge: ["8T"],
             tackle: ["8L1"],
-            woodhammer: ["8L52"]
-        }
+            woodhammer: ["8L52"],
+        },
     },
     chimchar: {
         learnset: {
@@ -2435,8 +2435,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stealthrock: ["8T"],
             swift: ["8T", "8L11"],
             tackle: ["8L1"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     monferno: {
         learnset: {
@@ -2459,8 +2459,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stealthrock: ["8T"],
             swift: ["8T", "8L11"],
             tackle: ["8L1"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     infernape: {
         learnset: {
@@ -2492,8 +2492,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stoneedge: ["8T"],
             swift: ["8T", "8L11"],
             tackle: ["8L1"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     piplup: {
         learnset: {
@@ -2509,8 +2509,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             roost: ["8L25"],
             stealthrock: ["8T"],
             tackle: ["8L1"],
-            waterpulse: ["8T", "8L18"]
-        }
+            waterpulse: ["8T", "8L18"],
+        },
     },
     prinplup: {
         learnset: {
@@ -2527,8 +2527,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowclaw: ["8T"],
             stealthrock: ["8T"],
             tackle: ["8L1"],
-            waterpulse: ["8T", "8L18"]
-        }
+            waterpulse: ["8T", "8L18"],
+        },
     },
     empoleon: {
         learnset: {
@@ -2553,8 +2553,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             steelbeam: ["8T"],
             tackle: ["8L1"],
             waterpulse: ["8T", "8L18"],
-            wavecrash: ["8L57"]
-        }
+            wavecrash: ["8L57"],
+        },
     },
     starly: {
         learnset: {
@@ -2568,8 +2568,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             quickattack: ["8L5"],
             rest: ["8T"],
             roost: ["8L21"],
-            swift: ["8T"]
-        }
+            swift: ["8T"],
+        },
     },
     staravia: {
         learnset: {
@@ -2583,8 +2583,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             quickattack: ["8L5"],
             rest: ["8T"],
             roost: ["8L21"],
-            swift: ["8T"]
-        }
+            swift: ["8T"],
+        },
     },
     staraptor: {
         learnset: {
@@ -2601,8 +2601,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             quickattack: ["8L5"],
             rest: ["8T"],
             roost: ["8L21"],
-            swift: ["8T"]
-        }
+            swift: ["8T"],
+        },
     },
     bidoof: {
         learnset: {
@@ -2622,8 +2622,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T"],
             swordsdance: ["8L31"],
             tackle: ["8L5"],
-            thunderbolt: ["8T"]
-        }
+            thunderbolt: ["8T"],
+        },
     },
     bibarel: {
         learnset: {
@@ -2647,8 +2647,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swordsdance: ["8L31"],
             tackle: ["8L5"],
             thunderbolt: ["8T"],
-            waterpulse: ["8T", "8L0"]
-        }
+            waterpulse: ["8T", "8L0"],
+        },
     },
     kricketot: { learnset: { absorb: ["8L1"], tackle: ["8L5"] } },
     kricketune: {
@@ -2667,8 +2667,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             slash: ["8L15"],
             swordsdance: ["8L37"],
             tackle: ["8L5"],
-            xscissor: ["8T", "8L29"]
-        }
+            xscissor: ["8T", "8L29"],
+        },
     },
     shinx: {
         learnset: {
@@ -2689,8 +2689,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderfang: ["8T", "8L15"],
             thundershock: ["8L5"],
             thunderwave: ["8L21"],
-            wildcharge: ["8T", "8L37"]
-        }
+            wildcharge: ["8T", "8L37"],
+        },
     },
     luxio: {
         learnset: {
@@ -2711,8 +2711,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderfang: ["8T", "8L15"],
             thundershock: ["8L5"],
             thunderwave: ["8L21"],
-            wildcharge: ["8T", "8L37"]
-        }
+            wildcharge: ["8T", "8L37"],
+        },
     },
     luxray: {
         learnset: {
@@ -2735,8 +2735,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderfang: ["8T", "8L15"],
             thundershock: ["8L5"],
             thunderwave: ["8L21"],
-            wildcharge: ["8T", "8L37"]
-        }
+            wildcharge: ["8T", "8L37"],
+        },
     },
     budew: {
         learnset: {
@@ -2753,8 +2753,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             spikes: ["8T"],
             stunspore: ["8L18"],
             swift: ["8T"],
-            venoshock: ["8L25"]
-        }
+            venoshock: ["8L25"],
+        },
     },
     roserade: {
         learnset: {
@@ -2774,8 +2774,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             spikes: ["8T"],
             stunspore: ["8L18"],
             swift: ["8T"],
-            venoshock: ["8L25"]
-        }
+            venoshock: ["8L25"],
+        },
     },
     cranidos: {
         learnset: {
@@ -2800,8 +2800,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             tackle: ["8L1"],
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     rampardos: {
         learnset: {
@@ -2830,8 +2830,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             tackle: ["8L1"],
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     shieldon: {
         learnset: {
@@ -2853,8 +2853,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             steelbeam: ["8T"],
             stoneedge: ["8T"],
             tackle: ["8L1"],
-            thunderbolt: ["8T"]
-        }
+            thunderbolt: ["8T"],
+        },
     },
     bastiodon: {
         learnset: {
@@ -2880,8 +2880,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             steelbeam: ["8T"],
             stoneedge: ["8T"],
             tackle: ["8L1"],
-            thunderbolt: ["8T"]
-        }
+            thunderbolt: ["8T"],
+        },
     },
     burmy: { learnset: { strugglebug: ["8L1"] } },
     wormadam: {
@@ -2897,8 +2897,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             shadowball: ["8T"],
             silverwind: ["8L18"],
-            strugglebug: ["8L1"]
-        }
+            strugglebug: ["8L1"],
+        },
     },
     wormadamsandy: {
         learnset: {
@@ -2914,8 +2914,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T"],
             silverwind: ["8L18"],
             stealthrock: ["8T"],
-            strugglebug: ["8L1"]
-        }
+            strugglebug: ["8L1"],
+        },
     },
     wormadamtrash: {
         learnset: {
@@ -2932,8 +2932,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             silverwind: ["8L18"],
             stealthrock: ["8T"],
             steelbeam: ["8T"],
-            strugglebug: ["8L1"]
-        }
+            strugglebug: ["8L1"],
+        },
     },
     mothim: {
         learnset: {
@@ -2951,16 +2951,16 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T"],
             silverwind: ["8L18"],
             strugglebug: ["8L1"],
-            swift: ["8T"]
-        }
+            swift: ["8T"],
+        },
     },
     combee: {
         learnset: {
             gust: ["8L1"],
             ominouswind: ["8T"],
             strugglebug: ["8L6"],
-            swift: ["8T"]
-        }
+            swift: ["8T"],
+        },
     },
     vespiquen: {
         learnset: {
@@ -2981,8 +2981,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             sludgebomb: ["8T"],
             strugglebug: ["8L6"],
             swift: ["8T"],
-            xscissor: ["8T"]
-        }
+            xscissor: ["8T"],
+        },
     },
     pachirisu: {
         learnset: {
@@ -3000,8 +3000,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
             thundershock: ["8L5"],
-            thunderwave: ["8L37"]
-        }
+            thunderwave: ["8L37"],
+        },
     },
     buizel: {
         learnset: {
@@ -3018,8 +3018,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             rocksmash: ["8T"],
             swift: ["8T", "8L11"],
-            waterpulse: ["8T", "8L18"]
-        }
+            waterpulse: ["8T", "8L18"],
+        },
     },
     floatzel: {
         learnset: {
@@ -3040,8 +3040,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             rocksmash: ["8T"],
             swift: ["8T", "8L11"],
-            waterpulse: ["8T", "8L18"]
-        }
+            waterpulse: ["8T", "8L18"],
+        },
     },
     cherubi: {
         learnset: {
@@ -3055,8 +3055,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             sleeppowder: ["8L29"],
             stunspore: ["8L9"],
-            tackle: ["8L5"]
-        }
+            tackle: ["8L5"],
+        },
     },
     cherrim: {
         learnset: {
@@ -3073,8 +3073,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             sleeppowder: ["8L29"],
             stunspore: ["8L9"],
-            tackle: ["8L5"]
-        }
+            tackle: ["8L5"],
+        },
     },
     shellos: {
         learnset: {
@@ -3088,8 +3088,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             recover: ["8L37"],
             rest: ["8T"],
             tackle: ["8L5"],
-            waterpulse: ["8T", "8L9"]
-        }
+            waterpulse: ["8T", "8L9"],
+        },
     },
     gastrodon: {
         learnset: {
@@ -3110,8 +3110,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             sludgebomb: ["8T"],
             stoneedge: ["8T"],
             tackle: ["8L5"],
-            waterpulse: ["8T", "8L9"]
-        }
+            waterpulse: ["8T", "8L9"],
+        },
     },
     ambipom: {
         learnset: {
@@ -3133,8 +3133,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T", "8L11"],
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     drifloon: {
         learnset: {
@@ -3154,8 +3154,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             selfdestruct: ["8L47"],
             shadowball: ["8T", "8L37"],
             swift: ["8T"],
-            thunderbolt: ["8T"]
-        }
+            thunderbolt: ["8T"],
+        },
     },
     drifblim: {
         learnset: {
@@ -3178,8 +3178,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             selfdestruct: ["8L47"],
             shadowball: ["8T", "8L37"],
             swift: ["8T"],
-            thunderbolt: ["8T"]
-        }
+            thunderbolt: ["8T"],
+        },
     },
     buneary: {
         learnset: {
@@ -3201,8 +3201,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T", "8L10"],
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     lopunny: {
         learnset: {
@@ -3228,8 +3228,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T", "8L10"],
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     mismagius: {
         learnset: {
@@ -3255,8 +3255,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T", "8L43"],
             shadowsneak: ["8L1"],
             swift: ["8T"],
-            thunderbolt: ["8T"]
-        }
+            thunderbolt: ["8T"],
+        },
     },
     honchkrow: {
         learnset: {
@@ -3277,8 +3277,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             roost: ["8L11"],
             shadowball: ["8T"],
             snarl: ["8T", "8L6"],
-            swift: ["8T"]
-        }
+            swift: ["8T"],
+        },
     },
     glameow: {
         learnset: {
@@ -3296,8 +3296,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T"],
             tackle: ["8L1"],
             thunderbolt: ["8T"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     purugly: {
         learnset: {
@@ -3318,8 +3318,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T"],
             tackle: ["8L1"],
             thunderbolt: ["8T"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     chingling: {
         learnset: {
@@ -3339,8 +3339,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T"],
             swift: ["8T"],
             tackle: ["8L1"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     stunky: {
         learnset: {
@@ -3362,8 +3362,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             snarl: ["8T"],
             swift: ["8T"],
             tackle: ["8L1"],
-            venoshock: ["8L18"]
-        }
+            venoshock: ["8L18"],
+        },
     },
     skuntank: {
         learnset: {
@@ -3387,8 +3387,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             snarl: ["8T"],
             swift: ["8T"],
             tackle: ["8L1"],
-            venoshock: ["8L18"]
-        }
+            venoshock: ["8L18"],
+        },
     },
     bronzor: {
         learnset: {
@@ -3406,8 +3406,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T"],
             stealthrock: ["8T"],
             steelbeam: ["8T"],
-            tackle: ["8L1"]
-        }
+            tackle: ["8L1"],
+        },
     },
     bronzong: {
         learnset: {
@@ -3430,8 +3430,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stealthrock: ["8T"],
             steelbeam: ["8T"],
             tackle: ["8L1"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     bonsly: {
         learnset: {
@@ -3445,8 +3445,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rockslide: ["8T", "8L15"],
             rollout: ["8L1"],
             stealthrock: ["8T", "8L9"],
-            tackle: ["8L5"]
-        }
+            tackle: ["8L5"],
+        },
     },
     mimejr: {
         learnset: {
@@ -3463,8 +3463,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             shadowball: ["8T"],
             thunderbolt: ["8T"],
-            zenheadbutt: ["8T", "8L18"]
-        }
+            zenheadbutt: ["8T", "8L18"],
+        },
     },
     happiny: {
         learnset: {
@@ -3482,8 +3482,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             softboiled: ["8L34"],
             tackle: ["8L1"],
             waterpulse: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     chatot: {
         learnset: {
@@ -3500,8 +3500,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             roost: ["8L18"],
             snarl: ["8T"],
-            swift: ["8T", "8L6"]
-        }
+            swift: ["8T", "8L6"],
+        },
     },
     spiritomb: {
         learnset: {
@@ -3520,8 +3520,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T", "8L43"],
             shadowsneak: ["8L1"],
             snarl: ["8T"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     gible: {
         learnset: {
@@ -3543,8 +3543,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stoneedge: ["8T"],
             swift: ["8T"],
             tackle: ["8L1"],
-            twister: ["8L5"]
-        }
+            twister: ["8L5"],
+        },
     },
     gabite: {
         learnset: {
@@ -3567,8 +3567,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stoneedge: ["8T"],
             swift: ["8T"],
             tackle: ["8L1"],
-            twister: ["8L5"]
-        }
+            twister: ["8L5"],
+        },
     },
     garchomp: {
         learnset: {
@@ -3597,8 +3597,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stoneedge: ["8T"],
             swift: ["8T"],
             tackle: ["8L1"],
-            twister: ["8L5"]
-        }
+            twister: ["8L5"],
+        },
     },
     munchlax: {
         learnset: {
@@ -3622,8 +3622,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
             waterpulse: ["8T"],
-            zenheadbutt: ["8T", "8L29"]
-        }
+            zenheadbutt: ["8T", "8L29"],
+        },
     },
     riolu: {
         learnset: {
@@ -3646,8 +3646,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowclaw: ["8T"],
             swift: ["8T"],
             thunderpunch: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     lucario: {
         learnset: {
@@ -3682,8 +3682,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T"],
             thunderpunch: ["8T"],
             waterpulse: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     hippopotas: {
         learnset: {
@@ -3700,8 +3700,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             stealthrock: ["8T"],
             tackle: ["8L1"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     hippowdon: {
         learnset: {
@@ -3725,8 +3725,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stoneedge: ["8T"],
             tackle: ["8L1"],
             thunderfang: ["8T"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     skorupi: {
         learnset: {
@@ -3746,8 +3746,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             sludgebomb: ["8T"],
             swordsdance: ["8L25"],
             venoshock: ["8L11"],
-            xscissor: ["8T", "8L34"]
-        }
+            xscissor: ["8T", "8L34"],
+        },
     },
     drapion: {
         learnset: {
@@ -3776,8 +3776,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swordsdance: ["8L25"],
             thunderfang: ["8T"],
             venoshock: ["8L11"],
-            xscissor: ["8T", "8L34"]
-        }
+            xscissor: ["8T", "8L34"],
+        },
     },
     croagunk: {
         learnset: {
@@ -3800,8 +3800,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             sludgebomb: ["8T"],
             thunderpunch: ["8T"],
             venoshock: ["8L15"],
-            xscissor: ["8T"]
-        }
+            xscissor: ["8T"],
+        },
     },
     toxicroak: {
         learnset: {
@@ -3827,8 +3827,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stoneedge: ["8T"],
             thunderpunch: ["8T"],
             venoshock: ["8L15"],
-            xscissor: ["8T"]
-        }
+            xscissor: ["8T"],
+        },
     },
     carnivine: {
         learnset: {
@@ -3844,8 +3844,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             sleeppowder: ["8L34"],
             sludgebomb: ["8T"],
-            stunspore: ["8L18"]
-        }
+            stunspore: ["8L18"],
+        },
     },
     finneon: {
         learnset: {
@@ -3862,8 +3862,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             roost: ["8L34"],
             silverwind: ["8L18"],
             swift: ["8T"],
-            waterpulse: ["8T", "8L11"]
-        }
+            waterpulse: ["8T", "8L11"],
+        },
     },
     lumineon: {
         learnset: {
@@ -3883,8 +3883,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             roost: ["8L34"],
             silverwind: ["8L18"],
             swift: ["8T"],
-            waterpulse: ["8T", "8L11"]
-        }
+            waterpulse: ["8T", "8L11"],
+        },
     },
     mantyke: {
         learnset: {
@@ -3901,8 +3901,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             roost: ["8L29"],
             swift: ["8T"],
             tackle: ["8L1"],
-            waterpulse: ["8T", "8L15"]
-        }
+            waterpulse: ["8T", "8L15"],
+        },
     },
     snover: {
         learnset: {
@@ -3920,8 +3920,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             shadowball: ["8T"],
             waterpulse: ["8T"],
-            woodhammer: ["8L43"]
-        }
+            woodhammer: ["8L43"],
+        },
     },
     abomasnow: {
         learnset: {
@@ -3946,8 +3946,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             shadowball: ["8T"],
             waterpulse: ["8T"],
-            woodhammer: ["8L43"]
-        }
+            woodhammer: ["8L43"],
+        },
     },
     weavile: {
         learnset: {
@@ -3975,8 +3975,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             snarl: ["8T"],
             swift: ["8T", "8L11"],
             swordsdance: ["8L34"],
-            xscissor: ["8T"]
-        }
+            xscissor: ["8T"],
+        },
     },
     magnezone: {
         learnset: {
@@ -3995,8 +3995,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thundershock: ["8L1"],
             thunderwave: ["8L11"],
             triattack: ["8T", "8L25"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     lickilicky: {
         learnset: {
@@ -4021,8 +4021,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
             waterpulse: ["8T"],
-            zenheadbutt: ["8T", "8L18"]
-        }
+            zenheadbutt: ["8T", "8L18"],
+        },
     },
     rhyperior: {
         learnset: {
@@ -4055,8 +4055,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             tackle: ["8L1"],
             thunderbolt: ["8T"],
             thunderfang: ["8T"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     tangrowth: {
         learnset: {
@@ -4076,8 +4076,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             sleeppowder: ["8L43"],
             sludgebomb: ["8T", "8L52"],
-            stunspore: ["8L6"]
-        }
+            stunspore: ["8L6"],
+        },
     },
     electivire: {
         learnset: {
@@ -4101,8 +4101,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderpunch: ["8T", "8L25"],
             thundershock: ["8L1"],
             thunderwave: ["8L18"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     magmortar: {
         learnset: {
@@ -4124,8 +4124,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             tackle: ["8L6"],
             thunderbolt: ["8T"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     togekiss: {
         learnset: {
@@ -4155,8 +4155,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             tackle: ["8L1"],
             triattack: ["8T"],
             waterpulse: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     yanmega: {
         learnset: {
@@ -4176,8 +4176,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             shadowball: ["8T"],
             silverwind: ["8L11"],
-            swift: ["8T"]
-        }
+            swift: ["8T"],
+        },
     },
     leafeon: {
         learnset: {
@@ -4200,8 +4200,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T"],
             swift: ["8T", "8L11"],
             tackle: ["8L1"],
-            xscissor: ["8T"]
-        }
+            xscissor: ["8T"],
+        },
     },
     glaceon: {
         learnset: {
@@ -4224,8 +4224,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T"],
             swift: ["8T", "8L11"],
             tackle: ["8L1"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     gliscor: {
         learnset: {
@@ -4257,8 +4257,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T"],
             swordsdance: ["8L30"],
             thunderfang: ["8T"],
-            xscissor: ["8T", "8L43"]
-        }
+            xscissor: ["8T", "8L43"],
+        },
     },
     mamoswine: {
         learnset: {
@@ -4282,8 +4282,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             stealthrock: ["8T"],
             stoneedge: ["8T"],
-            tackle: ["8L1"]
-        }
+            tackle: ["8L1"],
+        },
     },
     porygonz: {
         learnset: {
@@ -4307,8 +4307,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thundershock: ["8L5"],
             thunderwave: ["8L9"],
             triattack: ["8T", "8L21"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     gallade: {
         learnset: {
@@ -4349,8 +4349,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
             xscissor: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     probopass: {
         learnset: {
@@ -4376,8 +4376,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
             thunderwave: ["8L6"],
-            triattack: ["8T", "8L34"]
-        }
+            triattack: ["8T", "8L34"],
+        },
     },
     dusknoir: {
         learnset: {
@@ -4402,8 +4402,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             shadowball: ["8T", "8L34"],
             shadowsneak: ["8L6"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     froslass: {
         learnset: {
@@ -4426,8 +4426,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowball: ["8T", "8L25"],
             spikes: ["8T"],
             thunderbolt: ["8T"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     rotom: {
         learnset: {
@@ -4441,8 +4441,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunder: ["8L43"],
             thunderbolt: ["8T", "8L34"],
             thundershock: ["8L1"],
-            thunderwave: ["8L18"]
-        }
+            thunderwave: ["8L18"],
+        },
     },
     rotomheat: { learnset: { overheat: ["8T"] } },
     rotomwash: { learnset: { hydropump: ["8T"] } },
@@ -4478,8 +4478,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderpunch: ["8T"],
             triattack: ["8T", "8L32"],
             waterpulse: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     mesprit: {
         learnset: {
@@ -4510,8 +4510,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderpunch: ["8T"],
             triattack: ["8T", "8L32"],
             waterpulse: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     azelf: {
         learnset: {
@@ -4544,8 +4544,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderpunch: ["8T"],
             triattack: ["8T", "8L32"],
             waterpulse: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     dialga: {
         learnset: {
@@ -4577,8 +4577,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stoneedge: ["8T"],
             swift: ["8T"],
             thunderbolt: ["8T"],
-            twister: ["8L1"]
-        }
+            twister: ["8L1"],
+        },
     },
     dialgaorigin: {},
     palkia: {
@@ -4609,8 +4609,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T"],
             thunderbolt: ["8T"],
             twister: ["8L1"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     palkiaorigin: {},
     heatran: {
@@ -4634,8 +4634,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             stealthrock: ["8T"],
             steelbeam: ["8T"],
-            stoneedge: ["8T"]
-        }
+            stoneedge: ["8T"],
+        },
     },
     regigigas: {
         learnset: {
@@ -4660,8 +4660,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             tackle: ["8L1"],
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
-            zenheadbutt: ["8T", "8L27"]
-        }
+            zenheadbutt: ["8T", "8L27"],
+        },
     },
     giratina: {
         learnset: {
@@ -4695,8 +4695,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowsneak: ["8L1"],
             stoneedge: ["8T"],
             swift: ["8T"],
-            thunderbolt: ["8T"]
-        }
+            thunderbolt: ["8T"],
+        },
     },
     giratinaorigin: {},
     cresselia: {
@@ -4720,8 +4720,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             slash: ["8L12"],
             swift: ["8T"],
             tackle: ["8L1"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     phione: {
         learnset: {
@@ -4738,8 +4738,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T"],
             takeheart: ["8L46"],
             waterpulse: ["8T", "8L12"],
-            zenheadbutt: ["8T", "8L27"]
-        }
+            zenheadbutt: ["8T", "8L27"],
+        },
     },
     manaphy: {
         learnset: {
@@ -4761,8 +4761,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T"],
             takeheart: ["8L46"],
             waterpulse: ["8T", "8L12"],
-            zenheadbutt: ["8T", "8L27"]
-        }
+            zenheadbutt: ["8T", "8L27"],
+        },
     },
     darkrai: {
         learnset: {
@@ -4792,8 +4792,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             snarl: ["8T"],
             swift: ["8T"],
             thunderbolt: ["8T"],
-            xscissor: ["8T"]
-        }
+            xscissor: ["8T"],
+        },
     },
     shaymin: {
         learnset: {
@@ -4816,8 +4816,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             seedflare: ["8L57"],
             sleeppowder: ["8L12"],
             swift: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     shayminsky: {},
     arceus: {
@@ -4865,8 +4865,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderbolt: ["8T"],
             waterpulse: ["8T"],
             xscissor: ["8T"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     arceusbug: {},
     arceusdark: {},
@@ -4902,8 +4902,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swordsdance: ["8L11"],
             tackle: ["8L1"],
             waterpulse: ["8T", "8L18"],
-            xscissor: ["8T"]
-        }
+            xscissor: ["8T"],
+        },
     },
     dewott: {
         learnset: {
@@ -4922,8 +4922,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swordsdance: ["8L11"],
             tackle: ["8L1"],
             waterpulse: ["8T", "8L18"],
-            xscissor: ["8T"]
-        }
+            xscissor: ["8T"],
+        },
     },
     samurotthisui: {
         learnset: {
@@ -4950,8 +4950,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swordsdance: ["8L11"],
             tackle: ["8L1"],
             waterpulse: ["8T", "8L18"],
-            xscissor: ["8T"]
-        }
+            xscissor: ["8T"],
+        },
     },
     petilil: {
         learnset: {
@@ -4965,8 +4965,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             recover: ["8L37"],
             rest: ["8T"],
             sleeppowder: ["8L29"],
-            stunspore: ["8L9"]
-        }
+            stunspore: ["8L9"],
+        },
     },
     lilliganthisui: {
         learnset: {
@@ -4991,8 +4991,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T", "8L0"],
             sleeppowder: ["8L29"],
             stunspore: ["8L9"],
-            victorydance: ["8L42"]
-        }
+            victorydance: ["8L42"],
+        },
     },
     basculinwhitestriped: {
         learnset: {
@@ -5008,8 +5008,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             swift: ["8T"],
             tackle: ["8L1"],
             wavecrash: ["8L34"],
-            zenheadbutt: ["8T", "8L18"]
-        }
+            zenheadbutt: ["8T", "8L18"],
+        },
     },
     zoruahisui: {
         learnset: {
@@ -5025,8 +5025,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             slash: ["8L25"],
             sludgebomb: ["8T"],
             snarl: ["8T", "8L6"],
-            swift: ["8T", "8L11"]
-        }
+            swift: ["8T", "8L11"],
+        },
     },
     zoroarkhisui: {
         learnset: {
@@ -5048,8 +5048,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             slash: ["8L25"],
             sludgebomb: ["8T"],
             snarl: ["8T", "8L6"],
-            swift: ["8T", "8L11"]
-        }
+            swift: ["8T", "8L11"],
+        },
     },
     rufflet: {
         learnset: {
@@ -5068,8 +5068,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             slash: ["8L18"],
             swift: ["8T"],
             twister: ["8L11"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     braviaryhisui: {
         learnset: {
@@ -5096,8 +5096,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             slash: ["8L18"],
             swift: ["8T"],
             twister: ["8L11"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
     tornadus: {
         learnset: {
@@ -5120,8 +5120,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             sludgebomb: ["8T"],
             tackle: ["8L1"],
-            twister: ["8L11"]
-        }
+            twister: ["8L11"],
+        },
     },
     tornadustherian: {},
     thundurus: {
@@ -5149,8 +5149,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             thunderpunch: ["8T"],
             twister: ["8L11"],
             wildboltstorm: ["8L52"],
-            wildcharge: ["8T"]
-        }
+            wildcharge: ["8T"],
+        },
     },
     thundurustherian: {},
     landorus: {
@@ -5175,8 +5175,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stealthrock: ["8T"],
             stoneedge: ["8T"],
             tackle: ["8L1"],
-            twister: ["8L11"]
-        }
+            twister: ["8L11"],
+        },
     },
     landorustherian: {},
     sylveon: {
@@ -5199,8 +5199,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             shadowball: ["8T"],
             swift: ["8T", "8L11"],
-            tackle: ["8L1"]
-        }
+            tackle: ["8L1"],
+        },
     },
     goomy: {
         learnset: {
@@ -5217,8 +5217,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shelter: ["8L34"],
             sludgebomb: ["8T"],
             thunderbolt: ["8T"],
-            waterpulse: ["8T", "8L18"]
-        }
+            waterpulse: ["8T", "8L18"],
+        },
     },
     sliggoohisui: {
         learnset: {
@@ -5238,8 +5238,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             sludgebomb: ["8T"],
             steelbeam: ["8T"],
             thunderbolt: ["8T"],
-            waterpulse: ["8T", "8L18"]
-        }
+            waterpulse: ["8T", "8L18"],
+        },
     },
     goodrahisui: {
         learnset: {
@@ -5266,8 +5266,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             steelbeam: ["8T"],
             thunderbolt: ["8T"],
             thunderpunch: ["8T"],
-            waterpulse: ["8T", "8L18"]
-        }
+            waterpulse: ["8T", "8L18"],
+        },
     },
     bergmite: {
         learnset: {
@@ -5288,8 +5288,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rocksmash: ["8T"],
             stoneedge: ["8T"],
             tackle: ["8L1"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     avalugghisui: {
         learnset: {
@@ -5319,8 +5319,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stealthrock: ["8T"],
             stoneedge: ["8T"],
             tackle: ["8L1"],
-            waterpulse: ["8T"]
-        }
+            waterpulse: ["8T"],
+        },
     },
     rowlet: {
         learnset: {
@@ -5336,8 +5336,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             roost: ["8L11"],
             shadowclaw: ["8T"],
-            swift: ["8T"]
-        }
+            swift: ["8T"],
+        },
     },
     dartrix: {
         learnset: {
@@ -5354,8 +5354,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             rest: ["8T"],
             roost: ["8L11"],
             shadowclaw: ["8T"],
-            swift: ["8T"]
-        }
+            swift: ["8T"],
+        },
     },
     decidueyehisui: {
         learnset: {
@@ -5381,8 +5381,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             shadowclaw: ["8T"],
             spikes: ["8T"],
             swift: ["8T"],
-            triplearrows: ["8L34"]
-        }
+            triplearrows: ["8L34"],
+        },
     },
     wyrdeer: {
         learnset: {
@@ -5407,8 +5407,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             tackle: ["8L1"],
             thunderbolt: ["8T"],
             wildcharge: ["8T"],
-            zenheadbutt: ["8T", "8L37"]
-        }
+            zenheadbutt: ["8T", "8L37"],
+        },
     },
     kleavor: {
         learnset: {
@@ -5433,8 +5433,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stoneedge: ["8T"],
             swift: ["8T"],
             swordsdance: ["8L25"],
-            xscissor: ["8T", "8L34"]
-        }
+            xscissor: ["8T", "8L34"],
+        },
     },
     ursaluna: {
         learnset: {
@@ -5460,8 +5460,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             stoneedge: ["8T"],
             swift: ["8T"],
             tackle: ["8L1"],
-            thunderpunch: ["8T"]
-        }
+            thunderpunch: ["8T"],
+        },
     },
     basculegion: {
         learnset: {
@@ -5485,8 +5485,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             tackle: ["8L1"],
             waterpulse: ["8T"],
             wavecrash: ["8L34"],
-            zenheadbutt: ["8T", "8L18"]
-        }
+            zenheadbutt: ["8T", "8L18"],
+        },
     },
     basculegionf: {
         learnset: {
@@ -5510,8 +5510,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             tackle: ["8L1"],
             waterpulse: ["8T"],
             wavecrash: ["8L34"],
-            zenheadbutt: ["8T", "8L18"]
-        }
+            zenheadbutt: ["8T", "8L18"],
+        },
     },
     sneasler: {
         learnset: {
@@ -5537,8 +5537,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             snarl: ["8T"],
             swift: ["8T", "8L11"],
             swordsdance: ["8L34"],
-            xscissor: ["8T"]
-        }
+            xscissor: ["8T"],
+        },
     },
     overqwil: {
         learnset: {
@@ -5560,8 +5560,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             sludgebomb: ["8T"],
             spikes: ["8T", "8L5"],
             swift: ["8T"],
-            waterpulse: ["8T", "8L21"]
-        }
+            waterpulse: ["8T", "8L21"],
+        },
     },
     enamorus: {
         learnset: {
@@ -5586,8 +5586,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
             springtidestorm: ["8L52"],
             tackle: ["8L1"],
             twister: ["8L11"],
-            zenheadbutt: ["8T"]
-        }
+            zenheadbutt: ["8T"],
+        },
     },
-    enamorustherian: {}
+    enamorustherian: {},
 };
