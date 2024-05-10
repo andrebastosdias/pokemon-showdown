@@ -1,6 +1,6 @@
 import { Species } from '../../../sim/dex-species';
 import type {PRNG} from '../../../sim/prng';
-import {MoveCounter, RandomGen8Teams, OldRandomBattleSpecies} from '../gen8/random-teams';
+import {MoveCounter, RandomGen8Teams, OldRandomBattleSpecies} from '../gen8/teams';
 
 // Moves that restore HP:
 const RECOVERY_MOVES = [
@@ -24,7 +24,7 @@ const HAZARDS = [
 ];
 
 export class RandomLegendsTeams extends RandomGen8Teams {
-	randomData: {[species: string]: OldRandomBattleSpecies} = require('./random-data.json');
+	randomData: {[species: string]: OldRandomBattleSpecies} = require('./data.json');
 
 	constructor(format: Format | string, prng: PRNG | PRNGSeed | null) {
 		super(format, prng);
