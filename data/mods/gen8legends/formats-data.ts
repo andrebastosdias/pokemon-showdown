@@ -1,2760 +1,2764 @@
 export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
     bulbasaur: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     ivysaur: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     venusaur: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     charmander: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     charmeleon: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     charizard: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     squirtle: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     wartortle: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     blastoise: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     caterpie: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     metapod: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     butterfree: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pikachu: {
-        tier: "NFE"
+        tier: "NFE",
     },
     pikachuoriginal: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pikachuhoenn: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pikachusinnoh: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pikachuunova: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pikachukalos: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pikachualola: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pikachupartner: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pikachuworld: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     raichu: {
-        tier: "OU"
+        tier: "OU",
     },
     raichualola: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sandshrew: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sandshrewalola: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sandslash: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sandslashalola: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     nidoranf: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     nidorina: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     nidoqueen: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     nidoranm: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     nidorino: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     nidoking: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     clefairy: {
-        tier: "NFE"
+        tier: "NFE",
     },
     clefable: {
-        tier: "OU"
+        tier: "OU",
     },
     vulpix: {
-        tier: "LC"
+        tier: "LC",
     },
     vulpixalola: {
-        tier: "LC"
+        tier: "LC",
     },
     ninetales: {
-        tier: "OU"
+        tier: "OU",
     },
     ninetalesalola: {
-        tier: "OU"
+        tier: "OU",
     },
     jigglypuff: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     wigglytuff: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zubat: {
-        tier: "LC"
+        tier: "LC",
     },
     golbat: {
-        tier: "NFE"
+        tier: "NFE",
     },
     oddish: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     gloom: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     vileplume: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     paras: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     parasect: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     diglett: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     diglettalola: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dugtrio: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dugtrioalola: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     meowth: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     meowthalola: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     meowthgalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     persian: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     persianalola: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     psyduck: {
-        tier: "LC"
+        tier: "LC",
     },
     golduck: {
-        tier: "OU"
+        tier: "OU",
     },
     growlithe: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     growlithehisui: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     arcanine: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     arcaninehisui: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     poliwag: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     poliwhirl: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     poliwrath: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     abra: {
-        tier: "LC"
+        tier: "LC",
     },
     kadabra: {
-        tier: "NFE"
+        tier: "NFE",
     },
     alakazam: {
-        tier: "OU"
+        tier: "OU",
     },
     machop: {
-        tier: "LC"
+        tier: "LC",
     },
     machoke: {
-        tier: "NFE"
+        tier: "NFE",
     },
     machamp: {
-        tier: "OU"
+        tier: "OU",
     },
     tentacool: {
-        tier: "LC"
+        tier: "LC",
     },
     tentacruel: {
-        tier: "OU"
+        tier: "OU",
     },
     geodude: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     graveler: {
         isNonstandard: null,
-        tier: "NFE"
+        tier: "NFE",
     },
     golem: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     ponyta: {
-        tier: "LC"
+        tier: "LC",
     },
     ponytagalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     rapidash: {
-        tier: "OU"
+        tier: "OU",
     },
     rapidashgalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     slowpoke: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     slowpokegalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     slowbro: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     slowbrogalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     magnemite: {
-        tier: "LC"
+        tier: "LC",
     },
     magneton: {
-        tier: "NFE"
+        tier: "NFE",
     },
     farfetchd: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     farfetchdgalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     shellder: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cloyster: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     gastly: {
-        tier: "LC"
+        tier: "LC",
     },
     haunter: {
-        tier: "NFE"
+        tier: "NFE",
     },
     gengar: {
-        tier: "OU"
+        tier: "OU",
     },
     onix: {
-        tier: "LC"
+        tier: "LC",
     },
     krabby: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     kingler: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     voltorbhisui: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     electrodehisui: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     exeggcute: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     exeggutor: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     exeggutoralola: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cubone: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     marowak: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     marowakalola: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     hitmonlee: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     hitmonchan: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     lickitung: {
-        tier: "LC"
+        tier: "LC",
     },
     koffing: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     weezing: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     weezinggalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     rhyhorn: {
-        tier: "LC"
+        tier: "LC",
     },
     rhydon: {
-        tier: "NFE"
+        tier: "NFE",
     },
     chansey: {
-        tier: "NFE"
+        tier: "NFE",
     },
     tangela: {
-        tier: "LC"
+        tier: "LC",
     },
     kangaskhan: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     horsea: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     seadra: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     goldeen: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     seaking: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     staryu: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     starmie: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     mrmime: {
-        tier: "OU"
+        tier: "OU",
     },
     mrmimegalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     scyther: {
-        tier: "LC"
+        tier: "LC",
     },
     jynx: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     electabuzz: {
-        tier: "NFE"
+        tier: "NFE",
     },
     magmar: {
-        tier: "NFE"
+        tier: "NFE",
     },
     pinsir: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     tauros: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     magikarp: {
-        tier: "LC"
+        tier: "LC",
     },
     gyarados: {
-        tier: "OU"
+        tier: "OU",
     },
     lapras: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     ditto: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     eevee: {
-        tier: "LC"
+        tier: "LC",
     },
     vaporeon: {
-        tier: "OU"
+        tier: "OU",
     },
     jolteon: {
-        tier: "OU"
+        tier: "OU",
     },
     flareon: {
-        tier: "OU"
+        tier: "OU",
     },
     porygon: {
-        tier: "LC"
+        tier: "LC",
     },
     omanyte: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     omastar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     kabuto: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     kabutops: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     aerodactyl: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     snorlax: {
-        tier: "OU"
+        tier: "OU",
     },
     articuno: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     articunogalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zapdos: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zapdosgalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     moltres: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     moltresgalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dratini: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dragonair: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dragonite: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     mewtwo: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     mew: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cyndaquil: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     quilava: {
         isNonstandard: null,
-        tier: "NFE"
+        tier: "NFE",
     },
     typhlosionhisui: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     hoothoot: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     noctowl: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     crobat: {
-        tier: "OU"
+        tier: "OU",
     },
     chinchou: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     lanturn: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pichu: {
-        tier: "LC"
+        tier: "LC",
     },
     cleffa: {
-        tier: "LC"
+        tier: "LC",
     },
     igglybuff: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     togepi: {
-        tier: "LC"
+        tier: "LC",
     },
     togetic: {
-        tier: "NFE"
+        tier: "NFE",
     },
     natu: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     xatu: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     bellossom: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     marill: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     azumarill: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sudowoodo: {
-        tier: "OU"
+        tier: "OU",
     },
     politoed: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     aipom: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     yanma: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     wooper: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     quagsire: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     espeon: {
-        tier: "OU"
+        tier: "OU",
     },
     umbreon: {
-        tier: "OU"
+        tier: "OU",
     },
     murkrow: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     slowking: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     slowkinggalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     misdreavus: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     unown: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     wobbuffet: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dunsparce: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     gligar: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     steelix: {
-        tier: "OU"
+        tier: "OU",
     },
     qwilfish: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     qwilfishhisui: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     scizor: {
-        tier: "OU"
+        tier: "OU",
     },
     shuckle: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     heracross: {
-        tier: "OU"
+        tier: "OU",
     },
     sneasel: {
-        tier: "LC"
+        tier: "LC",
     },
     sneaselhisui: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     teddiursa: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     ursaring: {
         isNonstandard: null,
-        tier: "NFE"
+        tier: "NFE",
     },
     swinub: {
-        tier: "LC"
+        tier: "LC",
     },
     piloswine: {
-        tier: "NFE"
+        tier: "NFE",
     },
     corsola: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     corsolagalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     remoraid: {
-        tier: "LC"
+        tier: "LC",
     },
     octillery: {
-        tier: "OU"
+        tier: "OU",
     },
     delibird: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     mantine: {
-        tier: "OU"
+        tier: "OU",
     },
     skarmory: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     kingdra: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     porygon2: {
-        tier: "NFE"
+        tier: "NFE",
     },
     stantler: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     tyrogue: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     hitmontop: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     smoochum: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     elekid: {
-        tier: "LC"
+        tier: "LC",
     },
     magby: {
-        tier: "LC"
+        tier: "LC",
     },
     miltank: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     blissey: {
-        tier: "OU"
+        tier: "OU",
     },
     raikou: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     entei: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     suicune: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     larvitar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pupitar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     tyranitar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     lugia: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     hooh: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     celebi: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     treecko: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     grovyle: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sceptile: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     torchic: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     combusken: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     blaziken: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     mudkip: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     marshtomp: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     swampert: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zigzagoon: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zigzagoongalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     linoone: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     linoonegalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     wurmple: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     silcoon: {
         isNonstandard: null,
-        tier: "NFE"
+        tier: "NFE",
     },
     beautifly: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     cascoon: {
         isNonstandard: null,
-        tier: "NFE"
+        tier: "NFE",
     },
     dustox: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     lotad: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     lombre: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     ludicolo: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     seedot: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     nuzleaf: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     shiftry: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     wingull: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pelipper: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     ralts: {
-        tier: "LC"
+        tier: "LC",
     },
     kirlia: {
-        tier: "NFE"
+        tier: "NFE",
     },
     gardevoir: {
-        tier: "OU"
+        tier: "OU",
     },
     nincada: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     ninjask: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     shedinja: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     whismur: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     loudred: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     exploud: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     azurill: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     nosepass: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     sableye: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     mawile: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     aron: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     lairon: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     aggron: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     electrike: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     manectric: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     roselia: {
-        tier: "NFE"
+        tier: "NFE",
     },
     carvanha: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sharpedo: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     wailmer: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     wailord: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     torkoal: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     trapinch: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     vibrava: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     flygon: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     swablu: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     altaria: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     lunatone: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     solrock: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     barboach: {
-        tier: "LC"
+        tier: "LC",
     },
     whiscash: {
-        tier: "OU"
+        tier: "OU",
     },
     corphish: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     crawdaunt: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     baltoy: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     claydol: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     lileep: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cradily: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     anorith: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     armaldo: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     feebas: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     milotic: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     duskull: {
-        tier: "LC"
+        tier: "LC",
     },
     dusclops: {
-        tier: "NFE"
+        tier: "NFE",
     },
     chimecho: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     absol: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     wynaut: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     snorunt: {
-        tier: "LC"
+        tier: "LC",
     },
     glalie: {
-        tier: "OU"
+        tier: "OU",
     },
     spheal: {
-        tier: "LC"
+        tier: "LC",
     },
     sealeo: {
-        tier: "NFE"
+        tier: "NFE",
     },
     walrein: {
-        tier: "OU"
+        tier: "OU",
     },
     relicanth: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     bagon: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     shelgon: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     salamence: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     beldum: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     metang: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     metagross: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     regirock: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     regice: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     registeel: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     latias: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     latios: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     kyogre: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     groudon: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     rayquaza: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     jirachi: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     turtwig: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     grotle: {
         isNonstandard: null,
-        tier: "NFE"
+        tier: "NFE",
     },
     torterra: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     chimchar: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     monferno: {
         isNonstandard: null,
-        tier: "NFE"
+        tier: "NFE",
     },
     infernape: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     piplup: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     prinplup: {
         isNonstandard: null,
-        tier: "NFE"
+        tier: "NFE",
     },
     empoleon: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     starly: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     staravia: {
         isNonstandard: null,
-        tier: "NFE"
+        tier: "NFE",
     },
     staraptor: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     bidoof: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     bibarel: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     kricketot: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     kricketune: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     shinx: {
-        tier: "LC"
+        tier: "LC",
     },
     luxio: {
-        tier: "NFE"
+        tier: "NFE",
     },
     luxray: {
-        tier: "OU"
+        tier: "OU",
     },
     budew: {
-        tier: "LC"
+        tier: "LC",
     },
     roserade: {
-        tier: "OU"
+        tier: "OU",
     },
     cranidos: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     rampardos: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     shieldon: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     bastiodon: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     burmy: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     wormadam: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     wormadamsandy: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     wormadamtrash: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     mothim: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     combee: {
-        tier: "LC"
+        tier: "LC",
     },
     vespiquen: {
-        tier: "OU"
+        tier: "OU",
     },
     pachirisu: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     buizel: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     floatzel: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     cherubi: {
-        tier: "LC"
+        tier: "LC",
     },
     cherrim: {
-        tier: "OU"
+        tier: "OU",
     },
     shellos: {
-        tier: "LC"
+        tier: "LC",
     },
     gastrodon: {
-        tier: "OU"
+        tier: "OU",
     },
     ambipom: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     drifloon: {
-        tier: "LC"
+        tier: "LC",
     },
     drifblim: {
-        tier: "OU"
+        tier: "OU",
     },
     buneary: {
-        tier: "LC"
+        tier: "LC",
     },
     lopunny: {
-        tier: "OU"
+        tier: "OU",
     },
     mismagius: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     honchkrow: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     glameow: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     purugly: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     chingling: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     stunky: {
-        tier: "LC"
+        tier: "LC",
     },
     skuntank: {
-        tier: "OU"
+        tier: "OU",
     },
     bronzor: {
-        tier: "LC"
+        tier: "LC",
     },
     bronzong: {
-        tier: "OU"
+        tier: "OU",
     },
     bonsly: {
-        tier: "LC"
+        tier: "LC",
     },
     mimejr: {
-        tier: "LC"
+        tier: "LC",
     },
     happiny: {
-        tier: "LC"
+        tier: "LC",
     },
     chatot: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     spiritomb: {
-        tier: "OU"
+        tier: "OU",
     },
     gible: {
-        tier: "LC"
+        tier: "LC",
     },
     gabite: {
-        tier: "NFE"
+        tier: "NFE",
     },
     garchomp: {
-        tier: "OU"
+        tier: "OU",
     },
     munchlax: {
-        tier: "LC"
+        tier: "LC",
     },
     riolu: {
-        tier: "LC"
+        tier: "LC",
     },
     lucario: {
-        tier: "OU"
+        tier: "OU",
     },
     hippopotas: {
-        tier: "LC"
+        tier: "LC",
     },
     hippowdon: {
-        tier: "OU"
+        tier: "OU",
     },
     skorupi: {
-        tier: "LC"
+        tier: "LC",
     },
     drapion: {
-        tier: "OU"
+        tier: "OU",
     },
     croagunk: {
-        tier: "LC"
+        tier: "LC",
     },
     toxicroak: {
-        tier: "OU"
+        tier: "OU",
     },
     carnivine: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     finneon: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     lumineon: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     mantyke: {
-        tier: "LC"
+        tier: "LC",
     },
     snover: {
-        tier: "LC"
+        tier: "LC",
     },
     abomasnow: {
-        tier: "OU"
+        tier: "OU",
     },
     weavile: {
-        tier: "OU"
+        tier: "OU",
     },
     magnezone: {
-        tier: "OU"
+        tier: "OU",
     },
     lickilicky: {
-        tier: "OU"
+        tier: "OU",
     },
     rhyperior: {
-        tier: "OU"
+        tier: "OU",
     },
     tangrowth: {
-        tier: "OU"
+        tier: "OU",
     },
     electivire: {
-        tier: "OU"
+        tier: "OU",
     },
     magmortar: {
-        tier: "OU"
+        tier: "OU",
     },
     togekiss: {
-        tier: "OU"
+        tier: "OU",
     },
     yanmega: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     leafeon: {
-        tier: "OU"
+        tier: "OU",
     },
     glaceon: {
-        tier: "OU"
+        tier: "OU",
     },
     gliscor: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     mamoswine: {
-        tier: "OU"
+        tier: "OU",
     },
     porygonz: {
-        tier: "OU"
+        tier: "OU",
     },
     gallade: {
-        tier: "OU"
+        tier: "OU",
     },
     probopass: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     dusknoir: {
-        tier: "OU"
+        tier: "OU",
     },
     froslass: {
-        tier: "OU"
+        tier: "OU",
     },
     rotom: {
-        tier: "OU"
+        tier: "OU",
     },
     rotomheat: {
-        tier: "OU"
+        tier: "OU",
     },
     rotomwash: {
-        tier: "OU"
+        tier: "OU",
     },
     rotomfrost: {
-        tier: "OU"
+        tier: "OU",
     },
     rotomfan: {
-        tier: "OU"
+        tier: "OU",
     },
     rotommow: {
-        tier: "OU"
+        tier: "OU",
     },
     uxie: {
-        tier: "OU"
+        tier: "OU",
     },
     mesprit: {
-        tier: "OU"
+        tier: "OU",
     },
     azelf: {
-        tier: "OU"
+        tier: "OU",
     },
     dialga: {
-        tier: "Uber"
+        tier: "Uber",
     },
     dialgaorigin: {
         isNonstandard: null,
-        tier: "Uber"
+        tier: "Uber",
     },
     palkia: {
-        tier: "Uber"
+        tier: "Uber",
     },
     palkiaorigin: {
         isNonstandard: null,
-        tier: "Uber"
+        tier: "Uber",
     },
     heatran: {
-        tier: "OU"
+        tier: "OU",
     },
     regigigas: {
-        tier: "OU"
+        tier: "OU",
     },
     giratina: {
-        tier: "Uber"
+        tier: "Uber",
     },
     giratinaorigin: {
-        tier: "Uber"
+        tier: "Uber",
     },
     cresselia: {
-        tier: "OU"
+        tier: "OU",
     },
     phione: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     manaphy: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     darkrai: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     shaymin: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     shayminsky: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     arceus: {
         isNonstandard: null,
-        tier: "Uber"
+        tier: "Uber",
     },
     arceusbug: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     arceusdark: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     arceusdragon: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     arceuselectric: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     arceusfairy: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     arceusfighting: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     arceusfire: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     arceusflying: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     arceusghost: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     arceusgrass: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     arceusground: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     arceusice: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     arceuspoison: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     arceuspsychic: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     arceusrock: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     arceussteel: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     arceuswater: {
-        isNonstandard: null
+        isNonstandard: null,
     },
     victini: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     oshawott: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     dewott: {
         isNonstandard: null,
-        tier: "NFE"
+        tier: "NFE",
     },
     samurotthisui: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     lillipup: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     herdier: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     stoutland: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     purrloin: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     liepard: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     munna: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     musharna: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pidove: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     tranquill: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     unfezant: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     roggenrola: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     boldore: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     gigalith: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     woobat: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     swoobat: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     drilbur: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     excadrill: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     audino: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     timburr: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     gurdurr: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     conkeldurr: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     tympole: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     palpitoad: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     seismitoad: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     throh: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sawk: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     venipede: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     whirlipede: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     scolipede: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cottonee: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     whimsicott: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     petilil: {
-        tier: "LC"
+        tier: "LC",
     },
     lilligant: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     lilliganthisui: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     basculin: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     basculinbluestriped: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     basculinwhitestriped: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     sandile: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     krokorok: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     krookodile: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     darumaka: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     darumakagalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     darmanitan: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     darmanitanzen: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     darmanitangalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     darmanitangalarzen: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     maractus: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dwebble: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     crustle: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     scraggy: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     scrafty: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sigilyph: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     yamask: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     yamaskgalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cofagrigus: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     tirtouga: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     carracosta: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     archen: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     archeops: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     trubbish: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     garbodor: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zorua: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zoruahisui: {
         isNonstandard: null,
-        tier: "LC"
+        tier: "LC",
     },
     zoroark: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zoroarkhisui: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     minccino: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cinccino: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     gothita: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     gothorita: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     gothitelle: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     solosis: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     duosion: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     reuniclus: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     vanillite: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     vanillish: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     vanilluxe: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     emolga: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     karrablast: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     escavalier: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     foongus: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     amoonguss: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     frillish: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     jellicent: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     joltik: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     galvantula: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     ferroseed: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     ferrothorn: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     klink: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     klang: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     klinklang: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     elgyem: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     beheeyem: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     litwick: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     lampent: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     chandelure: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     axew: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     fraxure: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     haxorus: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cubchoo: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     beartic: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cryogonal: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     shelmet: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     accelgor: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     stunfisk: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     stunfiskgalar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     mienfoo: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     mienshao: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     druddigon: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     golett: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     golurk: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pawniard: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     bisharp: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     bouffalant: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     rufflet: {
-        tier: "LC"
+        tier: "LC",
     },
     braviary: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     braviaryhisui: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     vullaby: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     mandibuzz: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     heatmor: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     durant: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     deino: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zweilous: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     hydreigon: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     larvesta: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     volcarona: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cobalion: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     terrakion: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     virizion: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     tornadus: {
-        tier: "OU"
+        tier: "OU",
     },
     tornadustherian: {
-        tier: "OU"
+        tier: "OU",
     },
     thundurus: {
-        tier: "OU"
+        tier: "OU",
     },
     thundurustherian: {
-        tier: "OU"
+        tier: "OU",
     },
     reshiram: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zekrom: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     landorus: {
-        tier: "OU"
+        tier: "OU",
     },
     landorustherian: {
-        tier: "OU"
+        tier: "OU",
     },
     kyurem: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     kyuremblack: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     kyuremwhite: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     keldeo: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     keldeoresolute: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     genesect: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     genesectdouse: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     genesectshock: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     genesectburn: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     genesectchill: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     bunnelby: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     diggersby: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     fletchling: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     fletchinder: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     talonflame: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pancham: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pangoro: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     espurr: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     meowstic: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     meowsticf: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     honedge: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     doublade: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     aegislash: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     aegislashblade: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     spritzee: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     aromatisse: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     swirlix: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     slurpuff: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     inkay: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     malamar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     binacle: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     barbaracle: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     skrelp: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dragalge: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     clauncher: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     clawitzer: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     helioptile: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     heliolisk: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     tyrunt: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     tyrantrum: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     amaura: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     aurorus: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sylveon: {
-        tier: "OU"
+        tier: "OU",
     },
     hawlucha: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dedenne: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     carbink: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     goomy: {
-        tier: "LC"
+        tier: "LC",
     },
     sliggoo: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sliggoohisui: {
         isNonstandard: null,
-        tier: "NFE"
+        tier: "NFE",
     },
     goodra: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     goodrahisui: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     klefki: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     phantump: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     trevenant: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pumpkaboo: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pumpkaboosmall: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pumpkaboolarge: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pumpkaboosuper: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     gourgeist: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     gourgeistsmall: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     gourgeistlarge: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     gourgeistsuper: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     bergmite: {
-        tier: "LC"
+        tier: "LC",
     },
     avalugg: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     avalugghisui: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     noibat: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     noivern: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     xerneas: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     yveltal: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zygarde: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zygarde10: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zygardecomplete: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
+        // FIXME: avoid Zygarde-Complete bug
+        tier: "Illegal",
+        doublesTier: "Illegal",
+        natDexTier: "Illegal",
     },
     diancie: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     volcanion: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     rowlet: {
-        tier: "LC"
+        tier: "LC",
     },
     dartrix: {
-        tier: "NFE"
+        tier: "NFE",
     },
     decidueye: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     decidueyehisui: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     litten: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     torracat: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     incineroar: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     popplio: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     brionne: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     primarina: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     grubbin: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     charjabug: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     vikavolt: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cutiefly: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     ribombee: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     rockruff: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     lycanroc: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     lycanrocmidnight: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     lycanrocdusk: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     wishiwashi: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     wishiwashischool: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     mareanie: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     toxapex: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     mudbray: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     mudsdale: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dewpider: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     araquanid: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     fomantis: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     lurantis: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     morelull: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     shiinotic: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     salandit: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     salazzle: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     stufful: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     bewear: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     bounsweet: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     steenee: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     tsareena: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     comfey: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     oranguru: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     passimian: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     wimpod: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     golisopod: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sandygast: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     palossand: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pyukumuku: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     typenull: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvally: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallybug: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallydark: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallydragon: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallyelectric: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallyfairy: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallyfighting: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallyfire: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallyflying: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallyghost: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallygrass: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallyground: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallyice: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallypoison: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallypsychic: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallyrock: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallysteel: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silvallywater: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     turtonator: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     togedemaru: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     mimikyu: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     mimikyubusted: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     drampa: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dhelmise: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     jangmoo: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     hakamoo: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     kommoo: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     tapukoko: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     tapulele: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     tapubulu: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     tapufini: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cosmog: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cosmoem: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     solgaleo: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     lunala: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     nihilego: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     buzzwole: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pheromosa: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     xurkitree: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     celesteela: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     kartana: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     guzzlord: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     necrozma: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     necrozmaduskmane: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     necrozmadawnwings: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     magearna: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     magearnaoriginal: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     marshadow: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     poipole: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     naganadel: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     stakataka: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     blacephalon: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zeraora: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     meltan: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     melmetal: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     grookey: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     thwackey: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     rillaboom: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     scorbunny: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     raboot: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cinderace: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sobble: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     drizzile: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     inteleon: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     skwovet: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     greedent: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     rookidee: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     corvisquire: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     corviknight: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     blipbug: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dottler: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     orbeetle: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     nickit: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     thievul: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     gossifleur: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     eldegoss: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     wooloo: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dubwool: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     chewtle: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     drednaw: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     yamper: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     boltund: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     rolycoly: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     carkol: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     coalossal: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     applin: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     flapple: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     appletun: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     silicobra: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sandaconda: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cramorant: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cramorantgulping: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cramorantgorging: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     arrokuda: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     barraskewda: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     toxel: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     toxtricity: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     toxtricitylowkey: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sizzlipede: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     centiskorch: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     clobbopus: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     grapploct: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sinistea: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sinisteaantique: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     polteageist: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     polteageistantique: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     hatenna: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     hattrem: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     hatterene: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     impidimp: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     morgrem: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     grimmsnarl: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     obstagoon: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     perrserker: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cursola: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     sirfetchd: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     mrrime: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     runerigus: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     milcery: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     alcremie: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     falinks: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     pincurchin: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     snom: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     frosmoth: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     stonjourner: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     eiscue: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     eiscuenoice: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     indeedee: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     indeedeef: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     morpeko: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     morpekohangry: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     cufant: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     copperajah: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dracozolt: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     arctozolt: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dracovish: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     arctovish: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     duraludon: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dreepy: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     drakloak: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     dragapult: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zacian: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zaciancrowned: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zamazenta: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zamazentacrowned: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     eternatus: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     kubfu: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     urshifu: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     urshifurapidstrike: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zarude: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     zarudedada: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     regieleki: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     regidrago: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     glastrier: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     spectrier: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     calyrex: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     calyrexice: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     calyrexshadow: {
-        isNonstandard: "Past"
+        isNonstandard: "Past",
     },
     wyrdeer: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     kleavor: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     ursaluna: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     basculegion: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     basculegionf: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     sneasler: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     overqwil: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     enamorus: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     },
     enamorustherian: {
         isNonstandard: null,
-        tier: "OU"
+        tier: "OU",
     }
 };
