@@ -1053,9 +1053,9 @@ export const Moves: {[k: string]: ModdedMoveData} = {
         isNonstandard: null,
         onModifyType(move, pokemon) {
             if (pokemon.species.baseSpecies === 'Arceus') {
-			    move.type = pokemon.species.types[0];
+                move.type = pokemon.species.types[0];
             }
-		},
+        },
     },
     junglehealing: {
         inherit: true,
