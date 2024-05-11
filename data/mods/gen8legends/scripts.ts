@@ -14,14 +14,6 @@ export const Scripts: ModdedBattleScriptsData = {
 		for (const i in this.data.Moves) {
 			this.modData('Moves', i).noPPBoosts = true;
 		}
-
-		// FIXME: avoid Zygarde-Complete and Necrozma-Ultra bug
-		for (const i in this.data.FormatsData) {
-			const formatData = this.modData('FormatsData', i);
-			if (formatData.isNonstandard !== null) {
-				formatData.tier = formatData.doublesTier = formatData.natDexTier = 'Illegal';
-			}
-		}
 	},
 	side: {
 		canDynamaxNow() {
