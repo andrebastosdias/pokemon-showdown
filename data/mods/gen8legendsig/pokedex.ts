@@ -13,6 +13,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		],
 	},
 	arceuslegend: {
+		inherit: true,
 		num: 493,
 		name: "Arceus-Legend",
 		baseSpecies: "Arceus",
