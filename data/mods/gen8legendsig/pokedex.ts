@@ -12,4 +12,20 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 			"Arceus-Legend"
 		],
 	},
+	arceuslegend: {
+		num: 493,
+		name: "Arceus-Legend",
+		baseSpecies: "Arceus",
+		forme: "Legend",
+		types: ["Normal"],
+		gender: "N",
+		baseStats: {hp: 120, atk: 120, def: 120, spa: 120, spd: 120, spe: 120},
+		abilities: {0: "Multitype"},
+		heightm: 3.2,
+		weightkg: 320,
+		color: "White",
+		eggGroups: ["Undiscovered"],
+		changesFrom: "Arceus",
+		gen: 8,
+	},
 };

@@ -2875,11 +2875,6 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DUber",
 		natDexTier: "Uber",
 	},
-	arceuslegend: {
-		isNonstandard: "Past",
-		tier: "Illegal",
-		natDexTier: "Illegal",
-	},
 	victini: {
 		isNonstandard: "Past",
 		tier: "Illegal",
