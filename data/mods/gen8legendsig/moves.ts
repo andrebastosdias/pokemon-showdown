@@ -84,9 +84,9 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 
             const all_types = this.dex.types.all().map(x => x.name);
             var best_types = getAllMaxValues(all_types, x => getTypeEffectiveness(this, x, target));
-            best_types = getAllMaxValues(all_types, x => getTypeEffectiveness(this, target.types[0], x), true);
+            best_types = getAllMaxValues(best_types, x => getTypeEffectiveness(this, target.types[0], x), true);
             if (target.types.length > 1) {
-                best_types = getAllMaxValues(all_types, x => getTypeEffectiveness(this, target.types[1], x), true);
+                best_types = getAllMaxValues(best_types, x => getTypeEffectiveness(this, target.types[1], x), true);
             }
             const newType = this.sample(best_types);
 

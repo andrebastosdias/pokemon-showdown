@@ -1,5 +1,3 @@
-import { Utils } from "../../../lib";
-
 export const Rulesets: {[k: string]: ModdedFormatData} = {
 	teampreview: {
 		inherit: true,
