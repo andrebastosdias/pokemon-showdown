@@ -2760,5 +2760,5 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
     enamorustherian: {
         isNonstandard: null,
         tier: "OU",
-    }
+    },
 };

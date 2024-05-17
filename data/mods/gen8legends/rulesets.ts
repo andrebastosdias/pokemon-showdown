@@ -13,14 +13,4 @@ export const Rulesets: {[k: string]: ModdedFormatData} = {
 			set.ability = species.abilities['0'];
 		},
 	},
-	// teampreview: {
-	// 	inherit: true,
-	// 	onTeamPreview() {
-	// 		this.add('clearpoke');
-	// 		for (const pokemon of this.getAllPokemon()) {
-	// 			this.add('poke', pokemon.side.id, pokemon.details, '');
-	// 		}
-	// 		this.makeRequest('teampreview');
-	// 	},
-	// },
 };
