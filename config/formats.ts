@@ -68,4 +68,14 @@ export const Formats: FormatList = [
 		searchShow: false,
 		ruleset: ['[Gen 8 Legends] OU', 'Same Type Clause'],
 	},
+	{
+		section: "Legends: Arceus In-Game",
+	},
+	{
+		name: "[Gen 8 Legends In-Game] AG",
+
+		mod: 'gen8legendsig',
+		searchShow: false,
+		ruleset: ['Obtainable', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
+	},
 ];
