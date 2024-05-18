@@ -1,9 +1,11 @@
+import { Battle } from "../../../sim";
+
 export const Moves: {[k: string]: ModdedMoveData} = {
     hiddenpower: {
         inherit: true,
         basePower: 50,
         onModifyType(move, pokemon, target) {
-            const all_types = this.dex.types.all().map(x => x.name);
+            const all_types = this.dex.types.names();
             const best_types = getAllMaxValues(all_types, x => getTypeEffectiveness(this, x, target));
             move.type = this.sample(best_types);
         },
@@ -82,14 +84,14 @@ export const Moves: {[k: string]: ModdedMoveData} = {
                 return;
             }
 
-            const all_types = this.dex.types.all().map(x => x.name);
+            const all_types = this.dex.types.names();
             var best_types = getAllMaxValues(all_types, x => getTypeEffectiveness(this, x, target));
             best_types = getAllMaxValues(best_types, x => getTypeEffectiveness(this, target.types[0], x), true);
             if (target.types.length > 1) {
                 best_types = getAllMaxValues(best_types, x => getTypeEffectiveness(this, target.types[1], x), true);
             }
-            const newType = this.sample(best_types);
 
+            const newType = this.sample(best_types);
             if (newType !== pokemon.species.types[0]) {
                 pokemon.formeChange('Arceus-' + newType, this.effect, false, '[msg]');
             }
@@ -106,22 +108,8 @@ function getTypeEffectiveness(
     return battle.dex.getImmunity(source, target) ? battle.dex.getEffectiveness(source, target) : -3;
 }
 
-function getAllMaxValues<T> (arr: T[], fn: (item: T) => number, min: boolean = false) {
+function getAllMaxValues<T>(arr: readonly T[], fn: (item: T) => number, min: boolean = false) {
     if (arr.length === 0) return [];
-
-    let maxVal = fn(arr[0]);
-    for (let i = 1; i < arr.length; i++) {
-        const val = fn(arr[i]);
-        if (min) {
-            if (val < maxVal) {
-                maxVal = val;
-            }
-        } else {
-            if (val > maxVal) {
-                maxVal = val;
-            }
-        }
-    }
-
+    const maxVal = (min ? Math.min : Math.max)(...arr.map(item => fn(item)));
     return arr.filter(item => fn(item) === maxVal);
 }
