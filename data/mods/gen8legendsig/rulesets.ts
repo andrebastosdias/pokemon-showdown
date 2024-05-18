@@ -1,4 +1,8 @@
 export const Rulesets: {[k: string]: ModdedFormatData} = {
+	evasionmovesclause: {
+		inherit: true,
+		banlist: ['Lunar Blessing', 'Mud Bomb', 'Mud-Slap', 'Octazooka', 'Shadow Force', 'Shelter'],
+	},
 	teampreview: {
 		inherit: true,
 		onTeamPreview() {
