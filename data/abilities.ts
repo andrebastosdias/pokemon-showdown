@@ -260,6 +260,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			this.add('-ability', pokemon, 'Unnerve');
 			this.effectState.unnerved = true;
 		},
+		onStart(pokemon) {
+			if (this.effectState.unnerved) return;
+			this.add('-ability', pokemon, 'As One');
+			this.add('-ability', pokemon, 'Unnerve');
+			this.effectState.unnerved = true;
+		},
 		onEnd() {
 			this.effectState.unnerved = false;
 		},
@@ -278,6 +284,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	asonespectrier: {
 		onPreStart(pokemon) {
+			this.add('-ability', pokemon, 'As One');
+			this.add('-ability', pokemon, 'Unnerve');
+			this.effectState.unnerved = true;
+		},
+		onStart(pokemon) {
+			if (this.effectState.unnerved) return;
 			this.add('-ability', pokemon, 'As One');
 			this.add('-ability', pokemon, 'Unnerve');
 			this.effectState.unnerved = true;
@@ -4230,6 +4242,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			onResidualSubOrder: 2,
 			onStart(target) {
 				this.add('-start', target, 'ability: Slow Start');
+			},
+			onResidual(pokemon) {
+				if (!pokemon.activeTurns) {
+					this.effectState.duration += 1;
+				}
 			},
 			onModifyAtkPriority: 5,
 			onModifyAtk(atk, pokemon) {
