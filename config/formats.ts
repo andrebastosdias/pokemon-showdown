@@ -22,13 +22,14 @@ export const Formats: FormatList = [
 		section: "Legends: Z-A",
 	},
 	{
-		section: "Legends: Arceus Singles",
+		section: "Legends: Arceus",
 	},
 	{
 		name: "[Gen 8 Legends] Random Battle",
 
 		mod: 'gen8legends',
 		team: 'random',
+		// ruleset: ['[Gen 8] Random Battle', '!PotD'],
 		ruleset: ['Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
 	},
 	{
@@ -68,4 +69,12 @@ export const Formats: FormatList = [
 		searchShow: false,
 		ruleset: ['[Gen 8 Legends] OU', 'Same Type Clause'],
 	},
+	// {
+	// 	name: "[Gen 8 Legends] Doubles OU",
+
+	// 	mod: 'gen8legends',
+	// 	gameType: 'doubles',
+	// 	ruleset: ['Standard Doubles'],
+	// 	banlist: ['DUber'],
+	// },
 ];
