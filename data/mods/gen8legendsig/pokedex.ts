@@ -9,7 +9,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		formeOrder: [
 			"Arceus", "Arceus-Fighting", "Arceus-Flying", "Arceus-Poison", "Arceus-Ground", "Arceus-Rock", "Arceus-Bug", "Arceus-Ghost", "Arceus-Steel",
 			"Arceus-Fire", "Arceus-Water", "Arceus-Grass", "Arceus-Electric", "Arceus-Psychic", "Arceus-Ice", "Arceus-Dragon", "Arceus-Dark", "Arceus-Fairy",
-			"Arceus-Legend"
+			"Arceus-Legend",
 		],
 	},
 	arceuslegend: {

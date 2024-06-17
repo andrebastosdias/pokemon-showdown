@@ -2307,5 +2307,5 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	zingzap: {
 		inherit: true,
 		isNonstandard: "Past",
-	}
+	},
 };

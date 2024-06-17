@@ -1,11 +1,11 @@
-import { Species } from '../../../sim/dex-species';
+import {Species} from '../../../sim/dex-species';
 import type {PRNG} from '../../../sim/prng';
 import {MoveCounter, RandomGen8Teams, OldRandomBattleSpecies} from '../gen8/teams';
 
-// Moves that restore HP:
-const RECOVERY_MOVES = [
-	'recover', 'roost', 'softboiled',
-];
+// // Moves that restore HP:
+// const RECOVERY_MOVES = [
+// 	'recover', 'roost', 'softboiled',
+// ];
 // Moves that boost Attack:
 const PHYSICAL_SETUP = [
 	'bulkup', 'swordsdance', 'victorydance',
@@ -14,14 +14,14 @@ const PHYSICAL_SETUP = [
 const SPECIAL_SETUP = [
 	'calmmind', 'nastyplot', 'takeheart',
 ];
-// Moves that shouldn't be the only STAB moves:
-const NO_STAB = [
-	'aquajet', 'explosion', 'iceshard', 'icywind', 'machpunch', 'quickattack', 'selfdestruct', 'shadowsneak', 'snarl',
-];
-// Hazard-setting moves
-const HAZARDS = [
-	'spikes', 'stealthrock',
-];
+// // Moves that shouldn't be the only STAB moves:
+// const NO_STAB = [
+// 	'aquajet', 'explosion', 'iceshard', 'icywind', 'machpunch', 'quickattack', 'selfdestruct', 'shadowsneak', 'snarl',
+// ];
+// // Hazard-setting moves
+// const HAZARDS = [
+// 	'spikes', 'stealthrock',
+// ];
 
 export class RandomLegendsTeams extends RandomGen8Teams {
 	randomData: {[species: string]: OldRandomBattleSpecies} = require('./data.json');
@@ -102,80 +102,80 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 		}
 
 		switch (move.id) {
-			// Set up once and only if we have the moves for it
-			case 'bulkup': case 'swordsdance': case 'victorydance':
-				return {
-					cull: (
-						counter.setupType !== 'Physical' ||
-						counter.get('physicalsetup') > 1 ||
-						counter.get('Physical') + counter.get('physicalpool') < 2
-					),
-					isSetup: true,
-				};
-			case 'calmmind': case 'nastyplot': case 'takeheart':
-				return {
-					cull: (
-						counter.setupType !== 'Special' ||
-						counter.get('specialsetup') > 1 ||
-						counter.get('Special') + counter.get('specialpool') < 2
-					),
-					isSetup: true,
-				};
+		// Set up once and only if we have the moves for it
+		case 'bulkup': case 'swordsdance': case 'victorydance':
+			return {
+				cull: (
+					counter.setupType !== 'Physical' ||
+					counter.get('physicalsetup') > 1 ||
+					counter.get('Physical') + counter.get('physicalpool') < 2
+				),
+				isSetup: true,
+			};
+		case 'calmmind': case 'nastyplot': case 'takeheart':
+			return {
+				cull: (
+					counter.setupType !== 'Special' ||
+					counter.get('specialsetup') > 1 ||
+					counter.get('Special') + counter.get('specialpool') < 2
+				),
+				isSetup: true,
+			};
 
-			// Bad after setup
-			case 'teleport':
-				return {cull: !!counter.setupType};
-			case 'spikes':
-				return {cull: !!counter.setupType || (!!teamDetails.spikes && teamDetails.spikes > 1)};
-			case 'stealthrock':
-				return {cull: !!counter.setupType || !!teamDetails.stealthRock};
-			
-			case 'hex':
-				return {cull: !moves.has('hypnosis') && !moves.has('thunderwave')};
+		// Bad after setup
+		case 'teleport':
+			return {cull: !!counter.setupType};
+		case 'spikes':
+			return {cull: !!counter.setupType || (!!teamDetails.spikes && teamDetails.spikes > 1)};
+		case 'stealthrock':
+			return {cull: !!counter.setupType || !!teamDetails.stealthRock};
 
-			// Bit redundant to have both
-			case 'airslash':
-				return {cull: moves.has('hurricane')};
-			case 'bittermalice': case 'infernalparade':
-				return {cull: moves.has('shadowball')};
-			case 'bulletpunch':
-				return {cull: moves.has('machpunch')};
-			case 'dazzlinggleam':
-				return {cull: moves.has('moonblast')};
-			case 'dragonpulse':
-				return {cull: moves.has('dracometeor')};
-			case 'drainingkiss':
-				return {cull: moves.has('dazzlinggleam') || moves.has('moonblast')};
-			case 'drainpunch':
-				return {cull: moves.has('closecombat')};
-			case 'firepunch': case 'flamethrower':
-				return {cull: moves.has('fireblast') || moves.has('flareblitz')};
-			case 'icebeam':
-				return {cull: moves.has('blizzard')};
-			case 'leafblade':
-				return {cull: moves.has('woodhammer')};
-			case 'megahorn':
-				return {cull: moves.has('leechlife')};
-			case 'mysticalpower':
-				return {cull: moves.has('psychic')};
-			case 'shadowball':
-				return {cull: moves.has('darkpulse') || moves.has('hex')};
-			case 'shadowclaw':
-				return {cull: moves.has('nightslash')};
-			case 'sleeppowder':
-				return {cull: moves.has('spore')};
-			case 'snarl':
-				return {cull: moves.has('darkpulse')};
-			case 'stunspore':
-				return {cull: moves.has('sleeppowder')  || moves.has('spore')};
-			case 'poisonpowder':
-				return {cull: moves.has('sleeppowder')  || moves.has('spore') || moves.has('stunspore')};
-			case 'rockslide':
-				return {cull: moves.has('stoneedge')};
-			case 'thunder':
-				return {cull: moves.has('thunderbolt')};
-			case 'xscissor':
-				return {cull: moves.has('leechlife') || moves.has('megahorn')};
+		case 'hex':
+			return {cull: !moves.has('hypnosis') && !moves.has('thunderwave')};
+
+		// Bit redundant to have both
+		case 'airslash':
+			return {cull: moves.has('hurricane')};
+		case 'bittermalice': case 'infernalparade':
+			return {cull: moves.has('shadowball')};
+		case 'bulletpunch':
+			return {cull: moves.has('machpunch')};
+		case 'dazzlinggleam':
+			return {cull: moves.has('moonblast')};
+		case 'dragonpulse':
+			return {cull: moves.has('dracometeor')};
+		case 'drainingkiss':
+			return {cull: moves.has('dazzlinggleam') || moves.has('moonblast')};
+		case 'drainpunch':
+			return {cull: moves.has('closecombat')};
+		case 'firepunch': case 'flamethrower':
+			return {cull: moves.has('fireblast') || moves.has('flareblitz')};
+		case 'icebeam':
+			return {cull: moves.has('blizzard')};
+		case 'leafblade':
+			return {cull: moves.has('woodhammer')};
+		case 'megahorn':
+			return {cull: moves.has('leechlife')};
+		case 'mysticalpower':
+			return {cull: moves.has('psychic')};
+		case 'shadowball':
+			return {cull: moves.has('darkpulse') || moves.has('hex')};
+		case 'shadowclaw':
+			return {cull: moves.has('nightslash')};
+		case 'sleeppowder':
+			return {cull: moves.has('spore')};
+		case 'snarl':
+			return {cull: moves.has('darkpulse')};
+		case 'stunspore':
+			return {cull: moves.has('sleeppowder') || moves.has('spore')};
+		case 'poisonpowder':
+			return {cull: moves.has('sleeppowder') || moves.has('spore') || moves.has('stunspore')};
+		case 'rockslide':
+			return {cull: moves.has('stoneedge')};
+		case 'thunder':
+			return {cull: moves.has('thunderbolt')};
+		case 'xscissor':
+			return {cull: moves.has('leechlife') || moves.has('megahorn')};
 		}
 
 		// This move doesn't satisfy our setup requirements:
@@ -191,7 +191,6 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 	}
 
 	getLevel(species: Species): number {
-		const data = this.randomData[species.id];
 		// level set by rules
 		if (this.adjustLevel) return this.adjustLevel;
 
@@ -228,7 +227,7 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 		const types = new Set(species.types);
 
 		const moves = new Set<string>();
-		let counter : MoveCounter;
+		let counter: MoveCounter;
 		// This is just for Unown
 		let hasHiddenPower = false;
 
@@ -365,7 +364,7 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 		const [pokemonPool, baseSpeciesPool] = this.getPokemonPool(type, pokemon, isMonotype, pokemonList);
 		while (baseSpeciesPool.length && pokemon.length < this.maxTeamSize) {
 			const baseSpecies = this.sampleNoReplace(baseSpeciesPool);
-			let species = this.dex.species.get(this.sample(pokemonPool[baseSpecies]));
+			const species = this.dex.species.get(this.sample(pokemonPool[baseSpecies]));
 			if (!species.exists) continue;
 
 			// Limit to one of each species (Species Clause)
@@ -454,8 +453,12 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 			if (set.level === 100) numMaxLevelPokemon++;
 
 			// Track what the team has
-			if (set.moves.includes('spikes') || set.moves.includes('ceaselessedge')) teamDetails.spikes = (teamDetails.spikes || 0) + 1;
-			if (set.moves.includes('stealthrock') || set.moves.includes('stoneaxe')) teamDetails.stealthRock = 1;
+			if (set.moves.includes('spikes') || set.moves.includes('ceaselessedge')) {
+				teamDetails.spikes = (teamDetails.spikes || 0) + 1;
+			}
+			if (set.moves.includes('stealthrock') || set.moves.includes('stoneaxe')) {
+				teamDetails.stealthRock = 1;
+			}
 		}
 		if (pokemon.length < this.maxTeamSize && pokemon.length < 12) { // large teams sometimes cannot be built
 			throw new Error(`Could not build a random team for ${this.format} (seed=${seed})`);
