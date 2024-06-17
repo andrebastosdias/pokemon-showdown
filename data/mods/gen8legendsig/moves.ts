@@ -5,7 +5,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
         inherit: true,
         basePower: 50,
         onModifyType(move, pokemon, target) {
-            const all_types = this.dex.types.names();
+            const all_types = this.dex.types.names();  // TODO .filter(x => x !== "Fairy");
             const best_types = getAllMaxValues(all_types, x => getTypeEffectiveness(this, x, target));
             move.type = this.sample(best_types);
         },
@@ -86,11 +86,9 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 
             const all_types = this.dex.types.names();
             var best_types = getAllMaxValues(all_types, x => getTypeEffectiveness(this, x, target));
-            best_types = getAllMaxValues(best_types, x => getTypeEffectiveness(this, target.types[0], x), true);
-            if (target.types.length > 1) {
-                best_types = getAllMaxValues(best_types, x => getTypeEffectiveness(this, target.types[1], x), true);
+            for (const type in target.getTypes()) {
+                best_types = getAllMaxValues(best_types, x => getTypeEffectiveness(this, type, x), true);
             }
-
             const newType = this.sample(best_types);
             if (newType !== pokemon.species.types[0]) {
                 pokemon.formeChange('Arceus-' + newType, this.effect, false, '[msg]');
@@ -105,7 +103,7 @@ function getTypeEffectiveness(
     source: {type: string} | string,
     target: {getTypes: () => string[]} | {types: string[]} | string[] | string
 ) {
-    return battle.dex.getImmunity(source, target) ? battle.dex.getEffectiveness(source, target) : -3;
+    return battle.dex.getImmunity(source, target) ? battle.dex.getEffectiveness(source, target) : -100;
 }
 
 function getAllMaxValues<T>(arr: readonly T[], fn: (item: T) => number, min: boolean = false) {
