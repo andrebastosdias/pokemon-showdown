@@ -18,9 +18,17 @@ The column value will be ignored for repeat sections.
 */
 
 export const Formats: FormatList = [
+
+	// Legends: Z-A
+	///////////////////////////////////////////////////////////////////
+
 	{
 		section: "Legends: Z-A",
 	},
+
+	// Legends: Arceus
+	///////////////////////////////////////////////////////////////////
+
 	{
 		section: "Legends: Arceus",
 	},
