@@ -4,6 +4,9 @@ export const Scripts: ModdedBattleScriptsData = {
 	init() {
 		this.modData('Abilities', 'noability').isNonstandard = null;
 		for (const i in this.data.Pokedex) {
+			if (['Gigantamax', 'CAP'].includes(this.modData('Pokedex', i).isNonstandard)) {
+				this.modData('Pokedex', i).isNonstandard = 'Past';
+			}
 			// Cherrim, Regigigas
 			if (![421, 486].includes(this.modData('Pokedex', i).num)) {
 				this.modData('Pokedex', i).abilities = {0: 'No Ability'};

@@ -8,6 +8,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	venusaur: {
 		isNonstandard: "Past",
 	},
+	venusaurgmax: {
+		isNonstandard: "Past",
+	},
 	charmander: {
 		isNonstandard: "Past",
 	},
@@ -15,6 +18,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		isNonstandard: "Past",
 	},
 	charizard: {
+		isNonstandard: "Past",
+	},
+	charizardgmax: {
 		isNonstandard: "Past",
 	},
 	squirtle: {
@@ -26,6 +32,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	blastoise: {
 		isNonstandard: "Past",
 	},
+	blastoisegmax: {
+		isNonstandard: "Past",
+	},
 	caterpie: {
 		isNonstandard: "Past",
 	},
@@ -33,6 +42,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		isNonstandard: "Past",
 	},
 	butterfree: {
+		isNonstandard: "Past",
+	},
+	butterfreegmax: {
 		isNonstandard: "Past",
 	},
 	pikachu: {
@@ -57,6 +69,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		isNonstandard: "Past",
 	},
 	pikachupartner: {
+		isNonstandard: "Past",
+	},
+	pikachugmax: {
 		isNonstandard: "Past",
 	},
 	pikachuworld: {
@@ -166,6 +181,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	meowthgalar: {
 		isNonstandard: "Past",
 	},
+	meowthgmax: {
+		isNonstandard: "Past",
+	},
 	persian: {
 		isNonstandard: "Past",
 	},
@@ -218,6 +236,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	machamp: {
 		tier: "OU",
+	},
+	machampgmax: {
+		isNonstandard: "Past",
 	},
 	tentacool: {
 		tier: "LC",
@@ -288,6 +309,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	gengar: {
 		tier: "OU",
 	},
+	gengargmax: {
+		isNonstandard: "Past",
+	},
 	onix: {
 		tier: "LC",
 	},
@@ -295,6 +319,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		isNonstandard: "Past",
 	},
 	kingler: {
+		isNonstandard: "Past",
+	},
+	kinglergmax: {
 		isNonstandard: "Past",
 	},
 	voltorbhisui: {
@@ -407,11 +434,17 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	lapras: {
 		isNonstandard: "Past",
 	},
+	laprasgmax: {
+		isNonstandard: "Past",
+	},
 	ditto: {
 		isNonstandard: "Past",
 	},
 	eevee: {
 		tier: "LC",
+	},
+	eeveegmax: {
+		isNonstandard: "Past",
 	},
 	vaporeon: {
 		tier: "OU",
@@ -442,6 +475,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	snorlax: {
 		tier: "OU",
+	},
+	snorlaxgmax: {
+		isNonstandard: "Past",
 	},
 	articuno: {
 		isNonstandard: "Past",
@@ -1652,6 +1688,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	garbodor: {
 		isNonstandard: "Past",
 	},
+	garbodorgmax: {
+		isNonstandard: "Past",
+	},
 	zorua: {
 		isNonstandard: "Past",
 	},
@@ -2416,6 +2455,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	melmetal: {
 		isNonstandard: "Past",
 	},
+	melmetalgmax: {
+		isNonstandard: "Past",
+	},
 	grookey: {
 		isNonstandard: "Past",
 	},
@@ -2423,6 +2465,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		isNonstandard: "Past",
 	},
 	rillaboom: {
+		isNonstandard: "Past",
+	},
+	rillaboomgmax: {
 		isNonstandard: "Past",
 	},
 	scorbunny: {
@@ -2434,6 +2479,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	cinderace: {
 		isNonstandard: "Past",
 	},
+	cinderacegmax: {
+		isNonstandard: "Past",
+	},
 	sobble: {
 		isNonstandard: "Past",
 	},
@@ -2441,6 +2489,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		isNonstandard: "Past",
 	},
 	inteleon: {
+		isNonstandard: "Past",
+	},
+	inteleongmax: {
 		isNonstandard: "Past",
 	},
 	skwovet: {
@@ -2458,6 +2509,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	corviknight: {
 		isNonstandard: "Past",
 	},
+	corviknightgmax: {
+		isNonstandard: "Past",
+	},
 	blipbug: {
 		isNonstandard: "Past",
 	},
@@ -2465,6 +2519,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		isNonstandard: "Past",
 	},
 	orbeetle: {
+		isNonstandard: "Past",
+	},
+	orbeetlegmax: {
 		isNonstandard: "Past",
 	},
 	nickit: {
@@ -2491,6 +2548,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	drednaw: {
 		isNonstandard: "Past",
 	},
+	drednawgmax: {
+		isNonstandard: "Past",
+	},
 	yamper: {
 		isNonstandard: "Past",
 	},
@@ -2506,19 +2566,31 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	coalossal: {
 		isNonstandard: "Past",
 	},
+	coalossalgmax: {
+		isNonstandard: "Past",
+	},
 	applin: {
 		isNonstandard: "Past",
 	},
 	flapple: {
 		isNonstandard: "Past",
 	},
+	flapplegmax: {
+		isNonstandard: "Past",
+	},
 	appletun: {
+		isNonstandard: "Past",
+	},
+	appletungmax: {
 		isNonstandard: "Past",
 	},
 	silicobra: {
 		isNonstandard: "Past",
 	},
 	sandaconda: {
+		isNonstandard: "Past",
+	},
+	sandacondagmax: {
 		isNonstandard: "Past",
 	},
 	cramorant: {
@@ -2545,10 +2617,19 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	toxtricitylowkey: {
 		isNonstandard: "Past",
 	},
+	toxtricitygmax: {
+		isNonstandard: "Past",
+	},
+	toxtricitylowkeygmax: {
+		isNonstandard: "Past",
+	},
 	sizzlipede: {
 		isNonstandard: "Past",
 	},
 	centiskorch: {
+		isNonstandard: "Past",
+	},
+	centiskorchgmax: {
 		isNonstandard: "Past",
 	},
 	clobbopus: {
@@ -2578,6 +2659,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	hatterene: {
 		isNonstandard: "Past",
 	},
+	hatterenegmax: {
+		isNonstandard: "Past",
+	},
 	impidimp: {
 		isNonstandard: "Past",
 	},
@@ -2585,6 +2669,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		isNonstandard: "Past",
 	},
 	grimmsnarl: {
+		isNonstandard: "Past",
+	},
+	grimmsnarlgmax: {
 		isNonstandard: "Past",
 	},
 	obstagoon: {
@@ -2609,6 +2696,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		isNonstandard: "Past",
 	},
 	alcremie: {
+		isNonstandard: "Past",
+	},
+	alcremiegmax: {
 		isNonstandard: "Past",
 	},
 	falinks: {
@@ -2650,6 +2740,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	copperajah: {
 		isNonstandard: "Past",
 	},
+	copperajahgmax: {
+		isNonstandard: "Past",
+	},
 	dracozolt: {
 		isNonstandard: "Past",
 	},
@@ -2663,6 +2756,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		isNonstandard: "Past",
 	},
 	duraludon: {
+		isNonstandard: "Past",
+	},
+	duraludongmax: {
 		isNonstandard: "Past",
 	},
 	dreepy: {
@@ -2696,6 +2792,12 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		isNonstandard: "Past",
 	},
 	urshifurapidstrike: {
+		isNonstandard: "Past",
+	},
+	urshifugmax: {
+		isNonstandard: "Past",
+	},
+	urshifurapidstrikegmax: {
 		isNonstandard: "Past",
 	},
 	zarude: {
