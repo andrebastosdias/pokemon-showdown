@@ -2,7 +2,7 @@ import {ssbSets} from "./random-teams";
 import {PSEUDO_WEATHERS, changeSet, getName} from "./scripts";
 import {Teams} from '../../../sim/teams';
 
-export const Moves: {[k: string]: ModdedMoveData} = {
+export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	/*
 	// Example
 	moveid: {
@@ -1401,8 +1401,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		name: "(╯°o°）╯︵ ┻━┻",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, failcopycat: 1},
-		noSketch: true,
+		flags: {protect: 1, failcopycat: 1, nosketch: 1},
 		onTryMove() {
 			this.attrLastMove('[still]');
 		},
@@ -3763,7 +3762,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		desc: "User copies opponents signature move and adds it to its own movepool, replacing this move. The user then uses the copied move immediately and gains the Imprison condition, preventing foes from using moves in the user's moveset. The PP of the copied move will be adjusted to match the PP the copied signature move is supposed to have. If the copied custom move would fail if used in this manner, Plagiarism fails and the user boosts all stats by 1 stage, except Accuracy and Evasion.",
 		pp: 5,
 		priority: 1,
-		flags: {failencore: 1, nosleeptalk: 1, noassist: 1, failcopycat: 1, failinstruct: 1, failmimic: 1},
+		flags: {failencore: 1, nosleeptalk: 1, noassist: 1, failcopycat: 1, failinstruct: 1, failmimic: 1, nosketch: 1},
 		onTry(source) {
 			if (source.m.usedPlagiarism) {
 				this.hint("Plagiarism only works once per switch-in.");
@@ -3778,7 +3777,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			const sigMoveName = ssbSets[(target.illusion || target).name].signatureMove;
 			const move = this.dex.getActiveMove(sigMoveName);
 			if (!target || this.queue.willSwitch(target) || target.beingCalledBack ||
-				move.flags['failcopycat'] || move.noSketch) {
+				move.flags['failcopycat'] || move.flags['nosketch']) {
 				this.boost({spa: 1, spd: 1, spe: 1}, source, source, m);
 				return;
 			}
@@ -3802,7 +3801,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			source.addVolatile('imprison', source);
 			source.m.usedPlagiarism = true;
 		},
-		noSketch: true,
 		secondary: null,
 		target: "normal",
 		type: "Dark",
@@ -3830,7 +3828,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 						this.add('-sideend', pokemon.side, this.dex.conditions.get(condition).name, '[from] move: Time Skip', '[of] ' + pokemon);
 					}
 				}
-				// 9 turn addition so the +1 from nextTurn totals to 10 turns
+				// 9 turn addition so the +1 from endTurn totals to 10 turns
 				this.turn += 9;
 			},
 			boosts: {
@@ -4349,8 +4347,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		desc: "If the user is Volcarona, this move is Ice-type and, after dealing damage, transforms the user into a Snow Warning Frosmoth with Blizzard, Chilly Reception, and Aurora Veil. If the user is Frosmoth, this move is Fire-type and, after dealing damage, transforms the user into a Drought Volcarona with Torch Song, Morning Sun, and Solar Beam. This move fails if the user is neither Frosmoth nor Volcarona.",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, failcopycat: 1},
-		noSketch: true,
+		flags: {protect: 1, mirror: 1, failcopycat: 1, nosketch: 1},
 		onTryMove() {
 			this.attrLastMove('[still]');
 		},
