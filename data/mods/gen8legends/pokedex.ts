@@ -111,6 +111,11 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		evos: ["Braviary-Hisui"],
 	},
+	sylveon: {
+		inherit: true,
+		evoType: "levelFriendship",
+		evoCondition: "with a Fairy-type move",
+	},
 	goomy: {
 		inherit: true,
 		evos: ["Sliggoo-Hisui"],
