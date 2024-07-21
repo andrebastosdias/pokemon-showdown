@@ -408,7 +408,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		isNonstandard: "Past",
 	},
 	scyther: {
-		tier: "LC",
+		tier: "NFE",
 	},
 	jynx: {
 		isNonstandard: "Past",
@@ -643,11 +643,11 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 	},
 	sneasel: {
-		tier: "LC",
+		tier: "NFE",
 	},
 	sneaselhisui: {
 		isNonstandard: null,
-		tier: "LC",
+		tier: "NFE",
 	},
 	teddiursa: {
 		isNonstandard: null,

@@ -68,6 +68,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		mod: 'gen8legends',
 		searchShow: false,
 		ruleset: ['Little Cup', 'Standard'],
+		banlist: ['Scyther', 'Sneasel', 'Sneasel-Hisui'],
 	},
 	{
 		name: "[Gen 8 Legends] Monotype",
