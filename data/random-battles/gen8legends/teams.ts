@@ -323,13 +323,14 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 			name: species.baseSpecies,
 			species: forme,
 			gender: species.gender,
-			shiny: this.randomChance(1, 1024),
-			level,
 			moves: Array.from(moves),
 			ability: species.abilities['0'],
 			evs: {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0},
 			ivs,
 			item: '',
+			level,
+			shiny: this.randomChance(1, 1024),
+			happiness: this.random(256),
 		};
 	}
 
