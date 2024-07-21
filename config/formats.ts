@@ -54,14 +54,14 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		ruleset: ['Standard'],
 		banlist: ['AG'],
 	},
-	// {
-	// 	name: "[Gen 8 Legends] UU",
-	//
-	// 	mod: 'gen8legends',
-	// 	searchShow: false,
-	// 	ruleset: ['[Gen 8 Legends] OU'],
-	// 	banlist: ['OU', 'UUBL'],
-	// },
+	{
+		name: "[Gen 8 Legends] UU",
+	
+		mod: 'gen8legends',
+		searchShow: false,
+		ruleset: ['[Gen 8 Legends] OU'],
+		banlist: ['OU', 'UUBL'],
+	},
 	{
 		name: "[Gen 8 Legends] LC",
 
