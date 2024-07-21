@@ -1,6 +1,6 @@
 import {Battle} from "../../../sim";
 
-export const Moves: {[k: string]: ModdedMoveData} = {
+export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	hiddenpower: {
 		inherit: true,
 		basePower: 50,
