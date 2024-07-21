@@ -203,8 +203,8 @@ class PokeEnvBot extends Bot {
 			}
 
 			const maxDamageMove = moves.reduce((a, b) => {
-				const damageA = this.battle.actions.getDamage(source, target, a.id) || 0;
-				const damageB = this.battle.actions.getDamage(source, target, b.id) || 0;
+				const damageA = this.battle.actions.getDamage(source, target, a.id, true) || 0;
+				const damageB = this.battle.actions.getDamage(source, target, b.id, true) || 0;
 				return damageA > damageB ? a : b;
 			});
 			return "move " + maxDamageMove.id;
