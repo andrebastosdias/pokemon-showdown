@@ -257,6 +257,10 @@ class RandomLegendsLCTeams extends RandomLegendsOUTeams {
 	};
 	readonly customWeights: {[k: string]: number} = {
 		// banned LC
+		'scyther': 0,
+		'sneasel': 0,
+		'sneaselhisui': 0,
+
 		// LC from other tiers
 	};
 
