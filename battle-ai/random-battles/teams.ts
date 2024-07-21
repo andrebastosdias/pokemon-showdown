@@ -224,7 +224,7 @@ class RandomLegendsOUTeams extends RandomLegendsTeams {
 
 class RandomLegendsUbersTeams extends RandomLegendsOUTeams {
 	readonly tierWeights: Partial<Record<Species['tier'], number>> = {
-		Uber: 10,
+		Uber: 30,
 		OU: 1,
 	};
 	readonly customWeights: {[k: string]: number} = {
