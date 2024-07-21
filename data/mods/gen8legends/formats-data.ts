@@ -1423,7 +1423,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 	},
 	darkrai: {
 		isNonstandard: null,
-		tier: "OU",
+		tier: "Uber",
 	},
 	shaymin: {
 		isNonstandard: null,
