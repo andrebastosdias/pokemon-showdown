@@ -63,7 +63,7 @@
         "moves": ["calmmind", "flamethrower", "infernalparade", "overheat", "shadowball"]
     },
     "crobat": {
-        "moves": ["aircutter", "airslash", "crosspoison", "darkpulse", "hypnosis", "leechlife", "shadowball", "sludgebomb", "zenheadbutt"]
+        "moves": ["aerialace", "airslash", "crosspoison", "darkpulse", "hypnosis", "leechlife", "shadowball", "sludgebomb", "zenheadbutt"]
     },
     "sudowoodo": {
         "moves": ["firepunch", "icepunch", "stealthrock", "stoneedge", "woodhammer"]
@@ -186,7 +186,7 @@
         "moves": ["calmmind", "dazzlinggleam", "mysticalfire", "shadowball", "thunderbolt"]
     },
     "honchkrow": {
-        "moves": ["airslash", "bravebird", "darkpulse", "nastyplot", "nightslash", "psychic", "roost", "snarl"]
+        "moves": ["airslash", "bravebird", "darkpulse", "nastyplot", "nightslash", "psychic", "roost"]
     },
     "purugly": {
         "moves": ["doubleedge", "irontail", "nightslash", "playrough", "shadowclaw"]
@@ -207,7 +207,7 @@
         "moves": ["dracometeor", "earthpower", "firefang", "flamethrower", "outrage", "poisonjab", "stealthrock", "stoneedge"]
     },
     "lucario": {
-        "moves": ["aurasphere", "bulkup", "bulletpunch", "calmmind", "closecombat", "flashcannon", "irontail", "machpunch", "stoneedge"]
+        "moves": ["aurasphere", "bulkup", "bulletpunch", "calmmind", "closecombat", "drainpunch", "flashcannon", "irontail", "machpunch", "stoneedge"]
     },
     "hippowdon": {
         "moves": ["firefang", "highhorsepower", "icefang", "stealthrock", "stoneedge"]
@@ -225,7 +225,7 @@
         "moves": ["airslash", "hydropump", "icebeam", "roost"]
     },
     "abomasnow": {
-        "moves": ["earthpower", "energyball", "icebeam", "iceshard", "shadowball"]
+        "moves": ["earthpower", "energyball", "icebeam", "iceshard", "iciclecrash", "rockslide", "shadowball", "woodhammer"]
     },
     "weavile": {
         "moves": ["icepunch", "iceshard", "nightslash", "swordsdance"]
@@ -267,7 +267,7 @@
         "moves": ["highhorsepower", "iceshard", "iciclecrash", "stealthrock", "stoneedge"]
     },
     "porygonz": {
-        "moves": ["icebeam", "recover", "shadowball", "thunderwave", "triattack"]
+        "moves": ["icebeam", "recover", "shadowball", "thunderbolt", "thunderwave", "triattack"]
     },
     "gallade": {
         "moves": ["closecombat", "drainpunch", "firepunch", "icepunch", "poisonjab", "stoneedge", "swordsdance", "thunderpunch", "xscissor", "zenheadbutt"]
@@ -438,7 +438,7 @@
         "moves": ["calmmind", "dazzlinggleam", "mysticalfire", "shadowball"]
     },
     "goodrahisui": {
-        "moves": ["dracometeor", "dragonpulse", "flamethrower", "hydropump", "ironhead", "sludgebomb", "thunderbolt"]
+        "moves": ["dracometeor", "dragonpulse", "flamethrower", "hydropump", "icebeam", "ironhead", "sludgebomb", "thunderbolt"]
     },
     "avalugghisui": {
         "moves": ["highhorsepower", "iceshard", "mountaingale", "stealthrock", "stoneedge"]
@@ -465,12 +465,12 @@
         "moves": ["closecombat", "direclaw", "drainpunch", "swordsdance", "shadowclaw", "xscissor"]
     },
     "overqwil": {
-        "moves": ["aquatail", "barbbarrage", "doubleedge", "poisonjab", "spikes"]
+        "moves": ["aquatail", "barbbarrage", "doubleedge", "icebeam", "poisonjab", "spikes"]
     },
     "enamorus": {
         "moves": ["calmmind", "earthpower", "moonblast", "mysticalfire"]
     },
     "enamorustherian": {
-        "moves": ["calmmind", "drainingkiss", "earthpower", "moonblast", "mysticalfire"]
+        "moves": ["calmmind", "earthpower", "moonblast", "mysticalfire"]
     }
 }
