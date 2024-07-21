@@ -24,6 +24,7 @@
         "./server/chat-plugins/private/*/*.d.ts"
     ],
     "include": [
+        "./battle-ai/**/*.ts",
         "./config/*.ts",
         "./data/*",
         "./data/text/*",

@@ -76,6 +76,21 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		searchShow: false,
 		ruleset: ['[Gen 8 Legends] OU', 'Same Type Clause'],
 	},
+	{
+		name: "[Gen 8 Legends] Doubles OU",
+
+		mod: 'gen8legends',
+		gameType: 'doubles',
+		ruleset: ['Standard Doubles'],
+		banlist: ['DUber'],
+	},
+	{
+		name: "[Gen 8 Legends In-Game] Anything Goes",
+
+		mod: 'gen8legendsig',
+		searchShow: false,
+		ruleset: ['Obtainable', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
+	},
 
 	// S/V Singles
 	///////////////////////////////////////////////////////////////////

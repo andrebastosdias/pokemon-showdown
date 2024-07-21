@@ -52,6 +52,7 @@ exports.transpile = (decl) => {
 	});
 	fs.copyFileSync('./config/config-example.js', './dist/config/config-example.js');
 	copyOverDataJSON();
+	copyOverDataJSON('./battle-ai/random-battles');
 
 	// NOTE: replace is asynchronous - add additional replacements for the same path in one call instead of making multiple calls.
 	if (decl) {

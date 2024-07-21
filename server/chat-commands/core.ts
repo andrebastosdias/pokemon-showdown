@@ -17,6 +17,7 @@
 import {Utils} from '../../lib';
 import type {UserSettings} from '../users';
 import type {GlobalPermission} from '../user-groups';
+import {challbot} from '../room-battle-bot';
 
 export const crqHandlers: {[k: string]: Chat.CRQHandler} = {
 	userdetails(target, user, trustable) {
@@ -1423,6 +1424,9 @@ export const commands: Chat.ChatCommands = {
 	chall: 'challenge',
 	challenge(target, room, user, connection) {
 		const {targetUser, targetUsername, rest: formatName} = this.splitUser(target);
+		if (targetUsername === "bot") {
+			return challbot(this, formatName, room, user, connection);
+		}
 		if (!targetUser?.connected) {
 			return this.popupReply(this.tr`The user '${targetUsername}' was not found.`);
 		}
