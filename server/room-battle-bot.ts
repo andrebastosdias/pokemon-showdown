@@ -1,7 +1,7 @@
 import {FS, Streams} from '../lib';
 import {BattleReady} from './ladders-challenges';
 import {
-	ChallengeType, PM, PlayerIndex, RoomBattleOptions, RoomBattlePlayerOptions, RoomBattleTimer,
+	ChallengeType, PlayerIndex, RoomBattleOptions, RoomBattlePlayerOptions, RoomBattleStream, RoomBattleTimer,
 } from './room-battle';
 import {RoomGame, RoomGamePlayer} from './room-game';
 import {RoomSettings} from './rooms';
@@ -192,7 +192,7 @@ export class RoomBattleBot extends RoomGame<RoomBattleBotPlayer> {
 
 		this.bot = bot;
 
-		this.stream = PM.createStream();
+		this.stream = new RoomBattleStream();
 
 		let ratedMessage = options.ratedMessage || '';
 		if (this.rated) {
