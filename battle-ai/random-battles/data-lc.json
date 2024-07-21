@@ -1,0 +1,266 @@
+{
+    "vulpix": {
+        "moves": ["darkpulse", "energyball", "fireblast", "flamethrower", "nastyplot"]
+    },
+    "vulpixalola": {
+        "moves": ["darkpulse", "dazzlinggleam", "energyball", "icebeam", "nastyplot"]
+    },
+    "zubat": {
+        "moves": ["aerialace", "airslash", "crosspoison", "hypnosis", "leechlife", "shadowball", "sludgebomb", "zenheadbutt"]
+    },
+    "paras": {
+        "moves": ["energyball", "leechlife", "sludgebomb", "spore"]
+    },
+    "psyduck": {
+        "moves": ["calmmind", "hydropump", "icebeam", "psychic"]
+    },
+    "growlithehisui": {
+        "moves": ["flareblitz", "playrough", "rockslide", "wildcharge"]
+    },
+    "abra": {
+        "moves": ["calmmind", "dazzlinggleam", "psychic", "shadowball"]
+    },
+    "machop": {
+        "moves": ["bulkup", "closecombat", "firepunch", "icepunch", "machpunch", "rockslide", "thunderpunch"]
+    },
+    "tentacool": {
+        "moves": ["dazzlinggleam", "hydropump", "icebeam", "sludgebomb"]
+    },
+    "geodude": {
+        "moves": ["bulldoze", "firepunch", "stealthrock", "stoneedge", "thunderpunch"]
+    },
+    "ponyta": {
+        "moves": ["flareblitz", "highhorsepower", "hypnosis", "wildcharge"]
+    },
+    "magnemite": {
+        "moves": ["flashcannon", "steelbeam", "thunderbolt", "thunderwave"]
+    },
+    "gastly": {
+        "moves": ["dazzlinggleam", "energyball", "hypnosis", "shadowball", "sludgebomb", "thunderbolt"]
+    },
+    "onix": {
+        "moves": ["highhorsepower", "ironhead", "stealthrock", "stoneedge"]
+    },
+    "voltorbhisui": {
+        "moves": ["energyball", "swift", "thunderbolt", "thunderwave"]
+    },
+    "lickitung": {
+        "moves": ["aquatail", "doubleedge", "firepunch", "icepunch", "rockslide", "thunderpunch"]
+    },
+    "rhyhorn": {
+        "moves": ["aquatail", "firefang", "highhorsepower", "icefang", "megahorn", "stealthrock", "stoneedge", "thunderfang"]
+    },
+    "tangela": {
+        "moves": ["ancientpower", "energyball", "sleeppowder", "sludgebomb", "stunspore", "poisonpowder"]
+    },
+    "scyther": {
+        "moves": ["aerialace", "closecombat", "swordsdance", "xscissor"]
+    },
+    "magikarp": {
+        "moves": ["splash"]
+    },
+    "eevee": {
+        "moves": ["doubleedge", "irontail", "quickattack", "shadowball"]
+    },
+    "porygon": {
+        "moves": ["icebeam", "recover", "shadowball", "thunderbolt", "thunderwave", "triattack"]
+    },
+    "cyndaquil": {
+        "moves": ["flamethrower", "irontail", "overheat", "wildcharge"]
+    },
+    "pichu": {
+        "moves": ["irontail", "playrough", "thunderwave", "volttackle"]
+    },
+    "cleffa": {
+        "moves": ["calmmind", "flamethrower", "moonblast", "shadowball"]
+    },
+    "togepi": {
+        "moves": ["calmmind", "flamethrower", "moonblast", "shadowball"]
+    },
+    "aipom": {
+        "moves": ["doubleedge", "firepunch", "icepunch", "quickattack", "shadowclaw", "thunderpunch"]
+    },
+    "yanma": {
+        "moves": ["airslash", "ancientpower", "bugbuzz", "hypnosis", "psychic", "shadowball"]
+    },
+    "murkrow": {
+        "moves": ["aerialace", "airslash", "darkpulse", "nastyplot", "nightslash", "psychic", "roost"]
+    },
+    "misdreavus": {
+        "moves": ["calmmind", "dazzlinggleam", "shadowball", "thunderbolt"]
+    },
+    "gligar": {
+        "moves": ["aquatail", "earthpower", "stealthrock", "stoneedge", "xscissor"]
+    },
+    "qwilfishhisui": {
+        "moves": ["aquatail", "barbbarrage", "doubleedge", "poisonjab", "spikes"]
+    },
+    "sneasel": {
+        "moves": ["icepunch", "iceshard", "shadowclaw", "swordsdance"]
+    },
+    "sneaselhisui": {
+        "moves": ["closecombat", "poisonjab", "swordsdance", "shadowclaw", "xscissor"]
+    },
+    "teddiursa": {
+        "moves": ["bulkup", "doubleedge", "firepunch", "highhorsepower", "icepunch", "shadowclaw", "rockslide", "thunderpunch"]
+    },
+    "swinub": {
+        "moves": ["highhorsepower", "iceshard", "iciclecrash", "rockslide", "stealthrock"]
+    },
+    "remoraid": {
+        "moves": ["chargebeam", "hydropump", "icebeam", "psychic"]
+    },
+    "stantler": {
+        "moves": ["calmmind", "doubleedge", "energyball", "irontail", "megahorn", "psychic", "psyshieldbash", "shadowball", "thunderbolt", "wildcharge"]
+    },
+    "elekid": {
+        "moves": ["firepunch", "icepunch", "thunderwave", "wildcharge"]
+    },
+    "magby": {
+        "moves": ["fireblast", "flamethrower", "psychic", "thunderpunch"]
+    },
+    "wurmple": {
+        "moves": ["poisonsting", "tackle"]
+    },
+    "ralts": {
+        "moves": ["calmmind", "dazzlinggleam", "icebeam", "psychic", "shadowball", "teleport", "thunderbolt"]
+    },
+    "nosepass": {
+        "moves": ["earthpower", "flashcannon", "powergem", "stealthrock", "thunderbolt", "thunderwave"]
+    },
+    "barboach": {
+        "moves": ["aquatail", "earthpower", "icebeam", "zenheadbutt"]
+    },
+    "duskull": {
+        "moves": ["calmmind", "icebeam", "psychic", "shadowball", "shadowsneak"]
+    },
+    "snorunt": {
+        "moves": ["crunch", "icebeam", "iceshard", "iciclecrash", "shadowball", "spikes"]
+    },
+    "spheal": {
+        "moves": ["icebeam", "icywind", "irontail", "rockslide", "waterpulse"]
+    },
+    "turtwig": {
+        "moves": ["bulldoze", "leafblade", "sleeppowder", "stealthrock"]
+    },
+    "chimchar": {
+        "moves": ["bulkup", "firepunch", "stealthrock", "thunderpunch"]
+    },
+    "piplup": {
+        "moves": ["icebeam", "roost", "stealthrock", "waterpulse"]
+    },
+    "starly": {
+        "moves": ["bravebird", "doubleedge", "quickattack", "roost"]
+    },
+    "bidoof": {
+        "moves": ["aquatail", "crunch", "doubleedge", "irontail", "stealthrock", "swordsdance"]
+    },
+    "kricketot": {
+        "moves": ["absorb", "tackle"]
+    },
+    "shinx": {
+        "moves": ["crunch", "firefang", "icefang", "playrough", "thunderwave", "wildcharge"]
+    },
+    "budew": {
+        "moves": ["dazzlinggleam", "energyball", "shadowball", "sludgebomb", "spikes", "stunspore"]
+    },
+    "cranidos": {
+        "moves": ["crunch", "firepunch", "ironhead", "stealthrock", "stoneedge", "thunderpunch"]
+    },
+    "shieldon": {
+        "moves": ["bulldoze", "earthpower", "ironhead", "stealthrock", "stoneedge", "thunderbolt"]
+    },
+    "burmy": {
+        "moves": ["strugglebug"]
+    },
+    "combee": {
+        "moves": ["gust", "ominouswind", "strugglebug", "swift"]
+    },
+    "buizel": {
+        "moves": ["aquajet", "aquatail", "bulkup", "icepunch", "irontail"]
+    },
+    "cherubi": {
+        "moves": ["dazzlinggleam", "energyball", "petaldance", "sleeppowder", "stunspore"]
+    },
+    "shellos": {
+        "moves": ["earthpower", "hydropump", "icebeam", "recover"]
+    },
+    "drifloon": {
+        "moves": ["calmmind", "mysticalfire", "shadowball", "thunderbolt"]
+    },
+    "buneary": {
+        "moves": ["doubleedge", "drainpunch", "firepunch", "icepunch", "quickattack", "thunderpunch"]
+    },
+    "glameow": {
+        "moves": ["doubleedge", "irontail", "nightslash", "playrough", "shadowclaw"]
+    },
+    "chingling": {
+        "moves": ["calmmind", "dazzlinggleam", "psychic", "recover", "shadowball"]
+    },
+    "stunky": {
+        "moves": ["nightslash", "playrough", "poisongas", "poisonjab"]
+    },
+    "bronzor": {
+        "moves": ["flashcannon", "psychic", "shadowball", "stealthrock"]
+    },
+    "bonsly": {
+        "moves": ["doubleedge", "headsmash", "rockslide", "stealthrock"]
+    },
+    "mimejr": {
+        "moves": ["calmmind", "dazzlinggleam", "psychic", "shadowball", "thunderbolt"]
+    },
+    "happiny": {
+        "moves": ["calmmind", "flamethrower", "shadowball", "softboiled"]
+    },
+    "gible": {
+        "moves": ["dracometeor", "earthpower", "flamethrower", "outrage", "stealthrock", "stoneedge"]
+    },
+    "munchlax": {
+        "moves": ["doubleedge", "firepunch", "highhorsepower", "icepunch", "thunderpunch"]
+    },
+    "riolu": {
+        "moves": ["bulkup", "bulletpunch", "closecombat", "drainpunch", "icepunch", "rockslide", "thunderpunch"]
+    },
+    "hippopotas": {
+        "moves": ["crunch", "highhorsepower", "rockslide", "stealthrock"]
+    },
+    "skorupi": {
+        "moves": ["aquatail", "poisonjab", "swordsdance", "xscissor"]
+    },
+    "croagunk": {
+        "moves": ["bulkup", "closecombat", "drainpunch", "icepunch", "poisonjab", "rockslide", "thunderpunch"]
+    },
+    "finneon": {
+        "moves": ["airslash", "hydropump", "icebeam", "roost"]
+    },
+    "mantyke": {
+        "moves": ["airslash", "hydropump", "icebeam", "roost"]
+    },
+    "snover": {
+        "moves": ["energyball", "icebeam", "iceshard", "iciclecrash", "shadowball", "woodhammer"]
+    },
+    "oshawott": {
+        "moves": ["aquajet", "aquatail", "hydropump", "icebeam", "icywind", "swordsdance", "xscissor"]
+    },
+    "petilil": {
+        "moves": ["energyball", "leafstorm", "recover", "sleeppowder"]
+    },
+    "basculinwhitestriped": {
+        "moves": ["aquajet", "crunch", "icefang", "wavecrash"]
+    },
+    "zoruahisui": {
+        "moves": ["bittermalice", "nastyplot", "shadowball", "shadowsneak", "sludgebomb"]
+    },
+    "rufflet": {
+        "moves": ["bravebird", "bulkup", "doubleedge", "quickattack", "roost"]
+    },
+    "goomy": {
+        "moves": ["dracometeor", "dragonpulse", "hydropump", "sludgebomb", "thunderbolt"]
+    },
+    "bergmite": {
+        "moves": ["crunch", "icefang", "iceshard", "stoneedge"]
+    },
+    "rowlet": {
+        "moves": ["aerialace", "leafblade", "psychocut", "rockslide", "shadowclaw"]
+    }
+}
