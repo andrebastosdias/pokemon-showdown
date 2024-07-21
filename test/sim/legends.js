@@ -2,17 +2,17 @@
 
 const assert = require('./../assert');
 const common = require('./../common');
-const {testSet, testHasSTAB, testAlwaysHasMove} = require('../random-battles/tools');
+// const {testSet, testHasSTAB, testAlwaysHasMove} = require('../random-battles/tools');
 
 let battle;
 
 function existenceFunction(species) {
 	assert.equal(
 		species.exists && (!species.isNonstandard || ["Gigantamax", "Cap"].includes(species.isNonstandard)),
-		species.exists && !species.isNonstandard && !species.tier != 'Illegal',
+		species.exists && !species.isNonstandard && !species.tier !== 'Illegal',
 		species.name
-	)
-	return species.exists && !species.isNonstandard && !species.tier != 'Illegal';
+	);
+	return species.exists && !species.isNonstandard && !species.tier !== 'Illegal';
 }
 
 describe('[Gen 8 Legends] Dex data', function () {
@@ -244,7 +244,7 @@ describe('[Gen 8 Legends] Judgment', function () {
 			const species = dex.species.get(pokemon);
 			const data = dataJSON[pokemon];
 			if (data.moves.includes("spikes"))
-			
+
 			it(`${species.name} should always have Spikes`, () => {
 				testSet(pokemon, options, set => {
 					if (set.moves.some(move => Dex.moves.get(move).boosts)) return; // Setup
@@ -262,13 +262,13 @@ describe('[Gen 8 Legends] Judgment', function () {
 			const species = dex.species.get(pokemon);
 			const data = dataJSON[pokemon];
 			if (data.moves.includes("stealthrock"))
-			
+
 			it(`${species.name} should always have Stealth Rock`, () => {
 				testAlwaysHasMove(pokemon, options, 'stealthrock');
 			});
 		}
 	});
-	
+
 	describe('should enforce recovery moves', () => {
 		for (const pokemon of Object.keys(dataJSON)) {
 			const species = dex.species.get(pokemon);
@@ -276,7 +276,7 @@ describe('[Gen 8 Legends] Judgment', function () {
 			const recoveryMoves = data.moves.filter(move => dex.moves.get(move).heal);
 			if (!recoveryMoves.length) continue;
 			if (['alakazam', 'gardevoir', 'lilliganthisui', 'porygonz', 'shayminsky', 'staraptor'].includes(pokemon)) continue;
-			
+
 			// it(`${species.name} should always have ${dex.moves.get(recoveryMoves[0]).name}`, () => {
 			// 	testAlwaysHasMove(pokemon, options, recoveryMoves[0]);
 			// });
@@ -288,7 +288,7 @@ describe('[Gen 8 Legends] Judgment', function () {
 			const species = dex.species.get(pokemon);
 			const data = dataJSON[pokemon];
 			if (data.moves.includes("thunderwave"))
-			
+
 			it(`${species.name} should always have Thunder Wave`, () => {
 				testAlwaysHasMove(pokemon, options, 'thunderwave');
 			});

@@ -14,9 +14,7 @@ function scale(species: Species, min: string, max: string): number {
 
 function isViable(species: Species, bannedTiers: Species['tier'][]): boolean {
 	return !bannedTiers.includes(species.tier) && (
-		species.evos.every(evo =>
-			bannedTiers.includes(Dex.mod('gen8legends').species.get(evo).tier)
-		)
+		species.evos.every(evo => bannedTiers.includes(Dex.mod('gen8legends').species.get(evo).tier))
 	);
 }
 
@@ -219,7 +217,7 @@ class RandomLegendsOUTeams extends RandomLegendsTeams {
 			throw new Error(`Could not build a random team for ${this.format} (seed=${seed})`);
 		}
 
-		this.prng.shuffle(pokemon)
+		this.prng.shuffle(pokemon);
 		return pokemon;
 	}
 }
@@ -364,9 +362,6 @@ class BattleStatGuesser {
 		if (!species.exists) return null;
 		const stats = species.baseStats;
 
-		const needsFourMoves = species.baseSpecies !== 'Unown';
-		if (set.moves.length < 4 && needsFourMoves) return null;
-
 		for (let i = 0, len = set.moves.length; i < len; i++) {
 			const move = this.dex.moves.get(set.moves[i]);
 			hasMove[move.id] = 1;
@@ -441,7 +436,16 @@ class BattleStatGuesser {
 		this.moveCount = moveCount;
 		this.hasMove = hasMove;
 
-		if (species.baseSpecies === 'Unown') return 'Fast Special Sweeper';
+		switch (species.baseSpecies) {
+		case 'Magikarp':
+			return null;
+		case 'Unown':
+			return 'Fast Special Sweeper';
+		case 'Cascoon': case 'Kricketot': case 'Silcoon': case 'Wurmple':
+			return 'Bulky Physical Sweeper';
+		case 'Burmy':
+			return 'Bulky Special Sweeper';
+		}
 
 		if (moveCount['PhysicalStall'] && moveCount['Restoration']) {
 			if (stats.spe > 110) return 'Fast Bulky Support';

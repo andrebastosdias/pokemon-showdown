@@ -76,10 +76,4 @@ class PokeEnvBot extends Bot {
 	}
 }
 
-class RadicalRedBot extends Bot {
-	override _choose(): string {
-		return super._choose();
-	}
-}
-
-export default Bot;
+export default PokeEnvBot;
