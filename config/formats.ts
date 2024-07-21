@@ -37,8 +37,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 
 		mod: 'gen8legends',
 		team: 'random',
-		// ruleset: ['[Gen 8] Random Battle', '!PotD'],
-		ruleset: ['Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+		ruleset: ['[Gen 8] Random Battle', '!PotD'],
 	},
 	{
 		name: "[Gen 8 Legends] OU",
