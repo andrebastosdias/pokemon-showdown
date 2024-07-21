@@ -212,6 +212,15 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 		return customScale[species.id] || tierScale[species.tier] || 80;
 	}
 
+	getForme(species: Species): string {
+		if (typeof species.battleOnly === 'string') {
+			// Only change the forme. The species has custom moves, and may have different typing and requirements.
+			return species.battleOnly;
+		}
+		if (species.cosmeticFormes) return this.sample([species.name].concat(species.cosmeticFormes));
+		return species.name;
+	}
+
 	randomSet(
 		species: string | Species,
 		teamDetails: RandomTeamsTypes.TeamDetails = {},
