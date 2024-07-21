@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 
-export const Learnsets: {[k: string]: ModdedLearnsetData} = {
+export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTable = {
 	pikachu: {
 		learnset: {
 			babydolleyes: ["8T"],
