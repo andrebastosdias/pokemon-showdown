@@ -12,10 +12,17 @@ function scale(species: Species, min: string, max: string): number {
 	return Math.max(Math.ceil((bst - minBst) / (maxBst - minBst) * 100), 1);
 }
 
-function isViable(species: Species, bannedTiers: Species['tier'][]): boolean {
-	return !bannedTiers.includes(species.tier) && (
-		species.evos.every(evo => bannedTiers.includes(Dex.mod('gen8legends').species.get(evo).tier))
-	);
+function isViable(species: Species, bannedTiers: Species['tier'][], monotype: string | null = null): boolean {
+	if (bannedTiers.includes(species.tier)) return false;
+
+	const evoSpecies = species.evos.map(evo => Dex.mod('gen8legends').species.get(evo));
+	for (const evo of evoSpecies) {
+		if (!bannedTiers.includes(evo.tier)) {
+			if (!monotype || evo.types.includes(monotype)) return false;
+		}
+	}
+
+	return true;
 }
 
 class RandomLegendsOUTeams extends RandomLegendsTeams {
@@ -60,14 +67,10 @@ class RandomLegendsOUTeams extends RandomLegendsTeams {
 		return set;
 	}
 
-	getPokemonWeight(species: Species): number {
-		if (this.format.id === 'gen8legendsou') {
-			if (species.tier === 'OU') {
-				return this.customWeights[species.id] || scale(species, 'unown', 'cresselia');
-			}
-			return 0;
-		}
-		return this.customWeights[species.id] || this.tierWeights[species.tier] || 0;
+	getPokemonWeight(species: Species, monotype: string | null = null): number {
+		if (species.tier !== 'OU') return 0;
+
+		return this.customWeights[species.id] || scale(species, 'unown', 'cresselia');
 	}
 
 	getPokemonPool(
@@ -236,13 +239,19 @@ class RandomLegendsUbersTeams extends RandomLegendsOUTeams {
 		'palkia': 30 * 2 / 10,
 		'palkiaorigin': 30 * 2 * 9 / 10,
 	};
+
+	getPokemonWeight(species: Species): number {
+		return this.customWeights[species.id] || this.tierWeights[species.tier] || 0;
+	}
 }
 
 class RandomLegendsUUTeams extends RandomLegendsOUTeams {
 	readonly tierWeights: Partial<Record<Species['tier'], number>> = {
 		UU: 1,
 	};
-	readonly customWeights: {[k: string]: number} = {};
+	readonly customWeights: {[k: string]: number} = {
+		'magikarp': 0, 'unown': 0,
+	};
 
 	getPokemonWeight(species: Species): number {
 		if (!isViable(species, ['AG', 'Uber', 'OU', 'UUBL'])) return 0;
@@ -256,12 +265,11 @@ class RandomLegendsLCTeams extends RandomLegendsOUTeams {
 		'LC': 1,
 	};
 	readonly customWeights: {[k: string]: number} = {
-		// banned LC
-		'scyther': 0,
-		'sneasel': 0,
-		'sneaselhisui': 0,
+		// LC ban list
+		'scyther': 0, 'sneasel': 0, 'sneaselhisui': 0,
 
-		// LC from other tiers
+		// These Pokemon are too weak
+		'burmy': 0, 'kricketot': 0, 'magikarp': 0, 'wurmple': 0,
 	};
 
 	getLevel(): number {
@@ -299,12 +307,10 @@ class RandomLegendsMonotypeTeams extends RandomLegendsOUTeams {
 		'Water': 1,
 	};
 
-	getPokemonWeight(species: Species): number {
-		if (!isViable(species, ['AG', 'Uber'])) return 0;
+	getPokemonWeight(species: Species, monotype: string): number {
+		if (!isViable(species, ['AG', 'Uber'], monotype)) return 0;
 
-		return this.customWeights[species.id] || (
-			species.tier === 'OU' ? scale(species, 'unown', 'cresselia') * 10 : scale(species, 'kricketot', 'cresselia')
-		);
+		return scale(species, 'kricketot', 'cresselia') * (species.tier === 'OU' ? 10 : 1);
 	}
 
 	getTypePool(): string[] {
