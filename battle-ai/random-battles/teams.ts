@@ -467,7 +467,7 @@ class BattleStatGuesser {
 
 		if (moveCount['Stall'] + moveCount['Support'] / 2 <= 2 && bulk < 135000 && moveCount[offenseBias] >= 1.5) {
 			if (isFast) {
-				if (bulk > 80000 && !moveCount['Ultrafast']) return 'Bulky ' + offenseBias + ' Sweeper';
+				if (bulk > 80000 && stats.spe <= 100 && !moveCount['Ultrafast']) return 'Bulky ' + offenseBias + ' Sweeper';
 				return 'Fast ' + offenseBias + ' Sweeper';
 			} else {
 				if (moveCount[offenseBias] >= 3 || moveCount['Stall'] <= 0) {
