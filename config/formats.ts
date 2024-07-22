@@ -56,7 +56,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 	},
 	{
 		name: "[Gen 8 Legends] UU",
-	
+
 		mod: 'gen8legends',
 		searchShow: false,
 		ruleset: ['[Gen 8 Legends] OU'],
