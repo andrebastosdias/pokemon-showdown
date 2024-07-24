@@ -89,7 +89,6 @@ describe('[Gen 8 Legends] Dex data', function () {
 
 describe('[Gen 8 Legends] Team Validator', function () {
 	const formatID = 'gen8legendsubers';
-	const validator = require('../../dist/sim/team-validator').TeamValidator.get(formatID);
 
 	it('should change abilities to correct ones', function () {
 		const team = [
@@ -98,7 +97,6 @@ describe('[Gen 8 Legends] Team Validator', function () {
 			{species: 'magikarp', ability: 'honeygather', moves: ['splash']},
 		];
 		assert.legalTeam(team, formatID);
-		validator.validateTeam(team);
 		assert.equal(team[0].ability, 'Flower Gift');
 		assert.equal(team[1].ability, 'Slow Start');
 		assert.equal(team[2].ability, 'No Ability');
@@ -106,10 +104,9 @@ describe('[Gen 8 Legends] Team Validator', function () {
 
 	it('should remove items', function () {
 		const team = [
-			{species: 'magikarp', ability: 'noability', item: 'choiceband', moves: ['splash']},
+			{species: 'magikarp', item: 'choiceband', moves: ['splash']},
 		];
 		assert.legalTeam(team, formatID);
-		validator.validateTeam(team);
 		assert.equal(team[0].item, '');
 	});
 });
