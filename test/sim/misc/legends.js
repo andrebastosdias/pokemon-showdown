@@ -105,11 +105,17 @@ describe('[Gen 8 Legends] Team Validator', function () {
 			{species: 'cherrim', ability: 'honeygather', moves: ['rest']},
 			{species: 'regigigas', ability: 'honeygather', moves: ['rest']},
 			{species: 'magikarp', ability: 'honeygather', moves: ['splash']},
+			{species: 'cherrim', moves: ['rest']},
+			{species: 'regigigas', moves: ['rest']},
+			{species: 'magikarp', moves: ['splash']},
 		];
 		assert.legalTeam(team, formatID);
 		assert.equal(team[0].ability, 'Flower Gift');
 		assert.equal(team[1].ability, 'Slow Start');
 		assert.equal(team[2].ability, 'No Ability');
+		assert.equal(team[3].ability, 'Flower Gift');
+		assert.equal(team[4].ability, 'Slow Start');
+		assert.equal(team[5].ability, 'No Ability');
 	});
 
 	it('should remove items', function () {
@@ -147,7 +153,7 @@ describe('[Gen 8 Legends] Choice parser', function () {
 		const validChoices = ['move 1 1', 'switch 4'];
 
 		for (const action of validChoices) {
-			const choiceString = `move 1 1, ${action}, move 1 1`;
+			const choiceString = `${action}, move 1 1, move 1 1`;
 			assert(battle.choose('p1', choiceString), `Choice '${choiceString}' should be valid`);
 			battle.p1.clearChoice();
 		}
@@ -186,42 +192,92 @@ describe('[Gen 8 Legends] Arceus', function () {
 	});
 });
 
-describe('[Gen 8 Legends] Judgment', function () {
-	it(`should adapt its type to the Arceus type`, function () {
-		battle = common.createBattle(options, [
-			[{species: "Arceus-Ghost", ability: 'noability', moves: ['judgment']}],
-			[{species: "Spiritomb", ability: 'noability', moves: ['calmmind']}],
-		]);
-		assert.hurts(battle.p2.active[0], () => battle.makeChoices());
+describe('[Gen 8 Legends] Moves', function () {
+	describe('Judgment', function () {
+		it(`should adapt its type to the Arceus type`, function () {
+			battle = common.createBattle(options, [
+				[{species: "Arceus-Ghost", ability: 'noability', moves: ['judgment']}],
+				[{species: "Spiritomb", ability: 'noability', moves: ['calmmind']}],
+			]);
+			assert.hurts(battle.p2.active[0], () => battle.makeChoices());
+		});
+
+		it(`should adapt its type to the opponent's type if used by Arceus-Legend`, function () {
+			battle = common.createBattle(options, [
+				[{species: "Arceus-Legend", ability: 'noability', moves: ['judgment']}],
+				[
+					{species: "Palkia", ability: 'noability', moves: ['bulkup']},
+					{species: "Giratina", ability: 'noability', moves: ['calmmind']},
+				],
+			]);
+			assert(battle.p1.active[0].hasType('Normal'));
+
+			battle.makeChoices('move judgment', 'move bulkup');
+			assert.species(battle.p1.active[0], 'Arceus-Dragon');
+			assert(battle.p1.active[0].hasType('Dragon'));
+
+			battle.makeChoices('move judgment', 'switch giratina');
+			assert.species(battle.p1.active[0], 'Arceus-Dark');
+			assert(battle.p1.active[0].hasType('Dark'));
+		});
 	});
 
-	it(`should adapt its type to the opponent's type if used by Arceus-Legend`, function () {
-		battle = common.createBattle(options, [
-			[{species: "Arceus-Legend", ability: 'noability', moves: ['judgment']}],
-			[
-				{species: "Palkia", ability: 'noability', moves: ['bulkup']},
-				{species: "Giratina", ability: 'noability', moves: ['calmmind']},
-			],
-		]);
-		assert(battle.p1.active[0].hasType('Normal'));
-
-		battle.makeChoices('move judgment', 'move bulkup');
-		assert.species(battle.p1.active[0], 'Arceus-Dragon');
-		assert(battle.p1.active[0].hasType('Dragon'));
-
-		battle.makeChoices('move judgment', 'switch giratina');
-		assert.species(battle.p1.active[0], 'Arceus-Dark');
-		assert(battle.p1.active[0].hasType('Dark'));
+	describe('Hidden Power', function () {
+		it(`should adapt its type to be super effective against the opponent's type`, function () {
+			battle = common.createBattle(options, [
+				[{species: "unown", ability: 'noability', moves: ['hiddenpower']}],
+				[{species: "spiritomb", ability: 'noability', moves: ['calmmind']}],
+			]);
+			assert.hurts(battle.p2.active[0], () => battle.makeChoices());
+		});
 	});
 });
 
-describe('[Gen 8 Legends] Hidden Power', function () {
-	it(`should adapt its type to be super effective against the opponent's type`, function () {
-		battle = common.createBattle(options, [
-			[{species: "unown", ability: 'noability', moves: ['hiddenpower']}],
-			[{species: "spiritomb", ability: 'noability', moves: ['calmmind']}],
-		]);
-		assert.hurts(battle.p2.active[0], () => battle.makeChoices());
+describe('[Gen 8 Legends] Abilities', function () {
+	describe(`Slow Start`, function () {
+		it(`should delay activation on switch-in, like Speed Boost`, function () {
+			battle = common.createBattle([[
+				{species: 'Cyndaquil', moves: ['rest']},
+				{species: 'Regigigas', ability: 'slowstart', moves: ['rest']},
+			], [
+				{species: 'Rowlet', moves: ['rest']},
+			]]);
+			battle.makeChoices('switch 2', 'auto');
+			for (let i = 0; i < 4; i++) { battle.makeChoices(); }
+			let log = battle.getDebugLog();
+			let slowStartEnd = log.indexOf('|-end|p1a: Regigigas|Slow Start');
+			assert.false(slowStartEnd > -1, 'Slow Start should remain in effect after 4 active turns.');
+
+			battle.makeChoices();
+			log = battle.getDebugLog();
+			slowStartEnd = log.indexOf('|-end|p1a: Regigigas|Slow Start');
+			assert(slowStartEnd > -1, 'Slow Start should not be in effect after 5 active turns.');
+		});
+	});
+
+	describe(`Flower Gift`, function () {
+		it(`should trigger without a weather condition`, function () {
+			battle = common.createBattle(options, [
+				[{species: "Cherrim", ability: 'flowergift', moves: ['healbell']}],
+				[{species: "Magikarp", moves: ['healbell']}],
+			]);
+			assert.species(battle.p1.active[0], 'Cherrim-Sunshine');
+			assert(battle.log.some(line => line.startsWith('|-formechange')));
+		});
+
+		it(`should not boost Attack and Special Defense stats`, function () {
+			battle = common.createBattle(options, [
+				[{species: "Cherrim", ability: 'flowergift', moves: ['healbell']}],
+				[{species: "Magikarp", moves: ['healbell']}],
+			]);
+			const cherrim = battle.p1.active[0];
+			assert.equal(cherrim.hp, 364);
+			assert.equal(cherrim.getStat('atk'), 315);
+			assert.equal(cherrim.getStat('def'), 264);
+			assert.equal(cherrim.getStat('spa'), 307);
+			assert.equal(cherrim.getStat('spd'), 382);
+			assert.equal(cherrim.getStat('spe'), 302);
+		});
 	});
 });
 
@@ -251,6 +307,47 @@ describe('[Gen 8 Legends] stats', function () {
 		assert.equal(spiritomb.getStat('spa'), 266);
 		assert.equal(spiritomb.getStat('spd'), 282);
 		assert.equal(spiritomb.getStat('spe'), 145);
+	});
+});
+
+describe('[Gen 8 Legends] onResidual', function () {
+	it('should trigger if a Pokémon runs a move, even if it fails', function () {
+		battle = common.createBattle(options, [
+			[{species: 'Sableye', ability: 'prankster', moves: ['willowisp']}],
+			[{species: 'magikarp', ability: 'noguard', moves: ['splash']}],
+		]);
+		battle.onEvent('BeforeMove', battle.format, function (move) {
+			if (move.id === 'splash') {
+				return false;
+			}
+		});
+		assert.hurts(battle.p2.active[0], () => battle.makeChoices());
+	});
+
+	it('should trigger before the switch phase if the target faints', function () {
+		battle = common.createBattle(options, [
+			[
+				{species: 'Sableye', ability: 'prankster', moves: ['willowisp']},
+				{species: 'Magikarp', ability: 'noability', moves: ['splash']},
+			],
+			[{species: 'Wurmple', ability: 'noguard', moves: ['poisonsting']}],
+		]);
+		battle.p1.active[0].hp = 1;
+		assert.hurts(battle.p2.active[0], () => battle.makeChoices());
+		assert(battle.p1.active[0].fainted);
+	});
+
+	it('should not trigger if a Pokémon switches in', function () {
+		battle = common.createBattle(options, [
+			[{species: 'Sableye', ability: 'prankster', moves: ['willowisp']}],
+			[
+				{species: 'magikarp', ability: 'noguard', moves: ['splash']},
+				{species: 'magikarp', ability: 'noguard', moves: ['splash']},
+			],
+		]);
+		battle.makeChoices('move willowisp', 'switch 2');
+		const magikarp = battle.p2.active[0];
+		assert.equal(magikarp.hp, magikarp.maxhp);
 	});
 });
 
@@ -324,7 +421,7 @@ describe('[Gen 8 Legends] statuses', function () {
 				[{species: 'Darkrai', ability: 'noability', moves: ['icebeam']}],
 				[{species: 'Heatran', ability: 'noability', moves: ['sleeptalk']}],
 			]);
-			battle.onEvent('ModifyMove', battle.format, function (move) {
+			battle.onEvent('BeforeMove', battle.format, function (source, target, move) {
 				move.damageCallback = () => 0;
 				if (move.secondaries) {
 					this.debug('Freeze test: Guaranteeing secondary');

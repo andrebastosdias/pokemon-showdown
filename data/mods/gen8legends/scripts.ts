@@ -76,13 +76,11 @@ export const Scripts: ModdedBattleScriptsData = {
 				this.singleEvent(handlerEventid, effect, handler.state, handler.effectHolder, null, null, relayVar, handler.callback);
 			}
 
-			if (!(handler.effectHolder as Pokemon).fainted) {
-				if (handler.end && handler.state && handler.state.duration) {
-					handler.state.duration--;
-					if (!handler.state.duration) {
-						const endCallArgs = handler.endCallArgs || [handler.effectHolder, effect.id];
-						handler.end.call(...endCallArgs as [any, ...any[]]);
-					}
+			if (!(handler.effectHolder as Pokemon).fainted && handler.end && handler.state && handler.state.duration) {
+				handler.state.duration--;
+				if (!handler.state.duration) {
+					const endCallArgs = handler.endCallArgs || [handler.effectHolder, effect.id];
+					handler.end.call(...endCallArgs as [any, ...any[]]);
 				}
 			}
 
