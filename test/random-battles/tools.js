@@ -158,7 +158,7 @@ function assertSetValidity(format, set) {
 		species.baseSpecies === 'Arceus' &&
 		species.types[0] !== 'Normal' &&
 		(dex.gen !== 7 || !set.item.endsWith(' Z')) &&
-		format.team !== 'randomHC'
+		format.team !== 'randomHC' && !format.id.startsWith("gen8legends")
 	) {
 		assert(set.item.endsWith(' Plate'), `${species.name} doesn't have a Plate (got "${set.item}" instead)`);
 	}

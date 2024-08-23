@@ -21,7 +21,7 @@ import {Pokemon, EffectState, RESTORATIVE_BERRIES} from './pokemon';
 import {PRNG, PRNGSeed} from './prng';
 import {Side} from './side';
 import {State} from './state';
-import {BattleQueue, Action} from './battle-queue';
+import {BattleQueue, Action, ActionTimeQueue} from './battle-queue';
 import {BattleActions} from './battle-actions';
 import {Utils} from '../lib';
 declare const __version: any;
@@ -136,6 +136,8 @@ export class Battle {
 
 	actions: BattleActions;
 	queue: BattleQueue;
+	/** Legends: Arceus */
+	actionTimeQueue: ActionTimeQueue;
 	readonly faintQueue: {
 		target: Pokemon,
 		source: Pokemon | null,
@@ -230,6 +232,7 @@ export class Battle {
 
 		this.queue = new BattleQueue(this);
 		this.actions = new BattleActions(this);
+		this.actionTimeQueue = new ActionTimeQueue(this);
 		this.faintQueue = [];
 
 		this.inputLog = [];
@@ -958,7 +961,7 @@ export class Battle {
 		let callback = status[callbackName];
 		if (callback !== undefined || (getKey && pokemon.statusState[getKey])) {
 			handlers.push(this.resolvePriority({
-				effect: status, callback, state: pokemon.statusState, end: pokemon.clearStatus, effectHolder: pokemon,
+				effect: status, callback, state: pokemon.statusState, end: pokemon.cureStatus, effectHolder: pokemon,
 			}, callbackName));
 		}
 		for (const id in pokemon.volatiles) {
@@ -3158,6 +3161,10 @@ export class Battle {
 
 		this.queue.battle = null!;
 		this.queue = null!;
+
+		this.actionTimeQueue.battle = null!;
+		this.actionTimeQueue = null!;
+
 		// in case the garbage collector really sucks, at least deallocate the log
 		(this as any).log = [];
 	}

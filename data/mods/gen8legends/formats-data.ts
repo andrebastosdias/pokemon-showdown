@@ -408,7 +408,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		isNonstandard: "Past",
 	},
 	scyther: {
-		tier: "NFE",
+		tier: "LC",
 	},
 	jynx: {
 		isNonstandard: "Past",
@@ -643,11 +643,11 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 	},
 	sneasel: {
-		tier: "NFE",
+		tier: "LC",
 	},
 	sneaselhisui: {
 		isNonstandard: null,
-		tier: "NFE",
+		tier: "LC",
 	},
 	teddiursa: {
 		isNonstandard: null,
@@ -1423,7 +1423,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 	},
 	darkrai: {
 		isNonstandard: null,
-		tier: "Uber",
+		tier: "OU",
 	},
 	shaymin: {
 		isNonstandard: null,
@@ -1489,8 +1489,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		isNonstandard: null,
 	},
 	arceuslegend: {
-		isNonstandard: "Unobtainable",
-		tier: "Illegal",
+		isNonstandard: null,
+		tier: "AG",
 	},
 	victini: {
 		isNonstandard: "Past",
@@ -2141,7 +2141,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 	},
 	zygardecomplete: {
 		isNonstandard: "Past",
-		// FIXME: avoid Zygarde-Complete bug
+		// avoid Zygarde-Complete bug
 		tier: "Illegal",
 		doublesTier: "Illegal",
 		natDexTier: "Illegal",

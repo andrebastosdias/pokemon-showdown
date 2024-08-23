@@ -20,9 +20,6 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 				target.cureStatus();
 			}
 		},
-		onEnd(target) {
-			this.add('-curestatus', target, 'frz');
-		},
 	},
 	lockedmove: {
 		// Outrage, Thrash, Petal Dance...

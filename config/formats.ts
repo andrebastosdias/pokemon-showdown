@@ -19,65 +19,6 @@ The column value will be ignored for repeat sections.
 
 export const Formats: import('../sim/dex-formats').FormatList = [
 
-	// Legends: Z-A
-	///////////////////////////////////////////////////////////////////
-
-	{
-		section: "Legends: Z-A",
-	},
-
-	// Legends: Arceus
-	///////////////////////////////////////////////////////////////////
-
-	{
-		section: "Legends: Arceus",
-	},
-	{
-		name: "[Gen 8 Legends] Random Battle",
-
-		mod: 'gen8legends',
-		team: 'random',
-		ruleset: ['[Gen 8] Random Battle', '!PotD'],
-	},
-	{
-		name: "[Gen 8 Legends] OU",
-
-		mod: 'gen8legends',
-		ruleset: ['Standard'],
-		banlist: ['AG', 'Uber'],
-	},
-	{
-		name: "[Gen 8 Legends] Ubers",
-
-		mod: 'gen8legends',
-		searchShow: false,
-		ruleset: ['Standard'],
-		banlist: ['AG'],
-	},
-	{
-		name: "[Gen 8 Legends] UU",
-
-		mod: 'gen8legends',
-		searchShow: false,
-		ruleset: ['[Gen 8 Legends] OU'],
-		banlist: ['OU', 'UUBL'],
-	},
-	{
-		name: "[Gen 8 Legends] LC",
-
-		mod: 'gen8legends',
-		searchShow: false,
-		ruleset: ['Little Cup', 'Standard'],
-		banlist: ['Scyther', 'Sneasel', 'Sneasel-Hisui'],
-	},
-	{
-		name: "[Gen 8 Legends] Monotype",
-
-		mod: 'gen8legends',
-		searchShow: false,
-		ruleset: ['[Gen 8 Legends] OU', 'Same Type Clause'],
-	},
-
 	// S/V Singles
 	///////////////////////////////////////////////////////////////////
 
@@ -1148,6 +1089,62 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		desc: `Anything that can be hacked in-game and is usable in local battles is allowed.`,
 		mod: 'gen7',
 		ruleset: ['-Nonexistent', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
+	},
+
+	// Legends: Arceus
+	///////////////////////////////////////////////////////////////////
+
+	{
+		name: "[Gen 8 Legends] OU",
+
+		mod: 'gen8legends',
+		ruleset: ['Standard'],
+		banlist: ['AG', 'Uber'],
+	},
+	{
+		name: "[Gen 8 Legends] Ubers",
+
+		mod: 'gen8legends',
+		searchShow: false,
+		ruleset: ['Standard'],
+		banlist: ['AG'],
+	},
+	{
+		name: "[Gen 8 Legends] LC",
+
+		mod: 'gen8legends',
+		searchShow: false,
+		ruleset: ['Little Cup', 'Standard'],
+	},
+	{
+		name: "[Gen 8 Legends] Monotype",
+
+		mod: 'gen8legends',
+		searchShow: false,
+		ruleset: ['[Gen 8 Legends] OU', 'Same Type Clause'],
+	},
+	{
+		name: "[Gen 8 Legends] Doubles",
+
+		mod: 'gen8legends',
+		gameType: 'doubles',
+		searchShow: false,
+		ruleset: ['Standard Doubles'],
+	},
+	{
+		name: "[Gen 8 Legends] Triples",
+
+		mod: 'gen8legends',
+		gameType: 'triples',
+		searchShow: false,
+		ruleset: ['Standard Doubles'],
+	},
+	{
+		name: "[Gen 8 Legends] AG",
+
+		mod: 'gen8legends',
+		searchShow: false,
+		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
 	},
 
 	// Challengeable OMs

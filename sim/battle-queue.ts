@@ -419,4 +419,92 @@ export class BattleQueue {
 	}
 }
 
+export interface PokemonActionTime {
+	/** action time (lower first) */
+	actionTime: number;
+	/** speed of pokemon doing action (higher first if priority tie) */
+	speed: number;
+	/** the pokemon doing action */
+	pokemon: Pokemon;
+}
+
+/**
+ * Legends Arceus
+ */
+export class ActionTimeQueue {
+	battle: Battle;
+	list: PokemonActionTime[];
+	actingPokemon: PokemonActionTime | null;
+	constructor(battle: Battle) {
+		this.battle = battle;
+		this.list = [];
+		this.actingPokemon = null;
+	}
+
+	getPokemonToMove(): Pokemon {
+		this.updateSpeed();
+		this.battle.speedSort(this.list, this.compareActionTime);
+		this.actingPokemon = this.list[0];
+		for (const pokemonActionTime of this.list) {
+			pokemonActionTime.actionTime -= this.actingPokemon.actionTime;
+		}
+		return this.actingPokemon.pokemon;
+	}
+
+	updateActingPokemon() {
+		if (this.actingPokemon) {
+			this.actingPokemon.actionTime = Math.max(...this.list.map(p => p.actionTime)) + 1;
+		}
+		this.actingPokemon = null;
+	}
+
+	updateSpeed() {
+		this.battle.updateSpeed();
+		for (const pokemonActionTime of this.list) {
+			pokemonActionTime.speed = pokemonActionTime.pokemon.getStat('spe', false, false);
+		}
+	}
+
+	insertPokemon(pokemon: Pokemon, oldActive?: Pokemon | null) {
+		// TODO const oldPokemonActionTime = oldActive ? this.removePokemon(oldActive) : null;
+
+		const pokemonActionTime = {
+			pokemon,
+			speed: pokemon.getStat('spe', false, false),
+			actionTime: this.list.length ? Math.max(...this.list.map(p => p.actionTime)) + 1 : 0,
+		};
+
+		this.list.push(pokemonActionTime);
+	}
+
+	removePokemon(pokemon: Pokemon): PokemonActionTime | null {
+		for (let i = 0; i < this.list.length; i++) {
+			if (this.list[i].pokemon === pokemon) {
+				return this.list.splice(i, 1)[0];
+			}
+		}
+		return null;
+	}
+
+	getDefaultActionTime(pokemon: Pokemon): number {
+		const speed = pokemon.getStat('spe', false, false);
+		if (speed <= 15) return 14;
+		else if (speed <= 31) return 13;
+		else if (speed <= 55) return 12;
+		else if (speed <= 88) return 11;
+		else if (speed <= 129) return 10;
+		else if (speed <= 181) return 9;
+		else if (speed <= 242) return 8;
+		else if (speed <= 316) return 7;
+		else if (speed <= 401) return 6;
+		else return 5;
+	}
+
+	compareActionTime(a: PokemonActionTime, b: PokemonActionTime) {
+		return -(b.actionTime - a.actionTime) ||
+			(b.pokemon.getStat('spe', false, false) - a.pokemon.getStat('spe', false, false)) ||
+			0;
+	}
+}
+
 export default BattleQueue;

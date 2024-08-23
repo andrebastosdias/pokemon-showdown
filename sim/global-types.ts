@@ -262,6 +262,7 @@ interface ModdedBattleActions {
 interface ModdedBattleSide {
 	canDynamaxNow?: (this: Side) => boolean;
 	chooseSwitch?: (this: Side, slotText?: string) => any;
+	chooseShift?: (this: Side) => any;
 	getChoice?: (this: Side) => string;
 	getRequestData?: (this: Side, forAlly?: boolean) => {name: string, id: ID, pokemon: AnyObject[]};
 }
@@ -312,9 +313,16 @@ interface ModdedBattlePokemon {
 		this: Pokemon, ability: string | Ability, source: Pokemon | null, isFromFormeChange: boolean
 	) => string | false;
 	setItem?: (this: Pokemon, item: string | Item, source?: Pokemon, effect?: Effect) => boolean;
+	trySetStatus?: (
+		this: Pokemon, status: string | Condition, source: Pokemon | null, sourceEffect: Effect | null
+	) => boolean;
 	setStatus?: (
 		this: Pokemon, status: string | Condition, source: Pokemon | null,
 		sourceEffect: Effect | null, ignoreImmunities: boolean
+	) => boolean;
+	addVolatile?: (
+		this: Pokemon, status: string | Condition, source: Pokemon | null,
+		sourceEffect: Effect | null, linkedStatus: string | Condition | null
 	) => boolean;
 	takeItem?: (this: Pokemon, source: Pokemon | undefined) => boolean | Item;
 	transformInto?: (this: Pokemon, pokemon: Pokemon, effect: Effect | null) => boolean;
@@ -366,6 +374,10 @@ interface ModdedBattleScriptsData extends Partial<BattleScriptsData> {
 		this: Battle, move: ActiveMove, attacker: Pokemon, defender: Pokemon, announcePads?: boolean
 	) => boolean;
 	checkWin?: (this: Battle, faintQueue?: Battle['faintQueue'][0]) => true | undefined;
+
+	// Legends: Arceus
+	getRandomTarget?: (this: Battle, pokemon: Pokemon, move: string | Move) => Pokemon | null;
+	residualEvent?: (this: Battle, eventid: string, relayVar?: any) => void;
 }
 
 type TypeInfo = import('./dex-data').TypeInfo;

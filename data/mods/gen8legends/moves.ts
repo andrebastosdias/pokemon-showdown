@@ -898,70 +898,12 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	hiddenpower: {
 		inherit: true,
 		isNonstandard: null,
-	},
-	hiddenpowerbug: {
-		inherit: true,
-		isNonstandard: null,
-	},
-	hiddenpowerdark: {
-		inherit: true,
-		isNonstandard: null,
-	},
-	hiddenpowerdragon: {
-		inherit: true,
-		isNonstandard: null,
-	},
-	hiddenpowerelectric: {
-		inherit: true,
-		isNonstandard: null,
-	},
-	hiddenpowerfighting: {
-		inherit: true,
-		isNonstandard: null,
-	},
-	hiddenpowerfire: {
-		inherit: true,
-		isNonstandard: null,
-	},
-	hiddenpowerflying: {
-		inherit: true,
-		isNonstandard: null,
-	},
-	hiddenpowerghost: {
-		inherit: true,
-		isNonstandard: null,
-	},
-	hiddenpowergrass: {
-		inherit: true,
-		isNonstandard: null,
-	},
-	hiddenpowerground: {
-		inherit: true,
-		isNonstandard: null,
-	},
-	hiddenpowerice: {
-		inherit: true,
-		isNonstandard: null,
-	},
-	hiddenpowerpoison: {
-		inherit: true,
-		isNonstandard: null,
-	},
-	hiddenpowerpsychic: {
-		inherit: true,
-		isNonstandard: null,
-	},
-	hiddenpowerrock: {
-		inherit: true,
-		isNonstandard: null,
-	},
-	hiddenpowersteel: {
-		inherit: true,
-		isNonstandard: null,
-	},
-	hiddenpowerwater: {
-		inherit: true,
-		isNonstandard: null,
+		basePower: 50,
+		onModifyType(move, pokemon, target) {
+			let bestTypes = this.dex.types.names();
+			bestTypes = getAllMaxValues(bestTypes, x => getTypeEffectiveness(this, x, target));
+			move.type = this.sample(bestTypes);
+		},
 	},
 	highjumpkick: {
 		inherit: true,
@@ -1051,10 +993,24 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	judgment: {
 		inherit: true,
 		isNonstandard: null,
-		onModifyType(move, pokemon) {
-			if (pokemon.species.baseSpecies === 'Arceus') {
+		pp: 5,
+		onModifyType(move, pokemon, target) {
+			if (pokemon.species.baseSpecies !== 'Arceus') return;
+			if (pokemon.baseSpecies.id !== 'arceuslegend') {
 				move.type = pokemon.species.types[0];
+				return;
 			}
+
+			let bestTypes = this.dex.types.names();
+			bestTypes = getAllMaxValues(bestTypes, x => getTypeEffectiveness(this, x, target));
+			for (const type of target.getTypes()) {
+				bestTypes = getAllMaxValues(bestTypes, x => getTypeEffectiveness(this, type, x), true);
+			}
+			const newType = this.sample(bestTypes);
+			if (newType !== pokemon.species.types.join()) {
+				pokemon.formeChange('Arceus-' + newType, this.effect, false, '[msg]');
+			}
+			move.type = newType;
 		},
 	},
 	junglehealing: {
@@ -2309,3 +2265,17 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		isNonstandard: "Past",
 	},
 };
+
+function getTypeEffectiveness(
+	battle: Battle,
+	source: {type: string} | string,
+	target: {getTypes: () => string[]} | {types: string[]} | string[] | string
+) {
+	return battle.dex.getImmunity(source, target) ? battle.dex.getEffectiveness(source, target) : -100;
+}
+
+function getAllMaxValues<T>(arr: readonly T[], fn: (item: T) => number, inverse = false) {
+	if (arr.length === 0) return [];
+	const maxVal = (inverse ? Math.min : Math.max)(...arr.map(item => fn(item)));
+	return arr.filter(item => fn(item) === maxVal);
+}

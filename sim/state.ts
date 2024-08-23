@@ -39,7 +39,7 @@ type Referable = Battle | Field | Side | Pokemon | Condition | Ability | Item | 
 const BATTLE = new Set([
 	'dex', 'gen', 'ruleTable', 'id', 'log', 'inherit', 'format', 'teamGenerator',
 	'HIT_SUBSTITUTE', 'NOT_FAIL', 'FAIL', 'SILENT_FAIL', 'field', 'sides', 'prng', 'hints',
-	'deserialized', 'queue', 'actions',
+	'deserialized', 'queue', 'actions', 'actionTimeQueue',
 ]);
 const FIELD = new Set(['id', 'battle']);
 const SIDE = new Set(['battle', 'team', 'pokemon', 'choice', 'activeRequest']);
@@ -72,6 +72,10 @@ export const State = new class {
 		// else has been deserialized to avoid anything accidentally `add`-ing to it.
 		state.log = battle.log;
 		state.queue = this.serializeWithRefs(battle.queue.list, battle);
+		state.actionTimeQueue = this.serializeWithRefs({
+			list: battle.actionTimeQueue,
+			actingPokemon: battle.actionTimeQueue.actingPokemon,
+		}, battle);
 		state.formatid = battle.format.id;
 		return state;
 	}
@@ -150,6 +154,9 @@ export const State = new class {
 		battle.prng = new PRNG(state.prng);
 		const queue = this.deserializeWithRefs(state.queue, battle);
 		battle.queue.list = queue;
+		const actionTimeQueue = this.deserializeWithRefs(state.actionTimeQueue, battle);
+		battle.actionTimeQueue.list = actionTimeQueue.list;
+		battle.actionTimeQueue.actingPokemon = actionTimeQueue.actingPokemon;
 		(battle as any).hints = new Set(state.hints);
 		(battle as any).log = state.log;
 		return battle;

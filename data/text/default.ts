@@ -171,6 +171,9 @@ export const DefaultText: {[id: IDEntry]: DefaultText} = {
 	brn: {
 		start: "  [POKEMON] was burned!",
 		startFromItem: "  [POKEMON] was burned by the [ITEM]!",
+		gen6: {
+			startFromItem: "  [POKEMON] was burned by the [ITEM]!",
+		},
 		alreadyStarted: "  [POKEMON] is already burned!",
 		end: "  [POKEMON]'s burn was healed!",
 		endFromItem: "  [POKEMON]'s [ITEM] healed its burn!",
