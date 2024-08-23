@@ -1127,19 +1127,19 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		ruleset: ['[Gen 8 Legends] OU', 'Same Type Clause'],
 	},
 	{
+		name: "[Gen 8 Legends] AG",
+
+		mod: 'gen8legends',
+		searchShow: false,
+		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
+	},
+	{
 		name: "[Gen 8 Legends] Doubles",
 
 		mod: 'gen8legends',
 		gameType: 'doubles',
 		searchShow: false,
 		ruleset: ['Standard Doubles'],
-	},
-	{
-		name: "[Gen 8 Legends] AG",
-
-		mod: 'gen8legends',
-		searchShow: false,
-		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
 	},
 	{
 		name: "[Gen 8 Legends] Triples",
