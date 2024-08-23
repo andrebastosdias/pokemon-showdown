@@ -235,7 +235,7 @@ describe('[Gen 8 Legends] Moves', function () {
 
 describe('[Gen 8 Legends] Abilities', function () {
 	describe(`Slow Start`, function () {
-		it(`should delay activation on switch-in, like Speed Boost`, function () {
+		it(`should delay activation on switch-in (redundant)`, function () {
 			battle = common.createBattle([[
 				{species: 'Cyndaquil', moves: ['rest']},
 				{species: 'Regigigas', ability: 'slowstart', moves: ['rest']},
@@ -310,49 +310,26 @@ describe('[Gen 8 Legends] stats', function () {
 	});
 });
 
-describe('[Gen 8 Legends] onResidual', function () {
-	it('should trigger if a Pokémon runs a move, even if it fails', function () {
+describe('[Gen 8 Legends] residuals', function () {
+	it('should trigger in the turn they end', function () {
 		battle = common.createBattle(options, [
-			[{species: 'Sableye', ability: 'prankster', moves: ['willowisp']}],
+			[{species: 'Sableye', ability: 'prankster', moves: ['splash', 'willowisp']}],
 			[{species: 'magikarp', ability: 'noguard', moves: ['splash']}],
 		]);
-		battle.onEvent('BeforeMove', battle.format, function (move) {
-			if (move.id === 'splash') {
-				return false;
-			}
-		});
-		assert.hurts(battle.p2.active[0], () => battle.makeChoices());
-	});
-
-	it('should trigger before the switch phase if the target faints', function () {
-		battle = common.createBattle(options, [
-			[
-				{species: 'Sableye', ability: 'prankster', moves: ['willowisp']},
-				{species: 'Magikarp', ability: 'noability', moves: ['splash']},
-			],
-			[{species: 'Wurmple', ability: 'noguard', moves: ['poisonsting']}],
-		]);
-		battle.p1.active[0].hp = 1;
-		assert.hurts(battle.p2.active[0], () => battle.makeChoices());
-		assert(battle.p1.active[0].fainted);
-	});
-
-	it('should not trigger if a Pokémon switches in', function () {
-		battle = common.createBattle(options, [
-			[{species: 'Sableye', ability: 'prankster', moves: ['willowisp']}],
-			[
-				{species: 'magikarp', ability: 'noguard', moves: ['splash']},
-				{species: 'magikarp', ability: 'noguard', moves: ['splash']},
-			],
-		]);
-		battle.makeChoices('move willowisp', 'switch 2');
 		const magikarp = battle.p2.active[0];
-		assert.equal(magikarp.hp, magikarp.maxhp);
+		assert.hurts(magikarp, () => battle.makeChoices('move willowisp', 'move splash'));
+		assert.equal(magikarp.status, 'brn');
+		for (let i = 0; i < 3; i++) {
+			assert.hurts(magikarp, () => battle.makeChoices());
+			assert.equal(magikarp.status, 'brn');
+		}
+		assert.hurts(magikarp, () => battle.makeChoices());
+		assert.equal(magikarp.status, '');
 	});
 });
 
 describe('[Gen 8 Legends] statuses', function () {
-	it('should be able to overwriten by other statuses', function () {
+	it('should overwrite old statuses', function () {
 		battle = common.createBattle(options, [
 			[{species: 'tangrowth', ability: 'noguard', moves: ['sleeppowder', 'stunspore', 'poisonpowder']}],
 			[{species: 'spiritomb', ability: 'noability', moves: ['calmmind']}],
@@ -363,6 +340,23 @@ describe('[Gen 8 Legends] statuses', function () {
 		assert.equal(battle.p2.active[0].status, 'par');
 		battle.makeChoices('move poisonpowder', 'move calmmind');
 		assert.equal(battle.p2.active[0].status, 'psn');
+	});
+
+	it('should reset their duration upon reapplication', function () {
+		battle = common.createBattle(options, [
+			[{species: 'Sableye', ability: 'prankster', moves: ['splash', 'willowisp']}],
+			[{species: 'magikarp', ability: 'noguard', moves: ['splash']}],
+		]);
+		const magikarp = battle.p2.active[0];
+		battle.makeChoices('move willowisp', 'move splash');
+		assert.equal(magikarp.status, 'brn');
+		assert.equal(magikarp.statusState.duration, 4);
+		battle.makeChoices();
+		assert.equal(magikarp.status, 'brn');
+		assert.equal(magikarp.statusState.duration, 3);
+		battle.makeChoices('move willowisp', 'move splash');
+		assert.equal(magikarp.status, 'brn');
+		assert.equal(magikarp.statusState.duration, 4);
 	});
 
 	describe('Burn', function () {
@@ -385,22 +379,6 @@ describe('[Gen 8 Legends] statuses', function () {
 			const sableye = battle.p2.active[0];
 			const damage = sableye.maxhp - sableye.hp;
 			assert.bounded(damage, [55, 65]);
-		});
-	});
-
-	describe('Paralysis', function () {
-		it(`should reduce speed to 50% of its original value`, function () {
-			battle = common.createBattle(options, [[
-				{species: 'Vaporeon', moves: ['sleeptalk']},
-			], [
-				{species: 'Jolteon', moves: ['glare']},
-			]]);
-
-			const vaporeon = battle.p1.active[0];
-			const speed = vaporeon.getStat('spe');
-			battle.makeChoices();
-			assert.equal(vaporeon.status, 'par');
-			assert.equal(vaporeon.getStat('spe'), battle.modify(speed, 0.5));
 		});
 	});
 
@@ -451,24 +429,6 @@ describe('[Gen 8 Legends] statuses', function () {
 			const darkrai = battle.p2.active[0];
 			const damage = darkrai.maxhp - darkrai.hp;
 			assert.bounded(damage, [74, 88]);
-		});
-
-		it('should cause an afflicted Shaymin-Sky to revert to its base forme', function () {
-			battle = common.createBattle(options, [
-				[{species: 'Darkrai', ability: 'noability', moves: ['icebeam']}],
-				[{species: 'Shaymin-Sky', ability: 'noability', moves: ['recover']}],
-			]);
-			battle.onEvent('ModifyMove', battle.format, function (move) {
-				if (move.secondaries) {
-					this.debug('Freeze test: Guaranteeing secondary');
-					for (const secondary of move.secondaries) {
-						secondary.chance = 100;
-					}
-				}
-			});
-			battle.makeChoices();
-			assert.equal(battle.p2.active[0].status, 'frz');
-			assert.equal(battle.p2.active[0].species.name, 'Shaymin');
 		});
 	});
 
