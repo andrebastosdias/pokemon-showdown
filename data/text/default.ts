@@ -172,7 +172,8 @@ export const DefaultText: {[id: IDEntry]: DefaultText} = {
 		start: "  [POKEMON] was burned!",
 		startFromItem: "  [POKEMON] was burned by the [ITEM]!",
 		gen6: {
-			startFromItem: "  [POKEMON] was burned by the [ITEM]!",
+			start: "  [POKEMON] was lala what!",
+			startFromItem: "  [POKEMON] was lala what by the [ITEM]!",
 		},
 		alreadyStarted: "  [POKEMON] is already burned!",
 		end: "  [POKEMON]'s burn was healed!",

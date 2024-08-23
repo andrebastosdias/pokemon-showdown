@@ -1095,6 +1095,9 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 	///////////////////////////////////////////////////////////////////
 
 	{
+		section: "Legends: Arceus",
+	},
+	{
 		name: "[Gen 8 Legends] OU",
 
 		mod: 'gen8legends',
@@ -1132,19 +1135,19 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		ruleset: ['Standard Doubles'],
 	},
 	{
+		name: "[Gen 8 Legends] AG",
+
+		mod: 'gen8legends',
+		searchShow: false,
+		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
+	},
+	{
 		name: "[Gen 8 Legends] Triples",
 
 		mod: 'gen8legends',
 		gameType: 'triples',
 		searchShow: false,
 		ruleset: ['Standard Doubles'],
-	},
-	{
-		name: "[Gen 8 Legends] AG",
-
-		mod: 'gen8legends',
-		searchShow: false,
-		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
 	},
 
 	// Challengeable OMs
