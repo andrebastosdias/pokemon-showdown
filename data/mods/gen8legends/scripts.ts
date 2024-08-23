@@ -12,7 +12,13 @@ export const Scripts: ModdedBattleScriptsData = {
 			delete this.modData('Pokedex', i).requiredItems;
 		}
 		for (const i in this.data.Moves) {
-			this.modData('Moves', i).noPPBoosts = true;
+			const moveData = this.modData('Moves', i);
+			moveData.noPPBoosts = true;
+			if (['normal', 'allAdjacentFoes', 'allAdjacent', 'adjacentFoe'].includes(moveData.target)) {
+				moveData.target = 'any';
+			} else if (['allies', 'adjacentAllyOrSelf'].includes(moveData.target)) {
+				moveData.target = 'self';
+			}
 		}
 		// sanity check
 		for (const i in this.data.FormatsData) {

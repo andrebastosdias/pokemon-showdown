@@ -89,11 +89,10 @@ describe('[Gen 8 Legends] Dex data', function () {
 	it(`should have valid Move entries`, function () {
 		for (const move of dex.moves.all()) {
 			if (!move.exists || move.isNonstandard) continue;
-			if (move.id === 'struggle') {
-				assert.equal(move.target, 'randomNormal');
-			} else {
-				assert(move.target in ['any', 'self'], `${move.name} has an invalid target ${move.target}`);
-			}
+			assert(
+				(move.id === 'struggle' && move.target === 'randomNormal') || ['any', 'self'].includes(move.target),
+				`${move.name} has an invalid target: ${move.target}`
+			);
 		}
 	});
 });
@@ -134,8 +133,8 @@ describe('[Gen 8 Legends] Choice parser', function () {
 	it('should reject `shift` requests', function () {
 		battle = common.createBattle({formatid: 'gen8legendstriples'});
 		battle.setPlayer('p1', {team: [
-			{species: "Pineco", ability: 'sturdy', moves: ['selfdestruct']},
-			{species: "Geodude", ability: 'sturdy', moves: ['selfdestruct']},
+			{species: "Pineco", ability: 'sturdy', moves: ['tackle']},
+			{species: "Geodude", ability: 'sturdy', moves: ['tackle']},
 			{species: "Gastly", ability: 'levitate', moves: ['lick']},
 			{species: "Forretress", ability: 'levitate', moves: ['spikes']},
 		]});
@@ -145,17 +144,17 @@ describe('[Gen 8 Legends] Choice parser', function () {
 			{species: "Golem", ability: 'sturdy', moves: ['defensecurl']},
 		]});
 
-		const validChoices = ['move 1', 'switch 4'];
+		const validChoices = ['move 1 1', 'switch 4'];
 
 		for (const action of validChoices) {
-			const choiceString = `move 1, ${action}, move 1 1`;
+			const choiceString = `move 1 1, ${action}, move 1 1`;
 			assert(battle.choose('p1', choiceString), `Choice '${choiceString}' should be valid`);
 			battle.p1.clearChoice();
 		}
 
 		const badChoices = ['pass', 'shift'];
 		for (const badChoice of badChoices) {
-			const choiceString = `${badChoice}, move 1, move 1 1`;
+			const choiceString = `${badChoice}, move 1 1, move 1 1`;
 			assert.throws(() => battle.choose('p1', choiceString));
 		}
 	});
