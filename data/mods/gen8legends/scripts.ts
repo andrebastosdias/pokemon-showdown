@@ -44,7 +44,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		return pokemon.side.randomFoe() || pokemon.side.foe.active[0];
 	},
 	/**
-	 * Only run onResidual events for the Pokemon that moved, if any.
+	 * Only run onResidual events for Pokemon that tried to use a move, if any.
 	 * Run onResidual events before checking its duration.
 	 */
 	residualEvent(eventid, relayVar) {
@@ -340,7 +340,7 @@ export const Scripts: ModdedBattleScriptsData = {
 			return false;
 		},
 		/**
-		 * Any Pokemon can be hit any other Pokemon. There is no need for shifting.
+		 * Any Pokemon can hit any other Pokemon. There is no need for shifting.
 		 */
 		chooseShift() {
 			return this.emitChoiceError(`Can't shift: You don't need to shift in Legends: Arceus, you can hit any foe`);
