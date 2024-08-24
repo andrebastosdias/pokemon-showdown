@@ -500,6 +500,32 @@ export class ActionTimeQueue {
 		else return 5;
 	}
 
+	getActionTimeModifier(move: ActiveMove): number {
+		switch (move.id) {
+		case 'chloroblast': case 'darkvoid': case 'gigaimpact': case 'hyperbeam': case 'mountaingale': case 'roaroftime':
+			return 5;
+		case 'shadowforce':
+			return 3;
+		case 'bulkup': case 'calmmind': case 'shelter': case 'takeheart': case 'victorydance':
+			return -2;
+		case 'acidarmor': case 'baby-dolleyes': case 'doublehit': case 'focusenergy': case 'irondefense': case 'nastyplot': case 'powershift': case 'swordsdance':
+			return -3;
+		case 'aquajet': case 'bulletpunch': case 'esperwing': case 'iceshard': case 'machpunch': case 'quickattack': case 'shadowsneak': case 'wavecrash':
+			return -4;
+		default:
+			return 0;
+		}
+	}
+
+	getActionTimeModifierTarget(move: ActiveMove): number {
+		switch (move.id) {
+			case 'airslash': case 'astonish': case 'bite': case 'bubble': case 'bulldoze': case 'crushgrip': case 'extrasensory': case 'fairywind': case 'firefang': case 'icefang': case 'iciclecrash': case 'icywind': case 'ironhead': case 'mountaingale': case 'rockslide': case 'thunderfang': case 'triplearrows': case 'twister': case 'zenheadbutt':
+				return 3;
+			default:
+				return 0;
+			}
+	}
+
 	compareActionTime(a: PokemonActionTime, b: PokemonActionTime) {
 		return -(b.actionTime - a.actionTime) ||
 			(b.pokemon.getStat('spe', false, false) - a.pokemon.getStat('spe', false, false)) ||
