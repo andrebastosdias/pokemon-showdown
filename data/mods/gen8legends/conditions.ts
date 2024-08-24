@@ -20,6 +20,7 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 			this.add('-status', target, 'slp');
 		},
 		onBeforeMovePriority: 1,
+		// implemented here to match Burn's defrost
 		onBeforeMove(pokemon, target, move) {
 			if (['spark', 'volttackle', 'wildcharge'].includes(move.id)) return;
 			if (this.randomChance(1, 3)) {
