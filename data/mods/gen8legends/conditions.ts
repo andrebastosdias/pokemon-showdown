@@ -52,6 +52,18 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 			this.damage(pokemon.baseMaxhp / 6);
 		},
 	},
+	focusenergy: {
+		name: 'focusenergy',
+		onStart(target) {
+			this.add('-start', target, 'focusenergy');
+		},
+		onEnd(target) {
+			this.add('-end', target, 'focusenergy');
+		},
+		onModifyCritRatio(critRatio) {
+			return critRatio + 2;
+		},
+	},
 	fixated: {
 		name: 'fixated',
 		duration: 2,
