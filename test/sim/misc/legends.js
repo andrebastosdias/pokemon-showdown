@@ -202,7 +202,7 @@ describe('[Gen 8 Legends] Moves', function () {
 			assert.hurts(battle.p2.active[0], () => battle.makeChoices());
 		});
 
-		it(`should adapt its type to the opponent's type if used by Arceus-Legend`, function () {
+		it(`should adapt its type to be super effective against the opponent's type if used by Arceus-Legend`, function () {
 			battle = common.createBattle(options, [
 				[{species: "Arceus-Legend", ability: 'noability', moves: ['judgment']}],
 				[
