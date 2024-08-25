@@ -1145,7 +1145,17 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		desc: "Raises the user's chance for a critical hit by 2 stages. Fails if the user already has the effect. Baton Pass can be used to transfer this effect to an ally.",
 		shortDesc: "Raises the user's critical hit ratio by 2.",
 		pp: 20,
-		condition: {},
+		condition: {
+			onStart(target) {
+				this.add('-start', target, 'focusenergy');
+			},
+			onEnd(target) {
+				this.add('-end', target, 'focusenergy');
+			},
+			onModifyCritRatio(critRatio) {
+				return critRatio + 2;
+			},
+		},
 	},
 	focuspunch: {
 		inherit: true,
