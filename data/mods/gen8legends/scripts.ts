@@ -307,7 +307,7 @@ export const Scripts: ModdedBattleScriptsData = {
 			if (target.status === 'slp') {
 				baseDamage = tr(baseDamage * 1.33);
 			}
-			if (pokemon.getVolatile('fixated')) {
+			if (pokemon.getVolatile('fixated') && pokemon.volatiles['fixated'].move === move.id) {
 				baseDamage = tr(baseDamage * 1.5);
 			}
 			if (target.getVolatile('fixated')) {
