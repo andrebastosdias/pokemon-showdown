@@ -1,4 +1,11 @@
 export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
+	absorb: {
+		inherit: true,
+		basePower: 30,
+		desc: "The user recovers 1/2 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.",
+		shortDesc: "User recovers 50% of the damage dealt.",
+		pp: 20,
+	},
 	accelerock: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -6,6 +13,22 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	acid: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	acidarmor: {
+		inherit: true,
+		desc: "Raises the user's Defense by 2 stages.",
+		shortDesc: "Raises the user's Defense by 2.",
+		volatileStatus: "guardboost",
+		boosts: null,
+	},
+	acidspray: {
+		inherit: true,
+		desc: "Has a 100% chance to lower the target's Special Defense by 2 stages.",
+		shortDesc: "100% chance to lower the target's Sp. Def by 2.",
+		secondary: {
+			chance: 50,
+			volatileStatus: "guarddrop",
+		},
 	},
 	acrobatics: {
 		inherit: true,
@@ -27,6 +50,19 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	aircutter: {
+		inherit: true,
+		desc: "Has a higher chance for a critical hit.",
+		shortDesc: "High critical hit ratio. Hits adjacent foes.",
+		pp: 15,
+	},
+	airslash: {
+		inherit: true,
+		desc: "Has a 30% chance to make the target flinch.",
+		shortDesc: "30% chance to make the target flinch.",
+		pp: 10,
+		secondary: null,
+	},
 	allyswitch: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -39,13 +75,40 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	ancientpower: {
+		inherit: true,
+		desc: "Has a 10% chance to raise the user's Attack, Defense, Special Attack, Special Defense, and Speed by 1 stage.",
+		shortDesc: "10% chance to raise all stats by 1 (not acc/eva).",
+		pp: 15,
+		secondary: {
+			chance: 20,
+			self: {
+				onHit(target, source, move) {
+					source.addVolatile('powerboost', source, move);
+					source.addVolatile('guardboost', source, move);
+				},
+			},
+		},
+	},
 	appleacid: {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	aquajet: {
+		inherit: true,
+		desc: "No additional effect.",
+		shortDesc: "Usually goes first.",
+		priority: 0,
+	},
 	aquaring: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	aquatail: {
+		inherit: true,
+		basePower: 85,
+		desc: "No additional effect.",
+		shortDesc: "No additional effect.",
 	},
 	armthrust: {
 		inherit: true,
@@ -63,6 +126,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	astonish: {
+		inherit: true,
+		desc: "Has a 30% chance to make the target flinch.",
+		shortDesc: "30% chance to make the target flinch.",
+		pp: 25,
+		secondary: null,
+	},
 	astralbarrage: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -74,6 +144,12 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	attract: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	aurasphere: {
+		inherit: true,
+		desc: "This move does not check accuracy.",
+		shortDesc: "This move does not check accuracy.",
+		pp: 10,
 	},
 	aurawheel: {
 		inherit: true,
@@ -95,13 +171,37 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	babydolleyes: {
+		inherit: true,
+		desc: "Lowers the target's Attack by 1 stage.",
+		shortDesc: "Lowers the target's Attack by 1.",
+		pp: 20,
+		priority: 0,
+		boosts: null,
+		secondary: {
+			chance: 100,
+			volatileStatus: "powerdrop",
+		},
+	},
 	banefulbunker: {
 		inherit: true,
 		isNonstandard: "Past",
 	},
 	barbbarrage: {
 		inherit: true,
+		basePowerCallback(pokemon, target, move) {
+			if (target.status) return move.basePower * 2;
+			return move.basePower;
+		},
+		desc: "Has a 50% chance to poison the target. Power doubles if the target is already poisoned.",
+		shortDesc: "50% psn. 2x power if target already poisoned.",
 		isNonstandard: null,
+		pp: 15,
+		onBasePower() {},
+		secondary: {
+			chance: 30,
+			status: "psn",
+		},
 		gen: 8,
 	},
 	batonpass: {
@@ -132,9 +232,28 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	bite: {
+		inherit: true,
+		desc: "Has a 30% chance to make the target flinch.",
+		shortDesc: "30% chance to make the target flinch.",
+		pp: 20,
+		secondary: null,
+	},
 	bittermalice: {
 		inherit: true,
+		basePower: 60,
+		basePowerCallback(pokemon, target, move) {
+			if (target.status) return move.basePower * 2;
+			return move.basePower;
+		},
+		desc: "Has a 100% chance to lower the target's Attack by 1 stage.",
+		shortDesc: "100% chance to lower the target's Attack by 1.",
 		isNonstandard: null,
+		pp: 15,
+		secondary: {
+			chance: 30,
+			status: "frz",
+		},
 		gen: 8,
 	},
 	blastburn: {
@@ -147,8 +266,27 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	bleakwindstorm: {
 		inherit: true,
+		basePower: 95,
+		desc: "Has a 30% chance to lower the target's Speed by 1 stage. If the weather is Primordial Sea or Rain Dance, this move does not check accuracy. If this move is used against a Pokemon holding Utility Umbrella, this move's accuracy remains at 80%.",
+		shortDesc: "30% to lower foe(s) Speed by 1. Rain: can't miss.",
 		isNonstandard: null,
+		pp: 5,
+		secondary: {
+			chance: 30,
+			status: "frz",
+		},
 		gen: 8,
+	},
+	blizzard: {
+		inherit: true,
+		accuracy: 75,
+		basePower: 100,
+		desc: "Has a 10% chance to freeze the target. If the weather is Hail, this move does not check accuracy.",
+		shortDesc: "10% chance to freeze foe(s). Can't miss in Hail.",
+		secondary: {
+			chance: 30,
+			status: "frz",
+		},
 	},
 	block: {
 		inherit: true,
@@ -194,6 +332,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	bravebird: {
+		inherit: true,
+		basePower: 100,
+		desc: "If the target lost HP, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.",
+		shortDesc: "Has 33% recoil.",
+		pp: 5,
+	},
 	breakingswipe: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -212,7 +357,11 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	bubble: {
 		inherit: true,
+		desc: "Has a 10% chance to lower the target's Speed by 1 stage.",
+		shortDesc: "10% chance to lower the foe(s) Speed by 1.",
 		isNonstandard: null,
+		pp: 25,
+		secondary: null,
 	},
 	bubblebeam: {
 		inherit: true,
@@ -221,6 +370,40 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	bugbite: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	bugbuzz: {
+		inherit: true,
+		basePower: 80,
+		desc: "Has a 10% chance to lower the target's Special Defense by 1 stage.",
+		shortDesc: "10% chance to lower the target's Sp. Def by 1.",
+		secondary: {
+			chance: 20,
+			volatileStatus: "guarddrop",
+		},
+	},
+	bulkup: {
+		inherit: true,
+		desc: "Raises the user's Attack and Defense by 1 stage.",
+		shortDesc: "Raises the user's Attack and Defense by 1.",
+		pp: 10,
+		onHit(target, source, move) {
+			source.addVolatile('powerboost', source, move);
+			source.addVolatile('guardboost', source, move);
+		},
+		boosts: null,
+	},
+	bulldoze: {
+		inherit: true,
+		desc: "Has a 100% chance to lower the target's Speed by 1 stage.",
+		shortDesc: "100% chance lower adjacent Pkmn Speed by 1.",
+		secondary: null,
+	},
+	bulletpunch: {
+		inherit: true,
+		desc: "No additional effect.",
+		shortDesc: "Usually goes first.",
+		pp: 20,
+		priority: 0,
 	},
 	bulletseed: {
 		inherit: true,
@@ -234,9 +417,29 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	calmmind: {
+		inherit: true,
+		desc: "Raises the user's Special Attack and Special Defense by 1 stage.",
+		shortDesc: "Raises the user's Sp. Atk and Sp. Def by 1.",
+		pp: 10,
+		onHit(target, source, move) {
+			source.addVolatile('powerboost', source, move);
+			source.addVolatile('guardboost', source, move);
+		},
+		boosts: null,
+	},
 	ceaselessedge: {
 		inherit: true,
+		desc: "If this move is successful, it sets up a hazard on the opposing side of the field, damaging each opposing Pokemon that switches in, unless it is a Flying-type Pokemon or has the Levitate Ability. A maximum of three layers may be set, and opponents lose 1/8 of their maximum HP with one layer, 1/6 of their maximum HP with two layers, and 1/4 of their maximum HP with three layers, all rounded down. Can be removed from the opposing side if any opposing Pokemon uses Mortal Spin, Rapid Spin, or Defog successfully, or is hit by Defog.",
+		shortDesc: "Sets a layer of Spikes on the opposing side.",
 		isNonstandard: null,
+		critRatio: 2,
+		onAfterHit() {},
+		onAfterSubDamage() {},
+		secondary: {
+			chance: 100,
+			volatileStatus: "splinters",
+		},
 		gen: 8,
 	},
 	celebrate: {
@@ -247,12 +450,27 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	chargebeam: {
+		inherit: true,
+		desc: "Has a 70% chance to raise the user's Special Attack by 1 stage.",
+		shortDesc: "70% chance to raise the user's Sp. Atk by 1.",
+		pp: 15,
+		secondary: {
+			chance: 50,
+			self: {
+				volatileStatus: "powerboost",
+			},
+		},
+	},
 	charm: {
 		inherit: true,
 		isNonstandard: "Past",
 	},
 	chloroblast: {
 		inherit: true,
+		basePower: 120,
+		desc: "If this move is successful, the user loses 1/2 of its maximum HP, rounded up, unless the user has the Magic Guard Ability.",
+		shortDesc: "User loses 50% max HP.",
 		isNonstandard: null,
 		gen: 8,
 	},
@@ -272,6 +490,15 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	closecombat: {
+		inherit: true,
+		basePower: 100,
+		desc: "Lowers the user's Defense and Special Defense by 1 stage.",
+		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
+		self: {
+			volatileStatus: "guarddrop",
+		},
+	},
 	coaching: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -287,6 +514,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	confuseray: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	confusion: {
+		inherit: true,
+		desc: "Has a 10% chance to confuse the target.",
+		shortDesc: "10% chance to confuse the target.",
+		pp: 20,
+		secondary: null,
 	},
 	conversion: {
 		inherit: true,
@@ -344,9 +578,35 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	crosspoison: {
+		inherit: true,
+		desc: "Has a 10% chance to poison the target and a higher chance for a critical hit.",
+		shortDesc: "High critical hit ratio. 10% chance to poison.",
+		pp: 15,
+		secondary: {
+			chance: 20,
+			status: "psn",
+		},
+	},
+	crunch: {
+		inherit: true,
+		desc: "Has a 20% chance to lower the target's Defense by 1 stage.",
+		shortDesc: "20% chance to lower the target's Defense by 1.",
+		pp: 10,
+		secondary: {
+			chance: 20,
+			volatileStatus: "guarddrop",
+		},
+	},
 	crushclaw: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	crushgrip: {
+		inherit: true,
+		basePower: 100,
+		desc: "Power is equal to 120 * (target's current HP / target's maximum HP), rounded half down, but not less than 1.",
+		shortDesc: "More power the more HP the target has left.",
 	},
 	curse: {
 		inherit: true,
@@ -360,9 +620,31 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	darkpulse: {
+		inherit: true,
+		accuracy: true,
+		desc: "Has a 20% chance to make the target flinch.",
+		shortDesc: "20% chance to make the target flinch.",
+		pp: 10,
+		secondary: null,
+	},
 	darkvoid: {
 		inherit: true,
+		accuracy: 90,
+		desc: "Causes the target to fall asleep. This move cannot be used successfully unless the user's current form, while considering Transform, is Darkrai.",
+		shortDesc: "Darkrai: Causes the foe(s) to fall asleep.",
 		isNonstandard: null,
+		onTry() {},
+		secondary: {
+			chance: 100,
+			volatileStatus: 'guarddrop',
+		},
+	},
+	dazzlinggleam: {
+		inherit: true,
+		basePower: 75,
+		desc: "No additional effect.",
+		shortDesc: "No additional effect. Hits adjacent foes.",
 	},
 	decorate: {
 		inherit: true,
@@ -398,7 +680,11 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	direclaw: {
 		inherit: true,
+		basePower: 60,
+		desc: "Has a 50% chance to cause the target to either fall asleep, become poisoned, or become paralyzed.",
+		shortDesc: "50% chance to sleep, poison, or paralyze target.",
 		isNonstandard: null,
+		critRatio: 2,
 		gen: 8,
 	},
 	disable: {
@@ -421,6 +707,24 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	doubleedge: {
+		inherit: true,
+		basePower: 100,
+		desc: "If the target lost HP, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.",
+		shortDesc: "Has 33% recoil.",
+		pp: 5,
+	},
+	doublehit: {
+		inherit: true,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Hits twice. If the first hit breaks the target's substitute, it will take damage for the second hit.",
+		shortDesc: "Hits 2 times in one turn.",
+		multihit: 1,
+		volatileStatus: "primed",
+		target: "self",
+	},
 	doubleironbash: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -433,6 +737,15 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	dracometeor: {
+		inherit: true,
+		basePower: 110,
+		desc: "Lowers the user's Special Attack by 2 stages.",
+		shortDesc: "Lowers the user's Sp. Atk by 2.",
+		self: {
+			volatileStatus: "powerdrop",
+		},
+	},
 	dragonascent: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -440,6 +753,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	dragonbreath: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	dragonclaw: {
+		inherit: true,
+		desc: "No additional effect.",
+		shortDesc: "No additional effect.",
+		pp: 10,
+		critRatio: 2,
 	},
 	dragondance: {
 		inherit: true,
@@ -457,6 +777,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	dragonpulse: {
+		inherit: true,
+		accuracy: true,
+		basePower: 80,
+		desc: "No additional effect.",
+		shortDesc: "No additional effect.",
+	},
 	dragonrush: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -464,6 +791,12 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	dragontail: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	drainingkiss: {
+		inherit: true,
+		desc: "The user recovers 3/4 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.",
+		shortDesc: "User recovers 75% of the damage dealt.",
+		pp: 15,
 	},
 	dreameater: {
 		inherit: true,
@@ -497,6 +830,16 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	earthpower: {
+		inherit: true,
+		basePower: 80,
+		desc: "Has a 10% chance to lower the target's Special Defense by 1 stage.",
+		shortDesc: "10% chance to lower the target's Sp. Def by 1.",
+		secondary: {
+			chance: 20,
+			volatileStatus: "guarddrop",
+		},
+	},
 	earthquake: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -529,6 +872,15 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	ember: {
+		inherit: true,
+		desc: "Has a 10% chance to burn the target.",
+		shortDesc: "10% chance to burn the target.",
+		secondary: {
+			chance: 30,
+			status: "brn",
+		},
+	},
 	encore: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -541,6 +893,16 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	energyball: {
+		inherit: true,
+		basePower: 80,
+		desc: "Has a 10% chance to lower the target's Special Defense by 1 stage.",
+		shortDesc: "10% chance to lower the target's Sp. Def by 1.",
+		secondary: {
+			chance: 20,
+			volatileStatus: "guarddrop",
+		},
+	},
 	entrainment: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -551,7 +913,12 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	esperwing: {
 		inherit: true,
+		accuracy: 90,
+		basePower: 75,
+		desc: "Has a 100% chance to raise the user's Speed by 1 stage and a higher chance for a critical hit.",
+		shortDesc: "100% chance to raise user Speed by 1. High crit.",
 		isNonstandard: null,
+		secondary: null,
 		gen: 8,
 	},
 	eternabeam: {
@@ -566,6 +933,14 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	extrasensory: {
+		inherit: true,
+		basePower: 70,
+		desc: "Has a 10% chance to make the target flinch.",
+		shortDesc: "10% chance to make the target flinch.",
+		pp: 15,
+		secondary: null,
+	},
 	extremespeed: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -578,6 +953,12 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	fairywind: {
+		inherit: true,
+		desc: "No additional effect.",
+		shortDesc: "No additional effect.",
+		pp: 25,
+	},
 	fakeout: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -589,6 +970,12 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	falsesurrender: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	falseswipe: {
+		inherit: true,
+		desc: "Leaves the target with at least 1 HP.",
+		shortDesc: "Always leaves the target with at least 1 HP.",
+		pp: 30,
 	},
 	featherdance: {
 		inherit: true,
@@ -614,6 +1001,26 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	fireblast: {
+		inherit: true,
+		basePower: 100,
+		desc: "Has a 10% chance to burn the target.",
+		shortDesc: "10% chance to burn the target.",
+		secondary: {
+			chance: 20,
+			status: "brn",
+		},
+	},
+	firefang: {
+		inherit: true,
+		desc: "Has a 10% chance to burn the target and a 10% chance to make it flinch.",
+		shortDesc: "10% chance to burn. 10% chance to flinch.",
+		secondary: {
+			chance: 20,
+			status: "brn",
+		},
+		secondaries: null,
+	},
 	firelash: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -621,6 +1028,16 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	firepledge: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	firepunch: {
+		inherit: true,
+		desc: "Has a 10% chance to burn the target.",
+		shortDesc: "10% chance to burn the target.",
+		pp: 10,
+		secondary: {
+			chance: 30,
+			status: "brn",
+		},
 	},
 	firespin: {
 		inherit: true,
@@ -645,6 +1062,47 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	flamecharge: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	flamethrower: {
+		inherit: true,
+		basePower: 80,
+		desc: "Has a 10% chance to burn the target.",
+		shortDesc: "10% chance to burn the target.",
+		pp: 10,
+		secondary: {
+			chance: 20,
+			status: "brn",
+		},
+	},
+	flamewheel: {
+		inherit: true,
+		desc: "Has a 10% chance to burn the target.",
+		shortDesc: "10% chance to burn the target. Thaws user.",
+		pp: 20,
+		secondary: {
+			chance: 30,
+			status: "brn",
+		},
+	},
+	flareblitz: {
+		inherit: true,
+		basePower: 100,
+		desc: "Has a 10% chance to burn the target. If the target lost HP, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.",
+		shortDesc: "Has 33% recoil. 10% chance to burn. Thaws user.",
+		pp: 5,
+		secondary: {
+			chance: 20,
+			status: "brn",
+		},
+	},
+	flashcannon: {
+		inherit: true,
+		desc: "Has a 10% chance to lower the target's Special Defense by 1 stage.",
+		shortDesc: "10% chance to lower the target's Sp. Def by 1.",
+		secondary: {
+			chance: 20,
+			volatileStatus: "guarddrop",
+		},
 	},
 	flatter: {
 		inherit: true,
@@ -681,6 +1139,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	focusblast: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	focusenergy: {
+		inherit: true,
+		desc: "Raises the user's chance for a critical hit by 2 stages. Fails if the user already has the effect. Baton Pass can be used to transfer this effect to an ally.",
+		shortDesc: "Raises the user's critical hit ratio by 2.",
+		pp: 20,
+		condition: {},
 	},
 	focuspunch: {
 		inherit: true,
@@ -766,6 +1231,12 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	gigaimpact: {
+		inherit: true,
+		basePower: 120,
+		desc: "If this move is successful, the user must recharge on the following turn and cannot select a move.",
+		shortDesc: "User cannot move next turn.",
+	},
 	glaciallance: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -830,6 +1301,12 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	gust: {
+		inherit: true,
+		desc: "Power doubles if the target is using Bounce, Fly, or Sky Drop, or is under the effect of Sky Drop.",
+		shortDesc: "Power doubles during Bounce, Fly, and Sky Drop.",
+		pp: 25,
+	},
 	gyroball: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -864,8 +1341,20 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	headlongrush: {
 		inherit: true,
+		basePower: 100,
+		desc: "Lowers the user's Defense and Special Defense by 1 stage.",
+		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
 		isNonstandard: null,
+		self: {
+			volatileStatus: "guarddrop",
+		},
 		gen: 8,
+	},
+	headsmash: {
+		inherit: true,
+		basePower: 120,
+		desc: "If the target lost HP, the user takes recoil damage equal to 1/2 the HP lost by the target, rounded half up, but not less than 1 HP.",
+		shortDesc: "Has 1/2 recoil.",
 	},
 	healbell: {
 		inherit: true,
@@ -895,15 +1384,29 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	hex: {
+		inherit: true,
+		desc: "Power doubles if the target has a non-volatile status condition.",
+		shortDesc: "Power doubles if the target has a status ailment.",
+		pp: 15,
+	},
 	hiddenpower: {
 		inherit: true,
-		isNonstandard: null,
 		basePower: 50,
+		desc: "This move's type depends on the user's individual values (IVs), and can be any type but Fairy and Normal.",
+		shortDesc: "Varies in type based on the user's IVs.",
+		isNonstandard: null,
 		onModifyType(move, pokemon, target) {
 			let bestTypes = this.dex.types.names();
 			bestTypes = getAllMaxValues(bestTypes, x => getTypeEffectiveness(this, x, target));
 			move.type = this.sample(bestTypes);
 		},
+	},
+	highhorsepower: {
+		inherit: true,
+		basePower: 85,
+		desc: "No additional effect.",
+		shortDesc: "No additional effect.",
 	},
 	highjumpkick: {
 		inherit: true,
@@ -937,25 +1440,116 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	hurricane: {
+		inherit: true,
+		accuracy: 75,
+		basePower: 100,
+		desc: "Has a 30% chance to confuse the target. This move can hit a target using Bounce, Fly, or Sky Drop, or is under the effect of Sky Drop. If the weather is Primordial Sea or Rain Dance, this move does not check accuracy. If the weather is Desolate Land or Sunny Day, this move's accuracy is 50%. If this move is used against a Pokemon holding Utility Umbrella, this move's accuracy remains at 70%.",
+		shortDesc: "30% chance to confuse target. Can't miss in rain.",
+		pp: 5,
+		secondary: null,
+	},
 	hydrocannon: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	hydropump: {
+		inherit: true,
+		accuracy: 85,
+		basePower: 100,
+		desc: "No additional effect.",
+		shortDesc: "No additional effect.",
+	},
+	hyperbeam: {
+		inherit: true,
+		basePower: 120,
+		desc: "If this move is successful, the user must recharge on the following turn and cannot select a move.",
+		shortDesc: "User cannot move next turn.",
+		self: null,
 	},
 	hypervoice: {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	hypnosis: {
+		inherit: true,
+		accuracy: 70,
+		desc: "Causes the target to fall asleep.",
+		shortDesc: "Causes the target to fall asleep.",
+	},
 	iceball: {
 		inherit: true,
+		basePower: 40,
+		basePowerCallback: undefined,
+		desc: "If this move is successful, the user is locked into this move and cannot make another move until it misses, 5 turns have passed, or the attack cannot be used. Power doubles with each successful hit of this move and doubles again if Defense Curl was used previously by the user. If this move is called by Sleep Talk, the move is used for one turn.",
+		shortDesc: "Power doubles with each hit. Repeats for 5 turns.",
 		isNonstandard: null,
+		self: {
+			volatileStatus: "fixated",
+		},
+		onModifyMove() {},
+		onAfterMove() {},
+		condition: {},
+	},
+	icebeam: {
+		inherit: true,
+		basePower: 80,
+		desc: "Has a 10% chance to freeze the target.",
+		shortDesc: "10% chance to freeze the target.",
+		secondary: {
+			chance: 20,
+			status: "frz",
+		},
 	},
 	iceburn: {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	icefang: {
+		inherit: true,
+		desc: "Has a 10% chance to freeze the target and a 10% chance to make it flinch.",
+		shortDesc: "10% chance to freeze. 10% chance to flinch.",
+		secondary: {
+			chance: 20,
+			status: "frz",
+		},
+		secondaries: null,
+	},
+	icepunch: {
+		inherit: true,
+		desc: "Has a 10% chance to freeze the target.",
+		shortDesc: "10% chance to freeze the target.",
+		pp: 10,
+		secondary: {
+			chance: 30,
+			status: "frz",
+		},
+	},
+	iceshard: {
+		inherit: true,
+		desc: "No additional effect.",
+		shortDesc: "Usually goes first.",
+		pp: 20,
+		priority: 0,
+	},
+	iciclecrash: {
+		inherit: true,
+		basePower: 80,
+		desc: "Has a 30% chance to make the target flinch.",
+		shortDesc: "30% chance to make the target flinch.",
+		secondary: null,
+	},
 	iciclespear: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	icywind: {
+		inherit: true,
+		basePower: 60,
+		desc: "Has a 100% chance to lower the target's Speed by 1 stage.",
+		shortDesc: "100% chance to lower the foe(s) Speed by 1.",
+		pp: 20,
+		secondary: null,
 	},
 	imprison: {
 		inherit: true,
@@ -967,6 +1561,8 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	infernalparade: {
 		inherit: true,
+		desc: "Has a 30% chance to burn the target. Power doubles if the target has a non-volatile status condition.",
+		shortDesc: "30% burn. 2x power if target is already statused.",
 		isNonstandard: null,
 		gen: 8,
 	},
@@ -986,12 +1582,39 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	irondefense: {
+		inherit: true,
+		desc: "Raises the user's Defense by 2 stages.",
+		shortDesc: "Raises the user's Defense by 2.",
+		pp: 20,
+		volatileStatus: "guardboost",
+		boosts: null,
+	},
+	ironhead: {
+		inherit: true,
+		desc: "Has a 30% chance to make the target flinch.",
+		shortDesc: "30% chance to make the target flinch.",
+		pp: 10,
+		secondary: null,
+	},
+	irontail: {
+		inherit: true,
+		desc: "Has a 30% chance to lower the target's Defense by 1 stage.",
+		shortDesc: "30% chance to lower the target's Defense by 1.",
+		pp: 5,
+		secondary: {
+			chance: 20,
+			volatileStatus: "guarddrop",
+		},
+	},
 	jawlock: {
 		inherit: true,
 		isNonstandard: "Past",
 	},
 	judgment: {
 		inherit: true,
+		desc: "This move's type depends on the user's held Plate.",
+		shortDesc: "Type varies based on the held Plate.",
 		isNonstandard: null,
 		pp: 5,
 		onModifyType(move, pokemon, target) {
@@ -1049,9 +1672,37 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	leafage: {
+		inherit: true,
+		desc: "No additional effect.",
+		shortDesc: "No additional effect.",
+		pp: 25,
+	},
+	leafblade: {
+		inherit: true,
+		basePower: 85,
+		desc: "Has a higher chance for a critical hit.",
+		shortDesc: "High critical hit ratio.",
+		pp: 10,
+	},
+	leafstorm: {
+		inherit: true,
+		basePower: 110,
+		desc: "Lowers the user's Special Attack by 2 stages.",
+		shortDesc: "Lowers the user's Sp. Atk by 2.",
+		self: {
+			volatileStatus: "powerdrop",
+		},
+	},
 	leaftornado: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	leechlife: {
+		inherit: true,
+		basePower: 75,
+		desc: "The user recovers 1/2 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.",
+		shortDesc: "User recovers 50% of the damage dealt.",
 	},
 	leechseed: {
 		inherit: true,
@@ -1073,6 +1724,16 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	liquidation: {
+		inherit: true,
+		basePower: 80,
+		desc: "Has a 20% chance to lower the target's Defense by 1 stage.",
+		shortDesc: "20% chance to lower the target's Defense by 1.",
+		secondary: {
+			chance: 20,
+			volatileStatus: "guarddrop",
+		},
+	},
 	lockon: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -1091,7 +1752,15 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	lunarblessing: {
 		inherit: true,
+		desc: "Each Pokemon on the user's side restores 1/4 of its maximum HP, rounded half up, and has its status condition cured.",
+		shortDesc: "User and allies: healed 1/4 max HP, status cured.",
 		isNonstandard: null,
+		pp: 10,
+		onHit(target, source, move) {
+			let success = !!this.heal(this.modify(source.maxhp, 0.5));
+			success = !!source.addVolatile('obscured', source, move) || success;
+			return source.cureStatus() || success;
+		},
 		gen: 8,
 	},
 	lunardance: {
@@ -1106,6 +1775,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	machpunch: {
+		inherit: true,
+		desc: "No additional effect.",
+		shortDesc: "Usually goes first.",
+		pp: 20,
+		priority: 0,
+	},
 	magiccoat: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -1117,6 +1793,17 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	magicroom: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	magmastorm: {
+		inherit: true,
+		basePower: 90,
+		desc: "Prevents the target from switching for four or five turns (seven turns if the user is holding Grip Claw). Causes damage to the target equal to 1/8 of its maximum HP (1/6 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, Flip Turn, Parting Shot, Teleport, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin or Substitute successfully. This effect is not stackable or reset by using this or another binding move.",
+		shortDesc: "Traps and damages the target for 4-5 turns.",
+		volatileStatus: undefined,
+		secondary: {
+			chance: 100,
+			status: "brn",
+		},
 	},
 	magneticflux: {
 		inherit: true,
@@ -1214,6 +1901,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	megahorn: {
+		inherit: true,
+		basePower: 100,
+		desc: "No additional effect.",
+		shortDesc: "No additional effect.",
+		pp: 5,
+	},
 	megakick: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -1258,6 +1952,10 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	mimic: {
+		inherit: true,
+		desc: "While the user remains active, this move is replaced by the last move used by the target. The copied move has the maximum PP for that move. Fails if the target has not made a move, if the user already knows the move, or if the move is Mimic, or Struggle.",
+	},
 	mindblown: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -1290,6 +1988,17 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	moonblast: {
+		inherit: true,
+		basePower: 85,
+		desc: "Has a 30% chance to lower the target's Special Attack by 1 stage.",
+		shortDesc: "30% chance to lower the target's Sp. Atk by 1.",
+		pp: 10,
+		secondary: {
+			chance: 20,
+			volatileStatus: "powerdrop",
+		},
+	},
 	moongeistbeam: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -1304,12 +2013,23 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	mountaingale: {
 		inherit: true,
+		desc: "Has a 30% chance to make the target flinch.",
+		shortDesc: "30% chance to make the target flinch.",
 		isNonstandard: null,
+		pp: 5,
+		secondary: null,
 		gen: 8,
 	},
 	mudbomb: {
 		inherit: true,
+		desc: "Has a 30% chance to lower the target's accuracy by 1 stage.",
+		shortDesc: "30% chance to lower the target's accuracy by 1.",
 		isNonstandard: null,
+		pp: 15,
+		self: {
+			volatileStatus: "obscured",
+		},
+		secondary: null,
 	},
 	muddywater: {
 		inherit: true,
@@ -1319,14 +2039,57 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	mudslap: {
+		inherit: true,
+		basePower: 30,
+		desc: "Has a 100% chance to lower the target's accuracy by 1 stage.",
+		shortDesc: "100% chance to lower the target's accuracy by 1.",
+		pp: 20,
+		self: {
+			volatileStatus: "obscured",
+		},
+		secondary: null,
+	},
 	multiattack: {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	mysticalfire: {
+		inherit: true,
+		basePower: 70,
+		desc: "Has a 100% chance to lower the target's Special Attack by 1 stage.",
+		shortDesc: "100% chance to lower the target's Sp. Atk by 1.",
+		secondary: {
+			chance: 100,
+			volatileStatus: "powerdrop",
+		},
+	},
 	mysticalpower: {
 		inherit: true,
+		desc: "Has a 100% chance to raise the user's Special Attack by 1 stage.",
+		shortDesc: "100% chance to raise the user's Sp. Atk by 1.",
 		isNonstandard: null,
+		self: {
+			onHit(target, source, move) {
+				if (
+					source.getStat('atk', false, true) + source.getStat('spa', false, true) >=
+					source.getStat('def', false, true) + source.getStat('spd', false, true)
+				) {
+					source.addVolatile('powerboost', source, move);
+				} else {
+					source.addVolatile('guardboost', source, move);
+				}
+			},
+		},
+		secondary: null,
 		gen: 8,
+	},
+	nastyplot: {
+		inherit: true,
+		desc: "Raises the user's Special Attack by 2 stages.",
+		shortDesc: "Raises the user's Sp. Atk by 2.",
+		volatileStatus: "powerboost",
+		boosts: null,
 	},
 	naturepower: {
 		inherit: true,
@@ -1364,21 +2127,64 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	octazooka: {
+		inherit: true,
+		desc: "Has a 50% chance to lower the target's accuracy by 1 stage.",
+		shortDesc: "50% chance to lower the target's accuracy by 1.",
+		pp: 15,
+		self: {
+			volatileStatus: "obscured",
+		},
+		secondary: null,
+	},
 	octolock: {
 		inherit: true,
 		isNonstandard: "Past",
 	},
 	ominouswind: {
 		inherit: true,
+		desc: "Has a 10% chance to raise the user's Attack, Defense, Special Attack, Special Defense, and Speed by 1 stage.",
+		shortDesc: "10% chance to raise all stats by 1 (not acc/eva).",
 		isNonstandard: null,
+		pp: 15,
+		secondary: {
+			chance: 20,
+			self: {
+				onHit(target, source, move) {
+					source.addVolatile('powerboost', source, move);
+					source.addVolatile('guardboost', source, move);
+				},
+			},
+		},
 	},
 	originpulse: {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	outrage: {
+		inherit: true,
+		accuracy: 85,
+		basePower: 90,
+		desc: "The user spends two or three turns locked into this move and becomes confused immediately after its move on the last turn of the effect if it is not already. This move targets an opposing Pokemon at random on each turn. If the user is prevented from moving, is asleep at the beginning of a turn, or the attack is not successful against the target on the first turn of the effect or the second turn of a three-turn effect, the effect ends without causing confusion. If this move is called by Sleep Talk and the user is asleep, the move is used for one turn and does not confuse the user.",
+		shortDesc: "Lasts 2-3 turns. Confuses the user afterwards.",
+		self: {
+			volatileStatus: "fixated",
+		},
+		onAfterMove() {},
+		target: "any",
+	},
 	overdrive: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	overheat: {
+		inherit: true,
+		basePower: 110,
+		desc: "Lowers the user's Special Attack by 2 stages.",
+		shortDesc: "Lowers the user's Sp. Atk by 2.",
+		self: {
+			volatileStatus: "powerdrop",
+		},
 	},
 	painsplit: {
 		inherit: true,
@@ -1412,6 +2218,18 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	petaldance: {
+		inherit: true,
+		accuracy: 85,
+		basePower: 90,
+		desc: "The user spends two or three turns locked into this move and becomes confused immediately after its move on the last turn of the effect if it is not already. This move targets an opposing Pokemon at random on each turn. If the user is prevented from moving, is asleep at the beginning of a turn, or the attack is not successful against the target on the first turn of the effect or the second turn of a three-turn effect, the effect ends without causing confusion. If this move is called by Sleep Talk and the user is asleep, the move is used for one turn and does not confuse the user.",
+		shortDesc: "Lasts 2-3 turns. Confuses the user afterwards.",
+		self: {
+			volatileStatus: "fixated",
+		},
+		onAfterMove() {},
+		target: "any",
+	},
 	phantomforce: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -1419,6 +2237,18 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	photongeyser: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	pinmissile: {
+		inherit: true,
+		accuracy: 100,
+		basePower: 40,
+		desc: "Hits two to five times. Has a 35% chance to hit two or three times and a 15% chance to hit four or five times. If one of the hits breaks the target's substitute, it will take damage for the remaining hits. If the user has the Skill Link Ability, this move will always hit five times.",
+		shortDesc: "Hits 2-5 times in one turn.",
+		multihit: 1,
+		secondary: {
+			chance: 100,
+			volatileStatus: "splinters",
+		},
 	},
 	plasmafists: {
 		inherit: true,
@@ -1428,6 +2258,16 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	playrough: {
+		inherit: true,
+		basePower: 85,
+		desc: "Has a 10% chance to lower the target's Attack by 1 stage.",
+		shortDesc: "10% chance to lower the target's Attack by 1.",
+		secondary: {
+			chance: 20,
+			volatileStatus: "powerdrop",
+		},
+	},
 	pluck: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -1435,6 +2275,36 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	poisonfang: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	poisongas: {
+		inherit: true,
+		desc: "Poisons the target.",
+		shortDesc: "Poisons the foe(s).",
+		pp: 20,
+	},
+	poisonjab: {
+		inherit: true,
+		desc: "Has a 30% chance to poison the target.",
+		shortDesc: "30% chance to poison the target.",
+		pp: 10,
+	},
+	poisonpowder: {
+		inherit: true,
+		accuracy: 80,
+		desc: "Poisons the target.",
+		shortDesc: "Poisons the target.",
+		pp: 20,
+	},
+	poisonsting: {
+		inherit: true,
+		basePower: 30,
+		desc: "Has a 30% chance to poison the target.",
+		shortDesc: "30% chance to poison the target.",
+		pp: 20,
+		secondary: {
+			chance: 50,
+			status: "psn",
+		},
 	},
 	poisontail: {
 		inherit: true,
@@ -1452,9 +2322,28 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	powdersnow: {
+		inherit: true,
+		desc: "Has a 10% chance to freeze the target.",
+		shortDesc: "10% chance to freeze the foe(s).",
+		secondary: {
+			chance: 30,
+			status: "frz",
+		},
+	},
+	powergem: {
+		inherit: true,
+		desc: "No additional effect.",
+		shortDesc: "No additional effect.",
+		pp: 10,
+	},
 	powershift: {
 		inherit: true,
+		desc: "The user swaps its Attack and Defense stats, and stat stage changes remain on their respective stats. This move can be used again to swap the stats back. If the user uses Baton Pass, the replacement will have its Attack and Defense stats swapped if the effect is active. If the user has its stats recalculated by changing forme while its stats are swapped, this effect is ignored but is still active for the purposes of Baton Pass.",
+		shortDesc: "Switches user's Attack and Defense stats.",
 		isNonstandard: null,
+		volatileStatus: "stanceswap",
+		condition: {},
 		gen: 8,
 	},
 	powersplit: {
@@ -1501,6 +2390,16 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	psychic: {
+		inherit: true,
+		basePower: 80,
+		desc: "Has a 10% chance to lower the target's Special Defense by 1 stage.",
+		shortDesc: "10% chance to lower the target's Sp. Def by 1.",
+		secondary: {
+			chance: 20,
+			volatileStatus: "guarddrop",
+		},
+	},
 	psychicfangs: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -1508,6 +2407,12 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	psychicterrain: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	psychocut: {
+		inherit: true,
+		desc: "Has a higher chance for a critical hit.",
+		shortDesc: "High critical hit ratio.",
+		pp: 15,
 	},
 	psychoshift: {
 		inherit: true,
@@ -1519,7 +2424,15 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	psyshieldbash: {
 		inherit: true,
+		desc: "Has a 100% chance to raise the user's Defense by 1 stage.",
+		shortDesc: "100% chance to raise the user's Defense by 1.",
 		isNonstandard: null,
+		secondary: {
+			chance: 100,
+			self: {
+				volatileStatus: "guardboost",
+			},
+		},
 		gen: 8,
 	},
 	psyshock: {
@@ -1542,6 +2455,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	quickattack: {
+		inherit: true,
+		desc: "No additional effect.",
+		shortDesc: "Usually goes first.",
+		pp: 20,
+		priority: 0,
+	},
 	quickguard: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -1556,7 +2476,16 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	ragingfury: {
 		inherit: true,
+		accuracy: 85,
+		basePower: 90,
+		desc: "The user spends two or three turns locked into this move and becomes confused immediately after its move on the last turn of the effect if it is not already. This move targets an opposing Pokemon at random on each turn. If the user is prevented from moving, is asleep at the beginning of a turn, or the attack is not successful against the target on the first turn of the effect or the second turn of a three-turn effect, the effect ends without causing confusion. If this move is called by Sleep Talk and the user is asleep, the move is used for one turn and does not confuse the user.",
+		shortDesc: "Lasts 2-3 turns. Confuses the user afterwards.",
 		isNonstandard: null,
+		self: {
+			volatileStatus: "fixated",
+		},
+		onAfterMove() {},
+		target: "any",
 		gen: 8,
 	},
 	raindance: {
@@ -1587,6 +2516,22 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	rest: {
+		inherit: true,
+		desc: "The user falls asleep for the next four turns and restores all of its HP, curing itself of any non-volatile status condition in the process. Fails if the user has full HP.",
+		shortDesc: "User sleeps 4 turns and restores HP and status.",
+		onTry(source) {
+			if (source.hp === source.maxhp) {
+				this.add('-fail', source, 'heal');
+				return null;
+			}
+		},
+		onHit(target, source, move) {
+			const result = target.setStatus('slp', source, move);
+			if (!result) return result;
+			this.heal(this.modify(target.maxhp, 0.75)); // Aesthetic only as the healing happens after you fall asleep in-game
+		},
+	},
 	retaliate: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -1607,6 +2552,24 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	roaroftime: {
+		inherit: true,
+		basePower: 120,
+		basePowerCallback(pokemon) {
+			if (pokemon.species.id === 'dialgaorigin') {
+				return 140;
+			}
+			return 120;
+		},
+		desc: "If this move is successful, the user must recharge on the following turn and cannot select a move.",
+		shortDesc: "User cannot move next turn.",
+		onModifyMove(move, pokemon) {
+			if (pokemon.species.id === 'dialgaorigin') {
+				move.accuracy = 75;
+			}
+		},
+		self: null,
+	},
 	rockblast: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -1614,6 +2577,22 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	rockpolish: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	rockslide: {
+		inherit: true,
+		desc: "Has a 30% chance to make the target flinch.",
+		shortDesc: "30% chance to make the foe(s) flinch.",
+		secondary: null,
+	},
+	rocksmash: {
+		inherit: true,
+		desc: "Has a 50% chance to lower the target's Defense by 1 stage.",
+		shortDesc: "50% chance to lower the target's Defense by 1.",
+		pp: 20,
+		secondary: {
+			chance: 50,
+			volatileStatus: "guarddrop",
+		},
 	},
 	rockthrow: {
 		inherit: true,
@@ -1630,6 +2609,19 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	roleplay: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	rollout: {
+		inherit: true,
+		basePower: 40,
+		basePowerCallback: undefined,
+		desc: "If this move is successful, the user is locked into this move and cannot make another move until it misses, 5 turns have passed, or the attack cannot be used. Power doubles with each successful hit of this move and doubles again if Defense Curl was used previously by the user. If this move is called by Sleep Talk, the move is used for one turn.",
+		shortDesc: "Power doubles with each hit. Repeats for 5 turns.",
+		self: {
+			volatileStatus: "fixated",
+		},
+		onModifyMove() {},
+		onAfterMove() {},
+		condition: {},
 	},
 	round: {
 		inherit: true,
@@ -1653,7 +2645,15 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	sandsearstorm: {
 		inherit: true,
+		basePower: 95,
+		desc: "Has a 20% chance to burn the target. If the weather is Primordial Sea or Rain Dance, this move does not check accuracy. If this move is used against a Pokemon holding Utility Umbrella, this move's accuracy remains at 80%.",
+		shortDesc: "20% chance to burn foe(s). Can't miss in rain.",
 		isNonstandard: null,
+		pp: 5,
+		secondary: {
+			chance: 30,
+			status: "brn",
+		},
 		gen: 8,
 	},
 	sandstorm: {
@@ -1702,19 +2702,73 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	seedflare: {
 		inherit: true,
+		basePower: 100,
+		desc: "Has a 40% chance to lower the target's Special Defense by 2 stages.",
+		shortDesc: "40% chance to lower the target's Sp. Def by 2.",
 		isNonstandard: null,
+		secondary: {
+			chance: 20,
+			volatileStatus: "guarddrop",
+		},
 	},
 	seismictoss: {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	selfdestruct: {
+		inherit: true,
+		basePower: 150,
+		desc: "The user faints after using this move, even if this move fails for having no target. This move is prevented from executing if any active Pokemon has the Damp Ability.",
+		shortDesc: "Hits adjacent Pokemon. The user faints.",
+		selfdestruct: false,
+		// Recoil implemented in battle-actions.ts
+	},
+	shadowball: {
+		inherit: true,
+		desc: "Has a 20% chance to lower the target's Special Defense by 1 stage.",
+		shortDesc: "20% chance to lower the target's Sp. Def by 1.",
+		pp: 10,
+		secondary: {
+			chance: 20,
+			volatileStatus: "guarddrop",
+		},
+	},
 	shadowbone: {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	shadowforce: {
+		inherit: true,
+		basePower: 100,
+		basePowerCallback(pokemon) {
+			if (pokemon.species.id === 'giratinaorigin') {
+				return 120;
+			}
+			return 100;
+		},
+		desc: "If this move is successful, it breaks through the target's Baneful Bunker, Detect, King's Shield, Protect, or Spiky Shield for this turn, allowing other Pokemon to attack the target normally. If the target's side is protected by Crafty Shield, Mat Block, Quick Guard, or Wide Guard, that protection is also broken for this turn and other Pokemon may attack the target's side normally. This attack charges on the first turn and executes on the second. On the first turn, the user avoids all attacks. If the user is holding a Power Herb, the move completes in one turn.",
+		shortDesc: "Disappears turn 1. Hits turn 2. Breaks protection.",
+		self: {
+			volatileStatus: "obscured",
+		},
+		onModifyMove(move, pokemon) {
+			if (pokemon.species.id === 'giratinaorigin') {
+				move.accuracy = 80;
+			}
+		},
+		onTryMove() {},
+		condition: {},
+	},
 	shadowpunch: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	shadowsneak: {
+		inherit: true,
+		desc: "No additional effect.",
+		shortDesc: "Usually goes first.",
+		pp: 20,
+		priority: 0,
 	},
 	sheercold: {
 		inherit: true,
@@ -1734,7 +2788,14 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	shelter: {
 		inherit: true,
+		desc: "Raises the user's Defense by 2 stages.",
+		shortDesc: "Raises the user's Defense by 2.",
 		isNonstandard: null,
+		boosts: null,
+		onHit(target, source, move) {
+			target.addVolatile('guardboost', source, move);
+			target.addVolatile('obscured', source, move);
+		},
 		gen: 8,
 	},
 	shiftgear: {
@@ -1751,7 +2812,19 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	silverwind: {
 		inherit: true,
+		desc: "Has a 10% chance to raise the user's Attack, Defense, Special Attack, Special Defense, and Speed by 1 stage.",
+		shortDesc: "10% chance to raise all stats by 1 (not acc/eva).",
 		isNonstandard: null,
+		pp: 15,
+		secondary: {
+			chance: 20,
+			self: {
+				onHit(target, source, move) {
+					source.addVolatile('powerboost', source, move);
+					source.addVolatile('guardboost', source, move);
+				},
+			},
+		},
 	},
 	simplebeam: {
 		inherit: true,
@@ -1785,6 +2858,19 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	slash: {
+		inherit: true,
+		desc: "Has a higher chance for a critical hit.",
+		shortDesc: "High critical hit ratio.",
+		pp: 15,
+	},
+	sleeppowder: {
+		inherit: true,
+		accuracy: 80,
+		desc: "Causes the target to fall asleep.",
+		shortDesc: "Causes the target to fall asleep.",
+		pp: 20,
+	},
 	sleeptalk: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -1792,6 +2878,12 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	sludge: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	sludgebomb: {
+		inherit: true,
+		basePower: 80,
+		desc: "Has a 30% chance to poison the target.",
+		shortDesc: "30% chance to poison the target.",
 	},
 	sludgewave: {
 		inherit: true,
@@ -1817,6 +2909,17 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	snarl: {
+		inherit: true,
+		accuracy: 100,
+		basePower: 60,
+		desc: "Has a 100% chance to lower the target's Special Attack by 1 stage.",
+		shortDesc: "100% chance to lower the foe(s) Sp. Atk by 1.",
+		secondary: {
+			chance: 100,
+			volatileStatus: "powerdrop",
+		},
+	},
 	snipeshot: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -1837,6 +2940,24 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	spacialrend: {
+		inherit: true,
+		basePower: 90,
+		basePowerCallback(pokemon) {
+			if (pokemon.species.id === 'palkiaorigin') {
+				return 80;
+			}
+			return 90;
+		},
+		desc: "Has a higher chance for a critical hit.",
+		shortDesc: "High critical hit ratio.",
+		onModifyMove(move, pokemon) {
+			if (pokemon.species.id === 'palkiaorigin') {
+				move.accuracy = 85;
+				move.critRatio = 3;
+			}
+		},
+	},
 	sparklingaria: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -1848,6 +2969,21 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	speedswap: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	spikes: {
+		inherit: true,
+		accuracy: 100,
+		basePower: 40,
+		category: "Physical",
+		desc: "Sets up a hazard on the opposing side of the field, damaging each opposing Pokemon that switches in, unless it is a Flying-type Pokemon or has the Levitate Ability. Can be used up to three times before failing. Opponents lose 1/8 of their maximum HP with one layer, 1/6 of their maximum HP with two layers, and 1/4 of their maximum HP with three layers, all rounded down. Can be removed from the opposing side if any opposing Pokemon uses Rapid Spin or Defog successfully, or is hit by Defog.",
+		shortDesc: "Hurts grounded foes on switch-in. Max 3 layers.",
+		sideCondition: undefined,
+		condition: {},
+		secondary: {
+			chance: 100,
+			volatileStatus: "splinters",
+		},
+		target: "any",
 	},
 	spikyshield: {
 		inherit: true,
@@ -1869,14 +3005,59 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	spore: {
+		inherit: true,
+		desc: "Causes the target to fall asleep.",
+		shortDesc: "Causes the target to fall asleep.",
+		pp: 10,
+	},
 	springtidestorm: {
 		inherit: true,
+		basePower: 95,
+		desc: "Has a 30% chance to lower the target's Attack by 1 stage.",
+		shortDesc: "30% chance to lower the foe(s) Attack by 1.",
 		isNonstandard: null,
+		secondary: {
+			chance: 30,
+			onHit(target, source, move) {
+				if (source.species.id === 'enamorustherian') {
+					target.addVolatile('powerdrop', source, move);
+					target.addVolatile('guarddrop', source, move);
+				} else {
+					source.addVolatile('powerboost', source, move);
+					source.addVolatile('guardboost', source, move);
+				}
+			},
+		},
 		gen: 8,
+	},
+	stealthrock: {
+		inherit: true,
+		accuracy: 100,
+		basePower: 40,
+		category: "Physical",
+		desc: "Sets up a hazard on the opposing side of the field, damaging each opposing Pokemon that switches in. Fails if the effect is already active on the opposing side. Foes lose 1/32, 1/16, 1/8, 1/4, or 1/2 of their maximum HP, rounded down, based on their weakness to the Rock type; 0.25x, 0.5x, neutral, 2x, or 4x, respectively. Can be removed from the opposing side if any opposing Pokemon uses Rapid Spin or Defog successfully, or is hit by Defog.",
+		shortDesc: "Hurts foes on switch-in. Factors Rock weakness.",
+		sideCondition: undefined,
+		condition: {},
+		secondary: {
+			chance: 100,
+			volatileStatus: "splinters",
+		},
+		target: "any",
 	},
 	steameruption: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	steelbeam: {
+		inherit: true,
+		basePower: 120,
+		desc: "Whether or not this move is successful and even if it would cause fainting, the user loses 1/2 of its maximum HP, rounded up, unless the user has the Magic Guard Ability.",
+		shortDesc: "User loses 50% max HP.",
+		mindBlownRecoil: false,
+		onAfterMove() {},
+		// Recoil implemented in battle-actions.ts
 	},
 	steelroller: {
 		inherit: true,
@@ -1904,7 +3085,16 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	stoneaxe: {
 		inherit: true,
+		desc: "If this move is successful, it sets up a hazard on the opposing side of the field, damaging each opposing Pokemon that switches in. Foes lose 1/32, 1/16, 1/8, 1/4, or 1/2 of their maximum HP, rounded down, based on their weakness to the Rock type; 0.25x, 0.5x, neutral, 2x, or 4x, respectively. Can be removed from the opposing side if any opposing Pokemon uses Mortal Spin, Rapid Spin, or Defog successfully, or is hit by Defog.",
+		shortDesc: "Sets Stealth Rock on the target's side.",
 		isNonstandard: null,
+		critRatio: 2,
+		onAfterHit() {},
+		onAfterSubDamage() {},
+		secondary: {
+			chance: 100,
+			volatileStatus: "splinters",
+		},
 		gen: 8,
 	},
 	storedpower: {
@@ -1931,9 +3121,26 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	strugglebug: {
+		inherit: true,
+		basePower: 40,
+		desc: "Has a 100% chance to lower the target's Special Attack by 1 stage.",
+		shortDesc: "100% chance to lower the foe(s) Sp. Atk by 1.",
+		secondary: {
+			chance: 100,
+			volatileStatus: "powerdrop",
+		},
+	},
 	stuffcheeks: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	stunspore: {
+		inherit: true,
+		accuracy: 80,
+		desc: "Paralyzes the target.",
+		shortDesc: "Paralyzes the target.",
+		pp: 20,
 	},
 	submission: {
 		inherit: true,
@@ -1995,9 +3202,22 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	swordsdance: {
+		inherit: true,
+		desc: "Raises the user's Attack by 2 stages.",
+		shortDesc: "Raises the user's Attack by 2.",
+		volatileStatus: "powerboost",
+		boosts: null,
+	},
 	synthesis: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	tackle: {
+		inherit: true,
+		desc: "No additional effect.",
+		shortDesc: "No additional effect.",
+		pp: 30,
 	},
 	tailslap: {
 		inherit: true,
@@ -2017,7 +3237,15 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	takeheart: {
 		inherit: true,
+		desc: "The user cures its non-volatile status condition. Raises the user's Special Attack and Special Defense by 1 stage.",
+		shortDesc: "Cures user's status, raises Sp. Atk, Sp. Def by 1.",
 		isNonstandard: null,
+		pp: 10,
+		onHit(target, source, move) {
+			let success = !!source.addVolatile('powerboost', source, move);
+			success = !!source.addVolatile('guardboost', source, move) || success;
+			return source.cureStatus() || success;
+		},
 		gen: 8,
 	},
 	tarshot: {
@@ -2044,6 +3272,12 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	teleport: {
+		inherit: true,
+		desc: "If this move is successful and the user has not fainted, the user switches out even if it is trapped and is replaced immediately by a selected party member. The user does not switch out if there are no unfainted party members.",
+		shortDesc: "User switches out.",
+		priority: 0,
+	},
 	terrainpulse: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -2068,13 +3302,62 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	thunder: {
+		inherit: true,
+		accuracy: 75,
+		basePower: 100,
+		desc: "Has a 30% chance to paralyze the target. This move can hit a target using Bounce, Fly, or Sky Drop, or is under the effect of Sky Drop. If the weather is Primordial Sea or Rain Dance, this move does not check accuracy. If the weather is Desolate Land or Sunny Day, this move's accuracy is 50%. If this move is used against a Pokemon holding Utility Umbrella, this move's accuracy remains at 70%.",
+		shortDesc: "30% chance to paralyze. Can't miss in rain.",
+		pp: 5,
+	},
+	thunderbolt: {
+		inherit: true,
+		basePower: 80,
+		desc: "Has a 10% chance to paralyze the target.",
+		shortDesc: "10% chance to paralyze the target.",
+		pp: 10,
+		secondary: {
+			chance: 20,
+			status: "par",
+		},
+	},
 	thundercage: {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	thunderfang: {
+		inherit: true,
+		desc: "Has a 10% chance to paralyze the target and a 10% chance to make it flinch.",
+		shortDesc: "10% chance to paralyze. 10% chance to flinch.",
+		secondary: {
+			chance: 20,
+			status: "par",
+		},
+		secondaries: null,
+	},
 	thunderouskick: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	thunderpunch: {
+		inherit: true,
+		desc: "Has a 10% chance to paralyze the target.",
+		shortDesc: "10% chance to paralyze the target.",
+		pp: 10,
+		secondary: {
+			chance: 30,
+			status: "par",
+		},
+	},
+	thundershock: {
+		inherit: true,
+		desc: "Has a 10% chance to paralyze the target.",
+		shortDesc: "10% chance to paralyze the target.",
+		pp: 25,
+		secondary: {
+			chance: 30,
+			status: "par",
+		},
 	},
 	tickle: {
 		inherit: true,
@@ -2100,6 +3383,24 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	triattack: {
+		inherit: true,
+		desc: "Has a 20% chance to either burn, freeze, or paralyze the target.",
+		shortDesc: "20% chance to paralyze or burn or freeze target.",
+		secondary: {
+			chance: 30,
+			onHit(target, source) {
+				const result = this.random(3);
+				if (result === 0) {
+					target.trySetStatus('brn', source);
+				} else if (result === 1) {
+					target.trySetStatus('par', source);
+				} else {
+					target.trySetStatus('frz', source);
+				}
+			},
+		},
+	},
 	trick: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -2114,7 +3415,20 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	triplearrows: {
 		inherit: true,
+		basePower: 50,
+		desc: "Has a 50% chance to lower the target's Defense by 1 stage, a 30% chance to make it flinch, and a higher chance for a critical hit.",
+		shortDesc: "High crit. Target: 50% -1 Defense, 30% flinch.",
 		isNonstandard: null,
+		pp: 15,
+		critRatio: 1,
+		self: {
+			volatileStatus: "focusenergy",
+		},
+		secondary: {
+			chance: 100,
+			volatileStatus: "guarddrop",
+		},
+		secondaries: null,
 		gen: 8,
 	},
 	tripleaxel: {
@@ -2128,6 +3442,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	tropkick: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	twister: {
+		inherit: true,
+		desc: "Has a 20% chance to make the target flinch. Power doubles if the target is using Bounce, Fly, or Sky Drop, or is under the effect of Sky Drop.",
+		shortDesc: "20% chance to make the foe(s) flinch.",
+		pp: 25,
+		secondary: null,
 	},
 	uproar: {
 		inherit: true,
@@ -2149,9 +3470,28 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	venoshock: {
+		inherit: true,
+		basePowerCallback(pokemon, target, move) {
+			if (target.status) return move.basePower * 2;
+			return move.basePower;
+		},
+		desc: "Power doubles if the target is poisoned.",
+		shortDesc: "Power doubles if the target is poisoned.",
+		pp: 15,
+		onBasePower() {},
+	},
 	victorydance: {
 		inherit: true,
+		desc: "Raises the user's Attack, Defense, and Speed by 1 stage.",
+		shortDesc: "Raises the user's Attack, Defense, Speed by 1.",
 		isNonstandard: null,
+		boosts: null,
+		onHit(target, source, move) {
+			source.addVolatile('powerboost', source, move);
+			source.addVolatile('guardboost', source, move);
+			source.addVolatile('primed', source, move);
+		},
 		gen: 8,
 	},
 	vinewhip: {
@@ -2170,6 +3510,16 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	volttackle: {
+		inherit: true,
+		desc: "Has a 10% chance to paralyze the target. If the target lost HP, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.",
+		shortDesc: "Has 33% recoil. 10% chance to paralyze target.",
+		pp: 5,
+		secondary: {
+			chance: 30,
+			status: "par",
+		},
+	},
 	waterfall: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -2182,6 +3532,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	waterpulse: {
+		inherit: true,
+		accuracy: true,
+		desc: "Has a 20% chance to confuse the target.",
+		shortDesc: "20% chance to confuse the target.",
+		secondary: null,
+	},
 	watershuriken: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -2192,6 +3549,9 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	wavecrash: {
 		inherit: true,
+		basePower: 75,
+		desc: "If the target lost HP, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.",
+		shortDesc: "Has 33% recoil.",
 		isNonstandard: null,
 		gen: 8,
 	},
@@ -2217,8 +3577,27 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	wildboltstorm: {
 		inherit: true,
+		basePower: 95,
+		desc: "Has a 20% chance to paralyze the target. If the weather is Primordial Sea or Rain Dance, this move does not check accuracy. If this move is used against a Pokemon holding Utility Umbrella, this move's accuracy remains at 80%.",
+		shortDesc: "20% chance to paralyze foe(s). Rain: can't miss.",
 		isNonstandard: null,
+		pp: 5,
+		secondary: {
+			chance: 30,
+			status: "par",
+		},
 		gen: 8,
+	},
+	wildcharge: {
+		inherit: true,
+		basePower: 85,
+		desc: "If the target lost HP, the user takes recoil damage equal to 1/4 the HP lost by the target, rounded half up, but not less than 1 HP.",
+		shortDesc: "Has 1/4 recoil.",
+		pp: 10,
+		secondary: {
+			chance: 20,
+			status: "par",
+		},
 	},
 	willowisp: {
 		inherit: true,
@@ -2240,6 +3619,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	woodhammer: {
+		inherit: true,
+		basePower: 100,
+		desc: "If the target lost HP, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.",
+		shortDesc: "Has 33% recoil.",
+		pp: 5,
+	},
 	workup: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -2252,6 +3638,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
+	xscissor: {
+		inherit: true,
+		desc: "No additional effect.",
+		shortDesc: "No additional effect.",
+		pp: 10,
+		critRatio: 2,
+	},
 	yawn: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -2259,6 +3652,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	zapcannon: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	zenheadbutt: {
+		inherit: true,
+		desc: "Has a 20% chance to make the target flinch.",
+		shortDesc: "20% chance to make the target flinch.",
+		pp: 10,
+		secondary: null,
 	},
 	zingzap: {
 		inherit: true,
