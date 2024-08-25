@@ -508,9 +508,11 @@ export class ActionTimeQueue {
 			return 3;
 		case 'bulkup': case 'calmmind': case 'shelter': case 'takeheart': case 'victorydance':
 			return -2;
-		case 'acidarmor': case 'baby-dolleyes': case 'doublehit': case 'focusenergy': case 'irondefense': case 'nastyplot': case 'powershift': case 'swordsdance':
+		case 'acidarmor': case 'baby-dolleyes': case 'doublehit': case 'focusenergy': case 'irondefense': case 'nastyplot':
+		case 'powershift': case 'swordsdance':
 			return -3;
-		case 'aquajet': case 'bulletpunch': case 'esperwing': case 'iceshard': case 'machpunch': case 'quickattack': case 'shadowsneak': case 'wavecrash':
+		case 'aquajet': case 'bulletpunch': case 'esperwing': case 'iceshard': case 'machpunch': case 'quickattack':
+		case 'shadowsneak': case 'wavecrash':
 			return -4;
 		default:
 			return 0;
@@ -518,12 +520,14 @@ export class ActionTimeQueue {
 	}
 
 	getActionTimeModifierTarget(move: ActiveMove): number {
-		switch (move.id) {
-			case 'airslash': case 'astonish': case 'bite': case 'bubble': case 'bulldoze': case 'crushgrip': case 'extrasensory': case 'fairywind': case 'firefang': case 'icefang': case 'iciclecrash': case 'icywind': case 'ironhead': case 'mountaingale': case 'rockslide': case 'thunderfang': case 'triplearrows': case 'twister': case 'zenheadbutt':
-				return 3;
-			default:
-				return 0;
-			}
+		if ([
+			'airslash', 'astonish', 'bite', 'bubble', 'bulldoze', 'crushgrip', 'extrasensory', 'fairywind', 'firefang',
+			'icefang', 'iciclecrash', 'icywind', 'ironhead', 'mountaingale', 'rockslide', 'thunderfang', 'triplearrows',
+			'twister', 'zenheadbutt',
+		].includes(move.id)) {
+			return 3;
+		}
+		return 0;
 	}
 
 	compareActionTime(a: PokemonActionTime, b: PokemonActionTime) {
