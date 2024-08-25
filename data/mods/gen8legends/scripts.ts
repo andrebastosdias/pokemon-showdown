@@ -283,7 +283,7 @@ export const Scripts: ModdedBattleScriptsData = {
 
 			// types
 			let typeMod = target.runEffectiveness(move);
-			typeMod = this.battle.clampIntRange(typeMod, -6, 6);
+			typeMod = this.battle.clampIntRange(typeMod, -2, 2);
 			target.getMoveHitData(move).typeMod = typeMod;
 			let typeModMultiplier = 1;
 			if (typeMod > 0) {
