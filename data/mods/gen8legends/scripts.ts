@@ -423,10 +423,8 @@ export const Scripts: ModdedBattleScriptsData = {
 			}
 			if (!source) source = this;
 
-			if (this.volatiles[status.id]) {
-				if (status.onRestart) {
-					return this.battle.singleEvent('Restart', status, this.volatiles[status.id], this, source, sourceEffect);
-				}
+			if (this.volatiles[status.id] && status.onRestart) {
+				return this.battle.singleEvent('Restart', status, this.volatiles[status.id], this, source, sourceEffect);
 			}
 			if (!this.runStatusImmunity(status.id)) {
 				this.battle.debug('immune to volatile status');
