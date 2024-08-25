@@ -117,8 +117,12 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 			this.add('-start', target, 'stanceswap');
 			const newatk = target.storedStats.def;
 			const newdef = target.storedStats.atk;
+			const newspa = target.storedStats.spd;
+			const newspd = target.storedStats.spa;
 			target.storedStats.atk = newatk;
 			target.storedStats.def = newdef;
+			target.storedStats.spa = newspa;
+			target.storedStats.spd = newspd;
 		},
 		onRestart(target) {
 			this.add('-start', target, 'stanceswap');
@@ -128,8 +132,12 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 			this.add('-end', pokemon, 'stanceswap');
 			const newatk = pokemon.storedStats.def;
 			const newdef = pokemon.storedStats.atk;
+			const newspa = pokemon.storedStats.spd;
+			const newspd = pokemon.storedStats.spa;
 			pokemon.storedStats.atk = newatk;
 			pokemon.storedStats.def = newdef;
+			pokemon.storedStats.spa = newspa;
+			pokemon.storedStats.spd = newspd;
 		},
 	},
 	powerboost: {
