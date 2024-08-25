@@ -331,6 +331,20 @@ describe('[Gen 8 Legends] stats', function () {
 });
 
 describe('[Gen 8 Legends] residuals', function () {
+	it('should not trigger if the Pokemon did not move', function () {
+		battle = createBattle(options, [
+			[{species: 'Heatran', moves: ['magmastorm']}],
+			[
+				{species: 'Arceus', moves: ['recover']},
+				{species: 'Magikarp', moves: ['splash']},
+			],
+		], 'nodamage');
+		battle.makeChoices('move magmastorm', 'switch 2');
+		const magikarp = battle.p2.active[0];
+		assert.equal(magikarp.hp, magikarp.maxhp);
+		assert.equal(magikarp.status, 'brn');
+	});
+
 	it('should trigger in the turn they end', function () {
 		battle = createBattle(options, [
 			[{species: 'Heatran', moves: ['irondefense', 'magmastorm']}],
@@ -531,7 +545,26 @@ describe('[Gen 8 Legends] volatile statuses', function () {
 		});
 	});
 
-	describe('splinters', function () {}); // TODO
+	describe('splinters', function () {
+		it(`damage should ignore statuses and volatiles`, function () {
+			battle = createBattle(options, [
+				[{species: 'Graveler', moves: ['stealthrock'], level: 34, ivs: {atk: 0}}],
+				[{species: 'Arceus', moves: ['judgment'], level: 75, ivs: {hp: 0, def: 3}}],
+			], 'nodamage');
+			const graveler = battle.p1.active[0];
+			graveler.status = 'brn';
+			graveler.volatiles['fixated'] = {};
+			graveler.volatiles['primed'] = {};
+			graveler.volatiles['powerboost'] = {};
+
+			const arceus = battle.p2.active[0];
+			arceus.status = 'slp';
+			arceus.volatiles['fixated'] = {};
+			arceus.volatiles['guarddrop'] = {};
+
+			assert.hurtsBy(arceus, 12, () => battle.makeChoices());
+		});
+	});
 
 	describe('obscured', function () {});
 

@@ -77,15 +77,15 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 	},
 	splinters: {
 		name: 'splinters',
-		onStart(target) {
+		onStart(target, source, sourceEffect) {
 			this.add('-start', target, 'splinters');
-			this.effectState.damage = 20;
+			// TODO: check if damage is always the same, or if it changes when Arceus-Legend changes type
+			this.effectState.damage = getSplintersDamage(this, source, target, (sourceEffect as ActiveMove).type);
 		},
 		onEnd(target) {
 			this.add('-end', target, 'splinters');
 		},
-		onResidualOrder: 5,
-		onResidualSubOrder: 1,
+		onResidualOrder: 13,
 		onResidual(target) {
 			this.damage(this.effectState.damage, target);
 		},
@@ -201,3 +201,25 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 		},
 	},
 };
+
+function getSplintersDamage(battle: Battle, source: Pokemon, target: Pokemon, type: string): number {
+	const basePower = 25;
+	const level = source.level;
+	const attack = source.calculateStat('atk', source.boosts.atk);
+	const defense = target.calculateStat('def', target.boosts.def);
+
+	const tr = battle.trunc;
+
+	let baseDamage = tr(tr((100 + attack + 15 * level) * basePower / (50 + defense)) / 5);
+
+	let typeMod = battle.dex.getEffectiveness(type, target);
+	typeMod = battle.clampIntRange(typeMod, -2, 2);
+	let typeModMultiplier = 1;
+	if (typeMod === 1) typeModMultiplier = 2;
+	else if (typeMod === 2) typeModMultiplier = 2.5;
+	else if (typeMod === -1) typeModMultiplier = 0.5;
+	else if (typeMod === -2) typeModMultiplier = 0.4;
+	baseDamage = tr(baseDamage * typeModMultiplier);
+
+	return baseDamage;
+}
