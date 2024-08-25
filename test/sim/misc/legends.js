@@ -24,6 +24,7 @@ function createBattle(options, teams, mods = []) {
 		move.willCrit = false;
 		for (const mod of mods) {
 			switch (mod) {
+			case 'miss': move.accuracy = 0; break;
 			case 'nodamage': move.basePower = 0; break;
 			case 'secondaries':
 				if (move.secondaries) {
@@ -225,7 +226,7 @@ describe('[Gen 8 Legends] Moves', function () {
 			assert.hurts(battle.p2.active[0], () => battle.makeChoices());
 		});
 
-		it(`should adapt its type to be super effective against the opponent's type if used by Arceus-Legend`, function () {
+		it(`should adapt its type and Arceus-Legend's type to be super effective against the opponent's type`, function () {
 			battle = createBattle(options, [
 				[{species: "Arceus-Legend", moves: ['judgment']}],
 				[
@@ -233,15 +234,31 @@ describe('[Gen 8 Legends] Moves', function () {
 					{species: "Giratina", moves: ['calmmind']},
 				],
 			]);
-			assert(battle.p1.active[0].hasType('Normal'));
+			const arceus = battle.p1.active[0];
+			assert(arceus.hasType('Normal'));
 
-			battle.makeChoices('move judgment', 'move bulkup');
-			assert.species(battle.p1.active[0], 'Arceus-Dragon');
-			assert(battle.p1.active[0].hasType('Dragon'));
+			battle.makeChoices();
+			assert.species(arceus, 'Arceus-Dragon');
+			assert(arceus.hasType('Dragon'));
 
 			battle.makeChoices('move judgment', 'switch giratina');
-			assert.species(battle.p1.active[0], 'Arceus-Dark');
-			assert(battle.p1.active[0].hasType('Dark'));
+			assert.species(arceus, 'Arceus-Dark');
+			assert(arceus.hasType('Dark'));
+		});
+
+		it(`should adapt its type and Arceus-Legend's type if the move misses`, function () {
+			battle = createBattle(options, [
+				[{species: "Arceus-Legend", moves: ['judgment']}],
+				[{species: "Magikarp", moves: ['splash']}],
+			], 'miss');
+			const arceus = battle.p1.active[0];
+			const magikarp = battle.p2.active[0];
+
+			assert(arceus.hasType('Normal'));
+			battle.makeChoices();
+			assert.equal(magikarp.hp, magikarp.maxhp);
+			assert.species(arceus, 'Arceus-Grass');
+			assert(arceus.hasType('Grass'));
 		});
 	});
 
@@ -563,6 +580,17 @@ describe('[Gen 8 Legends] volatile statuses', function () {
 			arceus.volatiles['guarddrop'] = {};
 
 			assert.hurtsBy(arceus, 12, () => battle.makeChoices());
+		});
+
+		it(`damage should change if Arceus-Legend's type changes`, function () {
+			battle = createBattle(options, [
+				[{species: 'Kleavor', moves: ['stealthrock', 'calmmind']}],
+				[{species: 'Arceus-Legend', moves: ['judgment', 'calmmind']}],
+			], 'nodamage');
+			const arceus = battle.p2.active[0];
+			assert.hurtsBy(arceus, 23, () => battle.makeChoices('move stealthrock', 'move calmmind'));
+			assert.hurtsBy(arceus, 11, () => battle.makeChoices('move calmmind', 'move judgment'));
+			assert.species(arceus, 'Arceus-Steel');
 		});
 	});
 

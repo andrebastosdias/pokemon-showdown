@@ -77,16 +77,31 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 	},
 	splinters: {
 		name: 'splinters',
-		onStart(target) {
+		onStart(target, source, sourceEffect) {
 			this.add('-start', target, 'splinters');
+			this.effectState.type = (sourceEffect as ActiveMove).type;
+
+			const basePower = 25;
+			const level = source.level;
+			const attack = source.calculateStat('atk', source.boosts.atk);
+			const defense = target.calculateStat('def', target.boosts.def);
+			const tr = this.trunc;
+			this.effectState.baseDamage = tr(tr((100 + attack + 15 * level) * basePower / (50 + defense)) / 5);
 		},
 		onEnd(target) {
 			this.add('-end', target, 'splinters');
 		},
 		onResidualOrder: 13,
-		onResidual(target, source, sourceEffect) {
-			// damage is recalculated every time because Arceus-Legend's type changes
-			const damage = getSplintersDamage(this, source, target, (sourceEffect as ActiveMove).type);
+		onResidual(target) {
+			// damage is recalculated every time because of Arceus-Legend's type changes
+			let typeMod = this.dex.getEffectiveness(this.effectState.type, target);
+			typeMod = this.clampIntRange(typeMod, -2, 2);
+			let typeModMultiplier = 1;
+			if (typeMod === 1) typeModMultiplier = 2;
+			else if (typeMod === 2) typeModMultiplier = 2.5;
+			else if (typeMod === -1) typeModMultiplier = 0.5;
+			else if (typeMod === -2) typeModMultiplier = 0.4;
+			const damage = this.trunc(this.effectState.baseDamage * typeModMultiplier);
 			this.damage(damage, target);
 		},
 	},
@@ -98,7 +113,7 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 		onEnd(target) {
 			this.add('-end', target, 'obscured');
 		},
-		onModifyAccuracy(accuracy, target, source, move) {
+		onModifyAccuracy() {
 			return this.chainModify(0.66);
 		},
 	},
@@ -201,25 +216,3 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 		},
 	},
 };
-
-function getSplintersDamage(battle: Battle, source: Pokemon, target: Pokemon, type: string): number {
-	const basePower = 25;
-	const level = source.level;
-	const attack = source.calculateStat('atk', source.boosts.atk);
-	const defense = target.calculateStat('def', target.boosts.def);
-
-	const tr = battle.trunc;
-
-	let baseDamage = tr(tr((100 + attack + 15 * level) * basePower / (50 + defense)) / 5);
-
-	let typeMod = battle.dex.getEffectiveness(type, target);
-	typeMod = battle.clampIntRange(typeMod, -2, 2);
-	let typeModMultiplier = 1;
-	if (typeMod === 1) typeModMultiplier = 2;
-	else if (typeMod === 2) typeModMultiplier = 2.5;
-	else if (typeMod === -1) typeModMultiplier = 0.5;
-	else if (typeMod === -2) typeModMultiplier = 0.4;
-	baseDamage = tr(baseDamage * typeModMultiplier);
-
-	return baseDamage;
-}
