@@ -77,17 +77,17 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 	},
 	splinters: {
 		name: 'splinters',
-		onStart(target, source, sourceEffect) {
+		onStart(target) {
 			this.add('-start', target, 'splinters');
-			// TODO: check if damage is always the same, or if it changes when Arceus-Legend changes type
-			this.effectState.damage = getSplintersDamage(this, source, target, (sourceEffect as ActiveMove).type);
 		},
 		onEnd(target) {
 			this.add('-end', target, 'splinters');
 		},
 		onResidualOrder: 13,
-		onResidual(target) {
-			this.damage(this.effectState.damage, target);
+		onResidual(target, source, sourceEffect) {
+			// damage is recalculated every time because Arceus-Legend's type changes
+			const damage = getSplintersDamage(this, source, target, (sourceEffect as ActiveMove).type);
+			this.damage(damage, target);
 		},
 	},
 	obscured: {
