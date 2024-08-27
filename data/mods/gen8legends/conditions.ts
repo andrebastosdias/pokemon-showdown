@@ -106,7 +106,7 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 			this.add('-end', target, 'obscured');
 		},
 		onModifyAccuracy() {
-			return this.chainModify(0.66);
+			return this.chainModify(0.66); // TODO: check if the multiplier is correct
 		},
 	},
 	primed: {
