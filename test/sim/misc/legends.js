@@ -37,6 +37,17 @@ function createBattle(options, teams, mods = []) {
 	return battle;
 }
 
+function makeChoices(battle, pokemonToAct, input) {
+	battle.actionTimeQueue.actingPokemon = pokemonToAct;
+	battle.makeRequest('move');
+	if (input) {
+		pokemonToAct.side.choose(input);
+	} else {
+		pokemonToAct.side.autoChoose();
+	}
+	battle.commitChoices();
+}
+
 describe('[Gen 8 Legends] Dex data', function () {
 	const dex = Dex.mod('gen8legends');
 
@@ -163,9 +174,9 @@ describe('[Gen 8 Legends] Choice parser', function () {
 	it('should reject `shift` requests', function () {
 		battle = createBattle({formatid: 'gen8legendstriples'});
 		battle.setPlayer('p1', {team: [
+			{species: "Manaphy", moves: ['bubble']},
 			{species: "Burmy", moves: ['strugglebug']},
 			{species: "Geodude", moves: ['tackle']},
-			{species: "Gastly", moves: ['astonish']},
 			{species: "Phione", moves: ['bubble']},
 		]});
 		battle.setPlayer('p2', {team: [
@@ -173,19 +184,53 @@ describe('[Gen 8 Legends] Choice parser', function () {
 			{species: "Geodude", moves: ['tackle']},
 			{species: "Gastly", moves: ['astonish']},
 		]});
+		assert.equal(battle.actionTimeQueue.actingPokemon, battle.p1.active[0]);
+		assert.throws(() => battle.p1.choose('shift'));
+	});
 
-		const validChoices = ['move 1 1', 'switch 4'];
-
-		for (const action of validChoices) {
-			const choiceString = `${action}, move 1 1, move 1 1`;
-			assert(battle.choose('p1', choiceString), `Choice '${choiceString}' should be valid`);
-			battle.p1.clearChoice();
+	it(`should skip non-acting Pokemon actions`, function () {
+		battle = createBattle({formatid: 'gen8legendsdoubles'}, [
+			[
+				{species: 'Heatran', moves: ['magmastorm']},
+				{species: 'Arceus', moves: ['quickattack']},
+			],
+			[
+				{species: 'Geodude', moves: ['tackle']},
+				{species: 'Regigigas', moves: ['crushgrip']},
+			],
+		]);
+		assert.equal(battle.actionTimeQueue.actingPokemon, battle.p1.active[1]);
+		for (const choice of ['move 1 1, move 1 1', 'pass, pass']) {
+			assert.cantMove(() => battle.p1.choose(choice));
 		}
+		for (const choice of ['move 1 1, move 1 1', 'move 1 1, pass', 'pass, move 1 1', 'pass, pass']) {
+			assert.cantMove(() => battle.p2.choose(choice));
+		}
+		battle.p1.choose('move 1 1');
+		assert.hurts(battle.p2.active[0], () => battle.commitChoices());
+	});
+});
 
-		const badChoices = ['pass', 'shift'];
-		for (const badChoice of badChoices) {
-			const choiceString = `${badChoice}, move 1 1, move 1 1`;
-			assert.throws(() => battle.choose('p1', choiceString));
+describe('[Gen 8 Legends] Choice extensions', function () {
+	it('should disallow non-acting Pokemon on move requests', function () {
+		battle = createBattle({formatid: 'gen8legendstriples'});
+		battle.setPlayer('p1', {team: [
+			{species: "Burmy", moves: ['strugglebug']},
+			{species: "Geodude", moves: ['tackle']},
+			{species: "Manaphy", moves: ['bubble']},
+			{species: "Phione", moves: ['bubble']},
+		]});
+		battle.setPlayer('p2', {team: [
+			{species: "Burmy", moves: ['strugglebug']},
+			{species: "Geodude", moves: ['tackle']},
+			{species: "Gastly", moves: ['astonish']},
+		]});
+		for (const pokemon of battle.p1.activeRequest.side.pokemon) {
+			assert.notEqual(pokemon.commanding, pokemon.details === "Manaphy");
+		}
+		assert(battle.p2.activeRequest.wait);
+		for (const pokemon of battle.p2.activeRequest.side.pokemon) {
+			assert(pokemon.commanding);
 		}
 	});
 });
@@ -223,10 +268,10 @@ describe('[Gen 8 Legends] Moves', function () {
 				[{species: "Arceus-Ghost", moves: ['judgment']}],
 				[{species: "Spiritomb", moves: ['calmmind']}],
 			]);
-			assert.hurts(battle.p2.active[0], () => battle.makeChoices());
+			assert.hurts(battle.p2.active[0], () => makeChoices(battle, battle.p1.active[0]));
 		});
 
-		it(`should adapt its type and Arceus-Legend's type to be super effective against the opponent's type`, function () {
+		it(`should adapt Arceus-Legend's type to be super effective against the opponent's type`, function () {
 			battle = createBattle(options, [
 				[{species: "Arceus-Legend", moves: ['judgment']}],
 				[
@@ -237,28 +282,42 @@ describe('[Gen 8 Legends] Moves', function () {
 			const arceus = battle.p1.active[0];
 			assert(arceus.hasType('Normal'));
 
-			battle.makeChoices();
+			makeChoices(battle, arceus);
 			assert.species(arceus, 'Arceus-Dragon');
 			assert(arceus.hasType('Dragon'));
 
-			battle.makeChoices('move judgment', 'switch giratina');
+			makeChoices(battle, battle.p2.active[0], 'switch 2');
+			makeChoices(battle, arceus);
 			assert.species(arceus, 'Arceus-Dark');
 			assert(arceus.hasType('Dark'));
 		});
 
-		it(`should adapt its type and Arceus-Legend's type if the move misses`, function () {
+		it(`should adapt Arceus-Legend's type if the move misses`, function () {
 			battle = createBattle(options, [
 				[{species: "Arceus-Legend", moves: ['judgment']}],
 				[{species: "Magikarp", moves: ['splash']}],
 			], 'miss');
 			const arceus = battle.p1.active[0];
 			const magikarp = battle.p2.active[0];
-
 			assert(arceus.hasType('Normal'));
-			battle.makeChoices();
+			makeChoices(battle, arceus);
 			assert.equal(magikarp.hp, magikarp.maxhp);
 			assert.species(arceus, 'Arceus-Grass');
 			assert(arceus.hasType('Grass'));
+		});
+
+		it(`should not adapt Arceus-Legend's type if the move fails due to paralysis`, function () {
+			battle = createBattle(options, [
+				[{species: "Arceus-Legend", moves: ['judgment']}],
+				[{species: "Luxray", moves: ['thunderwave']}],
+			], 'miss');
+			const arceus = battle.p1.active[0];
+			const luxray = battle.p2.active[0];
+			battle.onEvent('BeforeMove', battle.format, () => false);
+			makeChoices(battle, arceus);
+			assert.equal(luxray.hp, luxray.maxhp);
+			assert.species(arceus, 'Arceus-Legend');
+			assert(arceus.hasType('Normal'));
 		});
 	});
 
@@ -268,7 +327,10 @@ describe('[Gen 8 Legends] Moves', function () {
 				[{species: "unown", moves: ['hiddenpower']}],
 				[{species: "spiritomb", moves: ['calmmind']}],
 			]);
-			assert.hurts(battle.p2.active[0], () => battle.makeChoices());
+			const spiritomb = battle.p2.active[0];
+			makeChoices(battle, battle.p1.active[0]);
+			const damage = spiritomb.maxhp - spiritomb.hp;
+			assert.bounded(damage, [76, 90]);
 		});
 	});
 });
@@ -277,19 +339,19 @@ describe('[Gen 8 Legends] Abilities', function () {
 	describe(`Slow Start`, function () {
 		// a bit redundant, but it's a good test to have
 		it(`should delay activation on switch-in`, function () {
-			battle = createBattle([[
+			battle = createBattle(options, [[
 				{species: 'Cyndaquil', moves: ['rest']},
 				{species: 'Regigigas', ability: 'slowstart', moves: ['rest']},
 			], [
 				{species: 'Rowlet', moves: ['rest']},
 			]]);
-			battle.makeChoices('switch 2', 'auto');
-			for (let i = 0; i < 4; i++) { battle.makeChoices(); }
+			makeChoices(battle, battle.p1.active[0], 'switch 2');
+			for (let i = 0; i < 4; i++) { makeChoices(battle, battle.p1.active[0]); }
 			let log = battle.getDebugLog();
 			let slowStartEnd = log.indexOf('|-end|p1a: Regigigas|Slow Start');
 			assert.false(slowStartEnd > -1, 'Slow Start should remain in effect after 4 active turns.');
 
-			battle.makeChoices();
+			makeChoices(battle, battle.p1.active[0]);
 			log = battle.getDebugLog();
 			slowStartEnd = log.indexOf('|-end|p1a: Regigigas|Slow Start');
 			assert(slowStartEnd > -1, 'Slow Start should not be in effect after 5 active turns.');
@@ -356,24 +418,27 @@ describe('[Gen 8 Legends] residuals', function () {
 				{species: 'Magikarp', moves: ['splash']},
 			],
 		], 'nodamage');
-		battle.makeChoices('move magmastorm', 'switch 2');
-		const magikarp = battle.p2.active[0];
-		assert.equal(magikarp.hp, magikarp.maxhp);
-		assert.equal(magikarp.status, 'brn');
+		const arceus = battle.p2.active[0];
+		makeChoices(battle, battle.p1.active[0]);
+		assert.equal(arceus.status, 'brn');
+		makeChoices(battle, arceus, 'switch 2');
+		makeChoices(battle, battle.p2.active[0], 'switch 2');
+		assert.equal(arceus.status, 'brn');
+		assert.equal(arceus.hp, arceus.maxhp);
 	});
 
 	it('should trigger in the turn they end', function () {
 		battle = createBattle(options, [
-			[{species: 'Heatran', moves: ['irondefense', 'magmastorm']}],
+			[{species: 'Heatran', moves: ['magmastorm']}],
 			[{species: 'Magikarp', moves: ['splash']}],
 		], 'nodamage');
 		const magikarp = battle.p2.active[0];
+		makeChoices(battle, battle.p1.active[0]);
 		// 3 turns of burn damage
-		assert.hurts(magikarp, () => battle.makeChoices('move magmastorm', 'move splash'));
-		assert.equal(magikarp.status, 'brn');
-		assert.hurts(magikarp, () => battle.makeChoices());
-		assert.equal(magikarp.status, 'brn');
-		assert.hurts(magikarp, () => battle.makeChoices());
+		for (let i = 0; i < 3; i++) {
+			assert.equal(magikarp.status, 'brn');
+			assert.hurts(magikarp, () => makeChoices(battle, magikarp));
+		}
 		assert.equal(magikarp.status, '');
 		// Make sure the message is sent
 		assert(battle.log.some(line => line.startsWith('|-curestatus') && line.endsWith('|[msg]')));
@@ -386,30 +451,32 @@ describe('[Gen 8 Legends] statuses', function () {
 			[{species: 'Tangrowth', moves: ['sleeppowder', 'stunspore', 'poisonpowder']}],
 			[{species: 'Magikarp', moves: ['splash']}],
 		]);
+		const tangrowth = battle.p1.active[0];
 		const magikarp = battle.p2.active[0];
-		battle.makeChoices('move sleeppowder', 'move splash');
+		makeChoices(battle, tangrowth, 'move sleeppowder');
 		assert.equal(magikarp.status, 'slp');
-		battle.makeChoices('move stunspore', 'move splash');
+		makeChoices(battle, tangrowth, 'move stunspore');
 		assert.equal(magikarp.status, 'par');
-		battle.makeChoices('move poisonpowder', 'move splash');
+		makeChoices(battle, tangrowth, 'move poisonpowder');
 		assert.equal(magikarp.status, 'psn');
 	});
 
 	it('should reset their duration upon reapplication', function () {
 		battle = createBattle(options, [
-			[{species: 'Raichu', moves: ['calmmind', 'thunderwave']}],
+			[{species: 'Raichu', moves: ['thunderwave']}],
 			[{species: 'Magikarp', moves: ['splash']}],
 		]);
+		const raichu = battle.p1.active[0];
 		const magikarp = battle.p2.active[0];
-		battle.makeChoices('move thunderwave', 'move splash');
+		makeChoices(battle, raichu);
+		assert.equal(magikarp.status, 'par');
+		assert.equal(magikarp.statusState.duration, 5);
+		makeChoices(battle, magikarp);
 		assert.equal(magikarp.status, 'par');
 		assert.equal(magikarp.statusState.duration, 4);
-		battle.makeChoices();
+		makeChoices(battle, raichu);
 		assert.equal(magikarp.status, 'par');
-		assert.equal(magikarp.statusState.duration, 3);
-		battle.makeChoices('move thunderwave', 'move splash');
-		assert.equal(magikarp.status, 'par');
-		assert.equal(magikarp.statusState.duration, 4);
+		assert.equal(magikarp.statusState.duration, 5);
 	});
 
 	describe('Burn', function () {
@@ -418,8 +485,10 @@ describe('[Gen 8 Legends] statuses', function () {
 				[{species: 'Heatran', moves: ['magmastorm']}],
 				[{species: 'Magikarp', moves: ['splash']}],
 			], 'nodamage');
-			const target = battle.p2.active[0];
-			assert.hurtsBy(target, Math.floor(target.maxhp / 12), () => battle.makeChoices());
+			const heatran = battle.p1.active[0];
+			const magikarp = battle.p2.active[0];
+			makeChoices(battle, heatran);
+			assert.hurtsBy(magikarp, Math.floor(magikarp.maxhp / 12), () => makeChoices(battle, magikarp));
 		});
 
 		it(`should halve damage from Physical attacks`, function () {
@@ -427,8 +496,10 @@ describe('[Gen 8 Legends] statuses', function () {
 				[{species: 'Avalugg-Hisui', moves: ['iceshard']}],
 				[{species: 'Heatran', moves: ['magmastorm']}],
 			]);
-			battle.makeChoices();
+			const avalugg = battle.p1.active[0];
 			const heatran = battle.p2.active[0];
+			makeChoices(battle, heatran);
+			makeChoices(battle, avalugg);
 			const damage = heatran.maxhp - heatran.hp;
 			assert.bounded(damage, [8, 9]);
 		});
@@ -440,8 +511,10 @@ describe('[Gen 8 Legends] statuses', function () {
 				[{species: 'Machamp', moves: ['bulkup']}],
 				[{species: 'Gengar', moves: ['poisongas']}],
 			]);
-			const target = battle.p1.active[0];
-			assert.hurtsBy(target, Math.floor(target.maxhp / 6), () => battle.makeChoices());
+			const machamp = battle.p1.active[0];
+			const gengar = battle.p2.active[0];
+			makeChoices(battle, gengar);
+			assert.hurtsBy(machamp, Math.floor(machamp.maxhp / 6), () => makeChoices(battle, machamp));
 		});
 	});
 
@@ -451,8 +524,10 @@ describe('[Gen 8 Legends] statuses', function () {
 				[{species: 'Darkrai', moves: ['icebeam']}],
 				[{species: 'Heatran', moves: ['irondefense']}],
 			], ['nodamage', 'secondaries']);
-			const target = battle.p2.active[0];
-			assert.hurtsBy(target, Math.floor(target.maxhp / 12), () => battle.makeChoices());
+			const darkrai = battle.p1.active[0];
+			const heatran = battle.p2.active[0];
+			makeChoices(battle, darkrai);
+			assert.hurtsBy(heatran, Math.floor(heatran.maxhp / 12), () => makeChoices(battle, heatran));
 		});
 
 		it(`should halve damage from Special attacks`, function () {
@@ -460,8 +535,10 @@ describe('[Gen 8 Legends] statuses', function () {
 				[{species: 'Probopass', moves: ['thunderbolt']}],
 				[{species: 'Mantine', moves: ['icebeam']}],
 			], 'secondaries');
-			battle.makeChoices();
+			const probopass = battle.p1.active[0];
 			const mantine = battle.p2.active[0];
+			makeChoices(battle, mantine);
+			makeChoices(battle, probopass);
 			const damage = mantine.maxhp - mantine.hp;
 			assert.bounded(damage, [63, 76]);
 		});
@@ -474,8 +551,10 @@ describe('[Gen 8 Legends] statuses', function () {
 				[{species: 'Gengar', moves: ['shadowball']}],
 			]);
 			const darkrai = battle.p1.active[0];
+			const gengar = battle.p2.active[0];
 			darkrai.damage(1);
-			battle.makeChoices();
+			makeChoices(battle, darkrai);
+			makeChoices(battle, gengar);
 			const damage = darkrai.maxhp - darkrai.hp;
 			assert.bounded(damage, [61, 73]);
 		});
@@ -484,13 +563,14 @@ describe('[Gen 8 Legends] statuses', function () {
 			for (const move of ['Spark', 'Volt Tackle', 'Wild Charge']) {
 				it(`${move}`, function () {
 					battle = createBattle(options, [
-						[{species: 'Darkrai', moves: ['calmmind', 'darkvoid']}],
-						[{species: 'Raichu', moves: ['calmmind', move]}],
+						[{species: 'Darkrai', moves: ['darkvoid']}],
+						[{species: 'Raichu', moves: [move]}],
 					]);
+					const darkrai = battle.p1.active[0];
 					const raichu = battle.p2.active[0];
-					battle.makeChoices('move darkvoid', 'move calmmind');
+					makeChoices(battle, darkrai);
 					assert.equal(raichu.status, 'slp');
-					battle.makeChoices('move calmmind', 'move 2');
+					makeChoices(battle, raichu);
 					assert.equal(raichu.status, '');
 				});
 			}
@@ -501,16 +581,17 @@ describe('[Gen 8 Legends] statuses', function () {
 describe('[Gen 8 Legends] volatile statuses', function () {
 	it('should reset their duration upon reapplication', function () {
 		battle = createBattle(options, [
-			[{species: 'Kleavor', moves: ['calmmind', 'stoneaxe']}],
+			[{species: 'Kleavor', moves: ['stoneaxe']}],
 			[{species: 'Arceus', moves: ['calmmind']}],
 		]);
-		const magikarp = battle.p2.active[0];
-		battle.makeChoices('move stoneaxe', 'move calmmind');
-		assert.equal(magikarp.volatiles['splinters'].duration, 2);
-		battle.makeChoices();
-		assert.equal(magikarp.volatiles['splinters'].duration, 1);
-		battle.makeChoices('move stoneaxe', 'move calmmind');
-		assert.equal(magikarp.volatiles['splinters'].duration, 2);
+		const kleavor = battle.p1.active[0];
+		const arceus = battle.p2.active[0];
+		makeChoices(battle, kleavor);
+		assert.equal(arceus.volatiles['splinters'].duration, 3);
+		makeChoices(battle, arceus);
+		assert.equal(arceus.volatiles['splinters'].duration, 2);
+		makeChoices(battle, kleavor);
+		assert.equal(arceus.volatiles['splinters'].duration, 3);
 	});
 
 	describe('focus energy', function () {});
@@ -521,13 +602,14 @@ describe('[Gen 8 Legends] volatile statuses', function () {
 				[{species: 'Garchomp', moves: ['outrage']}],
 				[{species: 'Arceus', moves: ['quickattack']}],
 			]);
-			const target = battle.p2.active[0];
-			let hp = target.hp;
-			battle.makeChoices();
-			assert.bounded(hp - target.hp, [86, 103]);
-			hp = target.hp;
-			battle.makeChoices();
-			assert.bounded(hp - target.hp, [129, 154]);
+			const garchomp = battle.p1.active[0];
+			const arceus = battle.p2.active[0];
+			let hp = arceus.hp;
+			makeChoices(battle, garchomp);
+			assert.bounded(hp - arceus.hp, [86, 103]);
+			hp = arceus.hp;
+			makeChoices(battle, garchomp);
+			assert.bounded(hp - arceus.hp, [129, 154]);
 		});
 
 		it('should not increase damage from other moves', function () {
@@ -535,16 +617,17 @@ describe('[Gen 8 Legends] volatile statuses', function () {
 				[{species: 'Garchomp', moves: ['outrage', 'ragingfury']}],
 				[{species: 'Arceus', moves: ['quickattack']}],
 			]);
-			const target = battle.p2.active[0];
-			let hp = target.hp;
-			battle.makeChoices();
-			assert.bounded(hp - target.hp, [86, 103]);
-			hp = target.hp;
-			battle.makeChoices('move ragingfury', 'move quickattack');
-			assert.bounded(hp - target.hp, [69, 82]);
-			hp = target.hp;
-			battle.makeChoices('move ragingfury', 'move quickattack');
-			assert.bounded(hp - target.hp, [103, 123]);
+			const garchomp = battle.p1.active[0];
+			const arceus = battle.p2.active[0];
+			let hp = arceus.hp;
+			makeChoices(battle, garchomp);
+			assert.bounded(hp - arceus.hp, [86, 103]);
+			hp = arceus.hp;
+			makeChoices(battle, garchomp, 'move ragingfury');
+			assert.bounded(hp - arceus.hp, [69, 82]);
+			hp = arceus.hp;
+			makeChoices(battle, garchomp, 'move ragingfury');
+			assert.bounded(hp - arceus.hp, [103, 123]);
 		});
 
 		it(`should increase damage taken from attacks by 33%`, function () {
@@ -552,13 +635,15 @@ describe('[Gen 8 Legends] volatile statuses', function () {
 				[{species: 'Garchomp', moves: ['outrage']}],
 				[{species: 'Arceus', moves: ['judgment']}],
 			]);
-			const target = battle.p1.active[0];
-			let hp = target.hp;
-			battle.makeChoices();
-			assert.bounded(hp - target.hp, [120, 141]);
-			hp = target.hp;
-			battle.makeChoices();
-			assert.bounded(hp - target.hp, [159, 187]);
+			const garchomp = battle.p1.active[0];
+			const arceus = battle.p2.active[0];
+			let hp = garchomp.hp;
+			makeChoices(battle, arceus);
+			assert.bounded(hp - garchomp.hp, [120, 141]);
+			makeChoices(battle, garchomp);
+			hp = garchomp.hp;
+			makeChoices(battle, arceus);
+			assert.bounded(hp - garchomp.hp, [159, 187]);
 		});
 	});
 
@@ -579,17 +664,19 @@ describe('[Gen 8 Legends] volatile statuses', function () {
 			arceus.volatiles['fixated'] = {};
 			arceus.volatiles['guarddrop'] = {};
 
-			assert.hurtsBy(arceus, 12, () => battle.makeChoices());
+			makeChoices(battle, graveler);
+			assert.hurtsBy(arceus, 12, () => makeChoices(battle, arceus));
 		});
 
 		it(`damage should change if Arceus-Legend's type changes`, function () {
 			battle = createBattle(options, [
-				[{species: 'Kleavor', moves: ['stealthrock', 'calmmind']}],
+				[{species: 'Kleavor', moves: ['stealthrock']}],
 				[{species: 'Arceus-Legend', moves: ['judgment', 'calmmind']}],
 			], 'nodamage');
 			const arceus = battle.p2.active[0];
-			assert.hurtsBy(arceus, 23, () => battle.makeChoices('move stealthrock', 'move calmmind'));
-			assert.hurtsBy(arceus, 11, () => battle.makeChoices('move calmmind', 'move judgment'));
+			makeChoices(battle, battle.p1.active[0]);
+			assert.hurtsBy(arceus, 23, () => makeChoices(battle, arceus, 'move calmmind'));
+			assert.hurtsBy(arceus, 11, () => makeChoices(battle, arceus));
 			assert.species(arceus, 'Arceus-Steel');
 		});
 	});
@@ -602,9 +689,11 @@ describe('[Gen 8 Legends] volatile statuses', function () {
 				[{species: 'Ambipom', moves: ['doublehit', 'swift']}],
 				[{species: 'Arceus', moves: ['quickattack']}],
 			]);
-			battle.makeChoices();
-			battle.makeChoices('move swift', 'move quickattack');
+			const ambipom = battle.p1.active[0];
 			const arceus = battle.p2.active[0];
+
+			makeChoices(battle, ambipom);
+			makeChoices(battle, ambipom, 'move swift');
 			const damage = arceus.maxhp - arceus.hp;
 			assert.bounded(damage, [79, 94]);
 		});
@@ -622,17 +711,23 @@ describe('[Gen 8 Legends] volatile statuses', function () {
 			assert.equal(avalugg.getStat('spa'), 166);
 			assert.equal(avalugg.getStat('spd'), 172);
 
-			battle.makeChoices();
+			makeChoices(battle, avalugg);
 			assert.equal(avalugg.getStat('atk'), 544);
 			assert.equal(avalugg.getStat('def'), 407);
 			assert.equal(avalugg.getStat('spa'), 172);
 			assert.equal(avalugg.getStat('spd'), 166);
 
-			battle.makeChoices();
+			makeChoices(battle, avalugg);
 			assert.equal(avalugg.getStat('atk'), 544);
 			assert.equal(avalugg.getStat('def'), 407);
 			assert.equal(avalugg.getStat('spa'), 172);
 			assert.equal(avalugg.getStat('spd'), 166);
 		});
 	});
+
+	describe('powerboost', function () {});
+});
+
+describe('[Gen 8 Legends] Action time queue', function () {
+	// TODO
 });

@@ -5,6 +5,7 @@ type Mutable<T> = {
 };
 
 type Battle = import('./battle').Battle;
+type RequestState = import('./battle').RequestState;
 type BattleQueue = import('./battle-queue').BattleQueue;
 type BattleActions = import('./battle-actions').BattleActions;
 type Field = import('./field').Field;
@@ -263,7 +264,9 @@ interface ModdedBattleSide {
 	canDynamaxNow?: (this: Side) => boolean;
 	chooseSwitch?: (this: Side, slotText?: string) => any;
 	chooseShift?: (this: Side) => any;
+	choosePass?: (this: Side) => any;
 	getChoice?: (this: Side) => string;
+	getChoiceIndex?: (this: Side, isPass?: boolean) => number;
 	getRequestData?: (this: Side, forAlly?: boolean) => {name: string, id: ID, pokemon: AnyObject[]};
 }
 
@@ -291,6 +294,7 @@ interface ModdedBattlePokemon {
 		maybeDisabled?: boolean, trapped?: boolean, maybeTrapped?: boolean,
 		canMegaEvo?: boolean, canUltraBurst?: boolean, canZMove?: ZMoveOptions,
 	};
+	getSwitchRequestData?: (this: Pokemon, forAlly?: boolean) => AnyObject;
 	getMoves?: (this: Pokemon, lockedMove?: string | null, restrictData?: boolean) => {
 		move: string, id: string, disabled?: string | boolean, disabledSource?: string,
 		target?: string, pp?: number, maxpp?: number,
@@ -378,6 +382,7 @@ interface ModdedBattleScriptsData extends Partial<BattleScriptsData> {
 	// Legends: Arceus
 	getRandomTarget?: (this: Battle, pokemon: Pokemon, move: string | Move) => Pokemon | null;
 	residualEvent?: (this: Battle, eventid: string, relayVar?: any) => void;
+	getRequests?: (this: Battle, type: RequestState) => AnyObject[];
 }
 
 type TypeInfo = import('./dex-data').TypeInfo;
