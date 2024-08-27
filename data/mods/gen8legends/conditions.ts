@@ -52,6 +52,10 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 			this.damage(pokemon.baseMaxhp / 6);
 		},
 	},
+	arceus: {
+		inherit: true,
+		onType: undefined,
+	},
 	fixated: {
 		name: 'fixated',
 		duration: 2,
