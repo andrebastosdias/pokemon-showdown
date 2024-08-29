@@ -42,8 +42,6 @@ export const Scripts: ModdedBattleScriptsData = {
 			const allies = pokemon.allies();
 			return allies.length ? this.sample(allies) : null;
 		}
-		if (this.gameType === 'singles') return pokemon.side.foe.active[0];
-
 		return pokemon.side.randomFoe() || pokemon.side.foe.active[0];
 	},
 	/**
