@@ -13,6 +13,10 @@ export const Scripts: ModdedBattleScriptsData = {
 			}
 			delete this.modData('Pokedex', i).requiredItem;
 			delete this.modData('Pokedex', i).requiredItems;
+
+			if (this.modData('FormatsData', i).isNonstandard === null) {
+				this.modData('FormatsData', i).doublesTier = this.modData('FormatsData', i).tier;
+			}
 		}
 		for (const i in this.data.Moves) {
 			const moveData = this.modData('Moves', i);
