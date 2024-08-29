@@ -1102,8 +1102,8 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		name: "[Gen 8 Legends] OU",
 
 		mod: 'gen8legends',
-		ruleset: ['Standard'],
-		banlist: ['AG', 'Uber'],
+		ruleset: ['Standard', 'Evasion Moves Clause'],
+		banlist: ['Uber'],
 	},
 	{
 		name: "[Gen 8 Legends] Ubers",
@@ -1111,7 +1111,6 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		mod: 'gen8legends',
 		searchShow: false,
 		ruleset: ['Standard'],
-		banlist: ['AG'],
 	},
 	{
 		name: "[Gen 8 Legends] LC",
@@ -1126,13 +1125,6 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		mod: 'gen8legends',
 		searchShow: false,
 		ruleset: ['[Gen 8 Legends] OU', 'Same Type Clause'],
-	},
-	{
-		name: "[Gen 8 Legends] AG",
-
-		mod: 'gen8legends',
-		searchShow: false,
-		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
 	},
 	{
 		name: "[Gen 8 Legends] Doubles",

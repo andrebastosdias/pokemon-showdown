@@ -1385,18 +1385,18 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 	},
 	dialga: {
-		tier: "Uber",
+		tier: "OU",
 	},
 	dialgaorigin: {
 		isNonstandard: null,
-		tier: "Uber",
+		tier: "OU",
 	},
 	palkia: {
-		tier: "Uber",
+		tier: "OU",
 	},
 	palkiaorigin: {
 		isNonstandard: null,
-		tier: "Uber",
+		tier: "OU",
 	},
 	heatran: {
 		tier: "OU",
@@ -1405,13 +1405,13 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 	},
 	giratina: {
-		tier: "Uber",
+		tier: "OU",
 	},
 	giratinaorigin: {
-		tier: "Uber",
+		tier: "OU",
 	},
 	cresselia: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	phione: {
 		isNonstandard: null,
@@ -1490,7 +1490,6 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 	},
 	arceuslegend: {
 		isNonstandard: null,
-		tier: "AG",
 	},
 	victini: {
 		isNonstandard: "Past",
