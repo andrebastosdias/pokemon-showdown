@@ -5,7 +5,8 @@ const common = require('./../../common');
 
 let battle;
 
-const options = {formatid: 'gen8legendsag'};
+const formatID = 'gen8legendsubers';
+const options = {formatid: formatID};
 
 function existenceFunction(species) {
 	assert.equal(
@@ -88,6 +89,8 @@ describe('[Gen 8 Legends] Dex data', function () {
 	it(`should have valid Pokedex entries`, function () {
 		for (const species of dex.species.all()) {
 			if (!existenceFunction(species)) continue;
+			assert(species.tier === species.doublesTier || species.baseSpecies,
+				`${species.name} has ${species.tier} and ${species.doublesTier} as tiering values`);
 			if (species.gen) {
 				assert(species.gen <= dex.gen, `${species.name} is from gen ${species.gen}`);
 			}
@@ -133,24 +136,16 @@ describe('[Gen 8 Legends] Dex data', function () {
 });
 
 describe('[Gen 8 Legends] Team Validator', function () {
-	const formatID = 'gen8legendsag';
-
 	it('should change abilities to correct ones', function () {
 		const team = [
 			{species: 'cherrim', ability: 'honeygather', moves: ['rest']},
-			{species: 'regigigas', ability: 'honeygather', moves: ['rest']},
-			{species: 'magikarp', ability: 'honeygather', moves: ['splash']},
-			{species: 'cherrim', moves: ['rest']},
 			{species: 'regigigas', moves: ['rest']},
-			{species: 'magikarp', moves: ['splash']},
+			{species: 'magikarp', ability: 'honeygather', moves: ['splash']},
 		];
 		assert.legalTeam(team, formatID);
 		assert.equal(team[0].ability, 'Flower Gift');
 		assert.equal(team[1].ability, 'Slow Start');
 		assert.equal(team[2].ability, 'No Ability');
-		assert.equal(team[3].ability, 'Flower Gift');
-		assert.equal(team[4].ability, 'Slow Start');
-		assert.equal(team[5].ability, 'No Ability');
 	});
 
 	it('should remove items', function () {
