@@ -14,11 +14,6 @@ export const Scripts: ModdedBattleScriptsData = {
 			delete this.modData('Pokedex', i).requiredItem;
 			delete this.modData('Pokedex', i).requiredItems;
 		}
-		for (const i in this.data.FormatsData) {
-			if (this.modData('FormatsData', i).isNonstandard === null) {
-				this.modData('FormatsData', i).doublesTier = this.modData('FormatsData', i).tier;
-			}
-		}
 		for (const i in this.data.Moves) {
 			const moveData = this.modData('Moves', i);
 			moveData.noPPBoosts = true;
@@ -1114,7 +1109,92 @@ export const Scripts: ModdedBattleScriptsData = {
 	},
 	pokemon: {
 		/**
+		 * Hidden Power has no type.
+		 */
+		getMoves(lockedMove, restrictData) {
+			if (lockedMove) {
+				lockedMove = toID(lockedMove);
+				this.trapped = true;
+				if (lockedMove === 'recharge') {
+					return [{
+						move: 'Recharge',
+						id: 'recharge',
+					}];
+				}
+				for (const moveSlot of this.moveSlots) {
+					if (moveSlot.id !== lockedMove) continue;
+					return [{
+						move: moveSlot.move,
+						id: moveSlot.id,
+					}];
+				}
+				// does this happen?
+				return [{
+					move: this.battle.dex.moves.get(lockedMove).name,
+					id: lockedMove,
+				}];
+			}
+			const moves = [];
+			let hasValidMove = false;
+			for (const moveSlot of this.moveSlots) {
+				let moveName = moveSlot.move;
+				if (moveSlot.id === 'hiddenpower') {
+					moveName = 'Hidden Power';
+				} else if (moveSlot.id === 'return' || moveSlot.id === 'frustration') {
+					const basePowerCallback = this.battle.dex.moves.get(moveSlot.id).basePowerCallback as (pokemon: Pokemon) => number;
+					moveName += ' ' + basePowerCallback(this);
+				}
+				let target = moveSlot.target;
+				switch (moveSlot.id) {
+				case 'curse':
+					if (!this.hasType('Ghost')) {
+						target = this.battle.dex.moves.get('curse').nonGhostTarget;
+					}
+					break;
+				case 'pollenpuff':
+					// Heal Block only prevents Pollen Puff from targeting an ally when the user has Heal Block
+					if (this.volatiles['healblock']) {
+						target = 'adjacentFoe';
+					}
+					break;
+				case 'terastarstorm':
+					if (this.species.name === 'Terapagos-Stellar') {
+						target = 'allAdjacentFoes';
+					}
+					break;
+				}
+				let disabled = moveSlot.disabled;
+				if (this.volatiles['dynamax']) {
+					// if each of a Pokemon's base moves are disabled by one of these effects, it will Struggle
+					const canCauseStruggle = ['Encore', 'Disable', 'Taunt', 'Assault Vest', 'Belch', 'Stuff Cheeks'];
+					disabled = this.maxMoveDisabled(moveSlot.id) || disabled && canCauseStruggle.includes(moveSlot.disabledSource!);
+				} else if (
+					(moveSlot.pp <= 0 && !this.volatiles['partialtrappinglock']) || disabled &&
+					this.side.active.length >= 2 && this.battle.actions.targetTypeChoices(target!)
+				) {
+					disabled = true;
+				}
+
+				if (!disabled) {
+					hasValidMove = true;
+				} else if (disabled === 'hidden' && restrictData) {
+					disabled = false;
+				}
+
+				moves.push({
+					move: moveName,
+					id: moveSlot.id,
+					pp: moveSlot.pp,
+					maxpp: moveSlot.maxpp,
+					target,
+					disabled,
+				});
+			}
+			return hasValidMove ? moves : [];
+		},
+		/**
 		 * Use entry.commanding to inform the client which Pokemon are not going to act.
+		 * Hidden Power has no type.
 		 */
 		getSwitchRequestData(forAlly?: boolean) {
 			const entry: AnyObject = {
@@ -1131,7 +1211,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				},
 				moves: this[forAlly ? 'baseMoves' : 'moves'].map(move => {
 					if (move === 'hiddenpower') {
-						return move + toID(this.hpType) + (this.battle.gen < 6 ? '' : this.hpPower);
+						return move;
 					}
 					if (move === 'frustration' || move === 'return') {
 						const basePowerCallback = this.battle.dex.moves.get(move).basePowerCallback as (pokemon: Pokemon) => number;

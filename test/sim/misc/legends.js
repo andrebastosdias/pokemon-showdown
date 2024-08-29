@@ -89,8 +89,6 @@ describe('[Gen 8 Legends] Dex data', function () {
 	it(`should have valid Pokedex entries`, function () {
 		for (const species of dex.species.all()) {
 			if (!existenceFunction(species)) continue;
-			assert(species.tier === species.doublesTier || species.baseSpecies,
-				`${species.name} has ${species.tier} and ${species.doublesTier} as tiering values`);
 			if (species.gen) {
 				assert(species.gen <= dex.gen, `${species.name} is from gen ${species.gen}`);
 			}
