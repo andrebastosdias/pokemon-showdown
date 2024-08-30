@@ -86,6 +86,11 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 		onResidualOrder: 13,
 		onResidual(target) {
 			// damage is recalculated every time because of Arceus-Legend's type changes
+			if (!target.runImmunity(this.effectState.type)) {
+				// this only happens if Arceus-Legend is hit by spikes and then changes to a Flying type
+				this.damage(0, target);
+				return;
+			}
 			let typeMod = this.dex.getEffectiveness(this.effectState.type, target);
 			typeMod = this.clampIntRange(typeMod, -2, 2);
 			let typeModMultiplier = 1;
