@@ -18,7 +18,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		desc: "Raises the user's Defense by 2 stages.",
 		shortDesc: "Raises the user's Defense by 2.",
-		volatileStatus: "guardboost",
+		volatileStatus: 'guardboost',
 		boosts: null,
 	},
 	acidspray: {
@@ -27,7 +27,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "100% chance to lower the target's Sp. Def by 2.",
 		secondary: {
 			chance: 50,
-			volatileStatus: "guarddrop",
+			volatileStatus: 'guarddrop',
 		},
 	},
 	acrobatics: {
@@ -180,7 +180,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		boosts: null,
 		secondary: {
 			chance: 100,
-			volatileStatus: "powerdrop",
+			volatileStatus: 'powerdrop',
 		},
 	},
 	banefulbunker: {
@@ -200,7 +200,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		onBasePower() {},
 		secondary: {
 			chance: 30,
-			status: "psn",
+			status: 'psn',
 		},
 		gen: 8,
 	},
@@ -252,7 +252,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 15,
 		secondary: {
 			chance: 30,
-			status: "frz",
+			status: 'frz',
 		},
 		gen: 8,
 	},
@@ -273,7 +273,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 5,
 		secondary: {
 			chance: 30,
-			status: "frz",
+			status: 'frz',
 		},
 		gen: 8,
 	},
@@ -285,7 +285,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "10% chance to freeze foe(s). Can't miss in Hail.",
 		secondary: {
 			chance: 30,
-			status: "frz",
+			status: 'frz',
 		},
 	},
 	block: {
@@ -378,7 +378,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "10% chance to lower the target's Sp. Def by 1.",
 		secondary: {
 			chance: 20,
-			volatileStatus: "guarddrop",
+			volatileStatus: 'guarddrop',
 		},
 	},
 	bulkup: {
@@ -438,7 +438,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		onAfterSubDamage() {},
 		secondary: {
 			chance: 100,
-			volatileStatus: "splinters",
+			volatileStatus: 'splinters',
 		},
 		gen: 8,
 	},
@@ -458,7 +458,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		secondary: {
 			chance: 50,
 			self: {
-				volatileStatus: "powerboost",
+				volatileStatus: 'powerboost',
 			},
 		},
 	},
@@ -496,7 +496,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		desc: "Lowers the user's Defense and Special Defense by 1 stage.",
 		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
 		self: {
-			volatileStatus: "guarddrop",
+			volatileStatus: 'guarddrop',
 		},
 	},
 	coaching: {
@@ -585,7 +585,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 15,
 		secondary: {
 			chance: 20,
-			status: "psn",
+			status: 'psn',
 		},
 	},
 	crunch: {
@@ -595,7 +595,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 10,
 		secondary: {
 			chance: 20,
-			volatileStatus: "guarddrop",
+			volatileStatus: 'guarddrop',
 		},
 	},
 	crushclaw: {
@@ -722,7 +722,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		desc: "Hits twice. If the first hit breaks the target's substitute, it will take damage for the second hit.",
 		shortDesc: "Hits 2 times in one turn.",
 		multihit: 1,
-		volatileStatus: "primed",
+		volatileStatus: 'primed',
 		target: "self",
 	},
 	doubleironbash: {
@@ -743,7 +743,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		desc: "Lowers the user's Special Attack by 2 stages.",
 		shortDesc: "Lowers the user's Sp. Atk by 2.",
 		self: {
-			volatileStatus: "powerdrop",
+			volatileStatus: 'powerdrop',
 		},
 	},
 	dragonascent: {
@@ -837,7 +837,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "10% chance to lower the target's Sp. Def by 1.",
 		secondary: {
 			chance: 20,
-			volatileStatus: "guarddrop",
+			volatileStatus: 'guarddrop',
 		},
 	},
 	earthquake: {
@@ -878,7 +878,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "10% chance to burn the target.",
 		secondary: {
 			chance: 30,
-			status: "brn",
+			status: 'brn',
 		},
 	},
 	encore: {
@@ -900,7 +900,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "10% chance to lower the target's Sp. Def by 1.",
 		secondary: {
 			chance: 20,
-			volatileStatus: "guarddrop",
+			volatileStatus: 'guarddrop',
 		},
 	},
 	entrainment: {
@@ -1008,7 +1008,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "10% chance to burn the target.",
 		secondary: {
 			chance: 20,
-			status: "brn",
+			status: 'brn',
 		},
 	},
 	firefang: {
@@ -1017,7 +1017,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "10% chance to burn. 10% chance to flinch.",
 		secondary: {
 			chance: 20,
-			status: "brn",
+			status: 'brn',
 		},
 		secondaries: null,
 	},
@@ -1036,7 +1036,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 10,
 		secondary: {
 			chance: 30,
-			status: "brn",
+			status: 'brn',
 		},
 	},
 	firespin: {
@@ -1071,7 +1071,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 10,
 		secondary: {
 			chance: 20,
-			status: "brn",
+			status: 'brn',
 		},
 	},
 	flamewheel: {
@@ -1081,7 +1081,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 20,
 		secondary: {
 			chance: 30,
-			status: "brn",
+			status: 'brn',
 		},
 	},
 	flareblitz: {
@@ -1092,7 +1092,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 5,
 		secondary: {
 			chance: 20,
-			status: "brn",
+			status: 'brn',
 		},
 	},
 	flashcannon: {
@@ -1101,7 +1101,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "10% chance to lower the target's Sp. Def by 1.",
 		secondary: {
 			chance: 20,
-			volatileStatus: "guarddrop",
+			volatileStatus: 'guarddrop',
 		},
 	},
 	flatter: {
@@ -1356,7 +1356,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
 		isNonstandard: null,
 		self: {
-			volatileStatus: "guarddrop",
+			volatileStatus: 'guarddrop',
 		},
 		gen: 8,
 	},
@@ -1495,7 +1495,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "Power doubles with each hit. Repeats for 5 turns.",
 		isNonstandard: null,
 		self: {
-			volatileStatus: "fixated",
+			volatileStatus: 'fixated',
 		},
 		onModifyMove() {},
 		onAfterMove() {},
@@ -1508,7 +1508,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "10% chance to freeze the target.",
 		secondary: {
 			chance: 20,
-			status: "frz",
+			status: 'frz',
 		},
 	},
 	iceburn: {
@@ -1521,7 +1521,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "10% chance to freeze. 10% chance to flinch.",
 		secondary: {
 			chance: 20,
-			status: "frz",
+			status: 'frz',
 		},
 		secondaries: null,
 	},
@@ -1532,7 +1532,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 10,
 		secondary: {
 			chance: 30,
-			status: "frz",
+			status: 'frz',
 		},
 	},
 	iceshard: {
@@ -1597,7 +1597,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		desc: "Raises the user's Defense by 2 stages.",
 		shortDesc: "Raises the user's Defense by 2.",
 		pp: 20,
-		volatileStatus: "guardboost",
+		volatileStatus: 'guardboost',
 		boosts: null,
 	},
 	ironhead: {
@@ -1614,7 +1614,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 5,
 		secondary: {
 			chance: 20,
-			volatileStatus: "guarddrop",
+			volatileStatus: 'guarddrop',
 		},
 	},
 	jawlock: {
@@ -1701,7 +1701,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		desc: "Lowers the user's Special Attack by 2 stages.",
 		shortDesc: "Lowers the user's Sp. Atk by 2.",
 		self: {
-			volatileStatus: "powerdrop",
+			volatileStatus: 'powerdrop',
 		},
 	},
 	leaftornado: {
@@ -1741,7 +1741,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "20% chance to lower the target's Defense by 1.",
 		secondary: {
 			chance: 20,
-			volatileStatus: "guarddrop",
+			volatileStatus: 'guarddrop',
 		},
 	},
 	lockon: {
@@ -1812,7 +1812,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		volatileStatus: undefined,
 		secondary: {
 			chance: 100,
-			status: "brn",
+			status: 'brn',
 		},
 	},
 	magneticflux: {
@@ -2006,7 +2006,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 10,
 		secondary: {
 			chance: 20,
-			volatileStatus: "powerdrop",
+			volatileStatus: 'powerdrop',
 		},
 	},
 	moongeistbeam: {
@@ -2037,7 +2037,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		isNonstandard: null,
 		pp: 15,
 		self: {
-			volatileStatus: "obscured",
+			volatileStatus: 'obscured',
 		},
 		secondary: null,
 	},
@@ -2056,7 +2056,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "100% chance to lower the target's accuracy by 1.",
 		pp: 20,
 		self: {
-			volatileStatus: "obscured",
+			volatileStatus: 'obscured',
 		},
 		secondary: null,
 	},
@@ -2071,7 +2071,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "100% chance to lower the target's Sp. Atk by 1.",
 		secondary: {
 			chance: 100,
-			volatileStatus: "powerdrop",
+			volatileStatus: 'powerdrop',
 		},
 	},
 	mysticalpower: {
@@ -2098,7 +2098,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		desc: "Raises the user's Special Attack by 2 stages.",
 		shortDesc: "Raises the user's Sp. Atk by 2.",
-		volatileStatus: "powerboost",
+		volatileStatus: 'powerboost',
 		boosts: null,
 	},
 	naturepower: {
@@ -2143,7 +2143,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "50% chance to lower the target's accuracy by 1.",
 		pp: 15,
 		self: {
-			volatileStatus: "obscured",
+			volatileStatus: 'obscured',
 		},
 		secondary: null,
 	},
@@ -2178,7 +2178,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		desc: "The user spends two or three turns locked into this move and becomes confused immediately after its move on the last turn of the effect if it is not already. This move targets an opposing Pokemon at random on each turn. If the user is prevented from moving, is asleep at the beginning of a turn, or the attack is not successful against the target on the first turn of the effect or the second turn of a three-turn effect, the effect ends without causing confusion. If this move is called by Sleep Talk and the user is asleep, the move is used for one turn and does not confuse the user.",
 		shortDesc: "Lasts 2-3 turns. Confuses the user afterwards.",
 		self: {
-			volatileStatus: "fixated",
+			volatileStatus: 'fixated',
 		},
 		onAfterMove() {},
 		target: "any",
@@ -2193,7 +2193,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		desc: "Lowers the user's Special Attack by 2 stages.",
 		shortDesc: "Lowers the user's Sp. Atk by 2.",
 		self: {
-			volatileStatus: "powerdrop",
+			volatileStatus: 'powerdrop',
 		},
 	},
 	painsplit: {
@@ -2235,7 +2235,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		desc: "The user spends two or three turns locked into this move and becomes confused immediately after its move on the last turn of the effect if it is not already. This move targets an opposing Pokemon at random on each turn. If the user is prevented from moving, is asleep at the beginning of a turn, or the attack is not successful against the target on the first turn of the effect or the second turn of a three-turn effect, the effect ends without causing confusion. If this move is called by Sleep Talk and the user is asleep, the move is used for one turn and does not confuse the user.",
 		shortDesc: "Lasts 2-3 turns. Confuses the user afterwards.",
 		self: {
-			volatileStatus: "fixated",
+			volatileStatus: 'fixated',
 		},
 		onAfterMove() {},
 		target: "any",
@@ -2257,7 +2257,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		multihit: 1,
 		secondary: {
 			chance: 100,
-			volatileStatus: "splinters",
+			volatileStatus: 'splinters',
 		},
 	},
 	plasmafists: {
@@ -2275,7 +2275,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "10% chance to lower the target's Attack by 1.",
 		secondary: {
 			chance: 20,
-			volatileStatus: "powerdrop",
+			volatileStatus: 'powerdrop',
 		},
 	},
 	pluck: {
@@ -2313,7 +2313,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 20,
 		secondary: {
 			chance: 50,
-			status: "psn",
+			status: 'psn',
 		},
 	},
 	poisontail: {
@@ -2338,7 +2338,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "10% chance to freeze the foe(s).",
 		secondary: {
 			chance: 30,
-			status: "frz",
+			status: 'frz',
 		},
 	},
 	powergem: {
@@ -2352,7 +2352,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		desc: "The user swaps its Attack and Defense stats, and stat stage changes remain on their respective stats. This move can be used again to swap the stats back. If the user uses Baton Pass, the replacement will have its Attack and Defense stats swapped if the effect is active. If the user has its stats recalculated by changing forme while its stats are swapped, this effect is ignored but is still active for the purposes of Baton Pass.",
 		shortDesc: "Switches user's Attack and Defense stats.",
 		isNonstandard: null,
-		volatileStatus: "stanceswap",
+		volatileStatus: 'stanceswap',
 		condition: {},
 		gen: 8,
 	},
@@ -2407,7 +2407,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "10% chance to lower the target's Sp. Def by 1.",
 		secondary: {
 			chance: 20,
-			volatileStatus: "guarddrop",
+			volatileStatus: 'guarddrop',
 		},
 	},
 	psychicfangs: {
@@ -2440,7 +2440,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		secondary: {
 			chance: 100,
 			self: {
-				volatileStatus: "guardboost",
+				volatileStatus: 'guardboost',
 			},
 		},
 		gen: 8,
@@ -2492,7 +2492,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "Lasts 2-3 turns. Confuses the user afterwards.",
 		isNonstandard: null,
 		self: {
-			volatileStatus: "fixated",
+			volatileStatus: 'fixated',
 		},
 		onAfterMove() {},
 		target: "any",
@@ -2601,7 +2601,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 20,
 		secondary: {
 			chance: 50,
-			volatileStatus: "guarddrop",
+			volatileStatus: 'guarddrop',
 		},
 	},
 	rockthrow: {
@@ -2627,7 +2627,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		desc: "If this move is successful, the user is locked into this move and cannot make another move until it misses, 5 turns have passed, or the attack cannot be used. Power doubles with each successful hit of this move and doubles again if Defense Curl was used previously by the user. If this move is called by Sleep Talk, the move is used for one turn.",
 		shortDesc: "Power doubles with each hit. Repeats for 5 turns.",
 		self: {
-			volatileStatus: "fixated",
+			volatileStatus: 'fixated',
 		},
 		onModifyMove() {},
 		onAfterMove() {},
@@ -2662,7 +2662,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 5,
 		secondary: {
 			chance: 30,
-			status: "brn",
+			status: 'brn',
 		},
 		gen: 8,
 	},
@@ -2718,7 +2718,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		isNonstandard: null,
 		secondary: {
 			chance: 20,
-			volatileStatus: "guarddrop",
+			volatileStatus: 'guarddrop',
 		},
 	},
 	seismictoss: {
@@ -2740,7 +2740,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 10,
 		secondary: {
 			chance: 20,
-			volatileStatus: "guarddrop",
+			volatileStatus: 'guarddrop',
 		},
 	},
 	shadowbone: {
@@ -2759,7 +2759,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		desc: "If this move is successful, it breaks through the target's Baneful Bunker, Detect, King's Shield, Protect, or Spiky Shield for this turn, allowing other Pokemon to attack the target normally. If the target's side is protected by Crafty Shield, Mat Block, Quick Guard, or Wide Guard, that protection is also broken for this turn and other Pokemon may attack the target's side normally. This attack charges on the first turn and executes on the second. On the first turn, the user avoids all attacks. If the user is holding a Power Herb, the move completes in one turn.",
 		shortDesc: "Disappears turn 1. Hits turn 2. Breaks protection.",
 		self: {
-			volatileStatus: "obscured",
+			volatileStatus: 'obscured',
 		},
 		onModifyMove(move, pokemon) {
 			if (pokemon.species.id === 'giratinaorigin') {
@@ -2927,7 +2927,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "100% chance to lower the foe(s) Sp. Atk by 1.",
 		secondary: {
 			chance: 100,
-			volatileStatus: "powerdrop",
+			volatileStatus: 'powerdrop',
 		},
 	},
 	snipeshot: {
@@ -2991,7 +2991,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		condition: {},
 		secondary: {
 			chance: 100,
-			volatileStatus: "splinters",
+			volatileStatus: 'splinters',
 		},
 		target: "any",
 	},
@@ -3052,7 +3052,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		condition: {},
 		secondary: {
 			chance: 100,
-			volatileStatus: "splinters",
+			volatileStatus: 'splinters',
 		},
 		target: "any",
 	},
@@ -3103,7 +3103,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		onAfterSubDamage() {},
 		secondary: {
 			chance: 100,
-			volatileStatus: "splinters",
+			volatileStatus: 'splinters',
 		},
 		gen: 8,
 	},
@@ -3138,7 +3138,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "100% chance to lower the foe(s) Sp. Atk by 1.",
 		secondary: {
 			chance: 100,
-			volatileStatus: "powerdrop",
+			volatileStatus: 'powerdrop',
 		},
 	},
 	stuffcheeks: {
@@ -3216,7 +3216,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		desc: "Raises the user's Attack by 2 stages.",
 		shortDesc: "Raises the user's Attack by 2.",
-		volatileStatus: "powerboost",
+		volatileStatus: 'powerboost',
 		boosts: null,
 	},
 	synthesis: {
@@ -3328,7 +3328,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 10,
 		secondary: {
 			chance: 20,
-			status: "par",
+			status: 'par',
 		},
 	},
 	thundercage: {
@@ -3341,7 +3341,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "10% chance to paralyze. 10% chance to flinch.",
 		secondary: {
 			chance: 20,
-			status: "par",
+			status: 'par',
 		},
 		secondaries: null,
 	},
@@ -3356,7 +3356,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 10,
 		secondary: {
 			chance: 30,
-			status: "par",
+			status: 'par',
 		},
 	},
 	thundershock: {
@@ -3366,7 +3366,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 25,
 		secondary: {
 			chance: 30,
-			status: "par",
+			status: 'par',
 		},
 	},
 	tickle: {
@@ -3432,11 +3432,11 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 15,
 		critRatio: 1,
 		self: {
-			volatileStatus: "focusenergy",
+			volatileStatus: 'focusenergy',
 		},
 		secondary: {
 			chance: 100,
-			volatileStatus: "guarddrop",
+			volatileStatus: 'guarddrop',
 		},
 		secondaries: null,
 		gen: 8,
@@ -3527,7 +3527,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 5,
 		secondary: {
 			chance: 30,
-			status: "par",
+			status: 'par',
 		},
 	},
 	waterfall: {
@@ -3594,7 +3594,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 5,
 		secondary: {
 			chance: 30,
-			status: "par",
+			status: 'par',
 		},
 		gen: 8,
 	},
@@ -3606,7 +3606,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 10,
 		secondary: {
 			chance: 20,
-			status: "par",
+			status: 'par',
 		},
 	},
 	willowisp: {
