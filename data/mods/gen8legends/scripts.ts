@@ -1249,6 +1249,9 @@ export const Scripts: ModdedBattleScriptsData = {
 		setStatus(status, source, sourceEffect, ignoreImmunities) {
 			if (!this.hp) return false;
 			status = this.battle.dex.conditions.get(status);
+			if (status.id === 'tox') {
+				status = this.battle.dex.conditions.get('psn');
+			}
 			if (this.battle.event) {
 				if (!source) source = this.battle.event.source;
 				if (!sourceEffect) sourceEffect = this.battle.effect;
