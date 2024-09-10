@@ -178,10 +178,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 20,
 		priority: 0,
 		boosts: null,
-		secondary: {
-			chance: 100,
-			volatileStatus: 'powerdrop',
-		},
+		volatileStatus: 'powerdrop',
 	},
 	banefulbunker: {
 		inherit: true,
@@ -635,10 +632,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "Darkrai: Causes the foe(s) to fall asleep.",
 		isNonstandard: null,
 		onTry() {},
-		secondary: {
-			chance: 100,
-			volatileStatus: 'guarddrop',
-		},
+		volatileStatus: 'guarddrop',
 	},
 	dazzlinggleam: {
 		inherit: true,
