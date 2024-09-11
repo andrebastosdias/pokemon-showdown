@@ -458,7 +458,7 @@ export class ActionTimeQueue {
 	}
 
 	sendActionOrder() {
-		const listCopy = this.list.map(item => ({ ...item }));
+		const listCopy = this.list.map(item => ({...item}));
 		let buf = '';
 		for (let i = 0; i < 6; i++) {
 			const actingPokemonActionTime = listCopy[0];
