@@ -596,7 +596,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				throw new Error(`Invalid switch position ${pos} / ${side.active.length}`);
 			}
 			const oldActive = side.active[pos];
-			this.battle.actionTimeQueue.insertPokemon(pokemon, oldActive ? oldActive : null);
+			this.battle.actionTimeQueue.push(pokemon, oldActive ? oldActive : null);
 			const unfaintedActive = oldActive?.hp ? oldActive : null;
 			if (unfaintedActive) {
 				oldActive.beingCalledBack = true;
@@ -716,7 +716,7 @@ export const Scripts: ModdedBattleScriptsData = {
 
 			this.battle.setActiveMove(move, pokemon, target);
 
-			this.battle.actionTimeQueue.updateAfterMove(move, pokemon, target);
+			this.battle.actionTimeQueue.updateMoveSource(move, pokemon);
 
 			/* if (pokemon.moveThisTurn) {
 				// THIS IS PURELY A SANITY CHECK
@@ -789,6 +789,8 @@ export const Scripts: ModdedBattleScriptsData = {
 			if (move.flags['cantusetwice'] && pokemon.removeVolatile(move.id)) {
 				this.battle.add('-hint', `Some effects can force a Pokemon to use ${move.name} again in a row.`);
 			}
+
+			if (pokemon.moveThisTurnResult) this.battle.actionTimeQueue.updateMoveTarget(move, target);
 
 			// Dancer's activation order is completely different from any other event, so it's handled separately
 			if (move.flags['dance'] && moveDidSomething && !move.isExternal) {

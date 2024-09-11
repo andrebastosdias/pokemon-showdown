@@ -447,25 +447,52 @@ export class ActionTimeQueue {
 		this.battle.speedSort(this.list, this.compareActionTime);
 
 		const actingPokemonActionTime = this.list[0];
+		const actingActionTime = actingPokemonActionTime.actionTime;
 		for (const pokemonActionTime of this.list) {
-			pokemonActionTime.actionTime -= actingPokemonActionTime.actionTime;
+			pokemonActionTime.actionTime -= actingActionTime;
 		}
 		this.actingPokemon = actingPokemonActionTime.pokemon;
+
+		this.sendActionOrder();
 		return actingPokemonActionTime.pokemon;
 	}
 
-	updateAfterMove(move: ActiveMove, source: Pokemon, target: Pokemon | null) {
-		const sourceActionTime = this.list.find(pokemonActionTime => pokemonActionTime.pokemon === target);
-		sourceActionTime!.actionTime += this.getDefaultActionTime(source) + this.getActionTimeModifier(move);
+	sendActionOrder() {
+		const listCopy = this.list.map(item => ({ ...item }));
+		let buf = '';
+		for (let i = 0; i < 6; i++) {
+			const actingPokemonActionTime = listCopy[0];
+			const pokemon = actingPokemonActionTime.pokemon;
+			buf += '<li class="result">';
+			buf += `<span class="col iconcol"><psicon pokemon="${pokemon.species.id}"/></span> `;
+			buf += `<span class="col pokemonnamecol" style="white-space: nowrap">${pokemon.species.name}</span>`;
+			buf += `<span class="col" style="display: inline-block; width: 26px; text-align: right; margin-right: 12px">${i === 0 ? '' : '+'}${actingPokemonActionTime.actionTime}</span>`;
+			buf += `<span class="col">${pokemon.side.name}</span>`;
+			buf += '</li>';
 
-		if (target) {
-			const targetActionTime = this.list.find(pokemonActionTime => pokemonActionTime.pokemon === target);
-			targetActionTime!.actionTime += this.getActionTimeModifierTarget(move);
+			actingPokemonActionTime.actionTime += this.getDefaultActionTime(actingPokemonActionTime.pokemon);
+			this.battle.speedSort(listCopy, this.compareActionTime);
 		}
+		this.battle.add(`raw|<div class="infobox"><details open><summary>Action Order (speed ties are not pre-determined)</summary><ul class="utilichart">${buf}<li style="clear: both"></li></ul></details></div>`);
 	}
 
-	insertPokemon(pokemon: Pokemon, oldActive: Pokemon | null) {
-		if (oldActive) this.removePokemon(oldActive); // oldActive ? this.removePokemon(oldActive) : null;
+	updateMoveSource(move: ActiveMove, source: Pokemon) {
+		const sourceActionTime = this.find(source);
+		sourceActionTime!.actionTime += this.getDefaultActionTime(source) + this.getActionTimeModifier(move);
+	}
+
+	updateMoveTarget(move: ActiveMove, target: Pokemon | null) {
+		if (!target) return;
+		const targetActionTime = this.find(target);
+		targetActionTime!.actionTime += this.getActionTimeModifierTarget(move);
+	}
+
+	find(pokemon: Pokemon) {
+		return this.list.find(pokemonActionTime => pokemonActionTime.pokemon === pokemon);
+	}
+
+	push(pokemon: Pokemon, oldActive: Pokemon | null) {
+		if (oldActive) this.pop(oldActive); // oldActive ? this.removePokemon(oldActive) : null;
 
 		this.list.push({
 			pokemon,
@@ -474,7 +501,7 @@ export class ActionTimeQueue {
 		});
 	}
 
-	removePokemon(pokemon: Pokemon): PokemonActionTime | null {
+	pop(pokemon: Pokemon): PokemonActionTime | null {
 		for (let i = 0; i < this.list.length; i++) {
 			if (this.list[i].pokemon === pokemon) {
 				return this.list.splice(i, 1)[0];
@@ -484,7 +511,6 @@ export class ActionTimeQueue {
 	}
 
 	updateSpeed() {
-		this.battle.updateSpeed();
 		for (const pokemonActionTime of this.list) {
 			pokemonActionTime.speed = pokemonActionTime.pokemon.getStat('spe', false, false);
 		}
@@ -536,7 +562,7 @@ export class ActionTimeQueue {
 
 	compareActionTime(a: PokemonActionTime, b: PokemonActionTime) {
 		return -(b.actionTime - a.actionTime) ||
-			(b.pokemon.getStat('spe', false, false) - a.pokemon.getStat('spe', false, false)) ||
+			(b.speed - a.speed) ||
 			0;
 	}
 }
