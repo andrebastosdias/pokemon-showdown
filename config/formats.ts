@@ -1018,7 +1018,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 
 		mod: 'gen8legends',
 		searchShow: false,
-		ruleset: ['Little Cup', 'Standard'],
+		ruleset: ['Little Cup', 'Standard', 'Evasion Moves Clause'],
 	},
 	{
 		name: "[Gen 8 Legends] Monotype",
