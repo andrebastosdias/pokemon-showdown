@@ -85,8 +85,9 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 		},
 		onResidualOrder: 13,
 		onResidual(target) {
+			const tr = this.trunc;
 			// damage is recalculated every time because of Arceus-Legend's type changes
-			if (!target.runImmunity(this.effectState.type)) {
+			if (!this.dex.getImmunity(this.effectState.type, target)) {
 				// this only happens if Arceus-Legend is hit by spikes and then changes to a Flying type
 				this.damage(0, target);
 				return;
@@ -98,8 +99,9 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 			else if (typeMod === 2) typeModMultiplier = 2.5;
 			else if (typeMod === -1) typeModMultiplier = 0.5;
 			else if (typeMod === -2) typeModMultiplier = 0.4;
-			const damage = this.trunc(this.effectState.baseDamage * typeModMultiplier);
-			this.damage(damage, target);
+			let damage = tr(this.effectState.baseDamage * typeModMultiplier);
+			if (!damage) damage = 1;
+			this.damage(tr(damage, 16), target);
 		},
 	},
 	obscured: {
