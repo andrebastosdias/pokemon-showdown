@@ -1385,14 +1385,14 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 	},
 	dialga: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	dialgaorigin: {
 		isNonstandard: null,
 		tier: "OU",
 	},
 	palkia: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	palkiaorigin: {
 		isNonstandard: null,
@@ -1408,14 +1408,14 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 	},
 	giratinaorigin: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	cresselia: {
-		tier: "Uber",
+		tier: "OU",
 	},
 	phione: {
 		isNonstandard: null,
-		tier: "OU",
+		tier: "(OU)",
 	},
 	manaphy: {
 		isNonstandard: null,
