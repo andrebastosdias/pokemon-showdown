@@ -982,8 +982,8 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 			'Last Respects', 'Rage Fist', 'Shed Tail',
 		],
 		restricted: [
-			'Acupressure', 'Belly Drum', 'Clangorous Soul', 'Dire Claw', 'Dragon Energy', 'Electro Shot', 'Extreme Speed', 'Fillet Away', 'Gigaton Hammer',
-			'No Retreat', 'Revival Blessing', 'Shell Smash', 'Shift Gear', 'Triple Arrows', 'V-create', 'Victory Dance', 'Wicked Blow',
+			'Acupressure', 'Belly Drum', 'Clangorous Soul', 'Ceaseless Edge', 'Dire Claw', 'Dragon Energy', 'Electro Shot', 'Extreme Speed', 'Fillet Away',
+			'Gigaton Hammer', 'No Retreat', 'Revival Blessing', 'Shell Smash', 'Shift Gear', 'Triple Arrows', 'V-create', 'Victory Dance', 'Wicked Blow',
 		],
 	},
 	{
@@ -3097,7 +3097,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		gameType: 'doubles',
 		searchShow: false,
 		ruleset: ['Standard', 'Evasion Abilities Clause'],
-		banlist: ['AG', 'Uber', 'Soul Dew', 'Dark Void'],
+		banlist: ['AG', 'Uber', 'Soul Dew', 'Dark Void', 'Thunder Wave'],
 		unbanlist: ['Manaphy', 'Mew', 'Salamence', 'Wobbuffet', 'Wynaut'],
 	},
 	{
@@ -3106,7 +3106,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		gameType: 'doubles',
 		searchShow: false,
 		ruleset: ['Standard', '!Switch Priority Clause Mod'],
-		banlist: ['Uber', 'Quick Claw', 'Soul Dew', 'Swagger'],
+		banlist: ['Uber', 'Quick Claw', 'Soul Dew', 'Explosion', 'Self-Destruct', 'Swagger'],
 		unbanlist: ['Wobbuffet', 'Wynaut'],
 	},
 
