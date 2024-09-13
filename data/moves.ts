@@ -2511,7 +2511,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, metronome: 1},
-		chloroblastRecoil: [1, 2],
+		// Recoil implemented in battle-actions.ts
 		secondary: null,
 		target: "normal",
 		type: "Grass",

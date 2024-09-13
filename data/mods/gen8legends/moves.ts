@@ -2725,7 +2725,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		desc: "The user faints after using this move, even if this move fails for having no target. This move is prevented from executing if any active Pokemon has the Damp Ability.",
 		shortDesc: "Hits adjacent Pokemon. The user faints.",
 		selfdestruct: false,
-		chloroblastRecoil: [4, 5],
+		// Recoil implemented in battle-actions.ts
 	},
 	shadowball: {
 		inherit: true,
@@ -3061,7 +3061,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "User loses 50% max HP.",
 		mindBlownRecoil: false,
 		onAfterMove() {},
-		chloroblastRecoil: [1, 2],
+		// Recoil implemented in battle-actions.ts
 	},
 	steelroller: {
 		inherit: true,
