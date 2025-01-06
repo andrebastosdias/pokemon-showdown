@@ -3771,6 +3771,88 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		banlist: ['Soul Dew'],
 	},
 	{
+		name: "[Gen 6] Inverse Battle",
+		desc: `The type chart is inverted; weaknesses become resistances, while resistances and immunities become weaknesses.`,
+		mod: 'gen6',
+		searchShow: false,
+		ruleset: ['Standard', 'Inverse Mod', 'Swagger Clause'],
+		banlist: [
+			'Arceus', 'Blaziken', 'Darkrai', 'Deoxys', 'Deoxys-Attack', 'Deoxys-Defense', 'Deoxys-Speed', 'Diggersby', 'Gengar-Mega',
+			'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Hoopa-Unbound', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Lugia',
+			'Mewtwo', 'Palkia', 'Rayquaza', 'Reshiram', 'Salamence-Mega', 'Serperior', 'Shaymin-Sky', 'Snorlax', 'Xerneas', 'Yveltal',
+			'Zekrom', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
+		]
+	},
+	{
+		name: "[Gen 6] Sky Battle",
+		desc: `Most Flying types and Pokémon with the Ability Levitate are eligible, while certain moves are prohibited.`,
+		mod: 'gen6',
+		searchShow: false,
+		ruleset: ['Standard', 'Sky Battle Clause'],
+		banlist: ['Arceus-Flying', 'Giratina-Origin', 'Ho-Oh', 'Lugia', 'Rayquaza', 'Yveltal', 'Soul Dew'],
+		onValidateSet(set) {
+			const ineligiblePokemon = [
+				'Archen', 'Chatot', 'Delibird', 'Dodrio', 'Doduo', 'Ducklett', "Farfetch'd", 'Fletchling', 'Gengar', 'Hawlucha', 'Hoothoot', 'Murkrow', 'Natu', 'Pidgey', 'Pidove', 'Pinsir-Mega', 'Rufflet', 'Shaymin-Sky', 'Spearow', 'Starly', 'Taillow', 'Vullaby',
+			];
+			const ineligibleMoves = [
+				'Body Slam', 'Bulldoze', 'Dig', 'Dive', 'Earth Power', 'Earthquake', 'Electric Terrain', 'Fire Pledge', 'Fissure', 'Flying Press', 'Frenzy Plant', 'Geomancy', 'Grass Knot', 'Grass Pledge', 'Grassy Terrain', 'Gravity', 'Heat Crash', 'Heavy Slam', 'Ingrain', "Land's Wrath", 'Magnitude', 'Mat Block', 'Misty Terrain', 'Mud Sport', 'Muddy Water', 'Rototiller', 'Seismic Toss', 'Slam', 'Smack Down', 'Spikes', 'Stomp', 'Substitute', 'Surf', 'Thousand Arrows', 'Thousand Waves', 'Toxic Spikes', 'Water Pledge', 'Water Sport',
+			];
+
+			const dex = this.dex.mod('gen6xy');
+			const species = dex.species.get(set.species || set.name);
+			if (!species.types.includes('Flying') && set.ability !== 'Levitate') {
+				return [`${set.name}'s is not a Flying type and does not have the ability Levitate.`];
+			}
+			if (ineligiblePokemon.includes(species.name)) {
+				return [`${species.name} is ineligible for Sky Battles.`];
+			}
+
+			const problems: string[] = [];
+			const item = dex.items.get(set.item);
+			if (item.isNonstandard === 'Future') {
+				problems.push(`${set.name}'s item ${item.name} does not exist in XY.`);
+			}
+			for (const moveid of set.moves) {
+				const move = dex.moves.get(moveid);
+				if (move.isNonstandard === 'Future') {
+					problems.push(`${set.name}'s move ${move.name} does not exist in XY.`);
+				}
+				if (ineligibleMoves.includes(move.name)) {
+					problems.push(`${move.name} is ineligible for Sky Battles.`);
+				}
+			}
+			if(problems.length) return problems;
+		},
+		onModifyMove(move) {
+			if (move.id === 'metronome') {
+				move.onHit = function (pokemon) {
+					const dex = this.dex.mod('gen6xy');
+					const moves = dex.moves.all().filter(move => (
+						(!move.isNonstandard || move.isNonstandard === 'Unobtainable') &&
+						move.flags['metronome']
+					));
+					let randomMove = '';
+					if (moves.length) {
+						moves.sort((a, b) => a.num - b.num);
+						randomMove = this.sample(moves).id;
+					}
+					if (!randomMove) return false;
+					if ([
+						'bodyslam', 'bulldoze', 'dig', 'dive', 'earthpower', 'earthquake', 'electricterrain', 'firepledge', 'fissure', 'flyingpress', 'frenzyplant', 'geomancy', 'grassknot', 'grasspledge', 'grassyterrain', 'gravity', 'heatcrash', 'heavyslam', 'ingrain', 'landswrath', 'magnitude', 'matblock', 'mistyterrain', 'mudsport', 'muddywater', 'rototiller', 'seismictoss', 'slam', 'smackdown', 'spikes', 'stomp', 'substitute', 'surf', 'thousandarrows', 'thousandwaves', 'toxicspikes', 'waterpledge', 'watersport',
+					].includes(randomMove)) {
+						const movename = dex.moves.get(randomMove).name;
+						this.addMove('move', pokemon, movename, null + '|[from] move: Metronome');
+						this.add('-fail', pokemon);
+						this.attrLastMove('[still]');
+						this.hint(`Certain prohibited moves won't work in Sky Battles.`);
+						return false;
+					}
+					this.actions.useMove(randomMove, pokemon);
+				};
+			}
+		},
+	},
+	{
 		name: "[Gen 6] Custom Game",
 		mod: 'gen6',
 		searchShow: false,
