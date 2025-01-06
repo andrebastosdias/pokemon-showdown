@@ -228,8 +228,7 @@ export function rollTimer() {
 	void updateBadgeholders();
 	const time = Date.now();
 	const next = new Date();
-	next.setHours(next.getHours() + 1);
-	next.setMinutes(0, 0, 0);
+	next.setHours(next.getHours() + 1, 0, 0, 0);
 	updateTimeout = setTimeout(() => rollTimer(), next.getTime() - time);
 
 	const discussionRoom = Rooms.search('seasondiscussion');
@@ -300,7 +299,7 @@ export const pages: Chat.PageTable = {
 			);
 			for (const s of seasonsDesc) {
 				buf += `<h3>Season ${s}</h3><hr />`;
-				for (const f in data.badgeholders[season]) {
+				for (const f in data.badgeholders[s]) {
 					buf += `<a class="button" name="send" target="replace" href="/view-seasonladder-${f}-${s}">${Dex.formats.get(f).name}</a>`;
 				}
 				buf += `<br />`;
