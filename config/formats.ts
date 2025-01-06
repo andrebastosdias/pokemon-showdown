@@ -3788,7 +3788,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		desc: `Most Flying types and Pokémon with the Ability Levitate are eligible, while certain moves are prohibited.`,
 		mod: 'gen6',
 		searchShow: false,
-		ruleset: ['Standard', 'Sky Battle Clause'],
+		ruleset: ['Standard'],
 		banlist: ['Arceus-Flying', 'Giratina-Origin', 'Ho-Oh', 'Lugia', 'Rayquaza', 'Yveltal', 'Soul Dew'],
 		onValidateSet(set) {
 			const ineligiblePokemon = [
