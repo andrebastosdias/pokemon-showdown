@@ -611,7 +611,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 	},
 	unown: {
 		isNonstandard: null,
-		tier: "OU",
+		tier: "(OU)",
 	},
 	wobbuffet: {
 		isNonstandard: "Past",
