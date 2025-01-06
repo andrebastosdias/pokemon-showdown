@@ -1408,7 +1408,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 	},
 	giratinaorigin: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	cresselia: {
 		tier: "OU",
