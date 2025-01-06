@@ -3801,7 +3801,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 			const dex = this.dex.mod('gen6xy');
 			const species = dex.species.get(set.species || set.name);
 			if (!species.types.includes('Flying') && set.ability !== 'Levitate') {
-				return [`${set.name}'s is not a Flying type and does not have the ability Levitate.`];
+				return [`${species.name} is not a Flying type and does not have the ability Levitate.`];
 			}
 			if (ineligiblePokemon.includes(species.name)) {
 				return [`${species.name} is ineligible for Sky Battles.`];
@@ -3818,7 +3818,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 					problems.push(`${set.name}'s move ${move.name} does not exist in XY.`);
 				}
 				if (ineligibleMoves.includes(move.name)) {
-					problems.push(`${move.name} is ineligible for Sky Battles.`);
+					problems.push(`${set.name}'s move ${move.name} is ineligible for Sky Battles.`);
 				}
 			}
 			if(problems.length) return problems;
