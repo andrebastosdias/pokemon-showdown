@@ -3845,7 +3845,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 						this.add('-fail', pokemon);
 						this.attrLastMove('[still]');
 						this.hint(`Certain prohibited moves won't work in Sky Battles.`);
-						return false;
+						return;
 					}
 					this.actions.useMove(randomMove, pokemon);
 				};
