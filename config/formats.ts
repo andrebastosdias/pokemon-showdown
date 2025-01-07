@@ -777,6 +777,13 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		section: "Legends: Arceus",
 	},
 	{
+		name: "[Gen 8 Legends] Random Battle",
+		desc: `Randomized teams of level-balanced Pok&eacute;mon with sets that are generated to be competitively viable.`,
+		mod: 'gen8legends',
+		team: 'random',
+		ruleset: ['[Gen 8] Random Battle', '!PotD'],
+	},
+	{
 		name: "[Gen 8 Legends] OU",
 
 		mod: 'gen8legends',
