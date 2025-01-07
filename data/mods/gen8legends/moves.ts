@@ -1635,7 +1635,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			}
 			const newType = this.sample(bestTypes);
 			if (newType !== pokemon.species.types.join()) {
-				pokemon.formeChange('Arceus-' + newType, this.effect, false, '[msg]');
+				pokemon.formeChange('Arceus-' + newType, this.effect, false, '0', '[msg]');
 			}
 			move.type = newType;
 		},

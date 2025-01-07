@@ -353,6 +353,7 @@ export class Pokemon {
 		this.position = 0;
 		let displayedSpeciesName = this.species.name;
 		if (displayedSpeciesName === 'Greninja-Bond') displayedSpeciesName = 'Greninja';
+		if (displayedSpeciesName === 'Arceus-Legend') displayedSpeciesName = 'Arceus';
 		this.details = displayedSpeciesName + (this.level === 100 ? '' : ', L' + this.level) +
 			(this.gender === '' ? '' : ', ' + this.gender) + (this.set.shiny ? ', shiny' : '');
 
