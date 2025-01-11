@@ -312,13 +312,14 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	aurabreak: {
 		onStart(pokemon) {
-			if (this.suppressingAbility(pokemon)) return;
 			this.add('-ability', pokemon, 'Aura Break');
+			this.field.addPseudoWeather('aurabreak', pokemon, pokemon.getAbility());
 		},
-		onAnyTryPrimaryHit(target, source, move) {
-			if (target === source || move.category === 'Status') return;
-			move.hasAuraBreak = true;
+		onEnd() {
+			this.field.removePseudoWeather('aurabreak');
 		},
+		pseudoWeather: 'aurabreak',
+		condition: {},
 		flags: {breakable: 1},
 		name: "Aura Break",
 		rating: 1,
@@ -383,16 +384,19 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	beadsofruin: {
 		onStart(pokemon) {
-			if (this.suppressingAbility(pokemon)) return;
 			this.add('-ability', pokemon, 'Beads of Ruin');
+			this.field.addPseudoWeather('beadsofruin', pokemon, pokemon.getAbility());
 		},
-		onAnyModifySpD(spd, target, source, move) {
-			const abilityHolder = this.effectState.target;
-			if (target.hasAbility('Beads of Ruin')) return;
-			if (!move.ruinedSpD?.hasAbility('Beads of Ruin')) move.ruinedSpD = abilityHolder;
-			if (move.ruinedSpD !== abilityHolder) return;
-			this.debug('Beads of Ruin SpD drop');
-			return this.chainModify(0.75);
+		onEnd() {
+			this.field.removePseudoWeather('beadsofruin');
+		},
+		pseudoWeather: 'beadsofruin',
+		condition: {
+			onModifySpD(spd, target, source, move) {
+				if (target.hasAbility('Beads of Ruin')) return;
+				this.debug('Beads of Ruin SpD drop');
+				return this.chainModify(0.75);
+			},
 		},
 		flags: {},
 		name: "Beads of Ruin",
@@ -835,15 +839,19 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	darkaura: {
 		onStart(pokemon) {
-			if (this.suppressingAbility(pokemon)) return;
 			this.add('-ability', pokemon, 'Dark Aura');
+			this.field.addPseudoWeather('darkaura', pokemon, pokemon.getAbility());
 		},
-		onAnyBasePowerPriority: 20,
-		onAnyBasePower(basePower, source, target, move) {
-			if (target === source || move.category === 'Status' || move.type !== 'Dark') return;
-			if (!move.auraBooster?.hasAbility('Dark Aura')) move.auraBooster = this.effectState.target;
-			if (move.auraBooster !== this.effectState.target) return;
-			return this.chainModify([move.hasAuraBreak ? 3072 : 5448, 4096]);
+		onEnd() {
+			this.field.removePseudoWeather('darkaura');
+		},
+		pseudoWeather: 'darkaura',
+		condition: {
+			onBasePowerPriority: 20,
+			onBasePower(basePower, source, target, move) {
+				if (target === source || move.category === 'Status' || move.type !== 'Dark') return;
+				return this.chainModify([this.field.getPseudoWeather('aurabreak') ? 3072 : 5448, 4096]);
+			},
 		},
 		flags: {},
 		name: "Dark Aura",
@@ -1235,15 +1243,19 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	fairyaura: {
 		onStart(pokemon) {
-			if (this.suppressingAbility(pokemon)) return;
 			this.add('-ability', pokemon, 'Fairy Aura');
+			this.field.addPseudoWeather('fairyaura', pokemon, pokemon.getAbility());
 		},
-		onAnyBasePowerPriority: 20,
-		onAnyBasePower(basePower, source, target, move) {
-			if (target === source || move.category === 'Status' || move.type !== 'Fairy') return;
-			if (!move.auraBooster?.hasAbility('Fairy Aura')) move.auraBooster = this.effectState.target;
-			if (move.auraBooster !== this.effectState.target) return;
-			return this.chainModify([move.hasAuraBreak ? 3072 : 5448, 4096]);
+		onEnd() {
+			this.field.removePseudoWeather('fairyaura');
+		},
+		pseudoWeather: 'fairyaura',
+		condition: {
+			onBasePowerPriority: 20,
+			onBasePower(basePower, source, target, move) {
+				if (target === source || move.category === 'Status' || move.type !== 'Fairy') return;
+				return this.chainModify([this.field.getPseudoWeather('aurabreak') ? 3072 : 5448, 4096]);
+			},
 		},
 		flags: {},
 		name: "Fairy Aura",
@@ -2842,27 +2854,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onPreStart(pokemon) {
 			this.add('-ability', pokemon, 'Neutralizing Gas');
 			pokemon.abilityState.ending = false;
-			const strongWeathers = ['desolateland', 'primordialsea', 'deltastream'];
-			for (const target of this.getAllActive()) {
-				if (target.hasItem('Ability Shield')) {
-					this.add('-block', target, 'item: Ability Shield');
-					continue;
-				}
-				// Can't suppress a Tatsugiri inside of Dondozo already
-				if (target.volatiles['commanding']) {
-					continue;
-				}
-				if (target.illusion) {
-					this.singleEvent('End', this.dex.abilities.get('Illusion'), target.abilityState, target, pokemon, 'neutralizinggas');
-				}
-				if (target.volatiles['slowstart']) {
-					delete target.volatiles['slowstart'];
-					this.add('-end', target, 'Slow Start', '[silent]');
-				}
-				if (strongWeathers.includes(target.getAbility().id)) {
-					this.singleEvent('End', this.dex.abilities.get(target.getAbility().id), target.abilityState, target, pokemon, 'neutralizinggas');
-				}
-			}
+			this.field.addPseudoWeather('neutralizinggas', pokemon);
 		},
 		onEnd(source) {
 			if (source.transformed) return;
@@ -2872,29 +2864,59 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				}
 			}
 			this.add('-end', source, 'ability: Neutralizing Gas');
-
-			// FIXME this happens before the pokemon switches out, should be the opposite order.
-			// Not an easy fix since we cant use a supported event. Would need some kind of special event that
-			// gathers events to run after the switch and then runs them when the ability is no longer accessible.
-			// (If you're tackling this, do note extreme weathers have the same issue)
-
-			// Mark this pokemon's ability as ending so Pokemon#ignoringAbility skips it
 			if (source.abilityState.ending) return;
 			source.abilityState.ending = true;
-			const sortedActive = this.getAllActive();
-			this.speedSort(sortedActive);
-			for (const pokemon of sortedActive) {
-				if (pokemon !== source) {
-					if (pokemon.getAbility().flags['cantsuppress']) continue; // does not interact with e.g Ice Face, Zen Mode
-					if (pokemon.hasItem('abilityshield')) continue; // don't restart abilities that weren't suppressed
-
-					// Will be suppressed by Pokemon#ignoringAbility if needed
-					this.singleEvent('Start', pokemon.getAbility(), pokemon.abilityState, pokemon);
-					if (pokemon.ability === "gluttony") {
-						pokemon.abilityState.gluttony = false;
+			if (this.field.removePseudoWeather('neutralizinggas')) {
+				// Mark this pokemon's ability as ending so Pokemon#ignoringAbility skips it
+			}
+		},
+		pseudoWeather: 'neutralizinggas',
+		condition: {
+			onFieldStart(field, pokemon) {
+				const strongWeathers = ['desolateland', 'primordialsea', 'deltastream'];
+				for (const target of this.getAllActive()) {
+					if (target.hasItem('Ability Shield')) {
+						this.add('-block', target, 'item: Ability Shield');
+						continue;
+					}
+					// Can't suppress a Tatsugiri inside of Dondozo already
+					if (target.volatiles['commanding']) {
+						continue;
+					}
+					if (target.illusion) {
+						this.singleEvent('End', this.dex.abilities.get('Illusion'), target.abilityState, target, pokemon, 'neutralizinggas');
+					}
+					if (target.volatiles['slowstart']) {
+						delete target.volatiles['slowstart'];
+						this.add('-end', target, 'Slow Start', '[silent]');
+					}
+					if (strongWeathers.includes(target.getAbility().id)) {
+						this.singleEvent('End', this.dex.abilities.get(target.getAbility().id), target.abilityState, target, pokemon, 'neutralizinggas');
 					}
 				}
-			}
+			},
+			onFieldEnd() {
+				// FIXME this happens before the pokemon switches out, should be the opposite order.
+				// Not an easy fix since we cant use a supported event. Would need some kind of special event that
+				// gathers events to run after the switch and then runs them when the ability is no longer accessible.
+				// (If you're tackling this, do note extreme weathers have the same issue)
+
+				const source = this.effectState.source as Pokemon;
+				const sortedActive = this.getAllActive();
+				this.speedSort(sortedActive);
+				for (const pokemon of sortedActive) {
+					if (pokemon !== source) {
+						if (pokemon.getAbility().flags['cantsuppress']) continue; // does not interact with e.g Ice Face, Zen Mode
+						if (pokemon.hasItem('abilityshield')) continue; // don't restart abilities that weren't suppressed
+
+						// Will be suppressed by Pokemon#ignoringAbility if needed
+						this.singleEvent('Start', pokemon.getAbility(), pokemon.abilityState, pokemon);
+						if (pokemon.ability === "gluttony") {
+							pokemon.abilityState.gluttony = false;
+						}
+					}
+				}
+			},
 		},
 		flags: {failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1, notransform: 1},
 		name: "Neutralizing Gas",
@@ -4750,16 +4772,19 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	swordofruin: {
 		onStart(pokemon) {
-			if (this.suppressingAbility(pokemon)) return;
 			this.add('-ability', pokemon, 'Sword of Ruin');
+			this.field.addPseudoWeather('swordofruin', pokemon, pokemon.getAbility());
 		},
-		onAnyModifyDef(def, target, source, move) {
-			const abilityHolder = this.effectState.target;
-			if (target.hasAbility('Sword of Ruin')) return;
-			if (!move.ruinedDef?.hasAbility('Sword of Ruin')) move.ruinedDef = abilityHolder;
-			if (move.ruinedDef !== abilityHolder) return;
-			this.debug('Sword of Ruin Def drop');
-			return this.chainModify(0.75);
+		onEnd() {
+			this.field.removePseudoWeather('swordofruin');
+		},
+		pseudoWeather: 'swordofruin',
+		condition: {
+			onModifyDef(def, target, source, move) {
+				if (target.hasAbility('Sword of Ruin')) return;
+				this.debug('Sword of Ruin Def drop');
+				return this.chainModify(0.75);
+			},
 		},
 		flags: {},
 		name: "Sword of Ruin",
@@ -4768,16 +4793,19 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	tabletsofruin: {
 		onStart(pokemon) {
-			if (this.suppressingAbility(pokemon)) return;
 			this.add('-ability', pokemon, 'Tablets of Ruin');
+			this.field.addPseudoWeather('tabletsofruin', pokemon, pokemon.getAbility());
 		},
-		onAnyModifyAtk(atk, source, target, move) {
-			const abilityHolder = this.effectState.target;
-			if (source.hasAbility('Tablets of Ruin')) return;
-			if (!move.ruinedAtk) move.ruinedAtk = abilityHolder;
-			if (move.ruinedAtk !== abilityHolder) return;
-			this.debug('Tablets of Ruin Atk drop');
-			return this.chainModify(0.75);
+		onEnd() {
+			this.field.removePseudoWeather('tabletsofruin');
+		},
+		pseudoWeather: 'tabletsofruin',
+		condition: {
+			onModifyAtk(atk, target, source, move) {
+				if (target.hasAbility('Tablets of Ruin')) return;
+				this.debug('Sword of Ruin Atk drop');
+				return this.chainModify(0.75);
+			},
 		},
 		flags: {},
 		name: "Tablets of Ruin",
@@ -5201,16 +5229,19 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	vesselofruin: {
 		onStart(pokemon) {
-			if (this.suppressingAbility(pokemon)) return;
 			this.add('-ability', pokemon, 'Vessel of Ruin');
+			this.field.addPseudoWeather('vesselofruin', pokemon, pokemon.getAbility());
 		},
-		onAnyModifySpA(spa, source, target, move) {
-			const abilityHolder = this.effectState.target;
-			if (source.hasAbility('Vessel of Ruin')) return;
-			if (!move.ruinedSpA) move.ruinedSpA = abilityHolder;
-			if (move.ruinedSpA !== abilityHolder) return;
-			this.debug('Vessel of Ruin SpA drop');
-			return this.chainModify(0.75);
+		onEnd() {
+			this.field.removePseudoWeather('vesselofruin');
+		},
+		pseudoWeather: 'vesselofruin',
+		condition: {
+			onModifySpA(spa, target, source, move) {
+				if (target.hasAbility('Vessel of Ruin')) return;
+				this.debug('Vessel of Ruin SpA drop');
+				return this.chainModify(0.75);
+			},
 		},
 		flags: {},
 		name: "Vessel of Ruin",

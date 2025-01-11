@@ -320,10 +320,8 @@ export interface ActiveMove extends MutableMove {
 	moveHitData?: MoveHitData;
 	ability?: Ability;
 	allies?: Pokemon[];
-	auraBooster?: Pokemon;
 	causedCrashDamage?: boolean;
 	forceStatus?: ID;
-	hasAuraBreak?: boolean;
 	hasBounced?: boolean;
 	hasSheerForce?: boolean;
 	/** Is the move called by Dancer? Used to prevent infinite Dancer recursion. */
@@ -342,10 +340,6 @@ export interface ActiveMove extends MutableMove {
 	typeChangerBoosted?: Effect;
 	willChangeForme?: boolean;
 	infiltrates?: boolean;
-	ruinedAtk?: Pokemon;
-	ruinedDef?: Pokemon;
-	ruinedSpA?: Pokemon;
-	ruinedSpD?: Pokemon;
 
 	/**
 	 * Has this move been boosted by a Z-crystal or used by a Dynamax Pokemon? Usually the same as

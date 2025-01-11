@@ -33,4 +33,18 @@ describe(`Sword of Ruin`, function () {
 		const damage = wynaut.maxhp - wynaut.hp;
 		assert.bounded(damage, [90, 107]);
 	});
+
+	it(`shouldn't stack with multiple users`, function () {
+		battle = common.createBattle({gameType: 'doubles'}, [[
+			{species: 'wynaut', ability: 'shellarmor', moves: ['sleeptalk']},
+			{species: 'tyranitar', ability: 'shellarmor', moves: ['sleeptalk']},
+		], [
+			{species: 'chienpao', ability: 'swordofruin', moves: ['aerialace']},
+			{species: 'typhlosion', ability: 'swordofruin', moves: ['sleeptalk']},
+		]]);
+		battle.makeChoices();
+		const wynaut = battle.p1.active[0];
+		const damage = wynaut.maxhp - wynaut.hp;
+		assert.bounded(damage, [120, 142]);
+	});
 });

@@ -826,19 +826,20 @@ export class Pokemon {
 	ignoringAbility() {
 		if (this.battle.gen >= 5 && !this.isActive) return true;
 
+		if (this.abilityState.ending) return true;
 		// Certain Abilities won't activate while Transformed, even if they ordinarily couldn't be suppressed (e.g. Disguise)
 		if (this.getAbility().flags['notransform'] && this.transformed) return true;
 		if (this.getAbility().flags['cantsuppress']) return false;
 		if (this.volatiles['gastroacid']) return true;
 
 		// Check if any active pokemon have the ability Neutralizing Gas
+		// can't use hasAbility because it would lead to infinite recursion
 		if (this.hasItem('Ability Shield') || this.ability === ('neutralizinggas' as ID)) return false;
-		for (const pokemon of this.battle.getAllActive()) {
-			// can't use hasAbility because it would lead to infinite recursion
-			if (pokemon.ability === ('neutralizinggas' as ID) && !pokemon.volatiles['gastroacid'] &&
-				!pokemon.transformed && !pokemon.abilityState.ending && !this.volatiles['commanding']) {
-				return true;
-			}
+		const neutralizinggas = this.battle.field.pseudoWeather['neutralizinggas'];
+		if (!neutralizinggas) return false;
+		const pokemon = neutralizinggas?.source as Pokemon;
+		if (!pokemon.transformed && !pokemon.abilityState.ending && !this.volatiles['commanding']) {
+			return true;
 		}
 
 		return false;

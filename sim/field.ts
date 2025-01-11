@@ -106,8 +106,7 @@ export class Field {
 	suppressingWeather() {
 		for (const side of this.battle.sides) {
 			for (const pokemon of side.active) {
-				if (pokemon && !pokemon.fainted && !pokemon.ignoringAbility() &&
-					pokemon.getAbility().suppressWeather && !pokemon.abilityState.ending) {
+				if (pokemon && !pokemon.fainted && !pokemon.ignoringAbility() && pokemon.getAbility().suppressWeather) {
 					return true;
 				}
 			}
@@ -200,6 +199,7 @@ export class Field {
 		state = this.pseudoWeather[status.id] = {
 			id: status.id,
 			source,
+			sourceEffect,
 			sourceSlot: source?.getSlot(),
 			duration: status.duration,
 		};
@@ -224,6 +224,19 @@ export class Field {
 		status = this.battle.dex.conditions.get(status);
 		const state = this.pseudoWeather[status.id];
 		if (!state) return false;
+		const event = this.battle.event;
+		const source = this.battle.event?.target;
+		if (event && event.eventid === 'End' && source === state.source &&
+			event.effect.effectType === 'Ability' && event.effect === state.sourceEffect &&
+			event.effect.pseudoWeather) {
+			for (const target of this.battle.getAllActive()) {
+				if (target === source) continue;
+				if (target.hasAbility(state.sourceEffect.name)) {
+					state.source = target;
+					return;
+				}
+			}
+		}
 		this.battle.singleEvent('FieldEnd', status, state, this);
 		delete this.pseudoWeather[status.id];
 		return true;
