@@ -4523,7 +4523,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			zenheadbutt: ["8T"],
 		},
 		eventData: [
-			{generation: 8, level: 70, moves: ["hypnosis", "mysticalpower", "calmmind", "triattack"], perfectIVs: 3},
+			{generation: 8, level: 70, moves: ["swift", "extrasensory", "mysticalpower", "hypnosis"]},
 		],
 	},
 	mesprit: {
@@ -4558,7 +4558,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			zenheadbutt: ["8T"],
 		},
 		eventData: [
-			{generation: 8, level: 70, moves: ["recover", "mysticalpower", "calmmind", "triattack"], perfectIVs: 3},
+			{generation: 8, level: 70, moves: ["swift", "extrasensory", "mysticalpower", "recover"]},
 		],
 	},
 	azelf: {
@@ -4595,7 +4595,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			zenheadbutt: ["8T"],
 		},
 		eventData: [
-			{generation: 8, level: 70, moves: ["selfdestruct", "mysticalpower", "nastyplot", "triattack"], perfectIVs: 3},
+			{generation: 8, level: 70, moves: ["swift", "extrasensory", "mysticalpower", "doublehit"]},
 		],
 	},
 	dialga: {
@@ -4631,7 +4631,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			twister: ["8L1"],
 		},
 		eventData: [
-			{generation: 8, level: 65, moves: ["roaroftime", "flashcannon", "irontail", "earthpower"], perfectIVs: 3},
+			{generation: 8, level: 65, moves: ["earthpower", "irontail", "flashcannon", "roaroftime"]},
 		],
 	},
 	dialgaorigin: {},
@@ -4666,7 +4666,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			waterpulse: ["8T"],
 		},
 		eventData: [
-			{generation: 8, level: 65, moves: ["spacialrend", "hydropump", "aquatail", "earthpower"], perfectIVs: 3},
+			{generation: 8, level: 65, moves: ["earthpower", "aquatail", "hydropump", "spacialrend"]},
 		],
 	},
 	palkiaorigin: {},
@@ -4694,7 +4694,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			stoneedge: ["8T"],
 		},
 		eventData: [
-			{generation: 8, level: 70, moves: ["magmastorm", "earthpower", "crunch", "ironhead"], perfectIVs: 3},
+			{generation: 8, level: 70, moves: ["ironhead", "crunch", "earthpower", "magmastorm"]},
 		],
 	},
 	regigigas: {
@@ -4723,7 +4723,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			zenheadbutt: ["8T", "8L27"],
 		},
 		eventData: [
-			{generation: 8, level: 70, moves: ["gigaimpact", "crushgrip", "ironhead", "zenheadbutt"], perfectIVs: 3},
+			{generation: 8, level: 70, moves: ["zenheadbutt", "ironhead", "crushgrip", "gigaimpact"]},
 		],
 	},
 	giratina: {
@@ -4761,7 +4761,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			thunderbolt: ["8T"],
 		},
 		eventData: [
-			{generation: 8, level: 70, moves: ["shadowforce", "earthpower", "dragonpulse", "dragonclaw"], perfectIVs: 3},
+			{generation: 8, level: 70, moves: ["dragonclaw", "dragonpulse", "earthpower", "shadowforce"]},
 		],
 	},
 	giratinaorigin: {},
@@ -4789,7 +4789,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			zenheadbutt: ["8T"],
 		},
 		eventData: [
-			{generation: 8, level: 70, moves: ["lunarblessing", "moonblast", "psychic", "recover"], perfectIVs: 3},
+			{generation: 8, level: 70, moves: ["psychocut", "psychic", "moonblast", "lunarblessing"]},
 		],
 	},
 	phione: {
@@ -4833,7 +4833,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			zenheadbutt: ["8T", "8L27"],
 		},
 		eventData: [
-			{generation: 8, level: 50, moves: ["takeheart", "moonblast", "zenheadbutt", "acidarmor"], perfectIVs: 3},
+			{generation: 8, level: 50, moves: ["waterpulse", "zenheadbutt", "moonblast", "bubble"]},
 		],
 	},
 	darkrai: {
@@ -4867,7 +4867,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			xscissor: ["8T"],
 		},
 		eventData: [
-			{generation: 8, level: 70, moves: ["darkvoid", "psychic", "darkpulse", "nastyplot"], perfectIVs: 3},
+			{generation: 8, level: 70, moves: ["hex", "darkpulse", "psychic", "darkvoid"]},
 		],
 	},
 	shaymin: {
@@ -4894,7 +4894,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			zenheadbutt: ["8T"],
 		},
 		eventData: [
-			{generation: 8, level: 70, moves: ["seedflare", "earthpower", "energyball", "recover"], perfectIVs: 3},
+			{generation: 8, level: 70, moves: ["seedflare", "energyball", "airslash", "earthpower"]},
 		],
 	},
 	shayminsky: {},
@@ -4946,7 +4946,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			zenheadbutt: ["8T"],
 		},
 		eventData: [
-			{generation: 8, level: 70, moves: ["hyperbeam", "judgment", "extrasensory", "calmmind"], perfectIVs: 3},
+			{generation: 8, level: 75, moves: ["recover", "calmmind", "judgment", "hyperbeam"], pokeball: "pokeball"},
 		],
 	},
 	arceusbug: {},
@@ -5204,7 +5204,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			twister: ["8L11"],
 		},
 		eventData: [
-			{generation: 8, level: 70, moves: ["bleakwindstorm", "hurricane", "crunch", "extrasensory"], perfectIVs: 3},
+			{generation: 8, level: 70, moves: ["extrasensory", "crunch", "hurricane", "bleakwindstorm"]},
 		],
 	},
 	tornadustherian: {},
@@ -5236,7 +5236,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			wildcharge: ["8T"],
 		},
 		eventData: [
-			{generation: 8, level: 70, moves: ["wildboltstorm", "thunder", "crunch", "extrasensory"], perfectIVs: 3},
+			{generation: 8, level: 70, moves: ["extrasensory", "crunch", "thunder", "wildboltstorm"]},
 		],
 	},
 	thundurustherian: {},
@@ -5265,7 +5265,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			twister: ["8L11"],
 		},
 		eventData: [
-			{generation: 8, level: 70, moves: ["sandsearstorm", "earthpower", "crunch", "extrasensory"], perfectIVs: 3},
+			{generation: 8, level: 70, moves: ["extrasensory", "crunch", "earthpower", "sandsearstorm"]},
 		],
 	},
 	landorustherian: {},
@@ -5679,7 +5679,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			zenheadbutt: ["8T"],
 		},
 		eventData: [
-			{generation: 8, level: 70, moves: ["springtidestorm", "moonblast", "crunch", "extrasensory"], perfectIVs: 3},
+			{generation: 8, level: 70, moves: ["extrasensory", "crunch", "moonblast", "springtidestorm"]},
 		],
 	},
 	enamorustherian: {},
