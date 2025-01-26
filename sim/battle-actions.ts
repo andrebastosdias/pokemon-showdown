@@ -136,9 +136,9 @@ export class BattleActions {
 		}
 		this.battle.runEvent('BeforeSwitchIn', pokemon);
 		if (sourceEffect) {
-			this.battle.add(isDrag ? 'drag' : 'switch', pokemon, pokemon.getDetails, '[from] ' + sourceEffect);
+			this.battle.add(isDrag ? 'drag' : 'switch', pokemon, pokemon.getFullDetails, '[from] ' + sourceEffect);
 		} else {
-			this.battle.add(isDrag ? 'drag' : 'switch', pokemon, pokemon.getDetails);
+			this.battle.add(isDrag ? 'drag' : 'switch', pokemon, pokemon.getFullDetails);
 		}
 		pokemon.abilityOrder = this.battle.abilityOrder++;
 		if (isDrag && this.battle.gen === 2) pokemon.draggedIn = this.battle.turn;
@@ -462,7 +462,7 @@ export class BattleActions {
 
 		let movename = move.name;
 		if (move.id === 'hiddenpower') movename = 'Hidden Power';
-		if (sourceEffect) attrs += `|[from]${sourceEffect.fullname}`;
+		if (sourceEffect) attrs += `|[from] ${sourceEffect.fullname}`;
 		if (zMove && move.isZ === true) {
 			attrs = '|[anim]' + movename + attrs;
 			movename = 'Z-' + movename;
@@ -1667,10 +1667,12 @@ export class BattleActions {
 			basePower = 0;
 		}
 
+		const dexMove = this.dex.moves.get(move.id);
 		if (
-			basePower < 60 && source.getTypes(true).includes(move.type) && source.terastallized && move.priority <= 0 &&
+			basePower < 60 && source.getTypes(true).includes(move.type) && source.terastallized &&
+			dexMove.priority <= 0 && !dexMove.multihit &&
 			// Hard move.basePower check for moves like Dragon Energy that have variable BP
-			!move.multihit && !((move.basePower === 0 || move.basePower === 150) && move.basePowerCallback)
+			!((move.basePower === 0 || move.basePower === 150) && move.basePowerCallback)
 		) {
 			basePower = 60;
 		}
@@ -1957,9 +1959,12 @@ export class BattleActions {
 			pokemon.maxhp = newMaxHP;
 			this.battle.add('-heal', pokemon, pokemon.getHealth, '[silent]');
 		}
-		if (pokemon.species.baseSpecies === 'Morpeko') {
+		if (pokemon.species.baseSpecies === 'Morpeko' && !pokemon.transformed &&
+			pokemon.baseSpecies.id !== pokemon.species.id
+		) {
+			pokemon.regressionForme = true;
 			pokemon.baseSpecies = pokemon.species;
-			pokemon.details = pokemon.details.replace('Morpeko', pokemon.species.name);
+			pokemon.details = pokemon.getUpdatedDetails();
 		}
 		this.battle.runEvent('AfterTerastallization', pokemon);
 	}

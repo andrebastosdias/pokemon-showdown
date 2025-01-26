@@ -23,7 +23,7 @@ import {Side} from './side';
 import {State} from './state';
 import {BattleQueue, Action, ActionTimeQueue} from './battle-queue';
 import {BattleActions} from './battle-actions';
-import {Utils} from '../lib';
+import {Utils} from '../lib/utils';
 declare const __version: any;
 
 export type ChannelID = 0 | 1 | 2 | 3 | 4;
@@ -224,7 +224,7 @@ export class Battle {
 			(format.playerCount > 2 || this.gameType === 'doubles') ? 2 :
 			1;
 		this.prng = options.prng || new PRNG(options.seed || undefined);
-		this.prngSeed = this.prng.startingSeed.slice() as PRNGSeed;
+		this.prngSeed = this.prng.startingSeed;
 		this.rated = options.rated || !!options.rated;
 		this.reportExactHP = !!format.debug;
 		this.reportPercentages = false;
@@ -276,7 +276,7 @@ export class Battle {
 		this.send = options.send || (() => {});
 
 		const inputOptions: {formatid: ID, seed: PRNGSeed, rated?: string | true} = {
-			formatid: options.formatid, seed: this.prng.seed,
+			formatid: options.formatid, seed: this.prngSeed,
 		};
 		if (this.rated) inputOptions.rated = this.rated;
 		if (typeof __version !== 'undefined') {
@@ -343,7 +343,7 @@ export class Battle {
 	}
 
 	random(m?: number, n?: number) {
-		return this.prng.next(m, n);
+		return this.prng.random(m, n);
 	}
 
 	randomChance(numerator: number, denominator: number) {
@@ -356,7 +356,7 @@ export class Battle {
 	}
 
 	/** Note that passing `undefined` resets to the starting seed, but `null` will roll a new seed */
-	resetRNG(seed: PRNGSeed | null = this.prng.startingSeed) {
+	resetRNG(seed: PRNGSeed | null = this.prngSeed) {
 		this.prng = new PRNG(seed);
 		this.add('message', "The battle's RNG was reset.");
 	}
@@ -2047,13 +2047,15 @@ export class Battle {
 			this.lastDamage = damage;
 			if (target.volatiles['substitute']) {
 				const hint = "In Gen 1, if a Pokemon with a Substitute hurts itself due to confusion or Jump Kick/Hi Jump Kick recoil and the target";
-				if (source?.volatiles['substitute']) {
-					source.volatiles['substitute'].hp -= damage;
-					if (source.volatiles['substitute'].hp <= 0) {
-						source.removeVolatile('substitute');
-						source.subFainted = true;
+				// if the move was a self-targeting move, the source is the same as the target. We need to check the opposing substitute
+				const foe = target.side.foe.active[0];
+				if (foe?.volatiles['substitute']) {
+					foe.volatiles['substitute'].hp -= damage;
+					if (foe.volatiles['substitute'].hp <= 0) {
+						foe.removeVolatile('substitute');
+						foe.subFainted = true;
 					} else {
-						this.add('-activate', source, 'Substitute', '[damage]');
+						this.add('-activate', foe, 'Substitute', '[damage]');
 					}
 					this.hint(hint + " has a Substitute, the target's Substitute takes the damage.");
 					return damage;
@@ -2374,12 +2376,22 @@ export class Battle {
 				if (pokemon.side.totalFainted < 100) pokemon.side.totalFainted++;
 				this.runEvent('Faint', pokemon, faintData.source, faintData.effect);
 				this.singleEvent('End', pokemon.getAbility(), pokemon.abilityState, pokemon);
+				if (pokemon.regressionForme) {
+					// before clearing volatiles
+					pokemon.baseSpecies = this.dex.species.get(pokemon.set.species || pokemon.set.name);
+					pokemon.baseAbility = toID(pokemon.set.ability);
+				}
 				pokemon.clearVolatile(false);
 				pokemon.fainted = true;
 				pokemon.illusion = null;
 				pokemon.isActive = false;
 				pokemon.isStarted = false;
 				delete pokemon.terastallized;
+				if (pokemon.regressionForme) {
+					// after clearing volatiles
+					pokemon.details = pokemon.getUpdatedDetails();
+					pokemon.regressionForme = false;
+				}
 				pokemon.side.faintedThisTurn = pokemon;
 				if (this.faintQueue.length >= faintQueueLeft) checkWin = true;
 			}
@@ -2498,8 +2510,7 @@ export class Battle {
 				const species = pokemon.setSpecies(rawSpecies);
 				if (!species) continue;
 				pokemon.baseSpecies = rawSpecies;
-				pokemon.details = species.name + (pokemon.level === 100 ? '' : ', L' + pokemon.level) +
-					(pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
+				pokemon.details = pokemon.getUpdatedDetails();
 				pokemon.setAbility(species.abilities['0'], null, true);
 				pokemon.baseAbility = pokemon.ability;
 

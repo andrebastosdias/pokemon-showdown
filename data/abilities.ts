@@ -1167,13 +1167,11 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	embodyaspectcornerstone: {
 		onStart(pokemon) {
-			if (pokemon.baseSpecies.name === 'Ogerpon-Cornerstone-Tera' && !this.effectState.embodied) {
-				this.effectState.embodied = true;
+			if (pokemon.baseSpecies.name === 'Ogerpon-Cornerstone-Tera' &&
+				this.effectState.embodied !== pokemon.previouslySwitchedIn) {
+				this.effectState.embodied = pokemon.previouslySwitchedIn;
 				this.boost({def: 1}, pokemon);
 			}
-		},
-		onSwitchIn() {
-			delete this.effectState.embodied;
 		},
 		flags: {failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1, notransform: 1},
 		name: "Embody Aspect (Cornerstone)",
@@ -1182,13 +1180,11 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	embodyaspecthearthflame: {
 		onStart(pokemon) {
-			if (pokemon.baseSpecies.name === 'Ogerpon-Hearthflame-Tera' && !this.effectState.embodied) {
-				this.effectState.embodied = true;
+			if (pokemon.baseSpecies.name === 'Ogerpon-Hearthflame-Tera' &&
+				this.effectState.embodied !== pokemon.previouslySwitchedIn) {
+				this.effectState.embodied = pokemon.previouslySwitchedIn;
 				this.boost({atk: 1}, pokemon);
 			}
-		},
-		onSwitchIn() {
-			delete this.effectState.embodied;
 		},
 		flags: {failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1, notransform: 1},
 		name: "Embody Aspect (Hearthflame)",
@@ -1197,13 +1193,11 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	embodyaspectteal: {
 		onStart(pokemon) {
-			if (pokemon.baseSpecies.name === 'Ogerpon-Teal-Tera' && !this.effectState.embodied) {
-				this.effectState.embodied = true;
+			if (pokemon.baseSpecies.name === 'Ogerpon-Teal-Tera' &&
+				this.effectState.embodied !== pokemon.previouslySwitchedIn) {
+				this.effectState.embodied = pokemon.previouslySwitchedIn;
 				this.boost({spe: 1}, pokemon);
 			}
-		},
-		onSwitchIn() {
-			delete this.effectState.embodied;
 		},
 		flags: {failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1, notransform: 1},
 		name: "Embody Aspect (Teal)",
@@ -1212,13 +1206,11 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	embodyaspectwellspring: {
 		onStart(pokemon) {
-			if (pokemon.baseSpecies.name === 'Ogerpon-Wellspring-Tera' && !this.effectState.embodied) {
-				this.effectState.embodied = true;
+			if (pokemon.baseSpecies.name === 'Ogerpon-Wellspring-Tera' &&
+				this.effectState.embodied !== pokemon.previouslySwitchedIn) {
+				this.effectState.embodied = pokemon.previouslySwitchedIn;
 				this.boost({spd: 1}, pokemon);
 			}
-		},
-		onSwitchIn() {
-			delete this.effectState.embodied;
 		},
 		flags: {failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1, notransform: 1},
 		name: "Embody Aspect (Wellspring)",
@@ -2030,8 +2022,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			if (pokemon.illusion) {
 				this.debug('illusion cleared');
 				pokemon.illusion = null;
-				const details = pokemon.species.name + (pokemon.level === 100 ? '' : ', L' + pokemon.level) +
-					(pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
+				const details = pokemon.getUpdatedDetails();
 				this.add('replace', pokemon, details);
 				this.add('-end', pokemon, 'Illusion');
 				if (this.ruleTable.has('illusionlevelmod')) {
@@ -2272,17 +2263,14 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	libero: {
 		onPrepareHit(source, target, move) {
-			if (this.effectState.libero) return;
+			if (this.effectState.libero === source.previouslySwitchedIn) return;
 			if (move.hasBounced || move.flags['futuremove'] || move.sourceEffect === 'snatch' || move.callsMove) return;
 			const type = move.type;
 			if (type && type !== '???' && source.getTypes().join() !== type) {
 				if (!source.setType(type)) return;
-				this.effectState.libero = true;
+				this.effectState.libero = source.previouslySwitchedIn;
 				this.add('-start', source, 'typechange', type, '[from] ability: Libero');
 			}
-		},
-		onSwitchIn() {
-			delete this.effectState.libero;
 		},
 		flags: {},
 		name: "Libero",
@@ -3416,17 +3404,14 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	protean: {
 		onPrepareHit(source, target, move) {
-			if (this.effectState.protean) return;
+			if (this.effectState.protean === source.previouslySwitchedIn) return;
 			if (move.hasBounced || move.flags['futuremove'] || move.sourceEffect === 'snatch' || move.callsMove) return;
 			const type = move.type;
 			if (type && type !== '???' && source.getTypes().join() !== type) {
 				if (!source.setType(type)) return;
-				this.effectState.protean = true;
+				this.effectState.protean = source.previouslySwitchedIn;
 				this.add('-start', source, 'typechange', type, '[from] ability: Protean');
 			}
-		},
-		onSwitchIn(pokemon) {
-			delete this.effectState.protean;
 		},
 		flags: {},
 		name: "Protean",
@@ -3441,8 +3426,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			// Protosynthesis is not affected by Utility Umbrella
 			if (this.field.isWeather('sunnyday')) {
 				pokemon.addVolatile('protosynthesis');
-			} else if (!pokemon.volatiles['protosynthesis']?.fromBooster && this.field.weather !== 'sunnyday') {
-				// Protosynthesis will not deactivite if Sun is suppressed, hence the direct ID check (isWeather respects supression)
+			} else if (!pokemon.volatiles['protosynthesis']?.fromBooster && !this.field.isWeather('sunnyday')) {
 				pokemon.removeVolatile('protosynthesis');
 			}
 		},
@@ -4867,17 +4851,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		num: 309,
 	},
 	terashell: {
-		onEffectiveness(typeMod, target, type, move) {
-			if (!target || target.species.name !== 'Terapagos-Terastal') return;
-			if (this.effectState.resisted) return -1; // all hits of multi-hit move should be not very effective
-			if (move.category === 'Status' || move.id === 'struggle') return;
-			if (!target.runImmunity(move.type)) return; // immunity has priority
-			if (target.hp < target.maxhp) return;
-
-			this.add('-activate', target, 'ability: Tera Shell');
-			this.effectState.resisted = true;
-			return -1;
-		},
+		// effectiveness implemented in sim/pokemon.ts:Pokemon#runEffectiveness
 		onAnyAfterMove() {
 			this.effectState.resisted = false;
 		},
@@ -4892,6 +4866,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			if (pokemon.species.forme !== 'Terastal') {
 				this.add('-activate', pokemon, 'ability: Tera Shift');
 				pokemon.formeChange('Terapagos-Terastal', this.effect, true);
+				pokemon.regressionForme = false;
 				pokemon.baseMaxhp = Math.floor(Math.floor(
 					2 * pokemon.species.baseStats['hp'] + pokemon.set.ivs['hp'] + Math.floor(pokemon.set.evs['hp'] / 4) + 100
 				) * pokemon.level / 100 + 10);
@@ -5572,6 +5547,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			if (pokemon.baseSpecies.baseSpecies !== 'Palafin') return;
 			if (pokemon.species.forme !== 'Hero') {
 				pokemon.formeChange('Palafin-Hero', this.effect, true);
+				pokemon.regressionForme = false;
 			}
 		},
 		onSwitchIn() {
