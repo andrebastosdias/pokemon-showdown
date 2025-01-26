@@ -1110,6 +1110,14 @@ export const Scripts: ModdedBattleScriptsData = {
 		},
 	},
 	pokemon: {
+		getUpdatedDetails(illusionLevel?: number) {
+			let name = this.species.name;
+			if (name === 'Greninja-Bond') name = 'Greninja';
+			if (name === 'Arceus-Legend') name = 'Arceus';
+			const level = illusionLevel || this.level;
+			return name + (level === 100 ? '' : ', L' + level) +
+				(this.gender === '' ? '' : ', ' + this.gender) + (this.set.shiny ? ', shiny' : '');
+		},
 		/**
 		 * Hidden Power has no type.
 		 */
