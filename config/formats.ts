@@ -3832,6 +3832,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 			}
 			if(problems.length) return problems;
 		},
+		onModifyMovePriority: 999,
 		onModifyMove(move) {
 			if (move.id === 'metronome') {
 				move.onHit = function (pokemon) {
