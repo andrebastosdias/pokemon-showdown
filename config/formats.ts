@@ -3790,7 +3790,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 			'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Hoopa-Unbound', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Lugia',
 			'Mewtwo', 'Palkia', 'Rayquaza', 'Reshiram', 'Salamence-Mega', 'Serperior', 'Shaymin-Sky', 'Snorlax', 'Xerneas', 'Yveltal',
 			'Zekrom', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
-		]
+		],
 	},
 	{
 		name: "[Gen 6] Sky Battle",
@@ -3830,12 +3830,12 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 					problems.push(`${set.name}'s move ${move.name} is ineligible for Sky Battles.`);
 				}
 			}
-			if(problems.length) return problems;
+			if (problems.length) return problems;
 		},
 		onModifyMovePriority: 999,
-		onModifyMove(move) {
-			if (move.id === 'metronome') {
-				move.onHit = function (pokemon) {
+		onModifyMove(m) {
+			if (m.id === 'metronome') {
+				m.onHit = function (pokemon) {
 					const dex = this.dex.mod('gen6xy');
 					const moves = dex.moves.all().filter(move => (
 						(!move.isNonstandard || move.isNonstandard === 'Unobtainable') &&

@@ -11,7 +11,7 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 
 		// Build a pool of eligible sets, given the team partners
 		// Also keep track of sets with moves the team requires
-		let effectivePool: {set: AnyObject, moveVariants?: number[]}[] = [];
+		const effectivePool: {set: AnyObject, moveVariants?: number[]}[] = [];
 		for (const curSet of setList) {
 			if (this.forceMonotype && !species.types.includes(this.forceMonotype)) continue;
 
@@ -130,7 +130,7 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 				if (skip) continue;
 
 				// Limit 1 of any type combination
-				let typeCombo = types.slice().sort().join();
+				const typeCombo = types.slice().sort().join();
 				if (teamData.typeComboCount[typeCombo] >= 1 * limitFactor) continue;
 			}
 

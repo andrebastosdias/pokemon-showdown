@@ -57,7 +57,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				handlers = handlers.concat(this.findSideEventHandlers(side, `onSide${eventid}`, 'duration'));
 			}
 			for (const active of side.active) {
-				if (!active || active.moveThisTurnResult === undefined) continue;
+				if (!active || active !== this.actionTimeQueue.actingPokemon) continue;
 				handlers = handlers.concat(this.findPokemonEventHandlers(active, callbackName, 'duration'));
 				handlers = handlers.concat(this.findSideEventHandlers(side, callbackName, undefined, active));
 				handlers = handlers.concat(this.findFieldEventHandlers(this.field, callbackName, undefined, active));
@@ -663,9 +663,9 @@ export const Scripts: ModdedBattleScriptsData = {
 			}
 			this.battle.runEvent('BeforeSwitchIn', pokemon);
 			if (sourceEffect) {
-				this.battle.add(isDrag ? 'drag' : 'switch', pokemon, pokemon.getDetails, '[from] ' + sourceEffect);
+				this.battle.add(isDrag ? 'drag' : 'switch', pokemon, pokemon.getFullDetails, '[from] ' + sourceEffect);
 			} else {
-				this.battle.add(isDrag ? 'drag' : 'switch', pokemon, pokemon.getDetails);
+				this.battle.add(isDrag ? 'drag' : 'switch', pokemon, pokemon.getFullDetails);
 			}
 			pokemon.abilityOrder = this.battle.abilityOrder++;
 			if (isDrag && this.battle.gen === 2) pokemon.draggedIn = this.battle.turn;
