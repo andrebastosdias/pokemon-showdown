@@ -337,6 +337,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		return requests;
 	},
 	actions: {
+		inherit: true,
 		getDamage(source, target, move, suppressMessages) {
 			if (typeof move === 'string') move = this.dex.getActiveMove(move);
 
@@ -1033,6 +1034,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		},
 	},
 	side: {
+		inherit: true,
 		canDynamaxNow() {
 			return false;
 		},
@@ -1110,6 +1112,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		},
 	},
 	pokemon: {
+		inherit: true,
 		/**
 		 * Hidden Power has no type.
 		 */
