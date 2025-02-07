@@ -850,7 +850,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		name: "[Gen 8 Run & Bun] LC",
 		mod: 'gen8runandbun',
 		searchShow: false,
-		ruleset: ['Little Cup', 'Standard', 'Evasion Moves Clause'],
+		ruleset: ['Little Cup', 'Standard'],
 	},
 	{
 		name: "[Gen 8 Run & Bun] Monotype",
