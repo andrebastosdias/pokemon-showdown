@@ -1,5 +1,6 @@
 export const Scripts: ModdedBattleScriptsData = {
 	gen: 8,
+	inherit: 'gen8',
 	init() {
 		for (const i in this.data.Moves) {
 			const moveData = this.modData('Moves', i);

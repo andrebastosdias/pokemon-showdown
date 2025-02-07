@@ -789,35 +789,30 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 	},
 	{
 		name: "[Gen 8 Legends] OU",
-
 		mod: 'gen8legends',
 		ruleset: ['Standard', 'Evasion Moves Clause'],
 		banlist: ['Uber'],
 	},
 	{
 		name: "[Gen 8 Legends] Ubers",
-
 		mod: 'gen8legends',
 		searchShow: false,
 		ruleset: ['Standard'],
 	},
 	{
 		name: "[Gen 8 Legends] LC",
-
 		mod: 'gen8legends',
 		searchShow: false,
 		ruleset: ['Little Cup', 'Standard', 'Evasion Moves Clause'],
 	},
 	{
 		name: "[Gen 8 Legends] Monotype",
-
 		mod: 'gen8legends',
 		searchShow: false,
 		ruleset: ['[Gen 8 Legends] OU', 'Same Type Clause'],
 	},
 	{
 		name: "[Gen 8 Legends] Doubles",
-
 		mod: 'gen8legends',
 		gameType: 'doubles',
 		searchShow: false,
@@ -825,7 +820,6 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 	},
 	{
 		name: "[Gen 8 Legends] Triples",
-
 		mod: 'gen8legends',
 		gameType: 'triples',
 		searchShow: false,
@@ -857,6 +851,12 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 	// 	mod: 'runandbun',
 	// 	searchShow: false,
 	// 	ruleset: ['Little Cup', 'Standard', 'Evasion Moves Clause'],
+	// },
+	// {
+	// 	name: "[Gen 8 Run & Bun] Monotype",
+	// 	mod: 'runandbun',
+	// 	searchShow: false,
+	// 	ruleset: ['[Gen 8] Run & Bun', 'Same Type Clause'],
 	// },
 	// {
 	// 	name: "[Gen 8] Run & Bun Doubles",
