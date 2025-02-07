@@ -23,12 +23,6 @@ export const Scripts: ModdedBattleScriptsData = {
 				moveData.target = 'self';
 			}
 		}
-		// sanity check
-		for (const i in this.data.FormatsData) {
-			if (['Gigantamax', 'CAP'].includes(this.modData('FormatsData', i).isNonstandard)) {
-				this.modData('FormatsData', i).isNonstandard = 'Past';
-			}
-		}
 	},
 	/**
 	 * Struggle should be able to hit any foe.
