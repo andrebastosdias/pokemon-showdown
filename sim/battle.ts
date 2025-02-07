@@ -3182,7 +3182,6 @@ export class Battle {
 
 		this.queue.battle = null!;
 		this.queue = null!;
-
 		// in case the garbage collector really sucks, at least deallocate the log
 		(this as any).log = [];
 	}
