@@ -834,29 +834,29 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		column: 2,
 	},
 	{
-		name: "[Gen 8 Run & Bun] OU",
+		name: "[Gen 8 Run And Bun] OU",
 		mod: 'gen8runandbun',
 		searchShow: false,
 		ruleset: ['Standard'],
 		banlist: ['Uber', 'Soul Dew'],
 	},
 	{
-		name: "[Gen 8 Run & Bun] Ubers",
+		name: "[Gen 8 Run And Bun] Ubers",
 		mod: 'gen8runandbun',
 		searchShow: false,
 		ruleset: ['Standard'],
 	},
 	{
-		name: "[Gen 8 Run & Bun] LC",
+		name: "[Gen 8 Run And Bun] LC",
 		mod: 'gen8runandbun',
 		searchShow: false,
-		ruleset: ['Little Cup', 'Standard', 'Evasion Moves Clause'],
+		ruleset: ['Little Cup', 'Standard'],
 	},
 	{
-		name: "[Gen 8 Run & Bun] Monotype",
+		name: "[Gen 8 Run And Bun] Monotype",
 		mod: 'gen8runandbun',
 		searchShow: false,
-		ruleset: ['[Gen 8 Run & Bun] OU', 'Same Type Clause'],
+		ruleset: ['[Gen 8 Run And Bun] OU', 'Same Type Clause'],
 	},
 
 	// Challengeable OMs
