@@ -2377,10 +2377,12 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 	},
 	greninjabond: {
-		isNonstandard: 'Past',
+		isNonstandard: "Past",
+		tier: "Illegal",
 	},
 	greninjaash: {
-		isNonstandard: 'Past',
+		isNonstandard: "Past",
+		tier: "Illegal",
 	},
 	bunnelby: {
 		tier: "LC",
@@ -2413,7 +2415,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		isNonstandard: null,
 	},
 	vivillonpokeball: {
-		isNonstandard: 'Past',
+		isNonstandard: "Past",
+		tier: "Illegal",
 	},
 	litleo: {
 		isNonstandard: null,
