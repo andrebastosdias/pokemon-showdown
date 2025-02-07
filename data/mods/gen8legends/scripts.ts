@@ -1,5 +1,68 @@
 import {Utils} from "../../../lib/utils";
-import {ChosenAction} from "../../../sim/side";
+
+function durationCallback(move: ActiveMove): number {
+	switch (move.id) {
+	case 'darkvoid':
+		return 3;
+	case 'bulkup': case 'calmmind': case 'lunarblessing': case 'takeheart': case 'victorydance':
+	case 'rest': case 'shelter':
+		return 4;
+	case 'poisonsting':
+		return 5;
+	default:
+		return move.category === 'Status' ? 5 : 3;
+	}
+}
+
+function getDefaultActionTime(pokemon: Pokemon): number {
+	const speed = pokemon.getStat('spe', false, false);
+	if (speed <= 15) return 14;
+	else if (speed <= 31) return 13;
+	else if (speed <= 55) return 12;
+	else if (speed <= 88) return 11;
+	else if (speed <= 129) return 10;
+	else if (speed <= 181) return 9;
+	else if (speed <= 242) return 8;
+	else if (speed <= 316) return 7;
+	else if (speed <= 401) return 6;
+	else return 5;
+}
+
+function getActionTimeModifier(move: ActiveMove): number {
+	switch (move.id) {
+	case 'chloroblast': case 'darkvoid': case 'gigaimpact': case 'hyperbeam': case 'mountaingale': case 'roaroftime':
+		return 5;
+	case 'shadowforce':
+		return 3;
+	case 'bulkup': case 'calmmind': case 'shelter': case 'takeheart': case 'victorydance':
+		return -2;
+	case 'acidarmor': case 'baby-dolleyes': case 'doublehit': case 'focusenergy': case 'irondefense': case 'nastyplot':
+	case 'powershift': case 'swordsdance':
+		return -3;
+	case 'aquajet': case 'bulletpunch': case 'esperwing': case 'iceshard': case 'machpunch': case 'quickattack':
+	case 'shadowsneak': case 'wavecrash':
+		return -4;
+	default:
+		return 0;
+	}
+}
+
+function getActionTimeModifierTarget(move: ActiveMove): number {
+	if ([
+		'airslash', 'astonish', 'bite', 'bubble', 'bulldoze', 'crushgrip', 'extrasensory', 'fairywind', 'firefang',
+		'icefang', 'iciclecrash', 'icywind', 'ironhead', 'mountaingale', 'rockslide', 'thunderfang', 'triplearrows',
+		'twister', 'zenheadbutt',
+	].includes(move.id)) {
+		return 3;
+	}
+	return 0;
+}
+
+function compareActionTime(a: Pokemon, b: Pokemon) {
+	return -(b.m.actionTime - a.m.actionTime) ||
+		(b.speed - a.speed) ||
+		0;
+}
 
 export const Scripts: ModdedBattleScriptsData = {
 	gen: 8,
@@ -7,10 +70,7 @@ export const Scripts: ModdedBattleScriptsData = {
 	init() {
 		this.modData('Abilities', 'noability').isNonstandard = null;
 		for (const i in this.data.Pokedex) {
-			// Cherrim, Regigigas
-			if (![421, 486].includes(this.modData('Pokedex', i).num)) {
-				this.modData('Pokedex', i).abilities = {0: 'No Ability'};
-			}
+			this.modData('Pokedex', i).abilities = {0: 'No Ability'};
 			delete this.modData('Pokedex', i).requiredItem;
 			delete this.modData('Pokedex', i).requiredItems;
 		}
@@ -24,19 +84,33 @@ export const Scripts: ModdedBattleScriptsData = {
 			}
 		}
 	},
-	/**
-	 * Struggle should be able to hit any foe.
-	 */
-	getRandomTarget(pokemon, move) {
-		move = this.dex.moves.get(move);
-		if (['self', 'all', 'allySide', 'allyTeam', 'adjacentAllyOrSelf'].includes(move.target)) {
-			return pokemon;
-		} else if (move.target === 'adjacentAlly') {
-			if (this.gameType === 'singles') return null;
-			const allies = pokemon.allies();
-			return allies.length ? this.sample(allies) : null;
+	spreadModify(baseStats, set) {
+		const modStats: StatsTable = {hp: 10, atk: 10, def: 10, spa: 10, spd: 10, spe: 10};
+		let statName: StatID;
+		for (statName in modStats) {
+			const stat = baseStats[statName];
+			if (statName === 'hp') {
+				modStats[statName] = Math.floor((set.level / 100 + 1) * stat + set.level);
+			} else {
+				modStats[statName] = Math.floor((set.level / 50 + 1) * stat / 1.5);
+			}
 		}
-		return pokemon.side.randomFoe() || pokemon.side.foe.active[0];
+		const stats = this.natureModify(modStats, set);
+
+		const multipliers = [0, 2, 3, 4, 7, 8, 9, 14, 15, 16, 25];
+		let stat: StatID;
+		for (stat in stats) {
+			const effortLevel = Math.min(set.ivs[stat], 10);
+			const effortLevelBonus = Math.round((Math.sqrt(baseStats[stat]) * multipliers[effortLevel] + set.level) / 2.5);
+			stats[stat] += effortLevelBonus;
+		}
+		return stats;
+	},
+	natureModify(stats, set) {
+		const nature = this.dex.natures.get(set.nature);
+		if (nature.plus) stats[nature.plus] = Math.floor(stats[nature.plus] * 1.1);
+		if (nature.minus) stats[nature.minus] = Math.floor(stats[nature.minus] * 0.9);
+		return stats;
 	},
 	/**
 	 * Only run onResidual events for Pokemon that tried to use a move, if any.
@@ -51,7 +125,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				handlers = handlers.concat(this.findSideEventHandlers(side, `onSide${eventid}`, 'duration'));
 			}
 			for (const active of side.active) {
-				if (!active || active !== this.actionTimeQueue.actingPokemon) continue;
+				if (!active || active.volatiles['commanding']) continue;
 				handlers = handlers.concat(this.findPokemonEventHandlers(active, callbackName, 'duration'));
 				handlers = handlers.concat(this.findSideEventHandlers(side, callbackName, undefined, active));
 				handlers = handlers.concat(this.findFieldEventHandlers(this.field, callbackName, undefined, active));
@@ -87,196 +161,18 @@ export const Scripts: ModdedBattleScriptsData = {
 	 * Get new acting Pokemon.
 	 */
 	endTurn() {
-		this.turn++;
-		this.lastSuccessfulMoveThisTurn = null;
+		const allActive = this.getAllActive();
+		allActive.forEach(pokemon => {
+			delete pokemon.volatiles['commanding'];
+		});
+		this.speedSort(allActive, compareActionTime);
+		const actingPokemon = allActive[0];
+		actingPokemon.volatiles['commanding'] = this.initEffectState({id: 'commanding', name: 'Commanding', target: actingPokemon});
+		const actingTime = actingPokemon.m.actionTime;
+		allActive.forEach(pokemon => pokemon.m.actionTime -= actingTime);
+		actingPokemon.m.actionTime = getDefaultActionTime(actingPokemon);
 
-		const dynamaxEnding: Pokemon[] = [];
-		for (const pokemon of this.getAllActive()) {
-			if (pokemon.volatiles['dynamax']?.turns === 3) {
-				dynamaxEnding.push(pokemon);
-			}
-		}
-		if (dynamaxEnding.length > 1) {
-			this.updateSpeed();
-			this.speedSort(dynamaxEnding);
-		}
-		for (const pokemon of dynamaxEnding) {
-			pokemon.removeVolatile('dynamax');
-		}
-
-		// Gen 1 partial trapping ends when either Pokemon or a switch in faints to residual damage
-		if (this.gen === 1) {
-			for (const pokemon of this.getAllActive()) {
-				if (pokemon.volatiles['partialtrappinglock']) {
-					const target = pokemon.volatiles['partialtrappinglock'].locked;
-					if (target.hp <= 0 || !target.volatiles['partiallytrapped']) {
-						delete pokemon.volatiles['partialtrappinglock'];
-					}
-				}
-				if (pokemon.volatiles['partiallytrapped']) {
-					const source = pokemon.volatiles['partiallytrapped'].source;
-					if (source.hp <= 0 || !source.volatiles['partialtrappinglock']) {
-						delete pokemon.volatiles['partiallytrapped'];
-					}
-				}
-			}
-		}
-
-		const trappedBySide: boolean[] = [];
-		const stalenessBySide: ('internal' | 'external' | undefined)[] = [];
-		for (const side of this.sides) {
-			let sideTrapped = true;
-			let sideStaleness: 'internal' | 'external' | undefined;
-			for (const pokemon of side.active) {
-				if (!pokemon) continue;
-				pokemon.moveThisTurn = '';
-				pokemon.newlySwitched = false;
-				pokemon.moveLastTurnResult = pokemon.moveThisTurnResult;
-				pokemon.moveThisTurnResult = undefined;
-				if (this.turn !== 1) {
-					pokemon.usedItemThisTurn = false;
-					pokemon.statsRaisedThisTurn = false;
-					pokemon.statsLoweredThisTurn = false;
-					// It shouldn't be possible in a normal battle for a Pokemon to be damaged before turn 1's move selection
-					// However, this could be potentially relevant in certain OMs
-					pokemon.hurtThisTurn = null;
-				}
-
-				pokemon.maybeDisabled = false;
-				for (const moveSlot of pokemon.moveSlots) {
-					moveSlot.disabled = false;
-					moveSlot.disabledSource = '';
-				}
-				this.runEvent('DisableMove', pokemon);
-				for (const moveSlot of pokemon.moveSlots) {
-					const activeMove = this.dex.getActiveMove(moveSlot.id);
-					this.singleEvent('DisableMove', activeMove, null, pokemon);
-					if (activeMove.flags['cantusetwice'] && pokemon.lastMove?.id === moveSlot.id) {
-						pokemon.disableMove(pokemon.lastMove.id);
-					}
-				}
-
-				// If it was an illusion, it's not any more
-				if (pokemon.getLastAttackedBy() && this.gen >= 7) pokemon.knownType = true;
-
-				for (let i = pokemon.attackedBy.length - 1; i >= 0; i--) {
-					const attack = pokemon.attackedBy[i];
-					if (attack.source.isActive) {
-						attack.thisTurn = false;
-					} else {
-						pokemon.attackedBy.splice(pokemon.attackedBy.indexOf(attack), 1);
-					}
-				}
-
-				if (this.gen >= 7 && !pokemon.terastallized) {
-					// In Gen 7, the real type of every Pokemon is visible to all players via the bottom screen while making choices
-					const seenPokemon = pokemon.illusion || pokemon;
-					const realTypeString = seenPokemon.getTypes(true).join('/');
-					if (realTypeString !== seenPokemon.apparentType) {
-						this.add('-start', pokemon, 'typechange', realTypeString, '[silent]');
-						seenPokemon.apparentType = realTypeString;
-						if (pokemon.addedType) {
-							// The typechange message removes the added type, so put it back
-							this.add('-start', pokemon, 'typeadd', pokemon.addedType, '[silent]');
-						}
-					}
-				}
-
-				pokemon.trapped = pokemon.maybeTrapped = false;
-				this.runEvent('TrapPokemon', pokemon);
-				if (!pokemon.knownType || this.dex.getImmunity('trapped', pokemon)) {
-					this.runEvent('MaybeTrapPokemon', pokemon);
-				}
-				// canceling switches would leak information
-				// if a foe might have a trapping ability
-				if (this.gen > 2) {
-					for (const source of pokemon.foes()) {
-						const species = (source.illusion || source).species;
-						if (!species.abilities) continue;
-						for (const abilitySlot in species.abilities) {
-							const abilityName = species.abilities[abilitySlot as keyof Species['abilities']];
-							if (abilityName === source.ability) {
-								// pokemon event was already run above so we don't need
-								// to run it again.
-								continue;
-							}
-							const ruleTable = this.ruleTable;
-							if ((ruleTable.has('+hackmons') || !ruleTable.has('obtainableabilities')) && !this.format.team) {
-								// hackmons format
-								continue;
-							} else if (abilitySlot === 'H' && species.unreleasedHidden) {
-								// unreleased hidden ability
-								continue;
-							}
-							const ability = this.dex.abilities.get(abilityName);
-							if (ruleTable.has('-ability:' + ability.id)) continue;
-							if (pokemon.knownType && !this.dex.getImmunity('trapped', pokemon)) continue;
-							this.singleEvent('FoeMaybeTrapPokemon', ability, {}, pokemon, source);
-						}
-					}
-				}
-
-				if (pokemon.fainted) continue;
-
-				sideTrapped = sideTrapped && pokemon.trapped;
-				const staleness = pokemon.volatileStaleness || pokemon.staleness;
-				if (staleness) sideStaleness = sideStaleness === 'external' ? sideStaleness : staleness;
-				pokemon.activeTurns++;
-			}
-			trappedBySide.push(sideTrapped);
-			stalenessBySide.push(sideStaleness);
-			side.faintedLastTurn = side.faintedThisTurn;
-			side.faintedThisTurn = null;
-		}
-
-		if (this.maybeTriggerEndlessBattleClause(trappedBySide, stalenessBySide)) return;
-
-		if (this.gameType === 'triples' && this.sides.every(side => side.pokemonLeft === 1)) {
-			// If both sides have one Pokemon left in triples and they are not adjacent, they are both moved to the center.
-			const actives = this.getAllActive();
-			if (actives.length > 1 && !actives[0].isAdjacent(actives[1])) {
-				this.swapPosition(actives[0], 1, '[silent]');
-				this.swapPosition(actives[1], 1, '[silent]');
-				this.add('-center');
-			}
-		}
-
-		this.add('turn', this.turn);
-
-		this.actionTimeQueue.nextTurn();
-
-		if (this.gameType === 'multi') {
-			for (const side of this.sides) {
-				if (side.canDynamaxNow()) {
-					if (this.turn === 1) {
-						this.addSplit(side.id, ['-candynamax', side.id]);
-					} else {
-						this.add('-candynamax', side.id);
-					}
-				}
-			}
-		}
-		if (this.gen === 2) this.quickClawRoll = this.randomChance(60, 256);
-		if (this.gen === 3) this.quickClawRoll = this.randomChance(1, 5);
-
-		// Crazyhouse Progress checker because sidebars has trouble keeping track of Pokemon.
-		// Please remove me once there is client support.
-		if (this.ruleTable.has('crazyhouserule')) {
-			for (const side of this.sides) {
-				let buf = `raw|${Utils.escapeHTML(side.name)}'s team:<br />`;
-				for (const pokemon of side.pokemon) {
-					if (!buf.endsWith('<br />')) buf += '/</span>&#8203;';
-					if (pokemon.fainted) {
-						buf += `<span style="white-space:nowrap;"><span style="opacity:.3"><psicon pokemon="${pokemon.species.id}" /></span>`;
-					} else {
-						buf += `<span style="white-space:nowrap"><psicon pokemon="${pokemon.species.id}" />`;
-					}
-				}
-				this.add(`${buf}</span>`);
-			}
-		}
-
-		this.makeRequest('move');
+		this.constructor.prototype.endTurn.call(this);
 	},
 	/**
 	 * Set players that do not act to wait.
@@ -309,7 +205,7 @@ export const Scripts: ModdedBattleScriptsData = {
 			for (let i = 0; i < this.sides.length; i++) {
 				const side = this.sides[i];
 				if (!side.pokemonLeft) continue;
-				if (!side.active.some(pokemon => pokemon === this.actionTimeQueue.actingPokemon)) continue;
+				if (side.active.every(pokemon => pokemon.volatiles['commanding'])) continue;
 				const activeData = side.active.map(pokemon => pokemon?.getMoveRequestData());
 				requests[i] = {active: activeData, side: side.getRequestData()};
 				if (side.allySide) {
@@ -591,7 +487,6 @@ export const Scripts: ModdedBattleScriptsData = {
 				throw new Error(`Invalid switch position ${pos} / ${side.active.length}`);
 			}
 			const oldActive = side.active[pos];
-			this.battle.actionTimeQueue.push(pokemon, oldActive ? oldActive : null);
 			const unfaintedActive = oldActive?.hp ? oldActive : null;
 			if (unfaintedActive) {
 				oldActive.beingCalledBack = true;
@@ -645,6 +540,8 @@ export const Scripts: ModdedBattleScriptsData = {
 				oldActive.statsRaisedThisTurn = false;
 				oldActive.statsLoweredThisTurn = false;
 				oldActive.position = pokemon.position;
+				pokemon.m.actionTime = oldActive.m.actionTime;
+				oldActive.m.actionTime = 0;
 				pokemon.position = pos;
 				side.pokemon[pokemon.position] = pokemon;
 				side.pokemon[oldActive.position] = oldActive;
@@ -711,7 +608,7 @@ export const Scripts: ModdedBattleScriptsData = {
 
 			this.battle.setActiveMove(move, pokemon, target);
 
-			this.battle.actionTimeQueue.updateMoveSource(move, pokemon);
+			pokemon.m.actionTime += getActionTimeModifier(move);
 
 			/* if (pokemon.moveThisTurn) {
 				// THIS IS PURELY A SANITY CHECK
@@ -785,7 +682,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				this.battle.add('-hint', `Some effects can force a Pokemon to use ${move.name} again in a row.`);
 			}
 
-			if (pokemon.moveThisTurnResult) this.battle.actionTimeQueue.updateMoveTarget(move, target);
+			if (pokemon.moveThisTurnResult && target) target.m.actionTime += getActionTimeModifierTarget(move);
 
 			// Dancer's activation order is completely different from any other event, so it's handled separately
 			if (move.flags['dance'] && moveDidSomething && !move.isExternal) {
@@ -1032,77 +929,8 @@ export const Scripts: ModdedBattleScriptsData = {
 		canDynamaxNow() {
 			return false;
 		},
-		/**
-		 * Any Pokemon can hit any other Pokemon. There is no need for shifting.
-		 */
 		chooseShift() {
 			return this.emitChoiceError(`Can't shift: You don't need to shift in Legends: Arceus, you can hit any foe`);
-		},
-		/**
-		 * Allow Pokemon that do not act to pass.
-		 */
-		choosePass() {
-			const index = this.getChoiceIndex(true);
-			if (index >= this.active.length) return false;
-			const pokemon: Pokemon = this.active[index];
-
-			switch (this.requestState) {
-			case 'switch':
-				if (pokemon.switchFlag) { // This condition will always happen if called by Battle#choose()
-					if (!this.choice.forcedPassesLeft) {
-						return this.emitChoiceError(`Can't pass: You need to switch in a Pokémon to replace ${pokemon.name}`);
-					}
-					this.choice.forcedPassesLeft--;
-				}
-				break;
-			case 'move':
-				if (
-					!pokemon.fainted && !pokemon.volatiles['commanding'] &&
-					pokemon === this.battle.actionTimeQueue.actingPokemon
-				) {
-					return this.emitChoiceError(`Can't pass: Your ${pokemon.name} must make a move (or switch)`);
-				}
-				break;
-			default:
-				return this.emitChoiceError(`Can't pass: Not a move or switch request`);
-			}
-
-			this.choice.actions.push({
-				choice: 'pass',
-			} as ChosenAction);
-			return true;
-		},
-		/**
-		 * Pass Pokemon that do not act.
-		 */
-		getChoiceIndex(isPass) {
-			let index = this.choice.actions.length;
-
-			if (!isPass) {
-				switch (this.requestState) {
-				case 'move':
-					// auto-pass
-					while (
-						index < this.active.length &&
-						(
-							this.active[index].fainted || this.active[index].volatiles['commanding'] ||
-							this.active[index] !== this.battle.actionTimeQueue.actingPokemon
-						)
-					) {
-						this.choosePass();
-						index++;
-					}
-					break;
-				case 'switch':
-					while (index < this.active.length && !this.active[index].switchFlag) {
-						this.choosePass();
-						index++;
-					}
-					break;
-				}
-			}
-
-			return index;
 		},
 	},
 	pokemon: {
@@ -1192,7 +1020,6 @@ export const Scripts: ModdedBattleScriptsData = {
 			return hasValidMove ? moves : [];
 		},
 		/**
-		 * Use entry.commanding to inform the client which Pokemon are not going to act.
 		 * Hidden Power has no type.
 		 */
 		getSwitchRequestData(forAlly?: boolean) {
@@ -1209,9 +1036,6 @@ export const Scripts: ModdedBattleScriptsData = {
 					spe: this.baseStoredStats['spe'],
 				},
 				moves: this[forAlly ? 'baseMoves' : 'moves'].map(move => {
-					if (move === 'hiddenpower') {
-						return move;
-					}
 					if (move === 'frustration' || move === 'return') {
 						const basePowerCallback = this.battle.dex.moves.get(move).basePowerCallback as (pokemon: Pokemon) => number;
 						return move + basePowerCallback(this);
@@ -1223,10 +1047,8 @@ export const Scripts: ModdedBattleScriptsData = {
 				pokeball: this.pokeball,
 			};
 			if (this.battle.gen > 6) entry.ability = this.ability;
-			if (this.battle.gen >= 9 || this.battle.dex.currentMod === 'gen8legends') {
-				entry.commanding = (
-					!!this.volatiles['commanding'] || this !== this.battle.actionTimeQueue.actingPokemon
-				) && !this.fainted;
+			if (this.battle.gen >= 9) {
+				entry.commanding = !!this.volatiles['commanding'] && !this.fainted;
 				entry.reviving = this.isActive && !!this.side.slotConditions[this.position]['revivalblessing'];
 			}
 			if (this.battle.gen === 9) {
@@ -1360,46 +1182,4 @@ export const Scripts: ModdedBattleScriptsData = {
 			return true;
 		},
 	},
-	spreadModify(baseStats, set) {
-		const modStats: StatsTable = {hp: 10, atk: 10, def: 10, spa: 10, spd: 10, spe: 10};
-		let statName: StatID;
-		for (statName in modStats) {
-			const stat = baseStats[statName];
-			if (statName === 'hp') {
-				modStats[statName] = Math.floor((set.level / 100 + 1) * stat + set.level);
-			} else {
-				modStats[statName] = Math.floor((set.level / 50 + 1) * stat / 1.5);
-			}
-		}
-		const stats = this.natureModify(modStats, set);
-
-		const multipliers = [0, 2, 3, 4, 7, 8, 9, 14, 15, 16, 25];
-		let stat: StatID;
-		for (stat in stats) {
-			const effortLevel = Math.min(set.ivs[stat], 10);
-			const effortLevelBonus = Math.round((Math.sqrt(baseStats[stat]) * multipliers[effortLevel] + set.level) / 2.5);
-			stats[stat] += effortLevelBonus;
-		}
-		return stats;
-	},
-	natureModify(stats, set) {
-		const nature = this.dex.natures.get(set.nature);
-		if (nature.plus) stats[nature.plus] = Math.floor(stats[nature.plus] * 1.1);
-		if (nature.minus) stats[nature.minus] = Math.floor(stats[nature.minus] * 0.9);
-		return stats;
-	},
 };
-
-function durationCallback(move: ActiveMove): number {
-	switch (move.id) {
-	case 'darkvoid':
-		return 3;
-	case 'bulkup': case 'calmmind': case 'lunarblessing': case 'takeheart': case 'victorydance':
-	case 'rest': case 'shelter':
-		return 4;
-	case 'poisonsting':
-		return 5;
-	default:
-		return move.category === 'Status' ? 5 : 3;
-	}
-}

@@ -56,6 +56,49 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 		inherit: true,
 		onType: undefined,
 	},
+	cherrim: {
+		name: "Cherrim",
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectState, pokemon);
+		},
+		onWeatherChange(pokemon) {
+			if (!pokemon.isActive || pokemon.baseSpecies.baseSpecies !== 'Cherrim') return;
+			if (!pokemon.hp) return;
+			if (['', 'sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
+				if (pokemon.species.id !== 'cherrimsunshine') {
+					pokemon.formeChange('Cherrim-Sunshine', this.effect, false, '0', '[msg]');
+				}
+			} else {
+				if (pokemon.species.id === 'cherrimsunshine') {
+					pokemon.formeChange('Cherrim', this.effect, false, '0', '[msg]');
+				}
+			}
+		},
+	},
+	regigigas: {
+		name: "Regigigas",
+		duration: 5,
+		onResidualOrder: 28,
+		onResidualSubOrder: 2,
+		onStart(target) {
+			this.add('-start', target, 'Slow Start');
+		},
+		onResidual(pokemon) {
+			if (!pokemon.activeTurns) {
+				this.effectState.duration += 1;
+			}
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk() {
+			return this.chainModify(0.5);
+		},
+		onModifySpe() {
+			return this.chainModify(0.5);
+		},
+		onEnd(target) {
+			this.add('-end', target, 'Slow Start');
+		},
+	},
 	fixated: {
 		name: 'fixated',
 		duration: 2,
