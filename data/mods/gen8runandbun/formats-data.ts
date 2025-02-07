@@ -540,7 +540,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 	aerodactyl: {
 		tier: "OU",
 	},
-	aerodactilmega: {
+	aerodactylmega: {
 		isNonstandard: null,
 		tier: "OU",
 	},
@@ -2204,7 +2204,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		isNonstandard: null,
 	},
 	vivillonpokeball: {
-		isNonstandard: null,
+		isNonstandard: 'Past',
 	},
 	litleo: {
 		isNonstandard: null,
