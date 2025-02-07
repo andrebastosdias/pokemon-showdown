@@ -261,6 +261,7 @@ interface ModdedBattleActions {
 
 interface ModdedBattleSide {
 	inherit?: true;
+	allies?: (this: Side, all?: boolean) => Pokemon[];
 	canDynamaxNow?: (this: Side) => boolean;
 	chooseSwitch?: (this: Side, slotText?: string) => any;
 	getChoice?: (this: Side) => string;
@@ -382,6 +383,8 @@ interface ModdedBattleScriptsData extends Partial<BattleScriptsData> {
 		this: Battle, move: ActiveMove, attacker: Pokemon, defender: Pokemon, announcePads?: boolean
 	) => boolean;
 	checkWin?: (this: Battle, faintQueue?: Battle['faintQueue'][0]) => true | undefined;
+	fieldEvent?: (this: Battle, eventid: string, targets?: Pokemon[]) => void;
+	getAllActive?: (this: Battle, includeFainted?: boolean, includeCommanding?: boolean) => Pokemon[];
 
 	// Legends: Arceus
 	residualEvent?: (this: Battle, eventid: string, relayVar?: any) => void;
