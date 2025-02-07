@@ -834,7 +834,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		column: 2,
 	},
 	{
-		name: "[Gen 8 Run & Bun] OU",
+		name: "[Gen 8] Run & Bun",
 		mod: 'runandbun',
 		searchShow: false,
 		ruleset: ['Standard'],
@@ -856,7 +856,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 	// 	name: "[Gen 8 Run & Bun] Monotype",
 	// 	mod: 'runandbun',
 	// 	searchShow: false,
-	// 	ruleset: ['[Gen 8 Run & Bun] OU', 'Same Type Clause'],
+	// 	ruleset: ['[Gen 8] Run & Bun', 'Same Type Clause'],
 	// },
 	// {
 	// 	name: "[Gen 8] Run & Bun Doubles",
