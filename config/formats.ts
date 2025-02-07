@@ -778,6 +778,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 
 	{
 		section: "Legends: Arceus",
+		column: 2,
 	},
 	{
 		name: "[Gen 8 Legends] Random Battle",
@@ -830,6 +831,41 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		searchShow: false,
 		ruleset: ['Standard Doubles'],
 	},
+
+	// Run & Bun
+	///////////////////////////////////////////////////////////////////
+
+	{
+		section: "Run & Bun",
+		column: 2,
+	},
+	{
+		name: "[Gen 8] Run & Bun",
+		mod: 'runandbun',
+		searchShow: false,
+		ruleset: ['Standard'],
+		banlist: ['Uber', 'Soul Dew'],
+	},
+	// {
+	// 	name: "[Gen 8 Run & Bun] Ubers",
+	// 	mod: 'runandbun',
+	// 	searchShow: false,
+	// 	ruleset: ['Standard'],
+	// },
+	// {
+	// 	name: "[Gen 8 Run & Bun] LC",
+	// 	mod: 'runandbun',
+	// 	searchShow: false,
+	// 	ruleset: ['Little Cup', 'Standard', 'Evasion Moves Clause'],
+	// },
+	// {
+	// 	name: "[Gen 8] Run & Bun Doubles",
+	// 	mod: 'runandbun',
+	// 	gameType: 'doubles',
+	// 	searchShow: false,
+	// 	ruleset: ['Standard Doubles'],
+	// 	banlist: ['DUber', 'Soul Dew', 'Dark Void'],
+	// },
 
 	// Challengeable OMs
 	///////////////////////////////////////////////////////////////////
