@@ -550,9 +550,6 @@ export class DexSpecies {
 					species.tier = species.doublesTier = species.natDexTier = 'Illegal';
 				}
 			}
-			if (['gen8legends', 'gen8runandbun'].includes(this.dex.currentMod) && species.isNonstandard) {
-				species.tier = species.doublesTier = species.natDexTier = 'Illegal';
-			}
 			species.nfe = species.evos.some(evo => {
 				const evoSpecies = this.get(evo);
 				return !evoSpecies.isNonstandard ||
