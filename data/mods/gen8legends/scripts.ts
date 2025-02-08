@@ -1015,6 +1015,14 @@ export const Scripts: ModdedBattleScriptsData = {
 	},
 	pokemon: {
 		inherit: true,
+		getUpdatedDetails(level) {
+			let name = this.species.name;
+			if (name === 'Greninja-Bond') name = 'Greninja';
+			if (name === 'Arceus-Legend') name = 'Arceus';
+			if (!level) level = this.level;
+			return name + (level === 100 ? '' : ', L' + level) +
+				(this.gender === '' ? '' : ', ' + this.gender) + (this.set.shiny ? ', shiny' : '');
+		},
 		/**
 		 * Hidden Power has no type.
 		 */

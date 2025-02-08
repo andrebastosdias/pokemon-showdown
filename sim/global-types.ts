@@ -330,6 +330,7 @@ interface ModdedBattlePokemon {
 	ignoringItem?: (this: Pokemon) => boolean;
 
 	// Legends: Arceus
+	getUpdatedDetails?: (this: Pokemon, level?: number) => string;
 	getSwitchRequestData?: (this: Pokemon, forAlly?: boolean) => AnyObject;
 	trySetStatus?: (
 		this: Pokemon, status: string | Condition, source: Pokemon | null, sourceEffect: Effect | null

@@ -1634,7 +1634,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				bestTypes = getAllMaxValues(bestTypes, x => getTypeEffectiveness(this, type, x), true);
 			}
 			const newType = this.sample(bestTypes);
-			if (newType !== pokemon.species.types.join()) {
+			if (pokemon.species.name !== 'Arceus-' + newType) {
 				pokemon.formeChange('Arceus-' + newType, this.effect, false, '0', '[msg]');
 			}
 			move.type = newType;
