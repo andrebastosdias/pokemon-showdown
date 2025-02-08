@@ -792,6 +792,10 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		abilities: {0: "Sweet Veil", 1: "Shield Dust", H: "Honey Gather"},
 	},
+	rockruff: {
+		inherit: true,
+		evos: ["Lycanroc", "Lycanroc-Midnight", "Lycanroc-Dusk"],
+	},
 	lycanroc: {
 		inherit: true,
 		abilities: {0: "Sand Rush", H: "Inner Focus"},
@@ -799,6 +803,10 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	lycanrocmidnight: {
 		inherit: true,
 		abilities: {0: "No Guard", H: "Vital Spirit"},
+	},
+	lycanrocdusk: {
+		inherit: true,
+		prevo: "Rockruff",
 	},
 	mudbray: {
 		inherit: true,

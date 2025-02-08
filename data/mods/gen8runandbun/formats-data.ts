@@ -2699,7 +2699,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "LC",
 	},
 	rockruffdusk: {
-		tier: "LC",
+		isNonstandard: "Past",
+		tier: "Illegal",
 	},
 	lycanroc: {
 		tier: "OU",
