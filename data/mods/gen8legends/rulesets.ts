@@ -1,4 +1,4 @@
-import {TeamValidator} from "../../../sim/team-validator";
+import {TeamValidator} from '../../../sim/team-validator';
 
 export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable = {
 	standard: {
@@ -17,9 +17,8 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 		inherit: true,
 		ruleset: ['Obtainable Moves', 'Obtainable Formes', 'EV Limit = 0', 'Obtainable Misc'],
 		onChangeSet(set) {
-			const species = this.dex.species.get(set.species);
 			set.item = '';
-			set.ability = species.abilities['0'];
+			set.ability = 'No Ability';
 			set.evs = TeamValidator.fillStats(null, 0);
 		},
 	},

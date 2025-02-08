@@ -1,4 +1,4 @@
-import {TeamValidator} from "../../../sim/team-validator";
+import {TeamValidator} from '../../../sim/team-validator';
 
 export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable = {
 	obtainable: {

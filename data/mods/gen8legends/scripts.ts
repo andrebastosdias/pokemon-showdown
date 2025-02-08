@@ -1,4 +1,4 @@
-import {ChosenAction} from "../../../sim/side";
+import {ChosenAction} from '../../../sim/side';
 
 function durationCallback(move: ActiveMove): number {
 	switch (move.id) {
@@ -1017,8 +1017,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		inherit: true,
 		getUpdatedDetails(level) {
 			let name = this.species.name;
-			if (name === 'Greninja-Bond') name = 'Greninja';
-			if (name === 'Arceus-Legend') name = 'Arceus';
+			if (['Arceus-Legend', 'Greninja-Bond', 'Rockruff-Dusk'].includes(name)) name = this.species.baseSpecies;
 			if (!level) level = this.level;
 			return name + (level === 100 ? '' : ', L' + level) +
 				(this.gender === '' ? '' : ', ' + this.gender) + (this.set.shiny ? ', shiny' : '');
