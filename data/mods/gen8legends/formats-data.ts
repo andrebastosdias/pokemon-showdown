@@ -2628,6 +2628,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		isNonstandard: "Past",
 		tier: "Illegal",
 	},
+	rockruffdusk: {
+		isNonstandard: "Past",
+		tier: "Illegal",
+	},
 	lycanroc: {
 		isNonstandard: "Past",
 		tier: "Illegal",
