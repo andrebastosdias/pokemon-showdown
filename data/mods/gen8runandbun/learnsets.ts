@@ -9099,6 +9099,25 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			tackle: ["8L1"]
 		},
 	},
+	rockruffdusk: {
+		learnset: {
+			attract: ["8L18"],
+			bite: ["8L12"],
+			charm: ["8L37"],
+			crunch: ["8L40"],
+			highhorsepower: ["8L45"],
+			odorsleuth: ["8L1"],
+			roar: ["8L15"],
+			rockslide: ["8L34"],
+			rockthrow: ["8L7"],
+			rocktomb: ["8L23"],
+			sandattack: ["8L4"],
+			snarl: ["8L26"],
+			stompingtantrum: ["8L29"],
+			stoneedge: ["8L48"],
+			tackle: ["8L1"]
+		},
+	},
 	lycanroc: {
 		learnset: {
 			accelerock: ["8L39"],
