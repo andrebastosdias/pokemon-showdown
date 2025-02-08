@@ -58,11 +58,12 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 	},
 	cherrim: {
 		name: "Cherrim",
+		onSwitchInPriority: -2,
 		onStart(pokemon) {
 			this.singleEvent('WeatherChange', this.effect, this.effectState, pokemon);
 		},
 		onWeatherChange(pokemon) {
-			if (!pokemon.isActive || pokemon.baseSpecies.baseSpecies !== 'Cherrim') return;
+			if (!pokemon.isActive || pokemon.baseSpecies.baseSpecies !== 'Cherrim' || pokemon.transformed) return;
 			if (!pokemon.hp) return;
 			if (['', 'sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
 				if (pokemon.species.id !== 'cherrimsunshine') {
@@ -85,14 +86,14 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 		},
 		onResidual(pokemon) {
 			if (!pokemon.activeTurns) {
-				this.effectState.duration += 1;
+				this.effectState.duration! += 1;
 			}
 		},
 		onModifyAtkPriority: 5,
-		onModifyAtk() {
+		onModifyAtk(atk, pokemon) {
 			return this.chainModify(0.5);
 		},
-		onModifySpe() {
+		onModifySpe(spe, pokemon) {
 			return this.chainModify(0.5);
 		},
 		onEnd(target) {

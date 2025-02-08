@@ -1,4 +1,4 @@
-import {Utils} from "../../../lib/utils";
+import {ChosenAction} from "../../../sim/side";
 
 function durationCallback(move: ActiveMove): number {
 	switch (move.id) {
@@ -116,19 +116,27 @@ export const Scripts: ModdedBattleScriptsData = {
 	 * Only run onResidual events for Pokemon that tried to use a move, if any.
 	 * Run onResidual events before checking its duration.
 	 */
-	residualEvent(eventid, relayVar) {
+	fieldEvent(eventid, targets) {
 		const callbackName = `on${eventid}`;
-		let handlers = this.findBattleEventHandlers(callbackName, 'duration');
-		handlers = handlers.concat(this.findFieldEventHandlers(this.field, `onField${eventid}`, 'duration'));
+		let getKey: undefined | 'duration';
+		if (eventid === 'Residual') {
+			getKey = 'duration';
+		}
+		let handlers = this.findFieldEventHandlers(this.field, `onField${eventid}`, getKey);
 		for (const side of this.sides) {
 			if (side.n < 2 || !side.allySide) {
-				handlers = handlers.concat(this.findSideEventHandlers(side, `onSide${eventid}`, 'duration'));
+				handlers = handlers.concat(this.findSideEventHandlers(side, `onSide${eventid}`, getKey));
 			}
 			for (const active of side.active) {
-				if (!active || active.volatiles['commanding']) continue;
-				handlers = handlers.concat(this.findPokemonEventHandlers(active, callbackName, 'duration'));
+				if (!active || (eventid === 'Residual' && !active.m.acting)) continue;
+				if (eventid === 'SwitchIn') {
+					handlers = handlers.concat(this.findPokemonEventHandlers(active, `onAny${eventid}`));
+				}
+				if (targets && !targets.includes(active)) continue;
+				handlers = handlers.concat(this.findPokemonEventHandlers(active, callbackName, getKey));
 				handlers = handlers.concat(this.findSideEventHandlers(side, callbackName, undefined, active));
 				handlers = handlers.concat(this.findFieldEventHandlers(this.field, callbackName, undefined, active));
+				handlers = handlers.concat(this.findBattleEventHandlers(callbackName, getKey, active));
 			}
 		}
 		this.speedSort(handlers);
@@ -136,25 +144,34 @@ export const Scripts: ModdedBattleScriptsData = {
 			const handler = handlers[0];
 			handlers.shift();
 			const effect = handler.effect;
-			if ((handler.effectHolder as Pokemon).fainted) continue;
+			if ((handler.effectHolder as Pokemon).fainted) {
+				if (!(handler.state?.isSlotCondition)) continue;
+			}
 
 			let handlerEventid = eventid;
 			if ((handler.effectHolder as Side).sideConditions) handlerEventid = `Side${eventid}`;
 			if ((handler.effectHolder as Field).pseudoWeather) handlerEventid = `Field${eventid}`;
 			if (handler.callback) {
-				this.singleEvent(handlerEventid, effect, handler.state, handler.effectHolder, null, null, relayVar, handler.callback);
-			}
-
-			if (!(handler.effectHolder as Pokemon).fainted && handler.end && handler.state && handler.state.duration) {
-				handler.state.duration--;
-				if (!handler.state.duration) {
-					const endCallArgs = handler.endCallArgs || [handler.effectHolder, effect.id];
-					handler.end.call(...endCallArgs as [any, ...any[]]);
-				}
+				this.singleEvent(handlerEventid, effect, handler.state, handler.effectHolder, null, null, undefined, handler.callback);
 			}
 
 			this.faintMessages();
 			if (this.ended) return;
+
+			if ((handler.effectHolder as Pokemon).fainted) continue;
+			if (eventid === 'Residual' && handler.end && handler.state && handler.state.duration) {
+				handler.state.duration--;
+				if (!handler.state.duration) {
+					const endCallArgs = handler.endCallArgs || [handler.effectHolder, effect.id];
+					if ((handler.effect as Condition).effectType === 'Status') {
+						(handler.effectHolder as Pokemon).cureStatus(false);
+					} else {
+						handler.end.call(...endCallArgs as [any, ...any[]]);
+					}
+					if (this.ended) return;
+					continue;
+				}
+			}
 		}
 	},
 	/**
@@ -163,13 +180,14 @@ export const Scripts: ModdedBattleScriptsData = {
 	endTurn() {
 		const allActive = this.getAllActive();
 		allActive.forEach(pokemon => {
-			delete pokemon.volatiles['commanding'];
+			delete pokemon.m.acting;
+			pokemon.updateSpeed();
 		});
 		this.speedSort(allActive, compareActionTime);
 		const actingPokemon = allActive[0];
-		actingPokemon.volatiles['commanding'] = this.initEffectState({id: 'commanding', name: 'Commanding', target: actingPokemon});
+		actingPokemon.m.acting = true;
 		const actingTime = actingPokemon.m.actionTime;
-		allActive.forEach(pokemon => pokemon.m.actionTime -= actingTime);
+		allActive.forEach(pokemon => { pokemon.m.actionTime -= actingTime; });
 		actingPokemon.m.actionTime = getDefaultActionTime(actingPokemon);
 
 		this.constructor.prototype.endTurn.call(this);
@@ -205,7 +223,7 @@ export const Scripts: ModdedBattleScriptsData = {
 			for (let i = 0; i < this.sides.length; i++) {
 				const side = this.sides[i];
 				if (!side.pokemonLeft) continue;
-				if (side.active.every(pokemon => pokemon.volatiles['commanding'])) continue;
+				if (!side.active.some(pokemon => pokemon.m.acting)) continue;
 				const activeData = side.active.map(pokemon => pokemon?.getMoveRequestData());
 				requests[i] = {active: activeData, side: side.getRequestData()};
 				if (side.allySide) {
@@ -519,6 +537,7 @@ export const Scripts: ModdedBattleScriptsData = {
 
 				oldActive.illusion = null;
 				this.battle.singleEvent('End', oldActive.getAbility(), oldActive.abilityState, oldActive);
+				this.battle.singleEvent('End', oldActive.getItem(), oldActive.itemState, oldActive);
 
 				// if a pokemon is forced out by Whirlwind/etc or Eject Button/Pack, it can't use its chosen move
 				this.battle.queue.cancelAction(oldActive);
@@ -542,6 +561,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				oldActive.position = pokemon.position;
 				pokemon.m.actionTime = oldActive.m.actionTime;
 				oldActive.m.actionTime = 0;
+				oldActive.m.acting = false;
 				pokemon.position = pos;
 				side.pokemon[pokemon.position] = pokemon;
 				side.pokemon[oldActive.position] = oldActive;
@@ -553,22 +573,21 @@ export const Scripts: ModdedBattleScriptsData = {
 			for (const moveSlot of pokemon.moveSlots) {
 				moveSlot.used = false;
 			}
+			pokemon.abilityState.effectOrder = this.battle.effectOrder++;
+			pokemon.itemState.effectOrder = this.battle.effectOrder++;
 			this.battle.runEvent('BeforeSwitchIn', pokemon);
 			if (sourceEffect) {
 				this.battle.add(isDrag ? 'drag' : 'switch', pokemon, pokemon.getFullDetails, '[from] ' + sourceEffect);
 			} else {
 				this.battle.add(isDrag ? 'drag' : 'switch', pokemon, pokemon.getFullDetails);
 			}
-			pokemon.abilityOrder = this.battle.abilityOrder++;
 			if (isDrag && this.battle.gen === 2) pokemon.draggedIn = this.battle.turn;
 			pokemon.previouslySwitchedIn++;
 
 			if (isDrag && this.battle.gen >= 5) {
 				// runSwitch happens immediately so that Mold Breaker can make hazards bypass Clear Body and Levitate
-				this.battle.singleEvent('PreStart', pokemon.getAbility(), pokemon.abilityState, pokemon);
 				this.runSwitch(pokemon);
 			} else {
-				this.battle.queue.insertChoice({choice: 'runUnnerve', pokemon});
 				this.battle.queue.insertChoice({choice: 'runSwitch', pokemon});
 			}
 
@@ -684,6 +703,7 @@ export const Scripts: ModdedBattleScriptsData = {
 
 			if (pokemon.moveThisTurnResult && target) target.m.actionTime += getActionTimeModifierTarget(move);
 
+			// TODO: Refactor to use BattleQueue#prioritizeAction in onAnyAfterMove handlers
 			// Dancer's activation order is completely different from any other event, so it's handled separately
 			if (move.flags['dance'] && moveDidSomething && !move.isExternal) {
 				const dancers = [];
@@ -698,7 +718,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				// but before any multipliers like Agility or Choice Scarf
 				// Ties go to whichever Pokemon has had the ability for the least amount of time
 				dancers.sort(
-					(a, b) => -(b.storedStats['spe'] - a.storedStats['spe']) || b.abilityOrder - a.abilityOrder
+					(a, b) => -(b.storedStats['spe'] - a.storedStats['spe']) || b.abilityState.effectOrder - a.abilityState.effectOrder
 				);
 				const targetOf1stDance = this.battle.activeTarget!;
 				for (const dancer of dancers) {
@@ -932,6 +952,66 @@ export const Scripts: ModdedBattleScriptsData = {
 		chooseShift() {
 			return this.emitChoiceError(`Can't shift: You don't need to shift in Legends: Arceus, you can hit any foe`);
 		},
+		/**
+		 * Allow Pokemon that do not act to pass.
+		 */
+		choosePass() {
+			const index = this.getChoiceIndex(true);
+			if (index >= this.active.length) return false;
+			const pokemon: Pokemon = this.active[index];
+
+			switch (this.requestState) {
+			case 'switch':
+				if (pokemon.switchFlag) { // This condition will always happen if called by Battle#choose()
+					if (!this.choice.forcedPassesLeft) {
+						return this.emitChoiceError(`Can't pass: You need to switch in a Pokémon to replace ${pokemon.name}`);
+					}
+					this.choice.forcedPassesLeft--;
+				}
+				break;
+			case 'move':
+				if (!pokemon.fainted && !pokemon.volatiles['commanding'] && pokemon.m.acting) {
+					return this.emitChoiceError(`Can't pass: Your ${pokemon.name} must make a move (or switch)`);
+				}
+				break;
+			default:
+				return this.emitChoiceError(`Can't pass: Not a move or switch request`);
+			}
+
+			this.choice.actions.push({
+				choice: 'pass',
+			} as ChosenAction);
+			return true;
+		},
+		/**
+		 * Pass Pokemon that do not act.
+		 */
+		getChoiceIndex(isPass?) {
+			let index = this.choice.actions.length;
+
+			if (!isPass) {
+				switch (this.requestState) {
+				case 'move':
+					// auto-pass
+					while (
+						index < this.active.length &&
+						(this.active[index].fainted || this.active[index].volatiles['commanding'] || !this.active[index].m.acting)
+					) {
+						this.choosePass();
+						index++;
+					}
+					break;
+				case 'switch':
+					while (index < this.active.length && !this.active[index].switchFlag) {
+						this.choosePass();
+						index++;
+					}
+					break;
+				}
+			}
+
+			return index;
+		},
 	},
 	pokemon: {
 		inherit: true,
@@ -965,9 +1045,7 @@ export const Scripts: ModdedBattleScriptsData = {
 			let hasValidMove = false;
 			for (const moveSlot of this.moveSlots) {
 				let moveName = moveSlot.move;
-				if (moveSlot.id === 'hiddenpower') {
-					moveName = 'Hidden Power';
-				} else if (moveSlot.id === 'return' || moveSlot.id === 'frustration') {
+				if (moveSlot.id === 'return' || moveSlot.id === 'frustration') {
 					const basePowerCallback = this.battle.dex.moves.get(moveSlot.id).basePowerCallback as (pokemon: Pokemon) => number;
 					moveName += ' ' + basePowerCallback(this);
 				}
@@ -1022,7 +1100,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		/**
 		 * Hidden Power has no type.
 		 */
-		getSwitchRequestData(forAlly?: boolean) {
+		getSwitchRequestData(forAlly) {
 			const entry: AnyObject = {
 				ident: this.fullname,
 				details: this.details,
@@ -1047,8 +1125,8 @@ export const Scripts: ModdedBattleScriptsData = {
 				pokeball: this.pokeball,
 			};
 			if (this.battle.gen > 6) entry.ability = this.ability;
-			if (this.battle.gen >= 9) {
-				entry.commanding = !!this.volatiles['commanding'] && !this.fainted;
+			if (this.battle.gen >= 9 || this.battle.dex.currentMod === 'gen8legends') {
+				entry.commanding = (!!this.volatiles['commanding'] || !this.m.acting) && !this.fainted;
 				entry.reviving = this.isActive && !!this.side.slotConditions[this.position]['revivalblessing'];
 			}
 			if (this.battle.gen === 9) {
@@ -1101,7 +1179,7 @@ export const Scripts: ModdedBattleScriptsData = {
 			}
 
 			this.status = status.id;
-			this.statusState = {id: status.id, target: this};
+			this.statusState = this.battle.initEffectState({id: status.id, target: this});
 			if (source) this.statusState.source = source;
 			this.statusState.duration = durationCallback(sourceEffect as ActiveMove);
 			if (status.duration) this.statusState.duration = status.duration;
@@ -1151,7 +1229,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				this.battle.debug('add volatile [' + status.id + '] interrupted');
 				return result;
 			}
-			this.volatiles[status.id] = {id: status.id, name: status.name, target: this};
+			this.volatiles[status.id] = this.battle.initEffectState({id: status.id, name: status.name, target: this});
 			if (source) {
 				this.volatiles[status.id].source = source;
 				this.volatiles[status.id].sourceSlot = source.getSlot();

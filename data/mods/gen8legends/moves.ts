@@ -186,15 +186,15 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	barbbarrage: {
 		inherit: true,
-		basePowerCallback(pokemon, target, move) {
-			if (target.status) return move.basePower * 2;
-			return move.basePower;
-		},
 		desc: "Has a 50% chance to poison the target. Power doubles if the target is already poisoned.",
 		shortDesc: "50% psn. 2x power if target already poisoned.",
 		isNonstandard: null,
 		pp: 15,
-		onBasePower() {},
+		onBasePower(basePower, pokemon, target) {
+			if (target.status) {
+				return this.chainModify(2);
+			}
+		},
 		secondary: {
 			chance: 30,
 			status: 'psn',
@@ -3476,14 +3476,14 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	venoshock: {
 		inherit: true,
-		basePowerCallback(pokemon, target, move) {
-			if (target.status) return move.basePower * 2;
-			return move.basePower;
-		},
 		desc: "Power doubles if the target is poisoned.",
 		shortDesc: "Power doubles if the target is poisoned.",
 		pp: 15,
-		onBasePower() {},
+		onBasePower(basePower, pokemon, target) {
+			if (target.status) {
+				return this.chainModify(2);
+			}
+		},
 	},
 	victorydance: {
 		inherit: true,

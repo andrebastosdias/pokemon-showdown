@@ -1033,8 +1033,7 @@ export class Battle {
 		let callback = status[callbackName];
 		if (callback !== undefined || (getKey && pokemon.statusState[getKey])) {
 			handlers.push(this.resolvePriority({
-				effect: status, callback, state: pokemon.statusState, end: pokemon.cureStatus, effectHolder: pokemon,
-				endCallArgs: [pokemon, false],
+				effect: status, callback, state: pokemon.statusState, end: pokemon.clearStatus, effectHolder: pokemon,
 			}, callbackName));
 		}
 		for (const id in pokemon.volatiles) {

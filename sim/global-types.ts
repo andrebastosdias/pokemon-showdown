@@ -269,6 +269,8 @@ interface ModdedBattleSide {
 
 	// Legends: Arceus
 	chooseShift?: (this: Side) => any;
+	choosePass?: (this: Side) => any;
+	getChoiceIndex?: (this: Side, isPass?: boolean) => number;
 }
 
 interface ModdedBattlePokemon {
@@ -387,7 +389,6 @@ interface ModdedBattleScriptsData extends Partial<BattleScriptsData> {
 	getAllActive?: (this: Battle, includeFainted?: boolean, includeCommanding?: boolean) => Pokemon[];
 
 	// Legends: Arceus
-	residualEvent?: (this: Battle, eventid: string, relayVar?: any) => void;
 	getRequests?: (this: Battle, type: import('./battle').RequestState) => AnyObject[];
 }
 

@@ -39,7 +39,8 @@ function createBattle(options, teams, mods = []) {
 }
 
 function makeChoices(battle, pokemonToAct, input) {
-	battle.actionTimeQueue.actingPokemon = pokemonToAct;
+	battle.getAllActive().forEach(pokemon => delete pokemon.m.acting);
+	pokemonToAct.m.acting = true;
 	battle.makeRequest('move');
 	if (input) {
 		pokemonToAct.side.choose(input);
@@ -177,7 +178,7 @@ describe('[Gen 8 Legends] Choice parser', function () {
 			{species: "Geodude", moves: ['tackle']},
 			{species: "Gastly", moves: ['astonish']},
 		]});
-		assert.equal(battle.actionTimeQueue.actingPokemon, battle.p1.active[0]);
+		assert(battle.p1.active[0].m.acting);
 		assert.throws(() => battle.p1.choose('shift'));
 	});
 
@@ -192,7 +193,7 @@ describe('[Gen 8 Legends] Choice parser', function () {
 				{species: 'Regigigas', moves: ['crushgrip']},
 			],
 		]);
-		assert.equal(battle.actionTimeQueue.actingPokemon, battle.p1.active[1]);
+		assert(battle.p1.active[1].m.acting);
 		for (const choice of ['move 1 1, move 1 1', 'pass, pass']) {
 			assert.cantMove(() => battle.p1.choose(choice));
 		}
@@ -218,6 +219,7 @@ describe('[Gen 8 Legends] Choice extensions', function () {
 			{species: "Geodude", moves: ['tackle']},
 			{species: "Gastly", moves: ['astonish']},
 		]});
+		assert.false(battle.p1.activeRequest.wait);
 		for (const pokemon of battle.p1.activeRequest.side.pokemon) {
 			assert.notEqual(pokemon.commanding, pokemon.details === "Manaphy");
 		}
