@@ -823,7 +823,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		mod: 'gen8runandbun',
 		searchShow: false,
 		ruleset: ['Standard'],
-		banlist: ['Uber', 'Soul Dew'],
+		banlist: ['Uber', 'Shadow Tag', 'Soul Dew'],
 	},
 	{
 		name: "[Gen 8 Run & Bun] Ubers",
