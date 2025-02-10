@@ -3,9 +3,9 @@ export const Scripts: ModdedBattleScriptsData = {
 	inherit: 'gen8',
 	init() {
 		for (const i in this.data.Pokedex) {
-			const speciesData = this.modData('Pokedex', i);
-			if (speciesData.num < 387 && speciesData.num > 395) {
-				speciesData.unreleasedHidden = true;
+			const number = this.modData('Pokedex', i).num;
+			if (number < 387 || number > 395) {
+				this.modData('Pokedex', i).unreleasedHidden = true;
 			}
 		}
 		for (const i in this.data.Moves) {
