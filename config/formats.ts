@@ -3846,6 +3846,9 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 
 			const dex = this.dex.mod('gen6xy');
 			const species = dex.species.get(set.species || set.name);
+			if (species.isNonstandard === 'Future') {
+				return [`${species.name} does not exist in XY.`];
+			}
 			if (!species.types.includes('Flying') && set.ability !== 'Levitate') {
 				return [`${species.name} is not a Flying type and does not have the ability Levitate.`];
 			}
