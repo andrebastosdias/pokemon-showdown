@@ -788,39 +788,6 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		ruleset: ['Standard Doubles'],
 	},
 
-	// Run & Bun
-	///////////////////////////////////////////////////////////////////
-
-	{
-		section: "Run & Bun",
-		column: 2,
-	},
-	{
-		name: "[Gen 8 Run & Bun] OU",
-		mod: 'gen8runandbun',
-		searchShow: false,
-		ruleset: ['Standard'],
-		banlist: ['Uber', 'Shadow Tag', 'Soul Dew'],
-	},
-	{
-		name: "[Gen 8 Run & Bun] Ubers",
-		mod: 'gen8runandbun',
-		searchShow: false,
-		ruleset: ['Standard'],
-	},
-	{
-		name: "[Gen 8 Run & Bun] LC",
-		mod: 'gen8runandbun',
-		searchShow: false,
-		ruleset: ['Little Cup', 'Standard'],
-	},
-	{
-		name: "[Gen 8 Run & Bun] Monotype",
-		mod: 'gen8runandbun',
-		searchShow: false,
-		ruleset: ['[Gen 8 Run & Bun] OU', 'Same Type Clause'],
-	},
-
 	// Challengeable OMs
 	///////////////////////////////////////////////////////////////////
 
