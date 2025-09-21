@@ -2556,7 +2556,6 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 	},
 	zygardecomplete: {
 		isNonstandard: "Past",
-		tier: "Illegal",
 	},
 	diancie: {
 		isNonstandard: "Past",
