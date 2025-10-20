@@ -1359,58 +1359,40 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Uber",
 	},
 	arceusbug: {
-		isNonstandard: null,
 	},
 	arceusdark: {
-		isNonstandard: null,
 	},
 	arceusdragon: {
-		isNonstandard: null,
 	},
 	arceuselectric: {
-		isNonstandard: null,
 	},
 	arceusfairy: {
-		isNonstandard: null,
 	},
 	arceusfighting: {
-		isNonstandard: null,
 	},
 	arceusfire: {
-		isNonstandard: null,
 	},
 	arceusflying: {
-		isNonstandard: null,
 	},
 	arceusghost: {
-		isNonstandard: null,
 	},
 	arceusgrass: {
-		isNonstandard: null,
 	},
 	arceusground: {
-		isNonstandard: null,
 	},
 	arceusice: {
-		isNonstandard: null,
 	},
 	arceuspoison: {
-		isNonstandard: null,
 	},
 	arceuspsychic: {
-		isNonstandard: null,
 	},
 	arceusrock: {
-		isNonstandard: null,
 	},
 	arceussteel: {
-		isNonstandard: null,
 	},
 	arceuswater: {
-		isNonstandard: null,
 	},
 	arceuslegend: {
-		isNonstandard: null,
 	},
 	victini: {
 		isNonstandard: "Past",
