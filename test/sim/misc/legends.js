@@ -597,7 +597,7 @@ describe('[Gen 8 Legends] volatile statuses', () => {
 			assert.bounded(hp - arceus.hp, [69, 82]);
 			hp = arceus.hp;
 			makeChoices(battle, garchomp, 'move ragingfury');
-			assert.bounded(hp - arceus.hp, [103, 123]);
+			assert.bounded(hp - arceus.hp, [103, 124]); // was [103, 123] before
 		});
 
 		it(`should increase damage taken from attacks by 33%`, () => {

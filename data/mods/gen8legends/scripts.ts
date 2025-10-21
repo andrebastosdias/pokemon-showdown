@@ -1,6 +1,11 @@
 import { Field } from '../../../sim/field';
 import { Pokemon } from '../../../sim/pokemon';
-import { ChoiceRequest, MoveRequest, PokemonSwitchRequestData, Side, ChosenAction } from '../../../sim/side';
+import {
+	type ChoiceRequest,
+	type MoveRequest,
+	type PokemonSwitchRequestData, Side,
+	type ChosenAction,
+} from '../../../sim/side';
 
 function durationCallback(move: ActiveMove): number {
 	switch (move.id) {
@@ -100,11 +105,9 @@ export const Scripts: ModdedBattleScriptsData = {
 		}
 		const nature = this.dex.natures.get(set.nature);
 		if (nature.plus === statName) {
-			stat = this.ruleTable.has('overflowstatmod') ? Math.min(stat, 595) : stat;
-			stat = tr(tr(stat * 110, 16) / 100);
+			stat = tr(stat * 1.1);
 		} else if (nature.minus === statName) {
-			stat = this.ruleTable.has('overflowstatmod') ? Math.min(stat, 728) : stat;
-			stat = tr(tr(stat * 90, 16) / 100);
+			stat = tr(stat * 0.9);
 		}
 		const multipliers = [0, 2, 3, 4, 7, 8, 9, 14, 15, 16, 25];
 		const effortLevel = Math.min(set.ivs[statName], 10);
@@ -127,7 +130,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				handlers = handlers.concat(this.findSideEventHandlers(side, `onSide${eventid}`, getKey));
 			}
 			for (const active of side.active) {
-				if (!active) continue;
+				if (!active || (eventid === 'Residual' && !active.m.acting)) continue;
 				if (eventid === 'SwitchIn') {
 					handlers = handlers.concat(this.findPokemonEventHandlers(active, `onAny${eventid}`));
 				}
@@ -437,10 +440,10 @@ export const Scripts: ModdedBattleScriptsData = {
 			const guardBoost = !!target.getVolatile('guardboost');
 			const guardDrop = !!target.getVolatile('guarddrop');
 			if (!((powerBoost && guardBoost) || (powerDrop && guardDrop))) {
-				if (powerBoost) baseDamage = baseDamage * 1.5;
-				if (powerDrop) baseDamage = baseDamage * 0.66;
-				if (guardBoost) baseDamage = baseDamage * 0.66;
-				if (guardDrop) baseDamage = baseDamage * 1.5;
+				if (powerBoost) baseDamage *= 1.5;
+				if (powerDrop) baseDamage *= 0.66;
+				if (guardBoost) baseDamage *= 0.66;
+				if (guardDrop) baseDamage *= 1.5;
 				baseDamage = tr(baseDamage);
 			}
 
@@ -1144,7 +1147,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				} else if (moveSlot.pp <= 0 && !this.volatiles['partialtrappinglock']) {
 					disabled = true;
 				}
-	
+
 				if (disabled === 'hidden') {
 					disabled = !restrictData;
 				}

@@ -1,7 +1,8 @@
 import { RandomGen8Teams, type TeamData, type BattleFactorySpecies } from '../gen8/teams';
 
 export class RandomLegendsTeams extends RandomGen8Teams {
-	override randomFactorySets: { [format: string]: { [species: string]: BattleFactorySpecies } } = require('./factory-sets.json');
+	override randomFactorySets: { [format: string]: { [species: string]: BattleFactorySpecies } } =
+		require('./factory-sets.json');
 
 	override randomFactorySet(
 		species: Species, teamData: RandomTeamsTypes.FactoryTeamDetails, tier: string
