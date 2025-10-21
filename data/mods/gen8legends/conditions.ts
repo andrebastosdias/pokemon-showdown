@@ -30,7 +30,7 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 		},
 		onModifyMove(move, pokemon) {
 			if (['spark', 'volttackle', 'wildcharge'].includes(move.id)) {
-				this.add('-curestatus', pokemon, 'slp', '[from] move: ' + move);
+				this.add('-curestatus', pokemon, 'slp', `[from] move: ${move}`);
 				pokemon.clearStatus();
 			}
 		},

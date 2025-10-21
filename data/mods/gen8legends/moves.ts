@@ -3672,8 +3672,8 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 
 function getTypeEffectiveness(
 	battle: Battle,
-	source: {type: string} | string,
-	target: {getTypes: () => string[]} | {types: string[]} | string[] | string
+	source: { type: string } | string,
+	target: { getTypes: () => string[] } | { types: string[] } | string[] | string
 ) {
 	return battle.dex.getImmunity(source, target) ? battle.dex.getEffectiveness(source, target) : -100;
 }

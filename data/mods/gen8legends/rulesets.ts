@@ -17,7 +17,7 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 		onChangeSet(set) {
 			set.item = '';
 			set.ability = this.dex.species.get(set.species).abilities['0'];
-			set.evs = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
+			set.evs = { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 };
 		},
 	},
 	evasionmovesclause: {

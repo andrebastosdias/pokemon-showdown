@@ -1,9 +1,9 @@
-import {RandomGen8Teams, TeamData, BattleFactorySpecies} from '../gen8/teams';
+import { RandomGen8Teams, type TeamData, type BattleFactorySpecies } from '../gen8/teams';
 
 export class RandomLegendsTeams extends RandomGen8Teams {
-	randomFactorySets: {[format: string]: {[species: string]: BattleFactorySpecies}} = require('./factory-sets.json');
+	override randomFactorySets: { [format: string]: { [species: string]: BattleFactorySpecies } } = require('./factory-sets.json');
 
-	randomFactorySet(
+	override randomFactorySet(
 		species: Species, teamData: RandomTeamsTypes.FactoryTeamDetails, tier: string
 	): RandomTeamsTypes.RandomFactorySet | null {
 		const id = toID(species.name);
@@ -11,7 +11,7 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 
 		// Build a pool of eligible sets, given the team partners
 		// Also keep track of sets with moves the team requires
-		const effectivePool: {set: AnyObject, moveVariants?: number[]}[] = [];
+		const effectivePool: { set: AnyObject, moveVariants?: number[] }[] = [];
 		for (const curSet of setList) {
 			if (this.forceMonotype && !species.types.includes(this.forceMonotype)) continue;
 
@@ -21,14 +21,14 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 				curSetVariants.push(variantIndex);
 			}
 
-			const fullSetSpec = {set: curSet, moveVariants: curSetVariants};
+			const fullSetSpec = { set: curSet, moveVariants: curSetVariants };
 			effectivePool.push(fullSetSpec);
 		}
 
 		if (!effectivePool.length) {
 			if (!teamData.forceResult) return null;
 			for (const curSet of setList) {
-				effectivePool.push({set: curSet});
+				effectivePool.push({ set: curSet });
 			}
 		}
 
@@ -37,7 +37,6 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 		for (const [i, moveSlot] of setData.set.moves.entries()) {
 			moves.push(setData.moveVariants ? moveSlot[setData.moveVariants[i]] : this.sample(moveSlot));
 		}
-
 
 		const nature = this.sampleIfArray(setData.set.nature);
 		const level = this.adjustLevel || setData.set.level || (tier === "LC" ? 5 : 100);
@@ -51,14 +50,14 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 			shiny: typeof setData.set.shiny === 'undefined' ? this.randomChance(1, 1024) : setData.set.shiny,
 			level,
 			happiness: typeof setData.set.happiness === 'undefined' ? 255 : setData.set.happiness,
-			evs: {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0},
-			ivs: {hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31, ...setData.set.ivs},
+			evs: { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 },
+			ivs: { hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31, ...setData.set.ivs },
 			nature: nature || 'Serious',
 			moves,
 		};
 	}
 
-	randomFactoryTeam(side: PlayerOptions, depth = 0): RandomTeamsTypes.RandomFactorySet[] {
+	override randomFactoryTeam(side: PlayerOptions, depth = 0): RandomTeamsTypes.RandomFactorySet[] {
 		this.enforceNoDirectCustomBanlistChanges();
 
 		const forceResult = (depth >= 12);
@@ -74,7 +73,7 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 			throw new Error(`Can't generate a Monotype Battle Factory set in a battle with factory tier ${this.factoryTier}`);
 		}
 
-		const tierValues: {[k: string]: number} = {
+		const tierValues: { [k: string]: number } = {
 			Uber: 5,
 			OU: 4, UUBL: 4,
 			UU: 3, RUBL: 3,
@@ -91,7 +90,7 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 
 		const teamData: TeamData = {
 			typeCount: {}, typeComboCount: {}, baseFormes: {},
-			has: {}, forceResult: forceResult, weaknesses: {}, resistances: {},
+			has: {}, forceResult, weaknesses: {}, resistances: {},
 		};
 
 		while (pokemonPool.length && pokemon.length < this.maxTeamSize) {
@@ -131,7 +130,7 @@ export class RandomLegendsTeams extends RandomGen8Teams {
 
 				// Limit 1 of any type combination
 				const typeCombo = types.slice().sort().join();
-				if (teamData.typeComboCount[typeCombo] >= 1 * limitFactor) continue;
+				if (teamData.typeComboCount[typeCombo] >= limitFactor) continue;
 			}
 
 			// Okay, the set passes, add it to our team
