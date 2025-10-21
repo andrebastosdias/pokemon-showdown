@@ -333,7 +333,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 	},
 	gengarmega: {
-		tier: "Uber",
+		tier: "OU",
 	},
 	onix: {
 		tier: "LC",
@@ -2183,10 +2183,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Uber",
 	},
 	zygarde: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	zygarde10: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	zygardecomplete: {
 		tier: "Uber",

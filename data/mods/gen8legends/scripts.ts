@@ -74,6 +74,9 @@ export const Scripts: ModdedBattleScriptsData = {
 			delete this.modData('Pokedex', i).requiredItem;
 			delete this.modData('Pokedex', i).requiredItems;
 		}
+		this.modData('Pokedex', 'cherrim').abilities = {0: 'Flower Gift'};
+		this.modData('Pokedex', 'cherrimsunshine').abilities = {0: 'Flower Gift'};
+		this.modData('Pokedex', 'regigigas').abilities = {0: 'Slow Start'};
 		for (const i in this.data.Moves) {
 			const moveData = this.modData('Moves', i);
 			moveData.noPPBoosts = true;
@@ -84,33 +87,27 @@ export const Scripts: ModdedBattleScriptsData = {
 			}
 		}
 	},
-	spreadModify(baseStats, set) {
-		const modStats: StatsTable = {hp: 10, atk: 10, def: 10, spa: 10, spd: 10, spe: 10};
-		let statName: StatID;
-		for (statName in modStats) {
-			const stat = baseStats[statName];
-			if (statName === 'hp') {
-				modStats[statName] = Math.floor((set.level / 100 + 1) * stat + set.level);
-			} else {
-				modStats[statName] = Math.floor((set.level / 50 + 1) * stat / 1.5);
-			}
+	statModify(baseStats: StatsTable, set: PokemonSet, statName: StatID): number {
+		const tr = this.trunc;
+		const baseStat = baseStats[statName];
+		let stat = baseStat;
+		if (statName === 'hp') {
+			stat = Math.floor((set.level / 100 + 1) * stat + set.level);
+		} else {
+			stat = Math.floor((set.level / 50 + 1) * stat / 1.5);
 		}
-		const stats = this.natureModify(modStats, set);
-
-		const multipliers = [0, 2, 3, 4, 7, 8, 9, 14, 15, 16, 25];
-		let stat: StatID;
-		for (stat in stats) {
-			const effortLevel = Math.min(set.ivs[stat], 10);
-			const effortLevelBonus = Math.round((Math.sqrt(baseStats[stat]) * multipliers[effortLevel] + set.level) / 2.5);
-			stats[stat] += effortLevelBonus;
-		}
-		return stats;
-	},
-	natureModify(stats, set) {
 		const nature = this.dex.natures.get(set.nature);
-		if (nature.plus) stats[nature.plus] = Math.floor(stats[nature.plus] * 1.1);
-		if (nature.minus) stats[nature.minus] = Math.floor(stats[nature.minus] * 0.9);
-		return stats;
+		if (nature.plus === statName) {
+			stat = this.ruleTable.has('overflowstatmod') ? Math.min(stat, 595) : stat;
+			stat = tr(tr(stat * 110, 16) / 100);
+		} else if (nature.minus === statName) {
+			stat = this.ruleTable.has('overflowstatmod') ? Math.min(stat, 728) : stat;
+			stat = tr(tr(stat * 90, 16) / 100);
+		}
+		const multipliers = [0, 2, 3, 4, 7, 8, 9, 14, 15, 16, 25];
+		const effortLevel = Math.min(set.ivs[statName], 10);
+		stat += Math.round((Math.sqrt(baseStat) * multipliers[effortLevel] + set.level) / 2.5);
+		return stat;
 	},
 	/**
 	 * Only run onResidual events for Pokemon that tried to use a move, if any.
@@ -919,7 +916,7 @@ export const Scripts: ModdedBattleScriptsData = {
 
 			this.afterMoveSecondaryEvent(targetsCopy.filter(val => !!val) as Pokemon[], pokemon, move);
 
-			if (!move.negateSecondary && !(move.hasSheerForce && pokemon.hasAbility('sheerforce'))) {
+			if (!(move.hasSheerForce && pokemon.hasAbility('sheerforce'))) {
 				for (const [i, d] of damage.entries()) {
 					// There are no multihit spread moves, so it's safe to use move.totalDamage for multihit moves
 					// The previous check was for `move.multihit`, but that fails for Dragon Darts

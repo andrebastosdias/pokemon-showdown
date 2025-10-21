@@ -99,10 +99,6 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		inherit: true,
 		isNonstandard: null,
 	},
-	blazikenite: {
-		inherit: true,
-		isNonstandard: null,
-	},
 	blunderpolicy: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -137,7 +133,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	chesnaughtite: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: "Unobtainable",
 	},
 	chippedpot: {
 		inherit: true,
@@ -189,7 +185,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	delphoxite: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: "Unobtainable",
 	},
 	destinyknot: {
 		inherit: true,
@@ -197,7 +193,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	diancite: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: "Unobtainable",
 	},
 	diveball: {
 		inherit: true,
@@ -451,14 +447,6 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
-	latiasite: {
-		inherit: true,
-		isNonstandard: null,
-	},
-	latiosite: {
-		inherit: true,
-		isNonstandard: null,
-	},
 	leppaberry: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -585,11 +573,11 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	mewtwonitex: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: "Unobtainable",
 	},
 	mewtwonitey: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: "Unobtainable",
 	},
 	micleberry: {
 		inherit: true,
@@ -751,10 +739,6 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		inherit: true,
 		isNonstandard: null,
 	},
-	sceptilite: {
-		inherit: true,
-		isNonstandard: null,
-	},
 	scizorite: {
 		inherit: true,
 		isNonstandard: null,
@@ -838,10 +822,6 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	strawberrysweet: {
 		inherit: true,
 		isNonstandard: "Past",
-	},
-	swampertite: {
-		inherit: true,
-		isNonstandard: null,
 	},
 	sweetapple: {
 		inherit: true,

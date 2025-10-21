@@ -18,7 +18,7 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 		ruleset: ['Obtainable Moves', 'Obtainable Formes', 'EV Limit = 0', 'Obtainable Misc'],
 		onChangeSet(set) {
 			set.item = '';
-			set.ability = 'No Ability';
+			set.ability = this.dex.species.get(set.species).abilities['0'];
 			set.evs = TeamValidator.fillStats(null, 0);
 		},
 	},

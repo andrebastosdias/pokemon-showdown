@@ -594,7 +594,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "LC",
 	},
 	unown: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	wobbuffet: {
 		isNonstandard: "Past",
@@ -1314,13 +1314,13 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 	},
 	dialga: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	dialgaorigin: {
 		tier: "OU",
 	},
 	palkia: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	palkiaorigin: {
 		tier: "OU",
@@ -1341,7 +1341,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 	},
 	phione: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	manaphy: {
 		tier: "OU",
