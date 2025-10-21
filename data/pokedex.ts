@@ -2706,6 +2706,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		forme: "Mega",
 		types: ["Water", "Psychic"],
 		gender: "N",
+		// FIXME: change stats on generation shift
 		baseStats: { hp: 60, atk: 140, def: 105, spa: 130, spd: 105, spe: 120 },
 		abilities: { 0: "Illuminate", 1: "Natural Cure", H: "Analytic" },
 		heightm: 2.3,
@@ -13369,7 +13370,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		color: "Green",
 		eggGroups: ["Undiscovered"],
 		requiredItem: "Zygardite",
-		battleOnly: "Zygarde-Complete",
+		battleOnly: ["Zygarde", "Zygarde-10%"],
 		gen: 9,
 	},
 	diancie: {

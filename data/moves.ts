@@ -13212,6 +13212,23 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		type: "Dark",
 		contestType: "Cool",
 	},
+	nihillight: {
+		num: 920,
+		accuracy: 100,
+		basePower: 100,
+		category: "Special",
+		isNonstandard: "Future",
+		name: "Nihil Light",
+		pp: 10,
+		priority: 0,
+		flags: { protect: 1, mirror: 1, metronome: 1 },
+		ignoreEvasion: true,
+		ignoreDefensive: true,
+		ignoreImmunity: { 'Fairy': true },
+		secondary: null,
+		target: "allAdjacentFoes",
+		type: "Dragon",
+	},
 	nobleroar: {
 		num: 568,
 		accuracy: 100,
@@ -15364,7 +15381,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 			if (pokemon.item || !pokemon.lastItem) return false;
 			const item = pokemon.lastItem;
 			pokemon.lastItem = '';
-			pokemon.itemKnockedOff = false; // Gens 3-4 only
 			this.add('-item', pokemon, this.dex.items.get(item), '[from] move: Recycle');
 			pokemon.setItem(item, source, move);
 		},
