@@ -1,5 +1,3 @@
-import {TeamValidator} from '../../../sim/team-validator';
-
 export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable = {
 	standard: {
 		inherit: true,
@@ -19,7 +17,7 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 		onChangeSet(set) {
 			set.item = '';
 			set.ability = this.dex.species.get(set.species).abilities['0'];
-			set.evs = TeamValidator.fillStats(null, 0);
+			set.evs = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
 		},
 	},
 	evasionmovesclause: {

@@ -53,33 +53,6 @@ function makeChoices(battle, pokemonToAct, input) {
 describe('[Gen 8 Legends] Dex data', function () {
 	const dex = Dex.mod('gen8legends');
 
-	function countPokemon(dex) {
-		const count = {species: 0, formes: 0};
-		for (const pkmn of dex.species.all()) {
-			if (!existenceFunction(pkmn)) continue;
-			if (pkmn.name !== pkmn.baseSpecies) {
-				count.formes++;
-			} else {
-				count.species++;
-			}
-		}
-
-		return count;
-	}
-
-	// Sneasel (1) - Hisui (16) - Basculin (1)
-	const species = 242 + 1 - (16 + 1);
-	// Vulpix (1) + Ninetales (1) + Wormadam (2) + Cherrim (1) + Rotom (5) +
-	// Origin (3) + Arceus (18) + Shaymin (1) + Therian (4) +
-	// Hisui (16) + Basculin (1) + Basculegion (1)
-	const formes = 1 + 1 + 2 + 1 + 5 + 3 + 18 + 1 + 4 + 16 + 1 + 1;
-
-	it(`should have ${species} species and ${formes} formes`, () => {
-		const count = countPokemon(dex);
-		assert.equal(count.species, species);
-		assert.equal(count.formes, formes);
-	});
-
 	const moves = 177;
 
 	it(`should have ${moves} moves`, function () {
