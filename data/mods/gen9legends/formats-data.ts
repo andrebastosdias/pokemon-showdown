@@ -507,16 +507,16 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 	},
 	mewtwo: {
-		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	mewtwomegax: {
-		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	mewtwomegay: {
-		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	mew: {
 		isNonstandard: "Past",
@@ -1908,8 +1908,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 	},
 	chesnaughtmega: {
-		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	fennekin: {
 		tier: "LC",
@@ -1921,8 +1921,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 	},
 	delphoxmega: {
-		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	froakie: {
 		tier: "LC",
@@ -1934,8 +1934,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 	},
 	greninjabond: {
-		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	greninjamega: {
 		tier: "OU",
@@ -2114,15 +2114,15 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "NFE",
 	},
 	sliggoohisui: {
-		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	goodra: {
 		tier: "OU",
 	},
 	goodrahisui: {
-		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	klefki: {
 		tier: "OU",
@@ -2164,8 +2164,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 	},
 	avalugghisui: {
-		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	noibat: {
 		tier: "LC",
@@ -2195,24 +2195,24 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Uber",
 	},
 	diancie: {
-		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	dianciemega: {
-		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	hoopa: {
-		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	hoopaunbound: {
-		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	volcanion: {
-		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	rowlet: {
 		isNonstandard: "Past",

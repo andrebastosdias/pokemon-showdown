@@ -874,6 +874,33 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		ruleset: ['Standard Doubles'],
 	},
 
+	// Legends: Z-A
+	///////////////////////////////////////////////////////////////////
+
+	{
+		section: "Legends: Z-A",
+		column: 2,
+	},
+	{
+		name: "[Gen 9 Legends] OU",
+		mod: 'gen8legends',
+		searchShow: false,
+		ruleset: [],
+		banlist: ['Uber'],
+	},
+	{
+		name: "[Gen 8 Legends] Ubers",
+		mod: 'gen8legends',
+		searchShow: false,
+		ruleset: [],
+	},
+	{
+		name: "[Gen 8 Legends] LC",
+		mod: 'gen8legends',
+		searchShow: false,
+		ruleset: ['Little Cup'],
+	},
+
 	// Challengeable OMs
 	///////////////////////////////////////////////////////////////////
 
