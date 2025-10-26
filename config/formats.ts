@@ -856,20 +856,20 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		name: "[Gen 9 Legends] OU",
 		mod: 'gen9legends',
 		searchShow: false,
-		ruleset: ['Obtainable', 'Adjust Level = 50', 'Max Team Size = 3'],
+		ruleset: ['Flat Rules'],
 		banlist: ['Uber'],
 	},
 	{
 		name: "[Gen 9 Legends] Ubers",
 		mod: 'gen9legends',
 		searchShow: false,
-		ruleset: ['Obtainable'],
+		ruleset: ['Standard'],
 	},
 	{
 		name: "[Gen 9 Legends] LC",
 		mod: 'gen9legends',
 		searchShow: false,
-		ruleset: ['Little Cup', 'Obtainable', 'Max Team Size = 3'],
+		ruleset: ['Little Cup', 'Flat Rules', '!Adjust Level = 50'],
 	},
 
 	// Challengeable OMs
