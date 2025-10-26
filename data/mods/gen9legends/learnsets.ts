@@ -8640,7 +8640,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 	},
 	zygardemega: {
 		learnset: {
-			nihillight: ["9L1"],
+			nihillight: ["9R"],
 		},
 	},
 	diancie: {
