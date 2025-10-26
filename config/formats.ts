@@ -273,35 +273,6 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		restricted: ['Restricted Legendary', 'Mythical'],
 	},
 	{
-		name: "[Gen 9] Terastal Crescendo",
-		mod: 'gen9',
-		gameType: 'doubles',
-		ruleset: ['Flat Rules', '!! Picked Team Size = 2', 'Min Team Size = 4', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer'],
-		unbanlist: ['Koraidon', 'Miraidon'],
-		onValidateTeam(team) {
-			const donCount = team.filter(set => set.species === 'Koraidon' || set.species === 'Miraidon').length;
-			if (donCount !== 1) {
-				return [
-					`You must bring either Koraidon or Miraidon, but not both.`,
-					`(You have ${!donCount ? 'neither' : 'both'} Koraidon ${!donCount ? 'nor' : 'and'} Miraidon)`,
-				];
-			}
-		},
-		onChooseTeam(positions, pokemon, autoChoose) {
-			const donIndex = pokemon.findIndex(p => p.species.name === 'Koraidon' || p.species.name === 'Miraidon');
-			if (autoChoose) {
-				positions = [donIndex];
-				for (let i = 0; i < pokemon.length; i++) {
-					if (i !== donIndex) positions.push(i);
-				}
-				return positions;
-			}
-			if (!positions.includes(donIndex)) {
-				return `You must bring ${pokemon[donIndex].species.name} to the battle.`;
-			}
-		},
-	},
-	{
 		name: "[Gen 9] Doubles Custom Game",
 		mod: 'gen9',
 		gameType: 'doubles',
@@ -653,11 +624,11 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		],
 		banlist: [
 			'Calyrex-Shadow', 'Deoxys-Attack', 'Diancie-Mega', 'Gengar-Mega', 'Groudon-Primal', 'Kartana', 'Mewtwo-Mega-X', 'Mewtwo-Mega-Y', 'Rayquaza-Mega',
-			'Regigigas', 'Shedinja', 'Slaking', 'Arena Trap', 'Comatose', 'Contrary', 'Gorilla Tactics', 'Hadron Engine', 'Huge Power', 'Illusion', 'Innards Out',
-			'Libero', 'Liquid Ooze', 'Magnet Pull', 'Moody', 'Neutralizing Gas', 'Orichalcum Pulse', 'Parental Bond', 'Poison Heal', 'Protean', 'Pure Power',
-			'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Belly Drum', 'Ceaseless Edge', 'Clangorous Soul',
-			'Dire Claw', 'Electro Shot', 'Fillet Away', 'Imprison', 'Last Respects', 'Lumina Crash', 'No Retreat', 'Photon Geyser', 'Power Trip', 'Quiver Dance',
-			'Rage Fist', 'Revival Blessing', 'Shed Tail', 'Substitute', 'Shell Smash', 'Tail Glow',
+			'Regigigas', 'Shedinja', 'Slaking', 'Arena Trap', 'Contrary', 'Gorilla Tactics', 'Hadron Engine', 'Huge Power', 'Illusion', 'Innards Out', 'Libero',
+			'Liquid Ooze', 'Magnet Pull', 'Moody', 'Neutralizing Gas', 'Orichalcum Pulse', 'Parental Bond', 'Poison Heal', 'Protean', 'Pure Power', 'Shadow Tag',
+			'Stakeout', 'Water Bubble', 'Wonder Guard', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Belly Drum', 'Ceaseless Edge', 'Clangorous Soul', 'Dire Claw',
+			'Electro Shot', 'Fillet Away', 'Imprison', 'Last Respects', 'Lumina Crash', 'No Retreat', 'Photon Geyser', 'Power Trip', 'Quiver Dance', 'Rage Fist',
+			'Revival Blessing', 'Shed Tail', 'Sleep Talk', 'Substitute', 'Shell Smash', 'Tail Glow',
 		],
 	},
 	{
@@ -3074,7 +3045,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 			`&bullet; <a href="https://www.smogon.com/forums/posts/10749086">List of Changes</a>`,
 		],
 		mod: 'gen9legendsou',
-		ruleset: ['Standard', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Min Source Gen = 3'],
+		ruleset: ['Standard', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Min Source Gen = 3', 'Terastal Clause'],
 		banlist: ['Uber', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'King\'s Rock', 'Quick Claw', 'Baton Pass'],
 	},
 
