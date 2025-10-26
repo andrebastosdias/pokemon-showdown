@@ -865,12 +865,6 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		searchShow: false,
 		ruleset: ['Standard'],
 	},
-	{
-		name: "[Gen 9 Legends] LC",
-		mod: 'gen9legends',
-		searchShow: false,
-		ruleset: ['Little Cup', 'Flat Rules'],
-	},
 
 	// Challengeable OMs
 	///////////////////////////////////////////////////////////////////
