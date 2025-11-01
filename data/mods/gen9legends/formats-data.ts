@@ -9,7 +9,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	venusaurmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	charmander: {
 		tier: "LC",
@@ -36,7 +36,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	blastoisemega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	weedle: {
 		tier: "LC",
@@ -48,7 +48,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	beedrillmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	pidgey: {
 		tier: "LC",
@@ -60,7 +60,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	pidgeotmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	ekans: {
 		tier: "LC",
@@ -117,7 +117,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "NFE",
 	},
 	clefable: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	clefablemega: {
 		tier: "OU",
@@ -225,7 +225,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	alakazammega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	machop: {
 		tier: "LC",
@@ -246,7 +246,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	victreebelmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	tentacool: {
 		isNonstandard: "Past",
@@ -279,7 +279,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "LC",
 	},
 	slowbro: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	slowbromega: {
 		tier: "OU",
@@ -393,7 +393,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	kangaskhanmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	horsea: {
 		isNonstandard: "Past",
@@ -423,7 +423,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	pinsirmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	tauros: {
 		isNonstandard: "Past",
@@ -441,7 +441,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "LC",
 	},
 	gyarados: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	gyaradosmega: {
 		tier: "OU",
@@ -471,7 +471,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	aerodactylmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	snorlax: {
 		isNonstandard: "Past",
@@ -501,7 +501,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "NFE",
 	},
 	dragonite: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	dragonitemega: {
 		tier: "OU",
@@ -552,7 +552,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "NFE",
 	},
 	feraligatr: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	feraligatrmega: {
 		tier: "OU",
@@ -597,7 +597,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "NFE",
 	},
 	ampharos: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	ampharosmega: {
 		tier: "OU",
@@ -684,7 +684,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	steelixmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	snubbull: {
 		isNonstandard: "Past",
@@ -702,7 +702,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	scizormega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	heracross: {
 		tier: "(OU)",
@@ -738,7 +738,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	skarmory: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	skarmorymega: {
 		tier: "OU",
@@ -750,7 +750,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	houndoommega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	kingdra: {
 		isNonstandard: "Past",
@@ -876,7 +876,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "NFE",
 	},
 	gardevoir: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	gardevoirmega: {
 		tier: "OU",
@@ -918,7 +918,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	sableyemega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	mawile: {
 		tier: "(OU)",
@@ -936,7 +936,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	aggronmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	meditite: {
 		tier: "LC",
@@ -945,7 +945,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	medichammega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	electrike: {
 		tier: "LC",
@@ -954,7 +954,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	manectricmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	plusle: {
 		isNonstandard: "Past",
@@ -984,7 +984,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	sharpedomega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	numel: {
 		tier: "LC",
@@ -993,7 +993,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	cameruptmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	torkoal: {
 		isNonstandard: "Past",
@@ -1026,7 +1026,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	altariamega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	zangoose: {
 		isNonstandard: "Past",
@@ -1059,7 +1059,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	banettemega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	duskull: {
 		isNonstandard: "Past",
@@ -1077,7 +1077,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	absolmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	snorunt: {
 		tier: "LC",
@@ -1086,7 +1086,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	glaliemega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	luvdisc: {
 		isNonstandard: "Past",
@@ -1098,7 +1098,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "NFE",
 	},
 	salamence: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	salamencemega: {
 		tier: "OU",
@@ -1110,7 +1110,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "NFE",
 	},
 	metagross: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	metagrossmega: {
 		tier: "OU",
@@ -1260,7 +1260,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	lopunnymega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	mismagius: {
 		isNonstandard: "Past",
@@ -1299,7 +1299,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "NFE",
 	},
 	garchomp: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	garchompmega: {
 		tier: "OU",
@@ -1311,7 +1311,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "LC",
 	},
 	lucario: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	lucariomega: {
 		tier: "OU",
@@ -1320,7 +1320,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "LC",
 	},
 	hippowdon: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	croagunk: {
 		isNonstandard: "Past",
@@ -1341,7 +1341,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	abomasnowmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	weavile: {
 		isNonstandard: "Past",
@@ -1365,7 +1365,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	glaceon: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	gliscor: {
 		isNonstandard: "Past",
@@ -1380,7 +1380,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	gallademega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	probopass: {
 		isNonstandard: "Past",
@@ -1392,7 +1392,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	froslassmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	rotom: {
 		isNonstandard: "Past",
@@ -1584,7 +1584,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "LC",
 	},
 	excadrill: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	excadrillmega: {
 		tier: "OU",
@@ -1593,7 +1593,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	audinomega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	timburr: {
 		isNonstandard: "Past",
@@ -1623,7 +1623,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	scolipedemega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	cottonee: {
 		isNonstandard: "Past",
@@ -1665,7 +1665,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	scraftymega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	trubbish: {
 		tier: "LC",
@@ -1931,7 +1931,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "NFE",
 	},
 	greninja: {
-		tier: "(OU)",
+		tier: "OU",
 	},
 	greninjabond: {
 		tier: "Unreleased",
@@ -1977,7 +1977,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	pyroarmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	flabebe: {
 		tier: "LC",
@@ -2022,7 +2022,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "LC",
 	},
 	doublade: {
-		tier: "NFE",
+		tier: "OU",
 	},
 	aegislash: {
 		tier: "(OU)",
@@ -2048,7 +2048,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	malamarmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	binacle: {
 		tier: "LC",
@@ -2057,7 +2057,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	barbaraclemega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	skrelp: {
 		tier: "LC",
@@ -2066,7 +2066,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	dragalgemega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	clauncher: {
 		tier: "LC",
@@ -2560,7 +2560,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "(OU)",
 	},
 	falinksmega: {
-		tier: "OU",
+		tier: "(OU)",
 	},
 	pincurchin: {
 		isNonstandard: "Past",
