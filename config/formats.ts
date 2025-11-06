@@ -921,6 +921,34 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		ruleset: ['-Nonexistent', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
 	},
 
+	// Legends: Z-A
+	///////////////////////////////////////////////////////////////////
+
+	{
+		section: "Legends: Z-A",
+		column: 2,
+	},
+	{
+		name: "[Gen 9 Legends] No Restrictions",
+		mod: 'gen9legends',
+		searchShow: false,
+		ruleset: ['Obtainable'],
+	},
+	{
+		name: "[Gen 9 Legends] Normal Rules",
+		mod: 'gen9legends',
+		searchShow: false,
+		ruleset: ['Flat Rules'],
+	},
+	{
+		name: "[Gen 9 Legends] Casual Rules",
+		mod: 'gen9legends',
+		searchShow: false,
+		ruleset: ['Flat Rules', 'Limit One Restricted'],
+		restricted: ['Restricted Legendary'],
+		banlist: ['Zygarde'],
+	},
+
 	// Legends: Arceus
 	///////////////////////////////////////////////////////////////////
 
@@ -972,34 +1000,6 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		gameType: 'triples',
 		searchShow: false,
 		ruleset: ['Standard Doubles'],
-	},
-
-	// Legends: Z-A
-	///////////////////////////////////////////////////////////////////
-
-	{
-		section: "Legends: Z-A",
-		column: 2,
-	},
-	{
-		name: "[Gen 9 Legends] No Restrictions",
-		mod: 'gen9legends',
-		searchShow: false,
-		ruleset: ['Obtainable'],
-	},
-	{
-		name: "[Gen 9 Legends] Normal Rules",
-		mod: 'gen9legends',
-		searchShow: false,
-		ruleset: ['Flat Rules'],
-	},
-	{
-		name: "[Gen 9 Legends] Casual Rules",
-		mod: 'gen9legends',
-		searchShow: false,
-		ruleset: ['Flat Rules', 'Limit One Restricted'],
-		restricted: ['Restricted Legendary'],
-		banlist: ['Zygarde'],
 	},
 
 	// Challengeable OMs
