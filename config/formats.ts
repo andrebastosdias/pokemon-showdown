@@ -853,17 +853,23 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		column: 2,
 	},
 	{
-		name: "[Gen 9 Legends] OU",
-		mod: 'gen9legends',
-		searchShow: false,
-		ruleset: ['Flat Rules'],
-		banlist: ['Uber'],
-	},
-	{
-		name: "[Gen 9 Legends] Ubers",
+		name: "[Gen 9 Legends] No Restrictions",
 		mod: 'gen9legends',
 		searchShow: false,
 		ruleset: ['Standard'],
+	},
+	{
+		name: "[Gen 9 Legends] Normal Rules",
+		mod: 'gen9legends',
+		searchShow: false,
+		ruleset: ['Flat Rules'],
+	},
+	{
+		name: "[Gen 9 Legends] Casual Rules",
+		mod: 'gen9legends',
+		searchShow: false,
+		ruleset: ['Flat Rules'],
+		restricted: ['Restricted Legendary', 'Mythical'],
 	},
 
 	// Challengeable OMs

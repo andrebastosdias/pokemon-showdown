@@ -219,10 +219,6 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
-	dreamball: {
-		inherit: true,
-		isNonstandard: "Past",
-	},
 	dubiousdisc: {
 		inherit: true,
 		isNonstandard: "Past",
@@ -708,10 +704,6 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		isNonstandard: "Past",
 	},
 	spookyplate: {
-		inherit: true,
-		isNonstandard: "Past",
-	},
-	sportball: {
 		inherit: true,
 		isNonstandard: "Past",
 	},
