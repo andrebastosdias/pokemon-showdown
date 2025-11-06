@@ -185,7 +185,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	delphoxite: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: null,
 	},
 	destinyknot: {
 		inherit: true,
@@ -193,7 +193,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	diancite: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: null,
 	},
 	dracoplate: {
 		inherit: true,
