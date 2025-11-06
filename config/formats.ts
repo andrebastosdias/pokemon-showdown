@@ -856,7 +856,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		name: "[Gen 9 Legends] No Restrictions",
 		mod: 'gen9legends',
 		searchShow: false,
-		ruleset: ['Standard'],
+		ruleset: ['Obtainable'],
 	},
 	{
 		name: "[Gen 9 Legends] Normal Rules",
@@ -868,8 +868,9 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		name: "[Gen 9 Legends] Casual Rules",
 		mod: 'gen9legends',
 		searchShow: false,
-		ruleset: ['Flat Rules'],
-		restricted: ['Restricted Legendary', 'Mythical'],
+		ruleset: ['Flat Rules', 'Limit One Restricted'],
+		restricted: ['Restricted Legendary'],
+		banlist: ['Zygarde'],
 	},
 
 	// Challengeable OMs
