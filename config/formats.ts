@@ -945,7 +945,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		mod: 'gen9legends',
 		searchShow: false,
 		ruleset: ['Flat Rules', 'Limit One Restricted'],
-		restricted: ['Restricted Legendary'],
+		restricted: ['Restricted Legendary', 'Mythical'],
 		banlist: ['Zygarde'],
 	},
 
