@@ -104,7 +104,7 @@ type Part = string | number | boolean | Pokemon | Side | Effect | Move | null | 
 //   - '': no request. Used between turns, or when the battle is over.
 //
 // An individual Side's request state is encapsulated in its `activeRequest` field.
-export type RequestState = 'teampreview' | 'move' | 'switch' | '';
+export type RequestState = 'teampreview' | 'move' | 'switch' | 'revive' | '';
 
 export class Battle {
 	readonly id: ID;
@@ -1380,8 +1380,16 @@ export class Battle {
 				if (!side.pokemonLeft) continue;
 				const switchTable = side.active.map(pokemon => !!pokemon?.switchFlag);
 				if (switchTable.some(Boolean)) {
-					requests[i] = { forceSwitch: switchTable, side: side.getRequestData() };
+					requests[i] = { state: 'switch', forceSwitch: switchTable, side: side.getRequestData() };
 				}
+			}
+			break;
+
+		case 'revive':
+			for (let i = 0; i < this.sides.length; i++) {
+				const side = this.sides[i];
+				if (!side.reviving) continue;
+				requests[i] = { state: 'revive', reviving: true, side: side.getRequestData() };
 			}
 			break;
 
@@ -1389,7 +1397,7 @@ export class Battle {
 			for (let i = 0; i < this.sides.length; i++) {
 				const side = this.sides[i];
 				const maxChosenTeamSize = this.ruleTable.pickedTeamSize || undefined;
-				requests[i] = { teamPreview: true, maxChosenTeamSize, side: side.getRequestData() };
+				requests[i] = { state: 'teampreview', teamPreview: true, maxChosenTeamSize, side: side.getRequestData() };
 			}
 			break;
 
@@ -1398,7 +1406,7 @@ export class Battle {
 				const side = this.sides[i];
 				if (!side.pokemonLeft) continue;
 				const activeData = side.active.map(pokemon => pokemon?.getMoveRequestData());
-				requests[i] = { active: activeData, side: side.getRequestData() };
+				requests[i] = { state: 'move', active: activeData, side: side.getRequestData() };
 				if (side.allySide) {
 					(requests[i] as MoveRequest).ally = side.allySide.getRequestData(true);
 				}
@@ -1411,7 +1419,7 @@ export class Battle {
 			if (requests[i]) {
 				if (!this.supportCancel || !multipleRequestsExist) requests[i].noCancel = true;
 			} else {
-				requests[i] = { wait: true, side: this.sides[i].getRequestData() };
+				requests[i] = { state: '', wait: true, side: this.sides[i].getRequestData() };
 			}
 		}
 
@@ -1510,7 +1518,7 @@ export class Battle {
 		side.active[0]?.faint();
 		this.faintMessages(false, true);
 		if (!this.ended && side.requestState) {
-			side.emitRequest({ wait: true, side: side.getRequestData() });
+			side.emitRequest({ state: '', wait: true, side: side.getRequestData() });
 			side.clearChoice();
 			if (this.allChoicesDone()) this.commitChoices();
 		}
@@ -2777,23 +2785,22 @@ export class Battle {
 				}
 			}
 			break;
-		case 'revivalblessing':
+		case 'revive':
 			action.pokemon.side.pokemonLeft++;
-			if (action.target.position < action.pokemon.side.active.length) {
+			if (action.pokemon.position < action.pokemon.side.active.length) {
 				this.queue.addChoice({
 					choice: 'instaswitch',
-					pokemon: action.target,
-					target: action.target,
+					pokemon: action.pokemon,
+					target: action.pokemon,
 				});
 			}
-			action.target.fainted = false;
-			action.target.faintQueued = false;
-			action.target.subFainted = false;
-			action.target.status = '';
-			action.target.hp = 1; // Needed so hp functions works
-			action.target.sethp(action.target.maxhp / 2);
-			this.add('-heal', action.target, action.target.getHealth, '[from] move: Revival Blessing');
-			action.pokemon.side.removeSlotCondition(action.pokemon, 'revivalblessing');
+			action.pokemon.fainted = false;
+			action.pokemon.faintQueued = false;
+			action.pokemon.subFainted = false;
+			action.pokemon.status = '';
+			action.pokemon.hp = 1; // Needed so hp functions works
+			action.pokemon.sethp(action.pokemon.maxhp / 2);
+			this.add('-heal', action.pokemon, action.pokemon.getHealth, '[from] move: Revival Blessing');
 			break;
 		case 'runSwitch':
 			this.actions.runSwitch(action.pokemon);
@@ -2873,27 +2880,26 @@ export class Battle {
 			}
 		}
 
+		for (const side of this.sides) {
+			if (side.reviving) {
+				this.makeRequest('revive');
+				return true;
+			}
+		}
+
 		const switches = this.sides.map(
 			side => side.active.some(pokemon => pokemon && !!pokemon.switchFlag)
 		);
 
 		for (let i = 0; i < this.sides.length; i++) {
-			let reviveSwitch = false; // Used to ignore the fake switch for Revival Blessing
 			if (switches[i] && !this.canSwitch(this.sides[i])) {
 				for (const pokemon of this.sides[i].active) {
-					if (this.sides[i].slotConditions[pokemon.position]['revivalblessing']) {
-						reviveSwitch = true;
-						continue;
-					}
 					pokemon.switchFlag = false;
 				}
-				if (!reviveSwitch) switches[i] = false;
+				switches[i] = false;
 			} else if (switches[i]) {
 				for (const pokemon of this.sides[i].active) {
-					if (
-						pokemon.hp && pokemon.switchFlag && pokemon.switchFlag !== 'revivalblessing' &&
-						!pokemon.skipBeforeSwitchOutEventFlag
-					) {
+					if (pokemon.hp && pokemon.switchFlag && !pokemon.skipBeforeSwitchOutEventFlag) {
 						this.runEvent('BeforeSwitchOut', pokemon);
 						pokemon.skipBeforeSwitchOutEventFlag = true;
 						this.faintMessages(); // Pokemon may have fainted in BeforeSwitchOut

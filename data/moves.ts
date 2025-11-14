@@ -15687,14 +15687,8 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 				return false;
 			}
 		},
-		slotCondition: 'revivalblessing',
-		// No this not a real switchout move
-		// This is needed to trigger a switch protocol to choose a fainted party member
-		// Feel free to refactor
-		selfSwitch: true,
-		condition: {
-			duration: 1,
-			// reviving implemented in side.ts, kind of
+		onHit(source) {
+			source.side.reviving = true;
 		},
 		secondary: null,
 		target: "self",

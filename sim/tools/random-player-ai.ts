@@ -35,10 +35,10 @@ export class RandomPlayerAI extends BattlePlayer {
 	}
 
 	override receiveRequest(request: ChoiceRequest) {
-		if (request.wait) {
+		if (!request.state) {
 			// wait request
 			// do nothing
-		} else if (request.forceSwitch) {
+		} else if (request.state === 'switch') {
 			// switch request
 			const pokemon = request.side.pokemon;
 			const chosen: number[] = [];
@@ -48,11 +48,11 @@ export class RandomPlayerAI extends BattlePlayer {
 				const canSwitch = range(1, 6).filter(j => (
 					pokemon[j - 1] &&
 					// not active
-					j > request.forceSwitch.length &&
+					!pokemon[j - 1].active &&
 					// not chosen for a simultaneous switch
 					!chosen.includes(j) &&
-					// not fainted or fainted and using Revival Blessing
-					!pokemon[j - 1].condition.endsWith(` fnt`) === !pokemon[i].reviving
+					// not fainted
+					!pokemon[j - 1].condition.endsWith(` fnt`)
 				));
 
 				if (!canSwitch.length) return `pass`;
@@ -65,9 +65,17 @@ export class RandomPlayerAI extends BattlePlayer {
 			});
 
 			this.choose(choices.join(`, `));
-		} else if (request.teamPreview) {
+		} else if (request.state === 'teampreview') {
 			this.choose(this.chooseTeamPreview(request.side.pokemon));
-		} else if (request.active) {
+		} else if (request.state === 'revive') {
+			const pokemon = request.side.pokemon;
+			const canRevive = range(1, 6).filter(i => pokemon[i - 1]?.condition.endsWith(` fnt`));
+			const target = this.chooseSwitch(
+				undefined,
+				canRevive.map(slot => ({ slot, pokemon: pokemon[slot - 1] }))
+			);
+			this.choose(`revive ${target}`);
+		} else if (request.state === 'move') {
 			// move request
 			let [canMegaEvo, canUltraBurst, canZMove, canDynamax, canTerastallize] = [true, true, true, true, true];
 			const pokemon = request.side.pokemon;

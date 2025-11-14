@@ -27,7 +27,7 @@ import { toID } from './dex';
 
 /** A single action that can be chosen. Choices will have one Action for each pokemon. */
 export interface ChosenAction {
-	choice: 'move' | 'switch' | 'instaswitch' | 'revivalblessing' | 'team' | 'shift' | 'pass';// action type
+	choice: 'move' | 'switch' | 'instaswitch' | 'revive' | 'team' | 'shift' | 'pass';// action type
 	pokemon?: Pokemon; // the pokemon doing the action
 	targetLoc?: number; // relative location of the target to pokemon (move action only)
 	moveid: string; // a move to use (move action only)
@@ -85,8 +85,6 @@ export interface PokemonSwitchRequestData {
 	ability?: ID;
 	/** @see https://dex.pokemonshowdown.com/abilities/commander */
 	commanding?: boolean;
-	/** @see https://dex.pokemonshowdown.com/moves/revivalblessing */
-	reviving?: boolean;
 	teraType?: string;
 	terastallized?: string;
 }
@@ -116,40 +114,34 @@ export interface SideRequestData {
 	pokemon: PokemonSwitchRequestData[];
 	noCancel?: boolean;
 }
-export interface SwitchRequest {
-	wait?: undefined;
-	teamPreview?: undefined;
+export interface Request {
+	side: SideRequestData;
+	noCancel?: boolean;
+	update?: boolean;
+}
+export interface SwitchRequest extends Request {
+	state: 'switch';
 	forceSwitch: boolean[];
-	side: SideRequestData;
-	noCancel?: boolean;
-	update?: boolean;
 }
-export interface TeamPreviewRequest {
-	wait?: undefined;
+export interface ReviveRequest extends Request {
+	state: 'revive';
+	reviving: true;
+}
+export interface TeamPreviewRequest extends Request {
+	state: 'teampreview';
 	teamPreview: true;
-	forceSwitch?: undefined;
 	maxChosenTeamSize?: number;
-	side: SideRequestData;
-	noCancel?: boolean;
 }
-export interface MoveRequest {
-	wait?: undefined;
-	teamPreview?: undefined;
-	forceSwitch?: undefined;
+export interface MoveRequest extends Request {
+	state: 'move';
 	active: PokemonMoveRequestData[];
-	side: SideRequestData;
 	ally?: SideRequestData;
-	noCancel?: boolean;
-	update?: boolean;
 }
-export interface WaitRequest {
+export interface WaitRequest extends Request {
+	state: '';
 	wait: true;
-	teamPreview?: undefined;
-	forceSwitch?: undefined;
-	side: SideRequestData;
-	noCancel?: boolean;
 }
-export type ChoiceRequest = SwitchRequest | TeamPreviewRequest | MoveRequest | WaitRequest;
+export type ChoiceRequest = SwitchRequest | ReviveRequest | TeamPreviewRequest | MoveRequest | WaitRequest;
 
 export class Side {
 	readonly battle: Battle;
@@ -188,6 +180,8 @@ export class Side {
 
 	activeRequest: ChoiceRequest | null;
 	choice: Choice;
+
+	reviving: boolean;
 
 	/**
 	 * In gen 1, all lastMove stuff is tracked on Side rather than Pokemon
@@ -253,6 +247,8 @@ export class Side {
 			terastallize: false,
 		};
 
+		this.reviving = false;
+
 		// old-gens
 		this.lastMove = null;
 	}
@@ -262,10 +258,7 @@ export class Side {
 	}
 
 	get requestState(): RequestState {
-		if (!this.activeRequest || this.activeRequest.wait) return '';
-		if (this.activeRequest.teamPreview) return 'teampreview';
-		if (this.activeRequest.forceSwitch) return 'switch';
-		return 'move';
+		return this.activeRequest?.state || '';
 	}
 
 	addPokemon(set: PokemonSet) {
@@ -307,8 +300,9 @@ export class Side {
 				return `move ${action.moveid}${details}`;
 			case 'switch':
 			case 'instaswitch':
-			case 'revivalblessing':
 				return `switch ${action.target!.position + 1}`;
+			case 'revive':
+				return `revive ${action.pokemon!.position + 1}`;
 			case 'team':
 				return `team ${action.pokemon!.position + 1}`;
 			default:
@@ -485,10 +479,10 @@ export class Side {
 		this.battle.send('sideupdate', `${this.id}\n${sideUpdate}`);
 	}
 
-	emitRequest(update: ChoiceRequest = this.activeRequest!, updatedRequest = false) {
-		if (updatedRequest) (this.activeRequest as MoveRequest | SwitchRequest).update = true;
-		this.battle.send('sideupdate', `${this.id}\n|request|${JSON.stringify(update)}`);
-		this.activeRequest = update;
+	emitRequest(request: ChoiceRequest = this.activeRequest!, updatedRequest = false) {
+		if (updatedRequest) request.update = true;
+		this.battle.send('sideupdate', `${this.id}\n|request|${JSON.stringify(request)}`);
+		this.activeRequest = request;
 	}
 
 	emitChoiceError(
@@ -509,6 +503,10 @@ export class Side {
 
 		if (this.requestState === 'teampreview') {
 			return this.choice.actions.length >= this.pickedTeamSize();
+		}
+
+		if (this.requestState === 'revive') {
+			return this.choice.actions.length >= 1;
 		}
 
 		// current request is move/switch
@@ -877,14 +875,9 @@ export class Side {
 			if (this.requestState !== 'switch') {
 				return this.emitChoiceError(`Can't switch: You need to select a Pokémon to switch in`);
 			}
-			if (this.slotConditions[pokemon.position]['revivalblessing']) {
-				slot = 0;
-				while (!this.pokemon[slot].fainted) slot++;
-			} else {
-				if (!this.choice.forcedSwitchesLeft) return this.choosePass();
-				slot = this.active.length;
-				while (this.choice.switchIns.has(slot) || this.pokemon[slot].fainted) slot++;
-			}
+			if (!this.choice.forcedSwitchesLeft) return this.choosePass();
+			slot = this.active.length;
+			while (this.choice.switchIns.has(slot) || this.pokemon[slot].fainted) slot++;
 		} else {
 			slot = parseInt(slotText) - 1;
 		}
@@ -903,27 +896,12 @@ export class Side {
 		}
 		if (slot >= this.pokemon.length) {
 			return this.emitChoiceError(`Can't switch: You do not have a Pokémon in slot ${slot + 1} to switch to`);
-		} else if (slot < this.active.length && !this.slotConditions[pokemon.position]['revivalblessing']) {
+		} else if (slot < this.active.length) {
 			return this.emitChoiceError(`Can't switch: You can't switch to an active Pokémon`);
 		} else if (this.choice.switchIns.has(slot)) {
 			return this.emitChoiceError(`Can't switch: The Pokémon in slot ${slot + 1} can only switch in once`);
 		}
 		const targetPokemon = this.pokemon[slot];
-
-		if (this.slotConditions[pokemon.position]['revivalblessing']) {
-			if (!targetPokemon.fainted) {
-				return this.emitChoiceError(`Can't switch: You have to pass to a fainted Pokémon`);
-			}
-			// Should always subtract, but stop at 0 to prevent errors.
-			this.choice.forcedSwitchesLeft = this.battle.clampIntRange(this.choice.forcedSwitchesLeft - 1, 0);
-			pokemon.switchFlag = false;
-			this.choice.actions.push({
-				choice: 'revivalblessing',
-				pokemon,
-				target: targetPokemon,
-			} as ChosenAction);
-			return true;
-		}
 
 		if (targetPokemon.fainted) {
 			return this.emitChoiceError(`Can't switch: You can't switch to a fainted Pokémon`);
@@ -961,6 +939,44 @@ export class Side {
 			target: targetPokemon,
 		} as ChosenAction);
 
+		return true;
+	}
+
+	chooseRevive(slotText?: string) {
+		if (this.requestState !== 'revive') {
+			return this.emitChoiceError(`Can't revive: You need a ${this.requestState} response`);
+		}
+		let slot;
+		if (!slotText) {
+			slot = 0;
+			while (!this.pokemon[slot].fainted) slot++;
+		} else {
+			slot = parseInt(slotText) - 1;
+		}
+		if (isNaN(slot) || slot < 0) {
+			// maybe it's a name/species id!
+			slot = -1;
+			for (const [i, mon] of this.pokemon.entries()) {
+				if (slotText!.toLowerCase() === mon.name.toLowerCase() || toID(slotText) === mon.species.id) {
+					slot = i;
+					break;
+				}
+			}
+			if (slot < 0) {
+				return this.emitChoiceError(`Can't revive: You do not have a Pokémon named "${slotText}" to revive`);
+			}
+		}
+		if (slot >= this.pokemon.length) {
+			return this.emitChoiceError(`Can't revive: You do not have a Pokémon in slot ${slot + 1} to revive`);
+		}
+		const pokemon = this.pokemon[slot];
+		if (!pokemon.fainted) {
+			return this.emitChoiceError(`Can't revive: You have to pass to a fainted Pokémon`);
+		}
+		this.choice.actions.push({
+			choice: 'revive',
+			pokemon,
+		} as ChosenAction);
 		return true;
 	}
 
@@ -1089,7 +1105,7 @@ export class Side {
 
 		this.clearChoice();
 
-		const choiceStrings = (input.startsWith('team ') ? [input] : input.split(','));
+		const choiceStrings = (input.startsWith('team ') || input.startsWith('revive')) ? [input] : input.split(',');
 
 		if (choiceStrings.length > this.active.length) {
 			return this.emitChoiceError(
@@ -1168,6 +1184,9 @@ export class Side {
 				break;
 			case 'switch':
 				this.chooseSwitch(data);
+				break;
+			case 'revive':
+				this.chooseRevive(data);
 				break;
 			case 'shift':
 				if (data) return this.emitChoiceError(`Unrecognized data after "shift": ${data}`);
@@ -1267,6 +1286,10 @@ export class Side {
 				if (!this.chooseMove()) throw new Error(`autoChoose crashed: ${this.choice.error}`);
 				i++;
 				if (i > 10) throw new Error(`autoChoose failed: infinite looping`);
+			}
+		} else if (this.requestState === 'revive') {
+			if (!this.isChoiceDone()) {
+				if (!this.chooseRevive()) throw new Error(`autoChoose revive crashed: ${this.choice.error}`);
 			}
 		}
 		return true;

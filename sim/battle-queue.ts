@@ -55,8 +55,8 @@ export interface MoveAction {
 /** A switch action */
 export interface SwitchAction {
 	/** action type */
-	choice: 'switch' | 'instaswitch' | 'revivalblessing';
-	order: 3 | 6 | 103;
+	choice: 'switch' | 'instaswitch';
+	order: 3 | 103;
 	/** priority of the action (higher first) */
 	priority: number;
 	/** speed of pokemon switching (higher first if priority tie) */
@@ -65,6 +65,21 @@ export interface SwitchAction {
 	pokemon: Pokemon;
 	/** pokemon to switch to */
 	target: Pokemon;
+	/** effect that called the switch (eg U */
+	sourceEffect: Effect | null;
+}
+
+/** A revive action */
+export interface ReviveAction {
+	/** action type */
+	choice: 'revive';
+	order: 6;
+	/** priority of the action (higher first) */
+	priority: number;
+	/** unused for this action type */
+	speed: 1;
+	/** pokemon to revive */
+	pokemon: Pokemon;
 	/** effect that called the switch (eg U */
 	sourceEffect: Effect | null;
 }
@@ -111,7 +126,7 @@ export interface PokemonAction {
 	event?: string;
 }
 
-export type Action = MoveAction | SwitchAction | TeamAction | FieldAction | PokemonAction;
+export type Action = MoveAction | SwitchAction | ReviveAction | TeamAction | FieldAction | PokemonAction;
 
 /**
  * An ActionChoice is like an Action and has the same structure, but it doesn't need to be fully filled out.
@@ -177,7 +192,7 @@ export class BattleQueue {
 				instaswitch: 3,
 				beforeTurn: 4,
 				beforeTurnMove: 5,
-				revivalblessing: 6,
+				revive: 6,
 
 				runSwitch: 101,
 				switch: 103,
@@ -252,6 +267,9 @@ export class BattleQueue {
 					action.sourceEffect = this.battle.dex.moves.get(action.pokemon.switchFlag as ID) as any;
 				}
 				action.pokemon.switchFlag = false;
+			} else if (action.choice === 'revive') {
+				action.sourceEffect = this.battle.dex.moves.get('revivalblessing') as any;
+				action.pokemon.side.reviving = false;
 			}
 		}
 

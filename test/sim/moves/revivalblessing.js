@@ -21,7 +21,7 @@ describe('Revival Blessing', () => {
 		battle.makeChoices('move memento', 'auto');
 		battle.makeChoices('switch zoroark', '');
 		battle.makeChoices('move revivalblessing', 'auto');
-		battle.makeChoices('switch corviknight', '');
+		battle.makeChoices('revive corviknight', '');
 		assert.equal(battle.p1.pokemonLeft, 3);
 		assert.equal(battle.p1.pokemon[1].hp, Math.floor(battle.p1.pokemon[1].maxhp / 2));
 	});
@@ -37,8 +37,8 @@ describe('Revival Blessing', () => {
 		battle.makeChoices('move memento', 'auto');
 		battle.makeChoices('switch zoroark', '');
 		battle.makeChoices('move revivalblessing', 'auto');
-		assert.equal(battle.requestState, 'switch');
-		battle.makeChoices('switch corviknight', '');
+		assert.equal(battle.requestState, 'revive');
+		battle.makeChoices('revive corviknight', '');
 		assert.species(battle.p1.active[0], 'Zoroark');
 	});
 
@@ -52,8 +52,8 @@ describe('Revival Blessing', () => {
 		battle.makeChoices('move memento', 'auto');
 		battle.makeChoices('switch zoroark', '');
 		battle.makeChoices('move revivalblessing', 'auto');
-		assert.equal(battle.requestState, 'switch');
-		battle.makeChoices('switch corviknight', '');
+		assert.equal(battle.requestState, 'revive');
+		battle.makeChoices('revive corviknight', '');
 		assert.equal(battle.p1.pokemonLeft, 2);
 	});
 
@@ -66,7 +66,7 @@ describe('Revival Blessing', () => {
 			{ species: 'chienpao', ability: 'noguard', moves: ['sheercold'] },
 		]]);
 		battle.makeChoices('auto', 'move sleeptalk, move sheercold 2');
-		battle.makeChoices('switch 2', '');
+		battle.makeChoices('revive 2', '');
 		assert.equal(battle.p2.active[0].boosts.atk, -2, "Intimidate should have activated again");
 	});
 
@@ -79,7 +79,7 @@ describe('Revival Blessing', () => {
 			{ species: 'chienpao', ability: 'swordofruin', moves: ['sheercold'] },
 		]]);
 		battle.makeChoices('auto', 'move sleeptalk, move sheercold 2');
-		battle.makeChoices('switch 2', '');
+		battle.makeChoices('revive 2', '');
 		assert.equal(battle.p1.active[1].boosts.evasion, 0, "Lycanroc should not have used Double Team");
 	});
 });

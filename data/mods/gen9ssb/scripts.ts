@@ -506,23 +506,22 @@ export const Scripts: ModdedBattleScriptsData = {
 				}
 			}
 			break;
-		case 'revivalblessing':
+		case 'revive':
 			action.pokemon.side.pokemonLeft++;
-			if (action.target.position < action.pokemon.side.active.length) {
+			if (action.pokemon.position < action.pokemon.side.active.length) {
 				this.queue.addChoice({
 					choice: 'instaswitch',
-					pokemon: action.target,
-					target: action.target,
+					pokemon: action.pokemon,
+					target: action.pokemon,
 				});
 			}
-			action.target.fainted = false;
-			action.target.faintQueued = false;
-			action.target.subFainted = false;
-			action.target.status = '';
-			action.target.hp = 1; // Needed so hp functions works
-			action.target.sethp(action.target.maxhp / 2);
-			this.add('-heal', action.target, action.target.getHealth, '[from] move: Revival Blessing');
-			action.pokemon.side.removeSlotCondition(action.pokemon, 'revivalblessing');
+			action.pokemon.fainted = false;
+			action.pokemon.faintQueued = false;
+			action.pokemon.subFainted = false;
+			action.pokemon.status = '';
+			action.pokemon.hp = 1; // Needed so hp functions works
+			action.pokemon.sethp(action.pokemon.maxhp / 2);
+			this.add('-heal', action.pokemon, action.pokemon.getHealth, '[from] move: Revival Blessing');
 			break;
 		// @ts-expect-error I'm sorry but it takes a lot
 		case 'scapegoat':
@@ -618,6 +617,13 @@ export const Scripts: ModdedBattleScriptsData = {
 			const pokemon = action.pokemon;
 			if (pokemon.hp && pokemon.hp <= pokemon.maxhp / 2 && pokemonOriginalHP! > pokemon.maxhp / 2) {
 				this.runEvent('EmergencyExit', pokemon);
+			}
+		}
+
+		for (const side of this.sides) {
+			if (side.reviving) {
+				this.makeRequest('revive');
+				return true;
 			}
 		}
 
@@ -1843,10 +1849,11 @@ export const Scripts: ModdedBattleScriptsData = {
 					return `move ${action.moveid}${details}`;
 				case 'switch':
 				case 'instaswitch':
-				case 'revivalblessing':
 				// @ts-expect-error custom status falls through
 				case 'scapegoat':
 					return `switch ${action.target!.position + 1}`;
+				case 'revive':
+					return `revive ${action.target!.position + 1}`;
 				case 'team':
 					return `team ${action.pokemon!.position + 1}`;
 				default:
@@ -1904,21 +1911,6 @@ export const Scripts: ModdedBattleScriptsData = {
 				return this.emitChoiceError(`Can't switch: The Pokémon in slot ${slot + 1} can only switch in once`);
 			}
 			const targetPokemon = this.pokemon[slot];
-
-			if (this.slotConditions[pokemon.position]['revivalblessing']) {
-				if (!targetPokemon.fainted) {
-					return this.emitChoiceError(`Can't switch: You have to pass to a fainted Pokémon`);
-				}
-				// Should always subtract, but stop at 0 to prevent errors.
-				this.choice.forcedSwitchesLeft = this.battle.clampIntRange(this.choice.forcedSwitchesLeft - 1, 0);
-				pokemon.switchFlag = false;
-				this.choice.actions.push({
-					choice: 'revivalblessing',
-					pokemon,
-					target: targetPokemon,
-				} as ChosenAction);
-				return true;
-			}
 
 			if (targetPokemon.fainted) {
 				return this.emitChoiceError(`Can't switch: You can't switch to a fainted Pokémon`);

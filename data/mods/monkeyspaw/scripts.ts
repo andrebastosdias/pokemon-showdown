@@ -331,24 +331,22 @@ export const Scripts: ModdedBattleScriptsData = {
 				}
 			}
 			break;
-		case 'revivalblessing':
+		case 'revive':
 			action.pokemon.side.pokemonLeft++;
-			if (action.target.position < action.pokemon.side.active.length) {
+			if (action.pokemon.position < action.pokemon.side.active.length) {
 				this.queue.addChoice({
 					choice: 'instaswitch',
-					pokemon: action.target,
-					target: action.target,
+					pokemon: action.pokemon,
+					target: action.pokemon,
 				});
 			}
-			action.target.fainted = false;
-			action.target.faintQueued = false;
-			action.target.subFainted = false;
-			action.target.status = '';
-			action.target.hp = 1; // Needed so hp functions works
-			action.target.sethp(action.target.maxhp / 2);
-			if (!action.sourceEffect) action.target.m.revivedByMonkeysPaw = true;
-			this.add('-heal', action.target, action.target.getHealth, '[from] move: Revival Blessing');
-			action.pokemon.side.removeSlotCondition(action.pokemon, 'revivalblessing');
+			action.pokemon.fainted = false;
+			action.pokemon.faintQueued = false;
+			action.pokemon.subFainted = false;
+			action.pokemon.status = '';
+			action.pokemon.hp = 1; // Needed so hp functions works
+			action.pokemon.sethp(action.pokemon.maxhp / 2);
+			this.add('-heal', action.pokemon, action.pokemon.getHealth, '[from] move: Revival Blessing');
 			break;
 		case 'runSwitch':
 			this.actions.runSwitch(action.pokemon);
@@ -425,6 +423,13 @@ export const Scripts: ModdedBattleScriptsData = {
 			const pokemon = action.pokemon;
 			if (pokemon.hp && pokemon.hp <= pokemon.maxhp / 2 && pokemonOriginalHP! > pokemon.maxhp / 2) {
 				this.runEvent('EmergencyExit', pokemon);
+			}
+		}
+
+		for (const side of this.sides) {
+			if (side.reviving) {
+				this.makeRequest('revive');
+				return true;
 			}
 		}
 
