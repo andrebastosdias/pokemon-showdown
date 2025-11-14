@@ -67,7 +67,7 @@ export class RandomPlayerAI extends BattlePlayer {
 			this.choose(choices.join(`, `));
 		} else if (request.state === 'teampreview') {
 			this.choose(this.chooseTeamPreview(request.side.pokemon));
-		} else if (request.state === 'revive') {
+		} else if (request.state === 'revival') {
 			const pokemon = request.side.pokemon;
 			const canRevive = range(1, 6).filter(i => pokemon[i - 1]?.condition.endsWith(` fnt`));
 			const target = this.chooseSwitch(

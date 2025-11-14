@@ -104,7 +104,7 @@ type Part = string | number | boolean | Pokemon | Side | Effect | Move | null | 
 //   - '': no request. Used between turns, or when the battle is over.
 //
 // An individual Side's request state is encapsulated in its `activeRequest` field.
-export type RequestState = 'teampreview' | 'move' | 'switch' | 'revive' | '';
+export type RequestState = 'teampreview' | 'move' | 'switch' | 'revival' | '';
 
 export class Battle {
 	readonly id: ID;
@@ -1385,11 +1385,11 @@ export class Battle {
 			}
 			break;
 
-		case 'revive':
+		case 'revival':
 			for (let i = 0; i < this.sides.length; i++) {
 				const side = this.sides[i];
 				if (!side.reviving) continue;
-				requests[i] = { state: 'revive', reviving: true, side: side.getRequestData() };
+				requests[i] = { state: 'revival', reviving: true, side: side.getRequestData() };
 			}
 			break;
 
@@ -2882,7 +2882,7 @@ export class Battle {
 
 		for (const side of this.sides) {
 			if (side.reviving) {
-				this.makeRequest('revive');
+				this.makeRequest('revival');
 				return true;
 			}
 		}

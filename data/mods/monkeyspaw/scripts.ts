@@ -428,7 +428,7 @@ export const Scripts: ModdedBattleScriptsData = {
 
 		for (const side of this.sides) {
 			if (side.reviving) {
-				this.makeRequest('revive');
+				this.makeRequest('revival');
 				return true;
 			}
 		}

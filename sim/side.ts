@@ -123,8 +123,8 @@ export interface SwitchRequest extends Request {
 	state: 'switch';
 	forceSwitch: boolean[];
 }
-export interface ReviveRequest extends Request {
-	state: 'revive';
+export interface RevivalRequest extends Request {
+	state: 'revival';
 	reviving: true;
 }
 export interface TeamPreviewRequest extends Request {
@@ -141,7 +141,7 @@ export interface WaitRequest extends Request {
 	state: '';
 	wait: true;
 }
-export type ChoiceRequest = SwitchRequest | ReviveRequest | TeamPreviewRequest | MoveRequest | WaitRequest;
+export type ChoiceRequest = SwitchRequest | RevivalRequest | TeamPreviewRequest | MoveRequest | WaitRequest;
 
 export class Side {
 	readonly battle: Battle;
@@ -505,7 +505,7 @@ export class Side {
 			return this.choice.actions.length >= this.pickedTeamSize();
 		}
 
-		if (this.requestState === 'revive') {
+		if (this.requestState === 'revival') {
 			return this.choice.actions.length >= 1;
 		}
 
@@ -943,7 +943,7 @@ export class Side {
 	}
 
 	chooseRevive(slotText?: string) {
-		if (this.requestState !== 'revive') {
+		if (this.requestState !== 'revival') {
 			return this.emitChoiceError(`Can't revive: You need a ${this.requestState} response`);
 		}
 		let slot;
@@ -1287,7 +1287,7 @@ export class Side {
 				i++;
 				if (i > 10) throw new Error(`autoChoose failed: infinite looping`);
 			}
-		} else if (this.requestState === 'revive') {
+		} else if (this.requestState === 'revival') {
 			if (!this.isChoiceDone()) {
 				if (!this.chooseRevive()) throw new Error(`autoChoose revive crashed: ${this.choice.error}`);
 			}
