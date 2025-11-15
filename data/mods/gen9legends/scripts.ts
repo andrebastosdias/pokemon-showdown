@@ -9,5 +9,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Pokedex', 'aegislash').abilities = { 0: 'Stance Change' };
 		this.modData('Pokedex', 'zygarde').abilities = { 0: 'Power Construct' };
 		this.modData('Pokedex', 'zygarde10').abilities = { 0: 'Power Construct' };
+		this.modData('Pokedex', 'zygardecomplete').abilities = { 0: 'Power Construct' };
+		this.modData('Pokedex', 'zygardemega').abilities = { 0: 'Power Construct' };
 	},
 };
