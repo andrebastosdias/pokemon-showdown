@@ -8638,6 +8638,11 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			thousandwaves: ["9S6"],
 		},
 	},
+	zygardemega: {
+		learnset: {
+			nihillight: ["9R"],
+		},
+	},
 	diancie: {
 		inherit: true,
 		learnset: {
