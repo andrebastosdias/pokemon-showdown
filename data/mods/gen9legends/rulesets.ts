@@ -14,6 +14,21 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 		onChangeSet(set) {
 			set.ability = this.dex.species.get(set.species).abilities['0'];
 		},
+		onValidateTeam(team) {
+			const itemTable = new this.dex.Multiset<string>();
+			for (const set of team) {
+				const item = this.dex.items.get(set.item);
+				if (!item.exists || !item.megaStone) continue;
+				itemTable.add(item.id);
+			}
+			for (const [itemid, num] of itemTable) {
+				if (num <= 1) continue;
+				return [
+					`You are limited to 1 of each Mega Stone.`,
+					`(You have more than 1 ${this.dex.items.get(itemid).name})`,
+				];
+			}
+		},
 	},
 	teampreview: {
 		inherit: true,
