@@ -265,6 +265,11 @@ interface ModdedBattleSide {
 	chooseSwitch?: (this: Side, slotText?: string) => any;
 	getChoice?: (this: Side) => string;
 	getRequestData?: (this: Side, forAlly?: boolean) => { name: string, id: ID, pokemon: AnyObject[] };
+
+	// Legends: Arceus
+	chooseShift?: (this: Side) => any;
+	choosePass?: (this: Side) => any;
+	getChoiceIndex?: (this: Side, isPass?: boolean) => number;
 }
 
 interface ModdedBattlePokemon {
@@ -326,6 +331,17 @@ interface ModdedBattlePokemon {
 	ignoringAbility?: (this: Pokemon) => boolean;
 	ignoringItem?: (this: Pokemon) => boolean;
 
+	// Legends: Arceus
+	getUpdatedDetails?: (this: Pokemon, level?: number) => string;
+	getSwitchRequestData?: (this: Pokemon, forAlly?: boolean) => AnyObject;
+	trySetStatus?: (
+		this: Pokemon, status: string | Condition, source: Pokemon | null, sourceEffect: Effect | null
+	) => boolean;
+	addVolatile?: (
+		this: Pokemon, status: string | Condition, source: Pokemon | null,
+		sourceEffect: Effect | null, linkedStatus: string | Condition | null
+	) => boolean;
+
 	// OM
 	getLinkedMoves?: (this: Pokemon, ignoreDisabled?: boolean) => string[];
 	hasLinkedMove?: (this: Pokemon, moveid: string) => boolean;
@@ -383,6 +399,9 @@ interface ModdedBattleScriptsData extends Partial<BattleScriptsData> {
 	checkWin?: (this: Battle, faintQueue?: Battle['faintQueue'][0]) => true | undefined;
 	fieldEvent?: (this: Battle, eventid: string, targets?: Pokemon[]) => void;
 	getAllActive?: (this: Battle, includeFainted?: boolean, includeCommanding?: boolean) => Pokemon[];
+
+	// Legends: Arceus
+	getRequests?: (this: Battle, type: import('./battle').RequestState) => AnyObject[];
 }
 
 type TypeInfo = import('./dex-data').TypeInfo;
