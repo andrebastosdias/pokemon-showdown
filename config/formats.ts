@@ -946,7 +946,6 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		searchShow: false,
 		ruleset: ['Flat Rules', 'Limit One Restricted'],
 		restricted: ['Restricted Legendary', 'Mythical'],
-		banlist: ['Zygarde'],
 	},
 
 	// Legends: Arceus

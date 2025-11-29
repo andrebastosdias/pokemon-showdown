@@ -133,7 +133,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	chesnaughtite: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: null,
 	},
 	chippedpot: {
 		inherit: true,
@@ -638,10 +638,6 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	sachet: {
 		inherit: true,
 		isNonstandard: null,
-	},
-	safariball: {
-		inherit: true,
-		isNonstandard: "Past",
 	},
 	safetygoggles: {
 		inherit: true,
