@@ -517,11 +517,11 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	mewtwonitex: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: null,
 	},
 	mewtwonitey: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: null,
 	},
 	micleberry: {
 		inherit: true,
