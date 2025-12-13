@@ -81,7 +81,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	baxcalibrite: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: "Unobtainable",
 	},
 	beedrillite: {
 		inherit: true,
@@ -102,6 +102,10 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	blastoisinite: {
 		inherit: true,
 		isNonstandard: null,
+	},
+	blazikenite: {
+		inherit: true,
+		isNonstandard: "Unobtainable",
 	},
 	blueorb: {
 		inherit: true,
@@ -333,7 +337,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	garchompitez: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: "Unobtainable",
 	},
 	gardevoirite: {
 		inherit: true,
@@ -454,6 +458,14 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	lansatberry: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	latiasite: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	latiosite: {
+		inherit: true,
+		isNonstandard: null,
 	},
 	leppaberry: {
 		inherit: true,
@@ -715,6 +727,10 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		inherit: true,
 		isNonstandard: null,
 	},
+	sceptilite: {
+		inherit: true,
+		isNonstandard: "Unobtainable",
+	},
 	scizorite: {
 		inherit: true,
 		isNonstandard: null,
@@ -802,6 +818,10 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	strawberrysweet: {
 		inherit: true,
 		isNonstandard: "Past",
+	},
+	swampertite: {
+		inherit: true,
+		isNonstandard: "Unobtainable",
 	},
 	sweetapple: {
 		inherit: true,
