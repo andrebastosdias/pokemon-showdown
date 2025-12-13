@@ -14,5 +14,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Pokedex', 'mimikyu').abilities = { 0: 'Disguise' };
 		this.modData('Pokedex', 'morpeko').abilities = { 0: 'Hunger Switch' };
 		this.modData('Pokedex', 'tatsugiri').abilities = { 0: 'Commander' };
+		this.modData('Pokedex', 'tatsugiridroopy').abilities = { 0: 'Commander' };
+		this.modData('Pokedex', 'tatsugiristretchy').abilities = { 0: 'Commander' };
 	},
 };
