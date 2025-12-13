@@ -11,5 +11,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Pokedex', 'zygarde10').abilities = { 0: 'Power Construct' };
 		this.modData('Pokedex', 'zygardecomplete').abilities = { 0: 'Power Construct' };
 		this.modData('Pokedex', 'zygardemega').abilities = { 0: 'Power Construct' };
+		this.modData('Pokedex', 'mimikyu').abilities = { 0: 'Disguise' };
+		// this.modData('Pokedex', 'raichumegax').abilities = { 0: '???' };
 	},
 };
