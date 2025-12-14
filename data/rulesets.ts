@@ -170,51 +170,6 @@ export const Rulesets: import('../sim/dex-formats').FormatDataTable = {
 		ruleset: ['Obtainable Moves', 'Obtainable Abilities', 'Obtainable Formes', 'EV Limit = Auto', 'Obtainable Misc'],
 		banlist: ['Unreleased', 'Unobtainable', 'Nonexistent'],
 		// Mostly hardcoded in team-validator.ts
-		onValidateTeam(team, format) {
-			let kyuremCount = 0;
-			let necrozmaDMCount = 0;
-			let necrozmaDWCount = 0;
-			let calyrexCount = 0;
-			for (const set of team) {
-				if (set.species === 'Kyurem-White' || set.species === 'Kyurem-Black') {
-					if (kyuremCount > 0) {
-						return [
-							`You cannot have more than one Kyurem-Black/Kyurem-White.`,
-							`(It's untradeable and you can only make one with the DNA Splicers.)`,
-						];
-					}
-					kyuremCount++;
-				}
-				if (set.species === 'Necrozma-Dusk-Mane') {
-					if (necrozmaDMCount > 0) {
-						return [
-							`You cannot have more than one Necrozma-Dusk-Mane`,
-							`(It's untradeable and you can only make one with the N-Solarizer.)`,
-						];
-					}
-					necrozmaDMCount++;
-				}
-				if (set.species === 'Necrozma-Dawn-Wings') {
-					if (necrozmaDWCount > 0) {
-						return [
-							`You cannot have more than one Necrozma-Dawn-Wings`,
-							`(It's untradeable and you can only make one with the N-Lunarizer.)`,
-						];
-					}
-					necrozmaDWCount++;
-				}
-				if (set.species === 'Calyrex-Ice' || set.species === 'Calyrex-Shadow') {
-					if (calyrexCount > 0) {
-						return [
-							`You cannot have more than one Calyrex-Ice/Calyrex-Shadow.`,
-							`(It's untradeable and you can only make one with the Reins of Unity.)`,
-						];
-					}
-					calyrexCount++;
-				}
-			}
-			return [];
-		},
 	},
 	obtainablemoves: {
 		effectType: 'ValidatorRule',

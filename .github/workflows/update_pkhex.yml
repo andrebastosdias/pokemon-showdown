@@ -64,4 +64,4 @@ jobs:
 
             - **Tag:** `${{ steps.pkhex.outputs.latest_tag }}`
           labels: |
-            PKHeX
+            pkhex

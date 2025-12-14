@@ -408,6 +408,10 @@ export class TeamValidator {
 		const teamHas: { [k: string]: number } = {};
 		let lgpeStarterCount = 0;
 		let deoxysType;
+		let kyuremCount = 0;
+		let necrozmaDMCount = 0;
+		let necrozmaDWCount = 0;
+		let calyrexCount = 0;
 		for (const set of team) {
 			if (!set) return [`You sent invalid team data. If you're not using a custom client, please report this as a bug.`];
 
@@ -420,20 +424,53 @@ export class TeamValidator {
 				setProblems = (format.validateSet || this.validateSet).call(this, set, teamHas);
 			}
 
-			if (set.species === 'Pikachu-Starter' || set.species === 'Eevee-Starter') {
-				lgpeStarterCount++;
-				if (lgpeStarterCount === 2 && ruleTable.isBanned('nonexistent')) {
-					problems.push(`You can only have one of Pikachu-Starter or Eevee-Starter on a team.`);
+			if (ruleTable.has('obtainablemisc')) {
+				if (set.species === 'Pikachu-Starter' || set.species === 'Eevee-Starter') {
+					if (++lgpeStarterCount > 1 && ruleTable.isBanned('nonexistent')) {
+						problems.push(`You can only have one of Pikachu-Starter or Eevee-Starter on a team.`);
+					}
 				}
-			}
-			if (dex.gen === 3 && set.species.startsWith('Deoxys')) {
-				if (!deoxysType) {
-					deoxysType = set.species;
-				} else if (deoxysType !== set.species && ruleTable.isBanned('nonexistent')) {
-					return [
-						`You cannot have more than one type of Deoxys forme.`,
-						`(Each game in Gen 3 supports only one forme of Deoxys.)`,
-					];
+				if (dex.gen === 3 && set.species.startsWith('Deoxys')) {
+					if (!deoxysType) {
+						deoxysType = set.species;
+					} else if (deoxysType !== set.species && ruleTable.isBanned('nonexistent')) {
+						return [
+							`You cannot have more than one type of Deoxys forme.`,
+							`(Each game in Gen 3 supports only one forme of Deoxys.)`,
+						];
+					}
+				}
+				if (set.species === 'Kyurem-White' || set.species === 'Kyurem-Black') {
+					if (++kyuremCount > 1) {
+						return [
+							`You cannot have more than one Kyurem-Black/Kyurem-White.`,
+							`(It's untradeable and you can only make one with the DNA Splicers.)`,
+						];
+					}
+				}
+				if (set.species === 'Necrozma-Dusk-Mane') {
+					if (++necrozmaDMCount > 1) {
+						return [
+							`You cannot have more than one Necrozma-Dusk-Mane`,
+							`(It's untradeable and you can only make one with the N-Solarizer.)`,
+						];
+					}
+				}
+				if (set.species === 'Necrozma-Dawn-Wings') {
+					if (++necrozmaDWCount > 1) {
+						return [
+							`You cannot have more than one Necrozma-Dawn-Wings`,
+							`(It's untradeable and you can only make one with the N-Lunarizer.)`,
+						];
+					}
+				}
+				if (set.species === 'Calyrex-Ice' || set.species === 'Calyrex-Shadow') {
+					if (++calyrexCount > 1) {
+						return [
+							`You cannot have more than one Calyrex-Ice/Calyrex-Shadow.`,
+							`(It's untradeable and you can only make one with the Reins of Unity.)`,
+						];
+					}
 				}
 			}
 			if (setProblems) {
