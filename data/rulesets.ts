@@ -163,13 +163,19 @@ export const Rulesets: import('../sim/dex-formats').FormatDataTable = {
 		],
 		// timer: {starting: 60 * 60, grace: 0, addPerTurn: 10, maxPerTurn: 100, timeoutAutoChoose: true},
 	},
+	obtainablepkhex: {
+		effectType: 'ValidatorRule',
+		name: 'Obtainable PKHeX',
+		desc: "Uses PKHeX to validate sets instead of the built-in validator.",
+		// Hardcoded in team-validator.ts
+	},
 	obtainable: {
 		effectType: 'ValidatorRule',
 		name: 'Obtainable',
 		desc: "Makes sure the team is possible to obtain in-game.",
 		ruleset: ['Obtainable Moves', 'Obtainable Abilities', 'Obtainable Formes', 'EV Limit = Auto', 'Obtainable Misc'],
 		banlist: ['Unreleased', 'Unobtainable', 'Nonexistent'],
-		// Mostly hardcoded in team-validator.ts
+		// Hardcoded in team-validator.ts
 	},
 	obtainablemoves: {
 		effectType: 'ValidatorRule',

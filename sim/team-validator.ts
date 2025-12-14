@@ -2949,9 +2949,3 @@ export class TeamValidator {
 		return new TeamValidator(format);
 	}
 }
-
-export class PkhexValidator extends TeamValidator {
-	validateSet(set: PokemonSet, teamHas: AnyObject): string[] | null {
-		return null;
-	}
-}

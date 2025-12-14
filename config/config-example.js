@@ -120,12 +120,6 @@ exports.subprocesses = {
 };
 
 /**
- * Use PKHeX (https://github.com/kwsch/PKHeX) for Team Validation.
- * Requires .NET 9.0 (https://dotnet.microsoft.com/download/dotnet/9.0).
- */
-exports.pkhex = false;
-
-/**
  * Various debug options
  *
  * ofe[something]
