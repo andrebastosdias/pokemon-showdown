@@ -6,7 +6,7 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 		ruleset: [
 			'Obtainable', 'Species Clause', 'Nickname Clause', 'Item Clause = 1', 'Adjust Level = 50', 'Min Team Size = 3', 'Max Team Size = 3',
 		],
-		banlist: ['Mythical', 'Restricted Legendary'],
+		banlist: ['Restricted Legendary', 'Diancie'],
 	},
 	obtainable: {
 		inherit: true,
