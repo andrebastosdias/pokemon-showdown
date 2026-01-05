@@ -408,7 +408,7 @@ describe('Dex data', () => {
 	formes['gen8legends'] = 1 + 1 + 2 + 1 + 5 + 3 + 17 + 1 + 4 + 16 + 1 + 1;
 	species['gen9legends'] = 232 + 132; // Lumiose Pokedex + Hyperspace Pokedex
 	// Mega (96) + Primal (2) + Rotom (5) + Keldeo (1) + Meloetta (1) + Genesect (4) + Vivillon (2) + Floette (1) +
-	// Meowstic (1) + Aegislash (1) + Pumpkaboo (3) + Gourgeist (3) + Zygarde (2) + Mimikyu (1)
+	// Meowstic (1) + Aegislash (1) + Pumpkaboo (3) + Gourgeist (3) + Zygarde (2) + Mimikyu (1) +
 	// Alola (4) + Toxtricity (1) + Indeedee (1) + Morpeko (1) + Galar (8) + Hisui (4) + Squawkabilly (3) +
 	// Tatsugiri (2) + Gimmighoul (1) + Hoopa (1)
 	formes['gen9legends'] = 96 + 2 + 5 + 1 + 1 + 4 + 2 + 1 + 1 + 1 + 3 + 3 + 2 + 1 + 4 + 1 + 1 + 1 + 8 + 4 + 3 + 2 + 1 + 1;
