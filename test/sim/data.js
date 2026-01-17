@@ -405,7 +405,7 @@ describe('Dex data', () => {
 	species['gen8legends'] = 242 - 16 + 1 - 1; // - Hisui (16) + Sneasel (1) - Basculin (1)
 	// Vulpix (1) + Ninetales (1) + Wormadam (2) + Cherrim (1) + Rotom (5) + Origin (3) + Arceus (18) +
 	// Shaymin (1) + Therian (4) + Hisui (16) + Basculin (1) + Basculegion (1)
-	formes['gen8legends'] = 1 + 1 + 2 + 1 + 5 + 3 + 17 + 1 + 4 + 16 + 1 + 1;
+	formes['gen8legends'] = 1 + 1 + 2 + 1 + 5 + 3 + 18 + 1 + 4 + 16 + 1 + 1;
 	species['gen9legends'] = 232 + 132; // Lumiose Pokedex + Hyperspace Pokedex
 	// Mega (96) + Primal (2) + Rotom (5) + Keldeo (1) + Meloetta (1) + Genesect (4) + Vivillon (2) + Floette (1) +
 	// Meowstic (1) + Aegislash (1) + Pumpkaboo (3) + Gourgeist (3) + Zygarde (2) + Mimikyu (1) +
