@@ -73674,6 +73674,11 @@ export const Learnsets: import('../sim/dex-species').LearnsetDataTable = {
 		],
 		eventOnly: true,
 	},
+	zygardemega: {
+		learnset: {
+			nihillight: ["9R"],
+		},
+	},
 	diancie: {
 		learnset: {
 			afteryou: ["7T", "6T"],
