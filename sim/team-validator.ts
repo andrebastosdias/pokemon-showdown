@@ -2627,7 +2627,7 @@ export class TeamValidator {
 						// we're past the required level to learn it
 						// (gen 7 level-up moves can be relearnered at any level)
 						// falls through to LMT check below
-					} else if (level >= 5 && learnedGen === 3 && species.canHatch) {
+					} else if (this.ruleTable.has('pomegglitchmod') && level >= 5 && learnedGen === 3 && species.canHatch) {
 						// Pomeg Glitch
 						learned = `${learnedGen}Epomeg` as MoveSource;
 					} else if (species.gender !== 'N' &&
