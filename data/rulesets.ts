@@ -1846,22 +1846,22 @@ export const Rulesets: import('../sim/dex-formats').FormatDataTable = {
 		desc: "Allows Pokémon who learn Sketch to learn any Gen 8+ move (normally, Sketch is not usable in Gen 8 or Gen 9 Pre-DLC2).",
 		// Implemented in sim/team-validator.ts
 	},
-	mimicglitch: {
+	mimicglitchclause: {
 		effectType: 'ValidatorRule',
-		name: 'Mimic Glitch',
+		name: 'Mimic Glitch Clause',
 		desc: "Allows any Pokemon with access to Assist, Copycat, Metronome, Mimic, or Transform to gain access to almost any other move.",
 		// Implemented in sim/team-validator.ts
 		onBegin() {
-			this.add('rule', 'Mimic Glitch: Pokemon with Assist, Copycat, Metronome, Mimic, or Transform can have any move.');
+			this.add('rule', 'Mimic Glitch Clause: Pokemon with Assist, Copycat, Metronome, Mimic, or Transform can have any move.');
 		}
 	},
-	pomegglitchmod: {
+	pomegglitchclausemod: {
 		effectType: 'ValidatorRule',
-		name: 'Pomeg Glitch Mod',
+		name: 'Pomeg Glitch Clause Mod',
 		desc: "Allows any Pokémon from Generation 3 at level 5 or higher to have any of its level-up moves. This implementation is allowed only to enable an otherwise legal Pokémon to obtain moves it would not normally have access to at an earlier level.",
 		// Implemented in sim/team-validator.ts
 		onBegin() {
-			this.add('rule', 'Pomeg Glitch Mod: Gen 3 Pokémon at level 5+ can have any of their level-up moves.');
+			this.add('rule', 'Pomeg Glitch Clause Mod: Gen 3 Pokémon at level 5+ can have any of their level-up moves.');
 		},
 	},
 	overflowstatmod: {

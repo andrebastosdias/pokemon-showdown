@@ -2627,7 +2627,7 @@ export class TeamValidator {
 						// we're past the required level to learn it
 						// (gen 7 level-up moves can be relearnered at any level)
 						// falls through to LMT check below
-					} else if (this.ruleTable.has('pomegglitchmod') && level >= 5 && learnedGen === 3 && species.canHatch) {
+					} else if (this.ruleTable.has('pomegglitchclausemod') && level >= 5 && learnedGen === 3 && species.canHatch) {
 						// Pomeg Glitch
 						learned = `${learnedGen}Epomeg` as MoveSource;
 					} else if (species.gender !== 'N' &&
@@ -2745,7 +2745,7 @@ export class TeamValidator {
 					return null;
 				}
 			}
-			if (ruleTable.has('mimicglitch') && species.gen < 5) {
+			if (ruleTable.has('mimicglitchclause') && species.gen < 5) {
 				// include the Mimic Glitch when checking this mon's learnset
 				const glitchMoves = ['metronome', 'copycat', 'transform', 'mimic', 'assist'];
 				let getGlitch = false;
