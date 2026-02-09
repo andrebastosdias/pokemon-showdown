@@ -4825,9 +4825,6 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 			const ineligiblePokemon = [
 				'Archen', 'Chatot', 'Delibird', 'Dodrio', 'Doduo', 'Ducklett', "Farfetch'd", 'Fletchling', 'Gengar', 'Hawlucha', 'Hoothoot', 'Murkrow', 'Natu', 'Pidgey', 'Pidove', 'Pinsir-Mega', 'Rufflet', 'Shaymin-Sky', 'Spearow', 'Starly', 'Taillow', 'Vullaby',
 			];
-			const ineligibleMoves = [
-				'Body Slam', 'Bulldoze', 'Dig', 'Dive', 'Earth Power', 'Earthquake', 'Electric Terrain', 'Fire Pledge', 'Fissure', 'Flying Press', 'Frenzy Plant', 'Geomancy', 'Grass Knot', 'Grass Pledge', 'Grassy Terrain', 'Gravity', 'Heat Crash', 'Heavy Slam', 'Ingrain', "Land's Wrath", 'Magnitude', 'Mat Block', 'Misty Terrain', 'Mud Sport', 'Muddy Water', 'Rototiller', 'Seismic Toss', 'Slam', 'Smack Down', 'Spikes', 'Stomp', 'Substitute', 'Surf', 'Thousand Arrows', 'Thousand Waves', 'Toxic Spikes', 'Water Pledge', 'Water Sport',
-			];
 
 			const dex = this.dex.mod('gen6xy');
 			const species = dex.species.get(set.species || set.name);
@@ -4851,7 +4848,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 				if (move.isNonstandard === 'Future') {
 					problems.push(`${set.name}'s move ${move.name} does not exist in XY.`);
 				}
-				if (ineligibleMoves.includes(move.name)) {
+				if (move.flags['nonsky']) {
 					problems.push(`${set.name}'s move ${move.name} is ineligible for Sky Battles.`);
 				}
 			}
