@@ -650,6 +650,7 @@ export class TeamValidator {
 			}
 		}
 		if (species.id === 'melmetal' && set.gigantamax && this.dex.species.getLearnsetData(species.id).eventData) {
+			// Gigantamax Melmetal cannot be obtained through the Max Soup
 			setSources.sourcesBefore = 0;
 			setSources.sources = ['8S0 melmetal'];
 		}
@@ -955,7 +956,12 @@ export class TeamValidator {
 				}
 			}
 		} else if (ruleTable.has('obtainablemisc') && (eventOnlyData = this.getEventOnlyData(outOfBattleSpecies))) {
-			const { species: eventSpecies, eventData } = eventOnlyData;
+			const eventSpecies = eventOnlyData.species;
+			let eventData = eventOnlyData.eventData;
+			if (ruleTable.has('fullarceusclause') && eventSpecies.baseSpecies === 'Arceus') {
+				// Hall of Origin Arceus
+				eventData = [...eventData, { generation: 4, level: 80, moves: ['refresh', 'futuresight', 'recover', 'hyperbeam'] }];
+			}
 			let legal = false;
 			for (const event of eventData) {
 				if (this.validateEvent(set, setSources, event, eventSpecies)) continue;
@@ -2092,6 +2098,25 @@ export class TeamValidator {
 		if (eventData.level && (set.level || 0) < eventData.level) {
 			if (fastReturn) return true;
 			problems.push(`${name} must be at least level ${eventData.level}${etc}.`);
+		}
+		if ((dex.gen === 3 || dex.gen === 4) && eventData.level === 100 && set.evs) {
+			let statName: StatID;
+			for (statName in set.evs) {
+				const ev = set.evs[statName];
+				if (ev > 100) {
+					problems.push(
+						`${name} can't have more than 100 EVs in any stat, because it is only obtainable from level 100 events. Level 100 Pokemon can only gain EVs from vitamins (Carbos etc), which are capped at 100 EVs.`,
+					);
+				}
+				if (!(
+					ev % 10 === 0 ||
+					(ev % 10 === 8 && ev % 4 === 0)
+				)) {
+					problems.push(
+						`${name} can only have EVs that are multiples of 10, because it is only obtainable from level 100 events. Level 100 Pokemon can only gain EVs from vitamins (Carbos etc), which boost in multiples of 10.`,
+					);
+				}
+			}
 		}
 		if ((eventData.shiny === true && !set.shiny) || (!eventData.shiny && set.shiny)) {
 			if (fastReturn) return true;
