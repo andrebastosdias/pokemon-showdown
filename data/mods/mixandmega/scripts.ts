@@ -103,7 +103,6 @@ export const Scripts: ModdedBattleScriptsData = {
 
 			this.add('start');
 
-			// Change Xerneas into its Active forme
 			// Change Pokemon holding Rusted items into their Crowned formes
 			for (const pokemon of this.getAllPokemon()) {
 				let rawSpecies: Species | null = null;
@@ -112,8 +111,6 @@ export const Scripts: ModdedBattleScriptsData = {
 					rawSpecies = (this.actions as any).getMixedSpecies(pokemon.m.originalSpecies, 'Zacian-Crowned', pokemon);
 				} else if (item.id === 'rustedshield') {
 					rawSpecies = (this.actions as any).getMixedSpecies(pokemon.m.originalSpecies, 'Zamazenta-Crowned', pokemon);
-				} else if (pokemon.species.id === 'xerneas') {
-					rawSpecies = this.dex.species.get('Xerneas-Active');
 				}
 				if (!rawSpecies) continue;
 				const species = pokemon.setSpecies(rawSpecies);
@@ -127,7 +124,7 @@ export const Scripts: ModdedBattleScriptsData = {
 					'Rusted Sword': 'behemothblade', 'Rusted Shield': 'behemothbash',
 				};
 				const ironHead = pokemon.baseMoves.indexOf('ironhead');
-				if (ironHead >= 0 && behemothMove[pokemon.getItem().name]) {
+				if (ironHead >= 0) {
 					const move = this.dex.moves.get(behemothMove[pokemon.getItem().name]);
 					pokemon.baseMoveSlots[ironHead] = {
 						move: move.name,
