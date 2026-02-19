@@ -217,7 +217,8 @@ interface ModdedBattleActions {
 	) => [SpreadMoveDamage, SpreadMoveTargets];
 	spreadMoveHitSteps?: (
 		this: BattleActions, targets: Pokemon[], pokemon: Pokemon, move: ActiveMove,
-		moveSteps: ((targets: Pokemon[], pokemon: Pokemon, move: ActiveMove) => (number | boolean | "" | undefined)[] | undefined)[],
+		moveSteps: ((targets: Pokemon[], pokemon: Pokemon, move: ActiveMove)
+		=> (number | boolean | "" | undefined)[] | undefined)[],
 	) => boolean;
 	switchIn?: (
 		this: BattleActions, pokemon: Pokemon, pos: number, sourceEffect: Effect | null, isDrag?: boolean
