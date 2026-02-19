@@ -864,7 +864,10 @@ export class BattleActions {
 		for (const i of targets.keys()) {
 			damage[i] = 0;
 		}
-		move.totalDamage = 0;
+		if (this.battle.gen >= 5 || typeof move.totalDamage !== 'number') {
+			// in Gen 4, hitStepMoveHitLoop runs multiple times for spread moves
+			move.totalDamage = 0;
+		}
 		pokemon.lastDamage = 0;
 		let targetHits = move.multihit || 1;
 		if (Array.isArray(targetHits)) {
