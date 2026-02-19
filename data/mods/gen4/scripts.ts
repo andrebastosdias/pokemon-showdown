@@ -132,11 +132,12 @@ export const Scripts: ModdedBattleScriptsData = {
 					if (hitResults.length !== 1) {
 						throw new Error(`Expected single target for step ${step.name} in spread move ${move.name}`);
 					}
-					const failed = !(hitResults[0] || hitResults[0] === 0);
-					if (failed) hits[i] = false;
 					atLeastOneFailure = atLeastOneFailure || hitResults[0] === false;
 					if (move.smartTarget && atLeastOneFailure) move.smartTarget = false;
-					if (failed) break;
+					if (!(hitResults[0] || hitResults[0] === 0)) {
+						hits[i] = false;
+						break;
+					}
 				}
 			}
 			targets = targetsCopy.filter((_, i) => hits[i]);
