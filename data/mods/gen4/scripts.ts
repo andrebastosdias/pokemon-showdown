@@ -113,10 +113,11 @@ export const Scripts: ModdedBattleScriptsData = {
 		},
 		spreadMoveHitSteps(targets, pokemon, move, moveSteps) {
 			// in Gen 4, moves hit and apply effects one target at a time in speed order
-			const targetsEntries: [number, Pokemon, boolean][] = targets.map((target, index) => [index, target, true]);
-			this.battle.speedSort(targetsEntries, (a, b) => this.battle.comparePriority(a[1], b[1]));
+			const targetsCopy = targets.slice();
+			this.battle.speedSort(targetsCopy);
+			const hits = Array(targetsCopy.length).fill(true);
 			let atLeastOneFailure = false;
-			for (const [i, [_i, target, _s]] of targetsEntries.entries()) {
+			for (const [i, target] of targetsCopy.entries()) {
 				// spread moves hit for 100% of the damage if there is only one target left and all the other targets have fainted
 				// if the move hits all adjacent Pokemon, the threshold is 2 targets counting the user
 				if (move.spreadHit && (
@@ -132,14 +133,13 @@ export const Scripts: ModdedBattleScriptsData = {
 						throw new Error(`Expected single target for step ${step.name} in spread move ${move.name}`);
 					}
 					const failed = !(hitResults[0] || hitResults[0] === 0);
-					if (failed) targetsEntries[i][2] = false;
+					if (failed) hits[i] = false;
 					atLeastOneFailure = atLeastOneFailure || hitResults[0] === false;
 					if (move.smartTarget && atLeastOneFailure) move.smartTarget = false;
 					if (failed) break;
 				}
 			}
-
-			targets = targetsEntries.filter(entry => entry[2]).sort((a, b) => a[0] - b[0]).map(entry => entry[1]);
+			targets = targetsCopy.filter((_, i) => hits[i]);
 
 			move.hitTargets = targets;
 			const moveResult = !!targets.length;
