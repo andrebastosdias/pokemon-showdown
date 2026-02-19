@@ -15,6 +15,27 @@ export const Scripts: ModdedBattleScriptsData = {
 	},
 	pokemon: {
 		inherit: true,
+		deductPP(move, amount, target) {
+			move = this.battle.dex.moves.get(move);
+			// first loop: get the first instance with PP left
+			// second loop: get the first instance, even if it has no PP left
+			for (let i = 0; i < 2; i++) {
+				for (const ppData of this.moveSlots) {
+					if (ppData.id !== move.id) continue;
+					ppData.used = true;
+					if (!ppData.pp) continue;
+
+					if (!amount) amount = 1;
+					ppData.pp -= amount;
+					if (ppData.pp < 0) {
+						amount += ppData.pp;
+						ppData.pp = 0;
+					}
+					return amount;
+				}
+			}
+			return 0;
+		},
 		getActionSpeed() {
 			let speed = this.getStat('spe', false, false);
 			const trickRoomCheck = this.battle.ruleTable.has('twisteddimensionmod') ?
