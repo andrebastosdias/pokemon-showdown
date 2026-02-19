@@ -116,6 +116,9 @@ export const Scripts: ModdedBattleScriptsData = {
 			const targetsCopy = targets.slice();
 			this.battle.speedSort(targetsCopy);
 			const hits = Array(targetsCopy.length).fill(true);
+			// accumulate total damage separately since it is used internally
+			let totalDamage = move.totalDamage;
+
 			let atLeastOneFailure = false;
 			for (const [i, target] of targetsCopy.entries()) {
 				// spread moves hit for 100% of the damage if there is only one target left and all the other targets have fainted
@@ -126,6 +129,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				)) {
 					move.spreadModifier = 1;
 				}
+				move.totalDamage = undefined;
 				for (const step of moveSteps) {
 					const hitResults: (number | boolean | "" | undefined)[] | undefined = step.call(this, [target], pokemon, move);
 					if (!hitResults) continue;
@@ -139,8 +143,10 @@ export const Scripts: ModdedBattleScriptsData = {
 						break;
 					}
 				}
+				if (typeof move.totalDamage === 'number') totalDamage = (totalDamage || 0) + move.totalDamage;
 			}
 			targets = targetsCopy.filter((_, i) => hits[i]);
+			move.totalDamage = totalDamage;
 
 			move.hitTargets = targets;
 			const moveResult = !!targets.length;

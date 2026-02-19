@@ -864,7 +864,7 @@ export class BattleActions {
 		for (const i of targets.keys()) {
 			damage[i] = 0;
 		}
-		if (typeof move.totalDamage !== 'number') move.totalDamage = 0;
+		move.totalDamage = 0;
 		pokemon.lastDamage = 0;
 		let targetHits = move.multihit || 1;
 		if (Array.isArray(targetHits)) {
