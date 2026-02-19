@@ -595,6 +595,11 @@ export class BattleActions {
 			return hitResult === this.battle.NOT_FAIL;
 		}
 
+		return this.spreadMoveHitSteps(targets, pokemon, move, moveSteps);
+	}
+	spreadMoveHitSteps(targets: Pokemon[], pokemon: Pokemon, move: ActiveMove,
+		moveSteps: ((targets: Pokemon[], pokemon: Pokemon, move: ActiveMove) => (number | boolean | "" | undefined)[] | undefined)[],
+	) {
 		let atLeastOneFailure = false;
 		for (const step of moveSteps) {
 			const hitResults: (number | boolean | "" | undefined)[] | undefined = step.call(this, targets, pokemon, move);
