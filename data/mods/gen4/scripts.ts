@@ -143,7 +143,7 @@ export const Scripts: ModdedBattleScriptsData = {
 						break;
 					}
 				}
-				if (typeof move.totalDamage === 'number') totalDamage = (totalDamage || 0) + move.totalDamage;
+				if (typeof move.totalDamage === 'number') totalDamage = (totalDamage || 0) + (move.totalDamage as number);
 			}
 			targets = targetsCopy.filter((_, i) => hits[i]);
 			move.totalDamage = totalDamage;
