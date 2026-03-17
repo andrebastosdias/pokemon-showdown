@@ -64,6 +64,14 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			}
 		},
 	},
+	immunity: {
+		inherit: true,
+		onSwitchOut() {},
+	},
+	insomnia: {
+		inherit: true,
+		onSwitchOut() {},
+	},
 	intimidate: {
 		inherit: true,
 		onStart(pokemon) {
@@ -102,6 +110,14 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		name: "Lightning Rod",
 		rating: 0,
 		num: 32,
+	},
+	limber: {
+		inherit: true,
+		onSwitchOut() {},
+	},
+	magmaarmor: {
+		inherit: true,
+		onSwitchOut() {},
 	},
 	magnetpull: {
 		inherit: true,
@@ -219,6 +235,10 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			pokemon.truantTurn = !pokemon.truantTurn;
 		},
 	},
+	vitalspirit: {
+		inherit: true,
+		onSwitchOut() {},
+	},
 	voltabsorb: {
 		inherit: true,
 		onTryHit(target, source, move) {
@@ -229,5 +249,9 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 				return null;
 			}
 		},
+	},
+	waterveil: {
+		inherit: true,
+		onSwitchOut() {},
 	},
 };
