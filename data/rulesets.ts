@@ -1851,7 +1851,7 @@ export const Rulesets: import('../sim/dex-formats').FormatDataTable = {
 		desc: "Allows any Pokemon with access to Assist, Copycat, Metronome, Mimic, or Transform to gain access to almost any other move.",
 		// Implemented in sim/team-validator.ts
 		onBegin() {
-			this.add('rule', 'Mimic Glitch Clause: Pokemon with Assist, Copycat, Metronome, Mimic, or Transform can have any move.');
+			this.add('rule', 'Mimic Glitch Clause: Pokemon that learn Assist, Copycat, Metronome, Mimic, or Transform can have any move.');
 		},
 	},
 	pomegglitchclause: {
