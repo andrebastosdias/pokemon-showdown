@@ -25,9 +25,8 @@ export const Scripts: ModdedBattleScriptsData = {
 	// BattlePokemon scripts.
 	pokemon: {
 		inherit: true,
-		// In gen 1, a Pokémon can have two instances of the same move using Mimic
-		// we need to make sure to deduct PP from a move that has PP left
 		deductPP(move, amount) {
+			// deduct PP based on side.lastSelectedMoveSlot
 			const ppData = this.getMoveSlot(this.side.lastSelectedMoveSlot);
 			if (!ppData) return 0;
 			ppData.used = true;
