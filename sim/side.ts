@@ -680,7 +680,7 @@ export class Side {
 			this.choice.actions.push({
 				choice: 'move',
 				pokemon,
-				// don't send a move, handled in battle-queue.ts
+				// don't send a move, handled side.commitChoices
 			});
 			return true;
 		} else if (!moves.length) {
