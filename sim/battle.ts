@@ -3029,7 +3029,10 @@ export class Battle {
 		const side = this.getSide(sideid);
 		if (!side.requestState) return;
 
-		if (side.choice.cantUndo) {
+		if (!this.supportCancel) {
+			side.emitChoiceError(`Can't undo: This battle doesn't support undoing choices`);
+			return;
+		} else if (side.choice.cantUndo) {
 			side.emitChoiceError(`Can't undo: A trapping/disabling effect would cause undo to leak information`);
 			return;
 		}

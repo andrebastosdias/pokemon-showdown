@@ -599,7 +599,6 @@ export class Side {
 		const move = this.battle.dex.moves.get(moveid);
 
 		// Z-move
-
 		const zMove = event === 'zmove' ? this.battle.actions.getZMove(move, pokemon) : undefined;
 		if (event === 'zmove' && !zMove) {
 			return this.emitChoiceError(`Can't move: ${pokemon.name} can't use ${move.name} as a Z-move`);
@@ -607,7 +606,6 @@ export class Side {
 		if (zMove && this.choice.zMove) {
 			return this.emitChoiceError(`Can't move: You can't Z-move more than once per battle`);
 		}
-
 		if (zMove) targetType = this.battle.dex.moves.get(zMove).target;
 
 		// Dynamax
@@ -617,11 +615,9 @@ export class Side {
 		if (event === 'dynamax' && !maxMove) {
 			return this.emitChoiceError(`Can't move: ${pokemon.name} can't use ${move.name} as a Max Move`);
 		}
-
 		if (maxMove) targetType = this.battle.dex.moves.get(maxMove).target;
 
 		// Validate targeting
-
 		if (autoChoose || moveid === 'testfight') {
 			targetLoc = 0;
 		} else if (this.battle.actions.targetTypeChoices(targetType)) {
@@ -715,7 +711,6 @@ export class Side {
 		}
 
 		// Mega evolution
-
 		const mixandmega = this.battle.format.mod === 'mixandmega';
 		const mega = (event === 'mega');
 		const megax = (event === 'megax');
