@@ -1079,7 +1079,12 @@ export class Side {
 		}
 
 		if (this.choice.cantUndo) {
-			return this.emitChoiceError(`Can't undo: A trapping/disabling effect would cause undo to leak information`);
+			this.emitChoiceError(
+				this.battle.supportCancel ?
+					`Can't undo: A trapping/disabling effect would cause undo to leak information` :
+					`Can't undo: This battle doesn't support undoing choices`
+			);
+			return;
 		}
 
 		this.clearChoice();

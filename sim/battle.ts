@@ -3027,13 +3027,22 @@ export class Battle {
 
 	undoChoice(sideid: SideID) {
 		const side = this.getSide(sideid);
-		if (!side.requestState) return;
+		if (!side.requestState) {
+			return side.emitChoiceError(
+				this.ended ? `Can't do anything: The game is over` : `Can't do anything: It's not your turn`
+			);
+		}
 
-		if (!this.supportCancel) {
-			side.emitChoiceError(`Can't undo: This battle doesn't support undoing choices`);
-			return;
-		} else if (side.choice.cantUndo) {
-			side.emitChoiceError(`Can't undo: A trapping/disabling effect would cause undo to leak information`);
+		if (!side.choice.actions.length) {
+			return side.emitChoiceError(`Can't undo: No choice has been made yet`);
+		}
+
+		if (side.choice.cantUndo) {
+			side.emitChoiceError(
+				this.supportCancel ?
+					`Can't undo: A trapping/disabling effect would cause undo to leak information` :
+					`Can't undo: This battle doesn't support undoing choices`
+			);
 			return;
 		}
 
