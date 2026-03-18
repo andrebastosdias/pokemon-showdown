@@ -3038,12 +3038,11 @@ export class Battle {
 		}
 
 		if (side.choice.cantUndo) {
-			side.emitChoiceError(
+			return side.emitChoiceError(
 				this.supportCancel ?
 					`Can't undo: A trapping/disabling effect would cause undo to leak information` :
 					`Can't undo: This battle doesn't support undoing choices`
 			);
-			return;
 		}
 
 		let updated = false;
@@ -3060,6 +3059,8 @@ export class Battle {
 		side.clearChoice();
 
 		if (updated) side.emitRequest(side.activeRequest!, true);
+
+		return true;
 	}
 
 	/**
