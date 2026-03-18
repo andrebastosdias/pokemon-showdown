@@ -1111,7 +1111,11 @@ describe('Choice extensions', () => {
 
 				battle.choose('p1', 'pass, switch 3');
 				assert(battle.p1.activeRequest.noCancel);
-				if (mode === 'revoke') battle.undoChoice('p1');
+				if (mode === 'revoke') {
+					battle.supportCancel = true;
+					battle.undoChoice('p1');
+					battle.supportCancel = false;
+				}
 				assert.throws(
 					() => battle.makeChoices('switch 3, pass', 'pass'),
 					/\[Invalid choice\] Can't switch: You can't switch to a fainted Pokémon/,
