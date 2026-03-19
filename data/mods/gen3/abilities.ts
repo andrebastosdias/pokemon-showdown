@@ -129,6 +129,8 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		},
 	},
 	lightningrod: {
+		inherit: true,
+		onAnyRedirectTarget() {},
 		onFoeRedirectTarget(target, source, source2, move) {
 			// don't count Hidden Power as Electric-type
 			if (this.dex.moves.get(move.id).type !== 'Electric') return;
@@ -136,10 +138,6 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 				return this.effectState.target;
 			}
 		},
-		flags: { breakable: 1 },
-		name: "Lightning Rod",
-		rating: 0,
-		num: 32,
 	},
 	magnetpull: {
 		inherit: true,

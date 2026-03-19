@@ -30,6 +30,9 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onResidualSubOrder: 10,
 	},
 	blaze: {
+		inherit: true,
+		onModifyAtk() {},
+		onModifySpA() {},
 		onBasePowerPriority: 2,
 		onBasePower(basePower, attacker, defender, move) {
 			if (move.type === 'Fire' && attacker.hp <= attacker.maxhp / 3) {
@@ -37,9 +40,6 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 				return this.chainModify(1.5);
 			}
 		},
-		name: "Blaze",
-		rating: 2,
-		num: 66,
 	},
 	cloudnine: {
 		inherit: true,
@@ -68,7 +68,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onSourceModifyAccuracy(accuracy) {
 			if (typeof accuracy !== 'number') return;
 			this.debug('compoundeyes - enhancing accuracy');
-			return accuracy * 1.3;
+			return this.chainModify(1.3);
 		},
 		inherit: true,
 	},
@@ -147,18 +147,14 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			}
 		},
 		condition: {
-			noCopy: true, // doesn't get copied by Baton Pass
-			onStart(target) {
-				this.add('-start', target, 'ability: Flash Fire');
-			},
+			inherit: true,
+			onModifyAtk() {},
+			onModifySpA() {},
 			onModifyDamagePhase1(atk, attacker, defender, move) {
 				if (move.type === 'Fire') {
 					this.debug('Flash Fire boost');
 					return this.chainModify(1.5);
 				}
-			},
-			onEnd(target) {
-				this.add('-end', target, 'ability: Flash Fire', '[silent]');
 			},
 		},
 	},
@@ -223,20 +219,19 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onSourceModifyAccuracyPriority: 7,
 		onSourceModifyAccuracy(accuracy, target, source, move) {
 			if (move.category === 'Physical' && typeof accuracy === 'number') {
-				return accuracy * 0.8;
+				return this.chainModify(0.8);
 			}
 		},
 	},
 	hydration: {
+		inherit: true,
+		onResidual() {},
 		onWeather(target, source, effect) {
 			if (effect.id === 'raindance' && target.status) {
 				this.add('-activate', target, 'ability: Hydration');
 				target.cureStatus();
 			}
 		},
-		name: "Hydration",
-		rating: 1.5,
-		num: 93,
 	},
 	insomnia: {
 		inherit: true,
@@ -294,31 +289,24 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		},
 	},
 	magicguard: {
-		onDamage(damage, target, source, effect) {
-			if (effect.effectType !== 'Move') {
-				return false;
-			}
-		},
+		inherit: true,
 		onSetStatus(status, target, source, effect) {
 			if (effect && effect.id === 'toxicspikes') {
 				return false;
 			}
 		},
-		name: "Magic Guard",
 		rating: 4.5,
-		num: 98,
 	},
 	minus: {
+		inherit: true,
+		onModifySpAPriority: undefined,
 		onModifySpA(spa, pokemon) {
-			for (const ally of pokemon.allies()) {
-				if (ally.ability === 'plus') {
-					return spa * 1.5;
+			for (const allyActive of pokemon.allies()) {
+				if (allyActive.hasAbility('plus')) {
+					return this.chainModify(1.5);
 				}
 			}
 		},
-		name: "Minus",
-		rating: 0,
-		num: 58,
 	},
 	moldbreaker: {
 		inherit: true,
@@ -346,6 +334,9 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		},
 	},
 	overgrow: {
+		inherit: true,
+		onModifyAtk() {},
+		onModifySpA() {},
 		onBasePowerPriority: 2,
 		onBasePower(basePower, attacker, defender, move) {
 			if (move.type === 'Grass' && attacker.hp <= attacker.maxhp / 3) {
@@ -353,26 +344,23 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 				return this.chainModify(1.5);
 			}
 		},
-		name: "Overgrow",
-		rating: 2,
-		num: 65,
 	},
 	pickup: {
-		name: "Pickup",
+		inherit: true,
+		onResidual() {},
 		rating: 0,
-		num: 53,
+		// No competitive use
 	},
 	plus: {
+		inherit: true,
+		onModifySpAPriority: undefined,
 		onModifySpA(spa, pokemon) {
-			for (const ally of pokemon.allies()) {
-				if (ally.ability === 'minus') {
-					return spa * 1.5;
+			for (const allyActive of pokemon.allies()) {
+				if (allyActive.hasAbility('minus')) {
+					return this.chainModify(1.5);
 				}
 			}
 		},
-		name: "Plus",
-		rating: 0,
-		num: 57,
 	},
 	poisonpoint: {
 		inherit: true,
@@ -385,17 +373,13 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		},
 	},
 	pressure: {
+		inherit: true,
 		onSwitchInPriority: 3,
-		onStart(pokemon) {
-			this.add('-ability', pokemon, 'Pressure');
-		},
 		onDeductPP(target, source) {
 			if (target === source) return;
 			return 1;
 		},
-		name: "Pressure",
 		rating: 1.5,
-		num: 46,
 	},
 	roughskin: {
 		inherit: true,
@@ -416,7 +400,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			if (typeof accuracy !== 'number') return;
 			if (this.field.isWeather('sandstorm')) {
 				this.debug('Sand Veil - decreasing accuracy');
-				return accuracy * 0.8;
+				return this.chainModify(0.8);
 			}
 		},
 	},
@@ -437,16 +421,14 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onResidualSubOrder: 3,
 	},
 	simple: {
+		inherit: true,
+		onChangeBoost() {},
 		onModifyBoost(boosts) {
 			let key: BoostID;
 			for (key in boosts) {
 				boosts[key]! *= 2;
 			}
 		},
-		flags: { breakable: 1 },
-		name: "Simple",
-		rating: 4,
-		num: 86,
 	},
 	slowstart: {
 		inherit: true,
@@ -459,7 +441,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			if (typeof accuracy !== 'number') return;
 			if (this.field.isWeather('hail')) {
 				this.debug('Snow Cloak - decreasing accuracy');
-				return accuracy * 0.8;
+				return this.chainModify(0.8);
 			}
 		},
 	},
@@ -483,9 +465,10 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		},
 	},
 	stench: {
-		name: "Stench",
+		inherit: true,
+		onModifyMove() {},
 		rating: 0,
-		num: 1,
+		// No competitive use
 	},
 	stickyhold: {
 		inherit: true,
@@ -507,6 +490,9 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		rating: 0,
 	},
 	swarm: {
+		inherit: true,
+		onModifyAtk() {},
+		onModifySpA() {},
 		onBasePowerPriority: 2,
 		onBasePower(basePower, attacker, defender, move) {
 			if (move.type === 'Bug' && attacker.hp <= attacker.maxhp / 3) {
@@ -514,9 +500,6 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 				return this.chainModify(1.5);
 			}
 		},
-		name: "Swarm",
-		rating: 2,
-		num: 68,
 	},
 	synchronize: {
 		inherit: true,
@@ -536,23 +519,25 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			if (typeof accuracy !== 'number') return;
 			if (target?.volatiles['confusion']) {
 				this.debug('Tangled Feet - decreasing accuracy');
-				return accuracy * 0.5;
+				return this.chainModify(0.5);
 			}
 		},
 	},
 	thickfat: {
+		inherit: true,
+		onSourceModifyAtk() {},
+		onSourceModifySpA() {},
 		onSourceBasePowerPriority: 1,
 		onSourceBasePower(basePower, attacker, defender, move) {
 			if (move.type === 'Ice' || move.type === 'Fire') {
 				return this.chainModify(0.5);
 			}
 		},
-		flags: { breakable: 1 },
-		name: "Thick Fat",
-		rating: 3.5,
-		num: 47,
 	},
 	torrent: {
+		inherit: true,
+		onModifyAtk() {},
+		onModifySpA() {},
 		onBasePowerPriority: 2,
 		onBasePower(basePower, attacker, defender, move) {
 			if (move.type === 'Water' && attacker.hp <= attacker.maxhp / 3) {
@@ -560,9 +545,6 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 				return this.chainModify(1.5);
 			}
 		},
-		name: "Torrent",
-		rating: 2,
-		num: 67,
 	},
 	trace: {
 		inherit: true,
