@@ -610,6 +610,21 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				return null;
 			}
 		},
+		condition: {
+			duration: 1,
+			onStart(pokemon) {
+				if (pokemon.status === 'slp' || (pokemon.hasAbility('truant') && pokemon.volatiles['truant'])) return;
+				this.add('-singleturn', pokemon, 'move: Focus Punch');
+			},
+			onHit(pokemon, source, move) {
+				if (move.category !== 'Status') {
+					this.effectState.lostFocus = true;
+				}
+			},
+			onTryAddVolatile(status, pokemon) {
+				if (status.id === 'flinch') return null;
+			},
+		},
 	},
 	foresight: {
 		inherit: true,
