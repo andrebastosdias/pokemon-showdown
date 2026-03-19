@@ -253,23 +253,11 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	counter: {
 		inherit: true,
 		condition: {
-			duration: 1,
-			noCopy: true,
-			onStart(target, source, move) {
-				this.effectState.slot = null;
-				this.effectState.damage = 0;
-			},
-			onRedirectTargetPriority: -1,
+			inherit: true,
 			onRedirectTarget(target, source, source2, move) {
 				if (move.id !== 'counter') return;
 				if (source !== this.effectState.target || !this.effectState.slot) return;
 				return this.getAtSlot(this.effectState.slot);
-			},
-			onDamagingHit(damage, target, source, move) {
-				if (!source.isAlly(target) && this.getCategory(move) === 'Physical') {
-					this.effectState.slot = source.getSlot();
-					this.effectState.damage = 2 * damage;
-				}
 			},
 		},
 	},
@@ -916,23 +904,11 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	mirrorcoat: {
 		inherit: true,
 		condition: {
-			duration: 1,
-			noCopy: true,
-			onStart(target, source, move) {
-				this.effectState.slot = null;
-				this.effectState.damage = 0;
-			},
-			onRedirectTargetPriority: -1,
+			inherit: true,
 			onRedirectTarget(target, source, source2, move) {
 				if (move.id !== 'mirrorcoat') return;
 				if (source !== this.effectState.target || !this.effectState.slot) return;
 				return this.getAtSlot(this.effectState.slot);
-			},
-			onDamagingHit(damage, target, source, move) {
-				if (!source.isAlly(target) && this.getCategory(move) === 'Special') {
-					this.effectState.slot = source.getSlot();
-					this.effectState.damage = 2 * damage;
-				}
 			},
 		},
 	},
