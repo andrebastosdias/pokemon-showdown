@@ -16101,9 +16101,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		},
 		condition: {
 			duration: 1,
-			onFieldStart() {
-				this.effectState.boost = false;
-			},
 			onFieldRestart() {
 				this.effectState.boost = true;
 			},
