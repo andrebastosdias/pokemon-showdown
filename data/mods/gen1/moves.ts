@@ -211,22 +211,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		},
 	},
 	disable: {
-		num: 50,
-		accuracy: 55,
-		basePower: 0,
-		category: "Status",
-		name: "Disable",
-		pp: 20,
-		priority: 0,
-		flags: { protect: 1, mirror: 1, bypasssub: 1, metronome: 1 },
-		volatileStatus: 'disable',
+		inherit: true,
 		onTryHit(target) {
-			// This function should not return if the checks are met. Adding && undefined ensures this happens.
-			return target.moveSlots.some(ms => ms.pp > 0) &&
-				!target.volatiles['disable'] &&
-				undefined;
+			return target.moveSlots.some(ms => ms.pp > 0);
 		},
 		condition: {
+			inherit: true,
+			durationCallback: undefined,
 			onStart(pokemon) {
 				// disable can only select moves that have pp > 0, hence the onTryHit modification
 				const [slotIndex, moveSlot] = this.sample(Array.from(pokemon.moveSlots.entries()).filter(([i, ms]) => ms.pp > 0));
@@ -236,9 +227,6 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				this.effectState.slotIndex = slotIndex;
 				// 1-8 turns (which will in effect translate to 0-7 missed turns for the target)
 				this.effectState.time = this.random(1, 9);
-			},
-			onEnd(pokemon) {
-				this.add('-end', pokemon, 'Disable');
 			},
 			onBeforeMovePriority: 6,
 			onBeforeMove(pokemon, target, move) {
@@ -262,9 +250,6 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				}
 			},
 		},
-		secondary: null,
-		target: "normal",
-		type: "Normal",
 	},
 	dizzypunch: {
 		inherit: true,
@@ -321,11 +306,9 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	focusenergy: {
 		inherit: true,
 		condition: {
-			onStart(pokemon) {
-				this.add('-start', pokemon, 'move: Focus Energy');
-			},
+			inherit: true,
 			// This does nothing as it's dealt with on critical hit calculation.
-			onModifyMove() {},
+			onModifyCritRatio() {},
 		},
 	},
 	glare: {
@@ -410,9 +393,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		onHit() {},
 		condition: {
-			onStart(target) {
-				this.add('-start', target, 'move: Leech Seed');
-			},
+			inherit: true,
 			onAfterMoveSelfPriority: 1,
 			onAfterMoveSelf(pokemon) {
 				const leecher = this.getAtSlot(pokemon.volatiles['leechseed'].sourceSlot);
@@ -438,15 +419,9 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		},
 	},
 	lightscreen: {
-		num: 113,
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		name: "Light Screen",
-		pp: 30,
-		priority: 0,
-		flags: { metronome: 1 },
+		inherit: true,
 		volatileStatus: 'lightscreen',
+		sideCondition: undefined,
 		onTryHit(pokemon) {
 			if (pokemon.volatiles['lightscreen']) {
 				return false;
@@ -458,7 +433,6 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			},
 		},
 		target: "self",
-		type: "Psychic",
 	},
 	metronome: {
 		inherit: true,
@@ -498,6 +472,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			this.add('-start', source, 'Mimic', move.name);
 		},
 	},
+	minimize: {
+		inherit: true,
+		condition: {
+			inherit: true,
+			onSourceModifyDamage() {},
+		},
+	},
 	mirrormove: {
 		inherit: true,
 		onHit(pokemon) {
@@ -512,9 +493,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	mist: {
 		inherit: true,
 		condition: {
-			onStart(pokemon) {
-				this.add('-start', pokemon, 'Mist');
-			},
+			inherit: true,
 			onTryBoost(boost, target, source, effect) {
 				if (effect.effectType === 'Move' && effect.category !== 'Status') return;
 				if (source && target !== source) {
@@ -636,15 +615,9 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		},
 	},
 	reflect: {
-		num: 115,
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		name: "Reflect",
-		pp: 20,
-		priority: 0,
-		flags: { metronome: 1 },
+		inherit: true,
 		volatileStatus: 'reflect',
+		sideCondition: undefined,
 		onTryHit(pokemon) {
 			if (pokemon.volatiles['reflect']) {
 				return false;
@@ -655,9 +628,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				this.add('-start', pokemon, 'Reflect');
 			},
 		},
-		secondary: null,
 		target: "self",
-		type: "Psychic",
 	},
 	rest: {
 		inherit: true,
@@ -789,15 +760,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		onModifyMove() {},
 	},
 	substitute: {
-		num: 164,
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		name: "Substitute",
-		pp: 10,
-		priority: 0,
-		flags: { metronome: 1 },
-		volatileStatus: 'substitute',
+		inherit: true,
 		onTryHit(target) {
 			if (target.volatiles['substitute']) {
 				this.add('-fail', target, 'move: Substitute');
@@ -817,11 +780,16 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			}
 		},
 		condition: {
+			inherit: true,
 			onStart(target) {
 				this.add('-start', target, 'Substitute');
 				this.effectState.hp = Math.floor(target.maxhp / 4) + 1;
-				delete target.volatiles['partiallytrapped'];
+				if (target.volatiles['partiallytrapped']) {
+					this.add('-end', target, target.volatiles['partiallytrapped'].sourceEffect, '[partiallytrapped]', '[silent]');
+					delete target.volatiles['partiallytrapped'];
+				}
 			},
+			onTryPrimaryHit() {},
 			onTryHitPriority: -1,
 			onTryHit(target, source, move) {
 				if (move.category === 'Status') {
@@ -885,13 +853,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				}
 				return 0;
 			},
-			onEnd(target) {
-				this.add('-end', target, 'Substitute');
-			},
 		},
-		secondary: null,
-		target: "self",
-		type: "Normal",
 	},
 	superfang: {
 		inherit: true,
