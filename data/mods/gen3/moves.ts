@@ -527,11 +527,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	snatch: {
 		inherit: true,
 		condition: {
-			duration: 1,
-			onStart(pokemon) {
-				this.add('-singleturn', pokemon, 'Snatch');
-			},
-			onAnyPrepareHitPriority: -1,
+			inherit: true,
 			onAnyPrepareHit(source, target, move) {
 				const snatchUser = this.effectState.source as Pokemon;
 				if (snatchUser.isSkyDropped()) return;
