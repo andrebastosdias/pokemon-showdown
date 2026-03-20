@@ -775,7 +775,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	rapidspin: {
 		inherit: true,
 		basePower: 20,
-		secondary: null,
+		secondary: Inherit.NOOP,
 	},
 	razorwind: {
 		inherit: true,
@@ -1081,6 +1081,6 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		basePower: 50,
 		pp: 15,
 		willCrit: true,
-		secondary: null,
+		secondary: Inherit.NOOP,
 	},
 };

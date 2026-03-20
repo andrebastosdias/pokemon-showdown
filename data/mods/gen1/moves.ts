@@ -244,7 +244,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	dizzypunch: {
 		inherit: true,
-		secondary: null,
+		secondary: Inherit.NOOP,
 	},
 	doubleedge: {
 		inherit: true,
@@ -583,7 +583,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	recover: {
 		inherit: true,
-		heal: null,
+		heal: Inherit.NOOP,
 		onHit(target) {
 			if (target.hp === target.maxhp) return false;
 			// Fail when health is 255 or 511 less than max, unless it is divisible by 256
@@ -646,7 +646,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	rockslide: {
 		inherit: true,
-		secondary: null,
+		secondary: Inherit.NOOP,
 		target: "normal",
 	},
 	rockthrow: {
@@ -722,7 +722,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	softboiled: {
 		inherit: true,
-		heal: null,
+		heal: Inherit.NOOP,
 		onHit(target) {
 			if (target.hp === target.maxhp) return false;
 			// Fail when health is 255 or 511 less than max, unless it is divisible by 256
@@ -860,7 +860,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	triattack: {
 		inherit: true,
 		onHit: Inherit.NOOP,
-		secondary: null,
+		secondary: Inherit.NOOP,
 	},
 	whirlwind: {
 		inherit: true,

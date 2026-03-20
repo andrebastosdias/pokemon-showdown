@@ -24,7 +24,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	diamondstorm: {
 		inherit: true,
-		self: null,
+		self: Inherit.NOOP,
 		secondary: {
 			chance: 50,
 			self: {

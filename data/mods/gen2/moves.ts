@@ -544,7 +544,6 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			target.statusState.source = target;
 			this.heal(target.maxhp);
 		},
-		secondary: null,
 	},
 	return: {
 		inherit: true,
@@ -598,7 +597,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		onPrepareHit(target, source) {
 			return source.status !== 'slp';
 		},
-		secondary: null,
+		secondary: Inherit.NOOP,
 	},
 	slash: {
 		inherit: true,

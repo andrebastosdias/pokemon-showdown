@@ -116,7 +116,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	charge: {
 		inherit: true,
-		boosts: null,
+		boosts: Inherit.NOOP,
 	},
 	conversion: {
 		inherit: true,
@@ -625,11 +625,11 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	volttackle: {
 		inherit: true,
-		secondary: null,
+		secondary: Inherit.NOOP,
 	},
 	waterfall: {
 		inherit: true,
-		secondary: null,
+		secondary: Inherit.NOOP,
 	},
 	weatherball: {
 		inherit: true,
