@@ -217,7 +217,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		},
 		condition: {
 			inherit: true,
-			durationCallback: undefined,
+			durationCallback: Inherit.NOOP,
 			onStart(pokemon) {
 				// disable can only select moves that have pp > 0, hence the onTryHit modification
 				const moveSlot = this.sample(pokemon.moveSlots.filter(ms => ms.pp > 0));
@@ -299,7 +299,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		condition: {
 			inherit: true,
 			// This does nothing as it's dealt with on critical hit calculation.
-			onModifyCritRatio() {},
+			onModifyCritRatio: Inherit.NOOP,
 		},
 	},
 	glare: {
@@ -382,7 +382,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	leechseed: {
 		inherit: true,
-		onHit() {},
+		onHit: Inherit.NOOP,
 		condition: {
 			inherit: true,
 			onAfterMoveSelfPriority: 1,
@@ -412,7 +412,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	lightscreen: {
 		inherit: true,
 		volatileStatus: 'lightscreen',
-		sideCondition: undefined,
+		sideCondition: Inherit.NOOP,
 		onTryHit(pokemon) {
 			if (pokemon.volatiles['lightscreen']) {
 				return false;
@@ -468,7 +468,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		condition: {
 			inherit: true,
-			onSourceModifyDamage() {},
+			onSourceModifyDamage: Inherit.NOOP,
 		},
 	},
 	mirrormove: {
@@ -511,7 +511,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	petaldance: {
 		inherit: true,
-		onMoveFail() {},
+		onMoveFail: Inherit.NOOP,
 	},
 	poisonsting: {
 		inherit: true,
@@ -603,7 +603,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	reflect: {
 		inherit: true,
 		volatileStatus: 'reflect',
-		sideCondition: undefined,
+		sideCondition: Inherit.NOOP,
 		onTryHit(pokemon) {
 			if (pokemon.volatiles['reflect']) {
 				return false;
@@ -618,7 +618,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	rest: {
 		inherit: true,
-		onTry() {},
+		onTry: Inherit.NOOP,
 		onHit(target, source, move) {
 			if (target.hp === target.maxhp) return false;
 			// Fail when health is 255 or 511 less than max, unless it is divisible by 256
@@ -641,7 +641,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	roar: {
 		inherit: true,
 		forceSwitch: false,
-		onTryHit() {},
+		onTryHit: Inherit.NOOP,
 		priority: 0,
 	},
 	rockslide: {
@@ -743,7 +743,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		pp: 10,
 		recoil: [1, 2],
-		onModifyMove() {},
+		onModifyMove: Inherit.NOOP,
 	},
 	substitute: {
 		inherit: true,
@@ -775,7 +775,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 					delete target.volatiles['partiallytrapped'];
 				}
 			},
-			onTryPrimaryHit() {},
+			onTryPrimaryHit: Inherit.NOOP,
 			onTryHitPriority: -1,
 			onTryHit(target, source, move) {
 				if (move.category === 'Status') {
@@ -848,7 +848,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	thrash: {
 		inherit: true,
-		onMoveFail() {},
+		onMoveFail: Inherit.NOOP,
 	},
 	thunder: {
 		inherit: true,
@@ -859,14 +859,14 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	triattack: {
 		inherit: true,
-		onHit() {},
+		onHit: Inherit.NOOP,
 		secondary: null,
 	},
 	whirlwind: {
 		inherit: true,
 		accuracy: 85,
 		forceSwitch: false,
-		onTryHit() {},
+		onTryHit: Inherit.NOOP,
 		priority: 0,
 	},
 	wingattack: {

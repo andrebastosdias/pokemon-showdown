@@ -54,7 +54,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 				move.type = 'Normal';
 			}
 		},
-		onBasePower() {},
+		onBasePower: Inherit.NOOP,
 		rating: -1,
 	},
 	parentalbond: {
@@ -93,7 +93,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			const targetForme = (move.id === 'kingsshield' ? 'Aegislash' : 'Aegislash-Blade');
 			if (attacker.species.name !== targetForme) attacker.formeChange(targetForme);
 		},
-		onModifyMove() {},
+		onModifyMove: Inherit.NOOP,
 	},
 	symbiosis: {
 		inherit: true,

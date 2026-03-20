@@ -428,8 +428,8 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	},
 	heatproof: {
 		inherit: true,
-		onSourceModifyAtk() {},
-		onSourceModifySpA() {},
+		onSourceModifyAtk: Inherit.NOOP,
+		onSourceModifySpA: Inherit.NOOP,
 		onSourceBasePowerPriority: 18,
 		onSourceBasePower(basePower, attacker, defender, move) {
 			if (move.type === 'Fire') {
@@ -481,8 +481,8 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	},
 	illuminate: {
 		inherit: true,
-		onTryBoost() {},
-		onModifyMove() {},
+		onTryBoost: Inherit.NOOP,
+		onModifyMove: Inherit.NOOP,
 		flags: {},
 		rating: 0,
 	},

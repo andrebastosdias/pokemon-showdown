@@ -14,7 +14,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	darkvoid: {
 		inherit: true,
 		accuracy: 80,
-		onTry() {},
+		onTry: Inherit.NOOP,
 	},
 	destinybond: {
 		inherit: true,
@@ -66,7 +66,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		condition: {
 			inherit: true,
-			onTryAddVolatile() {},
+			onTryAddVolatile: Inherit.NOOP,
 		},
 	},
 	mysticalfire: {

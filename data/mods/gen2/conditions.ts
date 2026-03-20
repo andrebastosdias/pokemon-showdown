@@ -62,8 +62,8 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 			this.add('cant', pokemon, 'frz');
 			return false;
 		},
-		onModifyMove() {},
-		onDamagingHit() {},
+		onModifyMove: Inherit.NOOP,
+		onDamagingHit: Inherit.NOOP,
 		onAfterMoveSecondary(target, source, move) {
 			if ((move.secondary && move.secondary.status === 'brn') || move.statusRoll === 'brn') {
 				target.cureStatus();

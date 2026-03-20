@@ -32,24 +32,24 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	choiceband: {
 		inherit: true,
-		onStart() {},
-		onModifyMove() {},
+		onStart: Inherit.NOOP,
+		onModifyMove: Inherit.NOOP,
 		onAfterMove(pokemon) {
 			pokemon.addVolatile('choicelock');
 		},
 	},
 	choicescarf: {
 		inherit: true,
-		onStart() {},
-		onModifyMove() {},
+		onStart: Inherit.NOOP,
+		onModifyMove: Inherit.NOOP,
 		onAfterMove(pokemon) {
 			pokemon.addVolatile('choicelock');
 		},
 	},
 	choicespecs: {
 		inherit: true,
-		onStart() {},
-		onModifyMove() {},
+		onStart: Inherit.NOOP,
+		onModifyMove: Inherit.NOOP,
 		onAfterMove(pokemon) {
 			pokemon.addVolatile('choicelock');
 		},
@@ -72,7 +72,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	custapberry: {
 		inherit: true,
-		onFractionalPriority() {},
+		onFractionalPriority: Inherit.NOOP,
 		onBeforeTurn(pokemon) {
 			if (pokemon.hp <= pokemon.maxhp / 4 || (pokemon.hp <= pokemon.maxhp / 2 && pokemon.ability === 'gluttony')) {
 				const action = this.queue.willMove(pokemon);
@@ -144,7 +144,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	focussash: {
 		inherit: true,
-		onDamage() {},
+		onDamage: Inherit.NOOP,
 		onTryHit(target, source, move) {
 			if (target !== source && target.hp === target.maxhp) {
 				target.addVolatile('focussash');
@@ -186,7 +186,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	ironball: {
 		inherit: true,
-		onEffectiveness() {},
+		onEffectiveness: Inherit.NOOP,
 	},
 	ironplate: {
 		inherit: true,
@@ -227,8 +227,8 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	lifeorb: {
 		inherit: true,
-		onModifyDamage() {},
-		onAfterMoveSecondarySelf() {},
+		onModifyDamage: Inherit.NOOP,
+		onAfterMoveSecondarySelf: Inherit.NOOP,
 		onBasePower(basePower, user, target) {
 			if (!target.volatiles['substitute']) {
 				user.addVolatile('lifeorb');
@@ -250,8 +250,8 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	lightball: {
 		inherit: true,
-		onModifyAtk() {},
-		onModifySpA() {},
+		onModifyAtk: Inherit.NOOP,
+		onModifySpA: Inherit.NOOP,
 		onBasePower(basePower, pokemon) {
 			if (pokemon.species.name === 'Pikachu') {
 				return this.chainModify(2);
@@ -319,7 +319,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				}
 				this.effectState.lastMove = move.id;
 			},
-			onModifyDamage() {},
+			onModifyDamage: Inherit.NOOP,
 			onModifyDamagePhase2(damage, source, target, move) {
 				return damage * (1 + (this.effectState.numConsecutive / 10));
 			},

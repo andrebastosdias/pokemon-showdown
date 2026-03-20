@@ -273,7 +273,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	grassknot: {
 		inherit: true,
-		onTryHit() {},
+		onTryHit: Inherit.NOOP,
 	},
 	grasswhistle: {
 		inherit: true,
@@ -367,11 +367,11 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	heatcrash: {
 		inherit: true,
-		onTryHit() {},
+		onTryHit: Inherit.NOOP,
 	},
 	heavyslam: {
 		inherit: true,
-		onTryHit() {},
+		onTryHit: Inherit.NOOP,
 	},
 	hiddenpower: {
 		inherit: true,
@@ -536,7 +536,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	lowkick: {
 		inherit: true,
-		onTryHit() {},
+		onTryHit: Inherit.NOOP,
 	},
 	luckychant: {
 		inherit: true,
