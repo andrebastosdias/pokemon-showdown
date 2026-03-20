@@ -1,5 +1,5 @@
 import { Utils } from '../lib/utils';
-import type { ConditionData } from './dex-conditions';
+import type { ConditionData, ModdedConditionData } from './dex-conditions';
 import { assignMissingFields, BasicEffect, toID } from './dex-data';
 
 /**
@@ -45,6 +45,7 @@ interface MoveFlags {
 	gravity?: 1; // Prevented from being executed or selected during Gravity's effect.
 	heal?: 1; // Prevented from being executed or selected during Heal Block's effect.
 	metronome?: 1; // Can be selected by Metronome.
+	minimize?: 1; // Deals double damage if the user is minimized.
 	mirror?: 1; // Can be copied by Mirror Move.
 	mustpressure?: 1; // Additional PP is deducted due to Pressure when it ordinarily would not.
 	noassist?: 1; // Cannot be selected by Assist.
@@ -278,6 +279,7 @@ export type ModdedMoveData = MoveData | Partial<Omit<MoveData, 'name'>> & {
 	bodyofwaterBoosted?: boolean,
 	longWhipBoost?: boolean,
 	gen?: number,
+	condition?: ModdedConditionData,
 };
 
 export interface MoveDataTable { [moveid: IDEntry]: MoveData }
@@ -621,7 +623,7 @@ export class DexMoves {
 	}
 
 	getByID(id: ID): Move {
-		if (id === '') return EMPTY_MOVE;
+		if (id === '' || id === 'constructor') return EMPTY_MOVE;
 		let move = this.moveCache.get(id);
 		if (move) return move;
 		if (this.dex.getAlias(id)) {

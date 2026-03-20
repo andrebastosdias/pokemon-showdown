@@ -69,7 +69,7 @@ export const commands: Chat.ChatCommands = {
 
 		target = target.trim();
 		const input = this.filter(target);
-		if (target !== input) throw new Chat.ErrorMessage("You are not allowed to use fitered words in roomfaq entries.");
+		if (target !== input) throw new Chat.ErrorMessage("You are not allowed to use filtered words in roomfaq entries.");
 		let [topic, ...rest] = input.split(',');
 
 		topic = toID(topic);
@@ -161,7 +161,7 @@ export const commands: Chat.ChatCommands = {
 	roomfaq(target, room, user, connection, cmd) {
 		room = this.requireRoom();
 		if (!roomFaqs[room.roomid]) throw new Chat.ErrorMessage("This room has no FAQ topics.");
-		let topic: string = toID(target);
+		let topic: string = toID(this.splitOne(target)[0]);
 		if (topic === 'constructor') return false;
 		if (!topic) {
 			return this.parse(`/join view-roomfaqs-${room.roomid}`);
