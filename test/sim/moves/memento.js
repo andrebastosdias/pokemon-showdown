@@ -59,4 +59,17 @@ describe(`Memento`, () => {
 		const landorus = battle.p1.active[0];
 		assert.fullHP(landorus);
 	});
+
+	describe(`[Gen 3]`, () => {
+		it(`should not cause the user to faint if used into Substitute`, () => {
+			battle = common.gen(3).createBattle([[
+				{ species: 'whimsicott', moves: ['memento'] },
+				{ species: 'landorus', moves: ['sleeptalk'] },
+			], [
+				{ species: 'wynaut', ability: 'prankster', moves: ['substitute'] },
+			]]);
+			battle.makeChoices();
+			assert.fainted(battle.p1.active[0]);
+		});
+	});
 });
