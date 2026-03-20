@@ -396,7 +396,11 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	memento: {
 		inherit: true,
 		accuracy: true,
-		selfdestruct: "always",
+		onTryMove(source, target, move) {
+			if (target.boosts.atk <= -6 && target.boosts.spa <= -6) {
+				return false;
+			}
+		},
 	},
 	mindreader: {
 		inherit: true,

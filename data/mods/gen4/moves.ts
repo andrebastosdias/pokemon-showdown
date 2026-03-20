@@ -830,6 +830,10 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			},
 		},
 	},
+	memento: {
+		inherit: true,
+		selfdestruct: "always",
+	},
 	metalburst: {
 		inherit: true,
 		flags: { protect: 1, mirror: 1, metronome: 1 },
