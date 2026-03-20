@@ -30,7 +30,6 @@ describe('Swagger', () => {
 				{ species: 'Pikachu', moves: ['substitute'] },
 			]]);
 			battle.makeChoices();
-			console.log(battle.log);
 			const pikachu = battle.p2.active[0];
 			assert.statStage(pikachu, 'atk', 2);
 			assert.false(pikachu.volatiles['confusion']);

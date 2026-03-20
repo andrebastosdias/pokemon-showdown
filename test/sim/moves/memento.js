@@ -61,7 +61,7 @@ describe(`Memento`, () => {
 	});
 
 	describe(`[Gen 3]`, () => {
-		it(`should not cause the user to faint if used into Substitute`, () => {
+		it(`should cause the user to faint if used into Substitute`, () => {
 			battle = common.gen(3).createBattle([[
 				{ species: 'whimsicott', moves: ['memento'] },
 				{ species: 'landorus', moves: ['sleeptalk'] },
