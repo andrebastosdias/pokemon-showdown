@@ -25,7 +25,7 @@ describe('Natural Cure', () => {
 	});
 
 	describe('[Gen 4]', () => {
-		it('should cure even if being suppressed by Gastro Acid', () => {
+		it('should cure even if suppressed by Gastro Acid', () => {
 			battle = common.gen(4).createBattle([[
 				{ species: 'Celebi', ability: 'naturalcure', moves: ['sleeptalk'] },
 				{ species: 'Swampert', moves: ['sleeptalk'] },
