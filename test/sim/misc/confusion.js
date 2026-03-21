@@ -23,7 +23,7 @@ describe('Confusion', () => {
 	});
 
 	describe('[Gen 1]', () => {
-		it(`can confuse a Pokemon with Substitute with a secondary effect`, () => {
+		it(`can confuse a Pokemon behind a Substitute with a secondary effect`, () => {
 			battle = common.gen(1).createBattle([[
 				{ species: 'Mew', ability: 'noguard', moves: ['substitute', 'splash'] },
 			], [
