@@ -8,10 +8,13 @@ export const Scripts: ModdedBattleScriptsData = {
 	init() {
 		const noMirror = ['metronome', 'mimic', 'mirrormove', 'sketch', 'sleeptalk', 'transform'];
 		for (const i in this.data.Moves) {
+			const move = this.data.Moves[i];
 			if (noMirror.includes(i)) {
-				delete this.modData('Moves', i).flags.mirror;
+				const flags = { ...move.flags };
+				delete flags['mirror'];
+				this.modData('Moves', i).flags = flags;
 			} else {
-				this.modData('Moves', i).flags.mirror = 1;
+				this.modData('Moves', i).flags = { mirror: 1, ...move.flags };
 			}
 		}
 	},

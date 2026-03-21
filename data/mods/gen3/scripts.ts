@@ -8,16 +8,19 @@ export const Scripts: ModdedBattleScriptsData = {
 		];
 		let newCategory = '';
 		for (const i in this.data.Moves) {
-			if (!this.data.Moves[i]) console.log(i);
-			if (this.data.Moves[i].category === 'Status') continue;
-			newCategory = specialTypes.includes(this.data.Moves[i].type) ? 'Special' : 'Physical';
-			if (newCategory !== this.data.Moves[i].category) {
+			const move = this.data.Moves[i];
+			if (!move) console.log(i);
+			if (move.category === 'Status') continue;
+			newCategory = specialTypes.includes(move.type) ? 'Special' : 'Physical';
+			if (newCategory !== move.category) {
 				this.modData('Moves', i).category = newCategory;
 			}
 			if (noMirror.includes(i)) {
-				delete this.modData('Moves', i).flags.mirror;
+				const flags = { ...move.flags };
+				delete flags['mirror'];
+				this.modData('Moves', i).flags = flags;
 			} else {
-				this.modData('Moves', i).flags.mirror = 1;
+				this.modData('Moves', i).flags = { mirror: 1, ...move.flags };
 			}
 		}
 	},

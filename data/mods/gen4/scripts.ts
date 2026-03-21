@@ -6,10 +6,13 @@ export const Scripts: ModdedBattleScriptsData = {
 			'acupressure', 'aromatherapy', 'assist', 'chatter', 'copycat', 'counter', 'curse', 'doomdesire', 'feint', 'focuspunch', 'futuresight', 'gravity', 'hail', 'haze', 'healbell', 'helpinghand', 'lightscreen', 'luckychant', 'magiccoat', 'mefirst', 'metronome', 'mimic', 'mirrorcoat', 'mirrormove', 'mist', 'mudsport', 'naturepower', 'perishsong', 'psychup', 'raindance', 'reflect', 'roleplay', 'safeguard', 'sandstorm', 'sketch', 'sleeptalk', 'snatch', 'spikes', 'spitup', 'stealthrock', 'struggle', 'sunnyday', 'tailwind', 'toxicspikes', 'transform', 'watersport',
 		];
 		for (const i in this.data.Moves) {
+			const move = this.data.Moves[i];
 			if (noMirror.includes(i)) {
-				delete this.modData('Moves', i).flags.mirror;
+				const flags = { ...move.flags };
+				delete flags['mirror'];
+				this.modData('Moves', i).flags = flags;
 			} else {
-				this.modData('Moves', i).flags.mirror = 1;
+				this.modData('Moves', i).flags = { mirror: 1, ...move.flags };
 			}
 		}
 	},
