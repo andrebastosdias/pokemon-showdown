@@ -172,9 +172,9 @@ describe('Switching out', () => {
 		assert.equal(battle.p2.pokemon[0].boosts.atk, 0);
 	});
 
-	describe(`Switch Priority Clause Mod`, () => {
-		it('should default to speed switch priority', () => {
-			battle = common.createBattle({ formatid: 'gen3doublesou' }, [[
+	describe(`Switch Priority Clause Mod [Gen 3]`, () => {
+		it('should follow speed priority if Switch Priority Clause Mod is included', () => {
+			battle = common.gen(3).createBattle({ gameType: 'doubles' }, [[
 				{ species: 'Wynaut', moves: ['sleeptalk'], evs: { spe: 0 } },
 				{ species: 'Wynaut', moves: ['sleeptalk'], evs: { spe: 4 } },
 				{ species: 'Pelipper', ability: 'drizzle', moves: ['sleeptalk'] },
@@ -193,8 +193,8 @@ describe('Switching out', () => {
 			assert.equal(battle.p2.active[1].boosts.atk, -1);
 		});
 
-		it('should use port priority order if Switch Priority Clause Mod is excluded', () => {
-			battle = common.createBattle({ formatid: 'gen3doublesou@@@!switchpriorityclausemod' }, [[
+		it('should follow port priority if Switch Priority Clause Mod is excluded', () => {
+			battle = common.gen(3).createBattle({ gameType: 'doubles', portPriority: true }, [[
 				{ species: 'Wynaut', moves: ['sleeptalk'], evs: { spe: 0 } },
 				{ species: 'Wynaut', moves: ['sleeptalk'], evs: { spe: 4 } },
 				{ species: 'Pelipper', ability: 'drizzle', moves: ['sleeptalk'] },
