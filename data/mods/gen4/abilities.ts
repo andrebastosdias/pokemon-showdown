@@ -92,14 +92,14 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	effectspore: {
 		inherit: true,
 		onDamagingHit(damage, target, source, move) {
-			if (damage && move.flags['contact'] && !source.status) {
-				const r = this.random(100);
-				if (r < 10) {
-					source.setStatus('slp', target);
-				} else if (r < 20) {
-					source.setStatus('par', target);
-				} else if (r < 30) {
-					source.setStatus('psn', target);
+			if (damage && move.flags['contact'] && !source.status && this.randomChance(3, 10)) {
+				const result = this.random(3);
+				if (result === 0) {
+					source.trySetStatus('slp', target);
+				} else if (result === 1) {
+					source.trySetStatus('par', target);
+				} else if (result === 2) {
+					source.trySetStatus('psn', target);
 				}
 			}
 		},
