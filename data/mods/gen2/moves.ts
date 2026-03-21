@@ -295,9 +295,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		accuracy: 90,
 		basePower: 50,
-		basePowerCallback() {
-			return 50;
-		},
+		basePowerCallback: Inherit.NOOP,
 		secondary: {
 			chance: 30,
 			volatileStatus: 'flinch',
