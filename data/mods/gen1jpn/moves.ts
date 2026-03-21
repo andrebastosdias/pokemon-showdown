@@ -12,7 +12,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	leechseed: {
 		inherit: true,
-		flags: { bypasssub: 1, protect: 1, reflectable: 1, mirror: 1, metronome: 1 },
+		flags: { protect: 1, reflectable: 1, mirror: 1, metronome: 1 },
 	},
 	substitute: {
 		inherit: true,
