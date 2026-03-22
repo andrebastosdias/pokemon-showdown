@@ -1302,7 +1302,7 @@ export class Pokemon {
 			this.moveSlots.push({
 				move: moveName,
 				id: moveSlot.id,
-				pp: pp,
+				pp,
 				maxpp: this.battle.gen >= 5 ? pp : this.battle.calculatePP(move, this.ppUps[i] || 0),
 				target: moveSlot.target,
 				disabled: false,
