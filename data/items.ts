@@ -3362,7 +3362,8 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 			const moveSlot = pokemon.moveSlots.find(move => move.pp === 0) ||
 				pokemon.moveSlots.find(move => move.pp < move.maxpp);
 			if (!moveSlot) return;
-			moveSlot.pp = Math.min(moveSlot.pp + 10, moveSlot.maxpp);
+			const addedPP = pokemon.hasAbility('ripen') ? 20 : 10;
+			moveSlot.pp = Math.min(moveSlot.pp + addedPP, moveSlot.maxpp);
 			this.add('-activate', pokemon, 'item: Leppa Berry', moveSlot.move, '[consumed]');
 		},
 		num: 154,
