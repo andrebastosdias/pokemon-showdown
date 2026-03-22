@@ -403,6 +403,27 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	mimic: {
 		inherit: true,
 		flags: { protect: 1, bypasssub: 1, allyanim: 1, failencore: 1, noassist: 1, failmimic: 1 },
+		onHit(target, source, move) {
+			if (source.transformed || !target.lastMove || target.volatiles['substitute']) {
+				return false;
+			}
+			if (target.lastMove.flags['failmimic'] || source.moves.includes(target.lastMove.id)) {
+				return false;
+			}
+			const mimicIndex = typeof move.moveSlot === 'number' ? move.moveSlot : source.moves.indexOf('mimic');
+			if (mimicIndex < 0) return false;
+			const lastMove = this.dex.moves.get(target.lastMove.id);
+			source.moveSlots[mimicIndex] = {
+				move: lastMove.name,
+				id: lastMove.id,
+				pp: 5,
+				maxpp: lastMove.pp * 8 / 5,
+				disabled: false,
+				used: false,
+				virtual: true,
+			};
+			this.add('-activate', source, 'move: Mimic', lastMove.name);
+		},
 	},
 	mirrorcoat: {
 		inherit: true,
@@ -522,6 +543,28 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	sketch: {
 		inherit: true,
 		flags: { bypasssub: 1, failencore: 1, noassist: 1, failmimic: 1, nosketch: 1 },
+		onHit(target, source, move) {
+			if (source.transformed || !target.lastMove || target.volatiles['substitute']) {
+				return false;
+			}
+			if (target.lastMove.flags['nosketch'] || source.moves.includes(target.lastMove.id)) {
+				return false;
+			}
+			const sketchIndex = typeof move.moveSlot === 'number' ? move.moveSlot : source.moves.indexOf('sketch');
+			if (sketchIndex < 0) return false;
+			const lastMove = this.dex.moves.get(target.lastMove.id);
+			const sketchedMove = {
+				move: lastMove.name,
+				id: lastMove.id,
+				pp: lastMove.pp,
+				maxpp: lastMove.pp,
+				disabled: false,
+				used: false,
+			};
+			source.moveSlots[sketchIndex] = sketchedMove;
+			source.baseMoveSlots[sketchIndex] = sketchedMove;
+			this.add('-activate', source, 'move: Sketch', lastMove.name);
+		},
 	},
 	sleeptalk: {
 		inherit: true,

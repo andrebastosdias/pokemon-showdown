@@ -275,9 +275,7 @@ interface ModdedBattlePokemon {
 	clearVolatile?: (this: Pokemon, includeSwitchFlags?: boolean) => void;
 	calculateStat?: (this: Pokemon, statName: StatIDExceptHP, boost: number, modifier?: number) => number;
 	cureStatus?: (this: Pokemon, silent?: boolean) => boolean;
-	deductPP?: (
-		this: Pokemon, move: string | Move, amount?: number | null, target?: Pokemon | null | false
-	) => number;
+	deductPP?: (this: Pokemon, move: string | Move | ActiveMove, amount?: number | null) => number;
 	eatItem?: (this: Pokemon, force?: boolean, source?: Pokemon, sourceEffect?: Effect) => boolean;
 	effectiveWeather?: (this: Pokemon) => ID;
 	formeChange?: (

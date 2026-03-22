@@ -886,7 +886,7 @@ export class Pokemon {
 		return !this.getItem().ignoreKlutz && this.hasAbility('klutz');
 	}
 
-	deductPP(move: string | Move, amount?: number | null, target?: Pokemon | null | false) {
+	deductPP(move: string | Move, amount?: number | null) {
 		move = this.battle.dex.moves.get(move);
 		const ppData = this.getMoveData(move);
 		if (!ppData) return 0;
@@ -894,11 +894,8 @@ export class Pokemon {
 		if (!ppData.pp) return 0;
 
 		if (!amount) amount = 1;
+		amount = Math.min(amount, ppData.pp);
 		ppData.pp -= amount;
-		if (ppData.pp < 0) {
-			amount += ppData.pp;
-			ppData.pp = 0;
-		}
 		return amount;
 	}
 

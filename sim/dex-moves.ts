@@ -312,6 +312,8 @@ export interface ActiveMove extends MutableMove {
 	weather?: ID;
 	status?: ID;
 	hit: number;
+	/** Used by Gens 2 and 3. Gen 1 tracks the move slot on the side. */
+	moveSlot?: number;
 	moveHitData?: MoveHitData;
 	hitTargets?: Pokemon[];
 	ability?: Ability;
