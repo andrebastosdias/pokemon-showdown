@@ -4114,7 +4114,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		num: 61,
 	},
 	sheerforce: {
-		onModifyMove(move, pokemon) {
+		onModifyMove(move) {
 			if (move.secondaries) {
 				delete move.secondaries;
 				// Technically not a secondary effect, but it is negated
@@ -4127,6 +4127,10 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onBasePowerPriority: 21,
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.hasSheerForce) return this.chainModify([5325, 4096]);
+		},
+		onModifyMovePhase2(move, source, target) {
+			((this.effect as any).onModifyMove as (m: ActiveMove, p: Pokemon, p2: Pokemon) => void)
+				.call(this, move, source, target!);
 		},
 		flags: {},
 		name: "Sheer Force",
@@ -4144,6 +4148,10 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onModifySecondaries(secondaries) {
 			this.debug('Shield Dust prevent secondary');
 			return secondaries.filter(effect => !!effect.self);
+		},
+		onSourceModifyMovePhase2(move) {
+			this.debug('Shield Dust prevent secondary', move, move.numberTargets);
+			if (move.numberTargets === 1) move.dustproof = false;
 		},
 		flags: { breakable: 1 },
 		name: "Shield Dust",

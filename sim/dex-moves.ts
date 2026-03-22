@@ -211,6 +211,7 @@ export interface MoveData extends EffectData, MoveEventMethods, HitEffect {
 	secondaries?: SecondaryEffect[] | null;
 	self?: SecondaryEffect | null;
 	hasSheerForce?: boolean;
+	dustproof?: boolean;
 
 	// Hit effect modifiers
 	// --------------------
@@ -313,6 +314,7 @@ export interface ActiveMove extends MutableMove {
 	status?: ID;
 	hit: number;
 	moveHitData?: MoveHitData;
+	numberTargets?: number;
 	hitTargets?: Pokemon[];
 	ability?: Ability;
 	allies?: Pokemon[];
@@ -388,6 +390,10 @@ export class DataMove extends BasicEffect implements Readonly<BasicEffect & Move
 	 * e.g. Jet Punch
 	 */
 	readonly hasSheerForce: boolean;
+	/**
+	 * Immune to Shield Dust and Covert Cloak if the move hits multiple targets
+	 */
+	readonly dustproof: boolean;
 	/**
 	 * Move priority. Higher priorities go before lower priorities,
 	 * trumping the Speed stat.
@@ -486,6 +492,7 @@ export class DataMove extends BasicEffect implements Readonly<BasicEffect & Move
 		this.secondary = data.secondary || null;
 		this.secondaries = data.secondaries || (this.secondary && [this.secondary]) || null;
 		this.hasSheerForce = !!(data.hasSheerForce && !this.secondaries);
+		this.dustproof = data.dustproof;
 		this.priority = Number(data.priority) || 0;
 		this.category = data.category!;
 		this.overrideOffensiveStat = data.overrideOffensiveStat || undefined;
