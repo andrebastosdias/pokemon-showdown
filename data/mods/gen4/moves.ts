@@ -1152,29 +1152,6 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		flags: {
 			allyanim: 1, failencore: 1, noassist: 1, failcopycat: 1, failinstruct: 1, failmimic: 1, nosketch: 1,
 		},
-		onHit(target, source) {
-			if (source.transformed || !target.lastMove || target.volatiles['substitute']) {
-				return false;
-			}
-			if (target.lastMove.flags['nosketch'] || source.moves.includes(target.lastMove.id)) {
-				return false;
-			}
-			const sketchIndex = source.moves.indexOf('sketch');
-			if (sketchIndex < 0) return false;
-			const move = this.dex.moves.get(target.lastMove.id);
-			const sketchedMove = {
-				move: move.name,
-				id: move.id,
-				pp: move.pp,
-				maxpp: move.pp,
-				target: move.target,
-				disabled: false,
-				used: false,
-			};
-			source.moveSlots[sketchIndex] = sketchedMove;
-			source.baseMoveSlots[sketchIndex] = sketchedMove;
-			this.add('-activate', source, 'move: Sketch', move.name);
-		},
 	},
 	sleeptalk: {
 		inherit: true,

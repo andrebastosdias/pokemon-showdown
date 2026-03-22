@@ -20,7 +20,7 @@ export const Scripts: ModdedBattleScriptsData = {
 			move = this.battle.dex.moves.get(move);
 			const moveSlots = this.moveSlots.slice();
 
-			// if the PP deduction comes from its own effect, try to deduct PP from the selected move slot first
+			// try to deduct PP from the selected move slot first
 			const moveSlot = (move as ActiveMove).moveSlot;
 			if (typeof moveSlot === 'number') {
 				// change check order
