@@ -1631,6 +1631,18 @@ export class Pokemon {
 		}
 	}
 
+	disableSlot(slotIndex: number, isHidden?: boolean, sourceEffect?: Effect) {
+		if (!sourceEffect && this.battle.event) {
+			sourceEffect = this.battle.effect;
+		}
+		if (slotIndex < 0 || slotIndex >= this.moveSlots.length) return;
+		const moveSlot = this.moveSlots[slotIndex];
+		if (moveSlot && moveSlot.disabled !== true) {
+			moveSlot.disabled = isHidden ? 'hidden' : true;
+			moveSlot.disabledSource = sourceEffect?.name || moveSlot.move;
+		}
+	}
+
 	/** Returns the amount of damage actually healed */
 	heal(d: number, source: Pokemon | null = null, effect: Effect | null = null) {
 		if (!this.hp) return false;

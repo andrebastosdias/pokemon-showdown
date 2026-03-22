@@ -244,9 +244,8 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			},
 			onDisableMove(pokemon) {
 				// disable the move slot
-				if (pokemon.moveSlots.length > this.effectState.slotIndex) {
-					pokemon.moveSlots[this.effectState.slotIndex].disabled = true;
-					pokemon.moveSlots[this.effectState.slotIndex].disabledSource = this.effect.name;
+				if (this.effectState.slotIndex < pokemon.moveSlots.length) {
+					pokemon.disableSlot(this.effectState.slotIndex, false, this.effect);
 				}
 			},
 		},

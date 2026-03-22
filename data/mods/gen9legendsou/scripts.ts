@@ -86,6 +86,7 @@ export const Scripts: ModdedBattleScriptsData = {
 						move: nihilLight.name,
 						pp: pokemon.moveSlots[coreEnforcer].pp,
 						maxpp: pokemon.moveSlots[coreEnforcer].maxpp,
+						target: nihilLight.target,
 						disabled: false,
 						used: false,
 					};

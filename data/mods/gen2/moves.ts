@@ -129,9 +129,9 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			inherit: true,
 			onDisableMove(pokemon) {
 				const moveSlot = pokemon.moves.indexOf(this.effectState.move);
-				if (moveSlot < 0 || pokemon.moveSlots.length <= moveSlot) return;
-				pokemon.moveSlots[moveSlot].disabled = true;
-				pokemon.moveSlots[moveSlot].disabledSource = this.effect.name;
+				if (moveSlot >= 0 && moveSlot < pokemon.moveSlots.length) {
+					pokemon.disableSlot(moveSlot, false, this.effect);
+				}
 			},
 		},
 	},
