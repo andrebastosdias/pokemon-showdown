@@ -206,3 +206,63 @@ describe('Encore [Gen 2]', () => {
 		assert.equal(chansey.volatiles['encore'].move, 'seismictoss');
 	});
 });
+
+describe('Encore [Gen 4]', () => {
+	afterEach(() => {
+		battle.destroy();
+	});
+
+	it(`should not require selecting a target in doubles`, () => {
+		battle = common.gen(4).createBattle({ gameType: 'doubles' }, [[
+			{ species: 'Mew', moves: ['tackle', 'sleeptalk'] },
+			{ species: 'Magikarp', moves: ['sleeptalk'] },
+		], [
+			{ species: 'Wynaut', moves: ['encore', 'sleeptalk'] },
+			{ species: 'Magikarp', moves: ['sleeptalk'] },
+		]]);
+		assert.cantMove(() => battle.p1.choose('move tackle, move sleeptalk'));
+		battle.makeChoices('move tackle 1, move sleeptalk', 'move encore 1, move sleeptalk');
+
+		const request = battle.p1.activeRequest.active[0];
+		assert.equal(request.moves.length, 1);
+		assert.equal(request.moves[0].target, undefined);
+		assert.cantMove(() => battle.p1.choose('move tackle 1, move sleeptalk'));
+		assert.doesNotThrow(() => battle.makeChoices('move tackle, move sleeptalk', 'move sleeptalk, move sleeptalk'));
+	});
+
+	it(`deduct PP from the first duplicate slot of an Encored move`, () => {
+		battle = common.gen(4).createBattle([[
+			{ species: 'Mew', moves: ['growl', 'growl', 'tackle', 'sleeptalk'] },
+		], [
+			{ species: 'Wynaut', moves: ['encore', 'sleeptalk'] },
+		]]);
+		battle.makeChoices('move 2', 'move encore');
+		assert.equal(battle.p1.activeRequest.active[0].moves.length, 1);
+
+		battle.makeChoices('move 1', 'move sleeptalk');
+		const moveSlots = battle.p1.active[0].moveSlots;
+		assert.equal(moveSlots[0].pp, moveSlots[0].maxpp - 2);
+		assert.equal(moveSlots[1].pp, moveSlots[1].maxpp);
+	});
+});
+
+describe('Encore [Gen 3]', () => {
+	afterEach(() => {
+		battle.destroy();
+	});
+
+	it(`deduct PP from the exact duplicate slot that was originally used`, () => {
+		battle = common.gen(3).createBattle([[
+			{ species: 'Mew', moves: ['growl', 'growl', 'tackle', 'sleeptalk'] },
+		], [
+			{ species: 'Wynaut', moves: ['encore', 'sleeptalk'] },
+		]]);
+		battle.makeChoices('move 2', 'move encore');
+		assert.equal(battle.p1.activeRequest.active[0].moves.length, 1);
+
+		battle.makeChoices('move 1', 'move sleeptalk');
+		const moveSlots = battle.p1.active[0].moveSlots;
+		assert.equal(moveSlots[0].pp, moveSlots[0].maxpp);
+		assert.equal(moveSlots[1].pp, moveSlots[1].maxpp - 2);
+	});
+});

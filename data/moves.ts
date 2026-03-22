@@ -14927,7 +14927,8 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 				let alreadyAdded = false;
 				pokemon.removeVolatile('destinybond');
 				for (const source of this.effectState.sources) {
-					if (!source.isAdjacent(pokemon) || !this.queue.cancelMove(source) || !source.hp) continue;
+					const move = this.queue.willMove(source)?.move || null;
+					if (!move || !source.isAdjacent(pokemon) || !this.queue.cancelMove(source) || !source.hp) continue;
 					if (!alreadyAdded) {
 						this.add('-activate', pokemon, 'move: Pursuit');
 						alreadyAdded = true;
@@ -14950,7 +14951,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 							}
 						}
 					}
-					this.actions.runMove('pursuit', source, source.getLocOf(pokemon));
+					this.actions.runMove(move, source, source.getLocOf(pokemon));
 				}
 			},
 		},

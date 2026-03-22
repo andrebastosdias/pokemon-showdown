@@ -138,3 +138,21 @@ describe('Snatch [Gen 4]', () => {
 		assert.equal(move.pp, move.maxpp - 3, `Snatch should be at 13 PP after losing 1 PP earlier and 2 PP this turn`);
 	});
 });
+
+describe('Snatch [Gen 3]', () => {
+	afterEach(() => {
+		battle.destroy();
+	});
+
+	it(`should deduct Pressure PP from the first Snatch slot`, () => {
+		battle = common.gen(3).createBattle([[
+			{ species: 'Mew', moves: ['snatch', 'snatch'] },
+		], [
+			{ species: 'Aerodactyl', ability: 'pressure', moves: ['howl'] },
+		]]);
+		battle.makeChoices('move 2', 'move howl');
+		const moveSlots = battle.p1.active[0].moveSlots;
+		assert.equal(moveSlots[0].pp, moveSlots[0].maxpp - 1);
+		assert.equal(moveSlots[1].pp, moveSlots[1].maxpp - 1);
+	});
+});

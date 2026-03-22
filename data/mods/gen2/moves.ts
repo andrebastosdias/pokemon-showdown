@@ -123,6 +123,18 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			},
 		},
 	},
+	disable: {
+		inherit: true,
+		condition: {
+			inherit: true,
+			onDisableMove(pokemon) {
+				const moveSlot = pokemon.moves.indexOf(this.effectState.move);
+				if (moveSlot < 0 || pokemon.moveSlots.length <= moveSlot) return;
+				pokemon.moveSlots[moveSlot].disabled = true;
+				pokemon.moveSlots[moveSlot].disabledSource = this.effect.name;
+			},
+		},
+	},
 	doubleedge: {
 		inherit: true,
 		recoil: [25, 100],
@@ -132,13 +144,15 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		condition: {
 			inherit: true,
 			onStart(target) {
-				const lockedMove = target.lastMoveEncore?.id || '';
-				const moveSlot = lockedMove ? target.getMoveData(lockedMove) : null;
-				if (!moveSlot || target.lastMoveEncore?.flags['failencore'] || moveSlot.pp <= 0) {
+				const move = target.lastMoveEncore;
+				if (!move) return false;
+				const moveIndex = typeof move.moveSlot === 'number' ? move.moveSlot : target.moves.indexOf(move.id);
+				if (target.lastMoveEncore?.flags['failencore'] || moveIndex < 0 || target.moveSlots[moveIndex].pp <= 0) {
 					// it failed
 					return false;
 				}
-				this.effectState.move = lockedMove;
+				this.effectState.move = move.id;
+				this.effectState.slotIndex = moveIndex;
 				this.add('-start', target, 'Encore');
 			},
 			onResidualOrder: 13,
@@ -479,7 +493,8 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 						// Destiny Bond ends if the switch action "outspeeds" the attacker, regardless of host
 						pokemon.removeVolatile('destinybond');
 					}
-					if (!this.queue.cancelMove(source) || !source.hp) continue;
+					const move = this.queue.willMove(source)?.move || null;
+					if (!move || !this.queue.cancelMove(source) || !source.hp) continue;
 					if (!alreadyAdded) {
 						this.add('-activate', pokemon, 'move: Pursuit');
 						alreadyAdded = true;
@@ -495,7 +510,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 							}
 						}
 					}
-					this.actions.runMove('pursuit', source, source.getLocOf(pokemon));
+					this.actions.runMove(move, source, source.getLocOf(pokemon));
 				}
 			},
 		},

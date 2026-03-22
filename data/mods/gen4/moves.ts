@@ -304,26 +304,6 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			durationCallback() {
 				return this.random(4, 8);
 			},
-			onStart(pokemon) {
-				if (!this.queue.willMove(pokemon)) {
-					this.effectState.duration!++;
-				}
-				if (!pokemon.lastMove) {
-					return false;
-				}
-				for (const moveSlot of pokemon.moveSlots) {
-					if (moveSlot.id === pokemon.lastMove.id) {
-						if (!moveSlot.pp) {
-							return false;
-						} else {
-							this.add('-start', pokemon, 'Disable', moveSlot.move);
-							this.effectState.move = pokemon.lastMove.id;
-							return;
-						}
-					}
-				}
-				return false;
-			},
 			onResidualOrder: 10,
 			onResidualSubOrder: 13,
 		},
@@ -404,6 +384,8 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			},
 			onResidualOrder: 10,
 			onResidualSubOrder: 14,
+			// hardcoded in sim/pokemon.ts
+			onDisableMove() {},
 		},
 	},
 	endeavor: {
@@ -857,27 +839,6 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		flags: {
 			protect: 1, allyanim: 1, noassist: 1, failcopycat: 1, failencore: 1, failinstruct: 1, failmimic: 1,
 		},
-		onHit(target, source) {
-			if (source.transformed || !target.lastMove || target.volatiles['substitute']) {
-				return false;
-			}
-			if (target.lastMove.flags['failmimic'] || source.moves.includes(target.lastMove.id)) {
-				return false;
-			}
-			const mimicIndex = source.moves.indexOf('mimic');
-			if (mimicIndex < 0) return false;
-			const move = this.dex.moves.get(target.lastMove.id);
-			source.moveSlots[mimicIndex] = {
-				move: move.name,
-				id: move.id,
-				pp: 5,
-				maxpp: move.pp * 8 / 5,
-				disabled: false,
-				used: false,
-				virtual: true,
-			};
-			this.add('-activate', source, 'move: Mimic', move.name);
-		},
 	},
 	minimize: {
 		inherit: true,
@@ -1056,7 +1017,8 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				this.debug('Pursuit start');
 				let alreadyAdded = false;
 				for (const source of this.effectState.sources) {
-					if (!this.queue.cancelMove(source) || !source.hp) continue;
+					const move = this.queue.willMove(source)?.move || null;
+					if (!move || !this.queue.cancelMove(source) || !source.hp) continue;
 					if (!alreadyAdded) {
 						this.add('-activate', pokemon, 'move: Pursuit');
 						alreadyAdded = true;
@@ -1072,8 +1034,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 							}
 						}
 					}
-					const move = this.dex.getActiveMove('pursuit');
-					source.deductPP(move.id);
+					source.deductPP(move);
 					source.moveUsed(move, pokemon.position);
 					if (this.actions.useMove(move, source, { target: pokemon }) && source.getItem().isChoice) {
 						source.addVolatile('choicelock');
@@ -1189,8 +1150,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	sketch: {
 		inherit: true,
 		flags: {
-			bypasssub: 1, allyanim: 1, failencore: 1, noassist: 1,
-			failcopycat: 1, failinstruct: 1, failmimic: 1, nosketch: 1,
+			allyanim: 1, failencore: 1, noassist: 1, failcopycat: 1, failinstruct: 1, failmimic: 1, nosketch: 1,
 		},
 		onHit(target, source) {
 			if (source.transformed || !target.lastMove || target.volatiles['substitute']) {
@@ -1207,6 +1167,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				id: move.id,
 				pp: move.pp,
 				maxpp: move.pp,
+				target: move.target,
 				disabled: false,
 				used: false,
 			};
@@ -1239,7 +1200,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				const ppDrop = this.runEvent('DeductPP', source, snatchUser, this.effectState.sourceEffect);
 				const extraPP = ppDrop !== true ? ppDrop : 0;
 				if (extraPP > 0) {
-					snatchUser.deductPP(this.effectState.sourceEffect.id, extraPP);
+					snatchUser.deductPP('snatch', extraPP);
 				}
 
 				this.actions.useMove(move.id, snatchUser);

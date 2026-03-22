@@ -45,6 +45,25 @@ describe('Disable', () => {
 		assert(battle.log.indexOf('|-fail|p1a: Wynaut') > 0, `Disable should have failed vs Struggle`);
 	});
 
+	describe(`[Gen 2] Disable`, () => {
+		it(`should only disable the first duplicate move in the menu, but still fail the other copy on execution`, () => {
+			battle = common.gen(2).createBattle({ forceRandomChance: true }, [[
+				{ species: 'Drowzee', moves: ['disable', 'sleeptalk'] },
+			], [
+				{ species: 'Abra', moves: ['tackle', 'tackle'] },
+			]]);
+			battle.makeChoices('move disable', 'move 2');
+			const request = battle.p2.activeRequest.active[0];
+			assert(request.moves[0].disabled);
+			assert.false(request.moves[1].disabled);
+
+			const hp = battle.p1.active[0].hp;
+			assert.cantMove(() => battle.p2.choose('move 1'));
+			battle.makeChoices('move sleeptalk', 'move 2');
+			assert.equal(battle.p1.active[0].hp, hp);
+		});
+	});
+
 	describe(`[Gen 1] Disable`, () => {
 		it(`should fail if the opponent already has a move disabled`, () => {
 			battle = common.createBattle({ forceRandomChance: true }, [[

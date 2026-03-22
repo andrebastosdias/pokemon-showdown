@@ -256,6 +256,32 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			durationCallback() {
 				return this.random(3, 7);
 			},
+			onStart(target) {
+				let move: Move | ActiveMove | null = target.lastMove;
+				if (!move || target.volatiles['dynamax']) return false;
+
+				// Encore only works on Max Moves if the base move is not itself a Max Move
+				if (move.isMax && move.baseMove) move = this.dex.moves.get(move.baseMove);
+				const moveIndex = typeof (move as ActiveMove)?.moveSlot === 'number' ?
+					((move as ActiveMove).moveSlot!) : target.moves.indexOf(move.id);
+				if (move.isZ || move.isMax || move.flags['failencore'] || moveIndex < 0 || target.moveSlots[moveIndex].pp <= 0) {
+					// it failed
+					return false;
+				}
+				this.effectState.move = move.id;
+				this.effectState.slotIndex = moveIndex;
+				this.add('-start', target, 'Encore');
+				if (!this.queue.willMove(target)) {
+					this.effectState.duration!++;
+				}
+			},
+			onResidual(target) {
+				const moveSlot = target.moveSlots[this.effectState.slotIndex];
+				if (!moveSlot || moveSlot.pp <= 0) {
+					// early termination if you run out of PP
+					target.removeVolatile('encore');
+				}
+			},
 		},
 	},
 	extrasensory: {
@@ -418,6 +444,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				id: lastMove.id,
 				pp: 5,
 				maxpp: lastMove.pp * 8 / 5,
+				target: lastMove.target,
 				disabled: false,
 				used: false,
 				virtual: true,
@@ -558,6 +585,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				id: lastMove.id,
 				pp: lastMove.pp,
 				maxpp: lastMove.pp,
+				target: lastMove.target,
 				disabled: false,
 				used: false,
 			};
