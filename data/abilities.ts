@@ -4150,7 +4150,6 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			return secondaries.filter(effect => !!effect.self);
 		},
 		onSourceModifyMovePhase2(move) {
-			this.debug('Shield Dust prevent secondary', move, move.numberTargets);
 			if (move.numberTargets === 1) move.dustproof = false;
 		},
 		flags: { breakable: 1 },
