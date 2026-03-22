@@ -2373,6 +2373,12 @@ export class Battle {
 		return stat;
 	}
 
+	calculatePP(move: Move, ppUps: number) {
+		let pp = move.noPPBoosts ? move.pp : move.pp * (5 + ppUps) / 5;
+		if (this.gen < 3 && move.pp === 40) pp -= ppUps;
+		return pp;
+	}
+
 	finalModify(relayVar: number) {
 		relayVar = this.modify(relayVar, this.event.modifier);
 		this.event.modifier = 1;
