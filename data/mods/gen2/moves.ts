@@ -315,6 +315,27 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		accuracy: 100,
 		flags: { protect: 1, bypasssub: 1, allyanim: 1, failencore: 1, noassist: 1, nosketch: 1 },
+		onHit(target, source) {
+			if (source.transformed || !target.lastMoveUsed || target.volatiles['substitute']) {
+				return false;
+			}
+			if (target.lastMoveUsed.flags['failmimic'] || source.moves.includes(target.lastMoveUsed.id)) {
+				return false;
+			}
+			const mimicIndex = source.moves.indexOf('mimic');
+			if (mimicIndex < 0) return false;
+			const move = this.dex.moves.get(target.lastMoveUsed.id);
+			source.moveSlots[mimicIndex] = {
+				move: move.name,
+				id: move.id,
+				pp: 5,
+				maxpp: this.dex.moves.get(move).pp,
+				disabled: false,
+				used: false,
+				virtual: true,
+			};
+			this.add('-activate', source, 'move: Mimic', move.name);
+		},
 	},
 	mindreader: {
 		inherit: true,
