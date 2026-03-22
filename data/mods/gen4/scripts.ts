@@ -15,6 +15,7 @@ export const Scripts: ModdedBattleScriptsData = {
 					poke.lastMove = null;
 					poke.lastMoveUsed = null;
 				}
+				if (this.battle.gen === 1) pokemon.side.lastSelectedMoveSlot = 0;
 				if (!pokemon.side.faintedThisTurn && pokemon.draggedIn !== this.battle.turn) {
 					this.battle.runEvent('AfterSwitchInSelf', pokemon);
 				}
