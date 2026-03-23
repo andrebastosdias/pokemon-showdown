@@ -406,6 +406,8 @@ export class TeamValidator {
 		}
 
 		const teamHas: { [k: string]: number } = {};
+		let lgpeStarterCount = 0;
+		let deoxysType;
 		for (const set of team) {
 			if (!set) return [`You sent invalid team data. If you're not using a custom client, please report this as a bug.`];
 
@@ -418,6 +420,22 @@ export class TeamValidator {
 				setProblems = (format.validateSet || this.validateSet).call(this, set, teamHas);
 			}
 
+			if (set.species === 'Pikachu-Starter' || set.species === 'Eevee-Starter') {
+				lgpeStarterCount++;
+				if (lgpeStarterCount === 2 && ruleTable.isBanned('nonexistent')) {
+					problems.push(`You can only have one of Pikachu-Starter or Eevee-Starter on a team.`);
+				}
+			}
+			if (dex.gen === 3 && set.species.startsWith('Deoxys')) {
+				if (!deoxysType) {
+					deoxysType = set.species;
+				} else if (deoxysType !== set.species && ruleTable.isBanned('nonexistent')) {
+					return [
+						`You cannot have more than one type of Deoxys forme.`,
+						`(Each game in Gen 3 supports only one forme of Deoxys.)`,
+					];
+				}
+			}
 			if (setProblems) {
 				problems = problems.concat(setProblems);
 			}
