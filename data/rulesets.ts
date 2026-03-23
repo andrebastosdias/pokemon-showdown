@@ -192,7 +192,7 @@ export const Rulesets: import('../sim/dex-formats').FormatDataTable = {
 	obtainablecartridgeformes: {
 		effectType: 'ValidatorRule',
 		name: 'Obtainable Cartridge Formes',
-		desc: "Validates groups of formes that are not obtainable together in the same cartridge.",
+		desc: "Validates formes that are not obtainable together in the same cartridge.",
 		// Hardcoded in team-validator.ts
 	},
 	obtainablemisc: {
