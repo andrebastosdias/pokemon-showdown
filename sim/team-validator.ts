@@ -425,7 +425,7 @@ export class TeamValidator {
 			}
 
 			if (dex.gen === 3 && set.species.startsWith('Deoxys') &&
-				(ruleTable.has('obtainablecartridgeformes') || ruleTable.has('hackmonsformelegality'))) {
+				(ruleTable.has('obtainablemutuallyexclusiveformes') || ruleTable.has('hackmonsformelegality'))) {
 				if (!deoxysType) {
 					deoxysType = set.species;
 				} else if (deoxysType !== set.species) {
@@ -435,7 +435,7 @@ export class TeamValidator {
 					];
 				}
 			}
-			if (ruleTable.has('obtainablecartridgeformes')) {
+			if (ruleTable.has('obtainablemutuallyexclusiveformes')) {
 				if (dex.currentMod === 'gen7letsgo' && (set.species === 'Pikachu-Starter' || set.species === 'Eevee-Starter')) {
 					if (lgpeStarterCount > 0) {
 						return [`You can only have one of Pikachu-Starter or Eevee-Starter on a team.`];

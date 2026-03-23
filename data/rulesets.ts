@@ -167,7 +167,7 @@ export const Rulesets: import('../sim/dex-formats').FormatDataTable = {
 		effectType: 'ValidatorRule',
 		name: 'Obtainable',
 		desc: "Makes sure the team is possible to obtain in-game.",
-		ruleset: ['Obtainable Moves', 'Obtainable Abilities', 'Obtainable Formes', 'Obtainable Cartridge Formes', 'EV Limit = Auto', 'Obtainable Misc'],
+		ruleset: ['Obtainable Moves', 'Obtainable Abilities', 'Obtainable Formes', 'Obtainable Mutually Exclusive Formes', 'EV Limit = Auto', 'Obtainable Misc'],
 		banlist: ['Unreleased', 'Unobtainable', 'Nonexistent'],
 		// Mostly hardcoded in team-validator.ts
 	},
@@ -189,9 +189,9 @@ export const Rulesets: import('../sim/dex-formats').FormatDataTable = {
 		desc: "Makes sure in-battle formes only appear in-battle.",
 		// Hardcoded in team-validator.ts
 	},
-	obtainablecartridgeformes: {
+	obtainablemutuallyexclusiveformes: {
 		effectType: 'ValidatorRule',
-		name: 'Obtainable Cartridge Formes',
+		name: 'Obtainable Mutually Exclusive Formes',
 		desc: "Validates formes that are not obtainable together in the same cartridge.",
 		// Hardcoded in team-validator.ts
 	},
