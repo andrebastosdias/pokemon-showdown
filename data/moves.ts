@@ -3097,7 +3097,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 			this.add('-swapsideconditions');
 			this.add('-activate', source, 'move: Court Change');
 		},
-		secondary: null,
 		target: "field",
 		type: "Normal",
 	},
@@ -4560,7 +4559,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 				this.add('-fieldend', 'move: Electric Terrain');
 			},
 		},
-		secondary: null,
 		target: "field",
 		type: "Electric",
 		zMove: { boost: { spe: 1 } },
@@ -5079,7 +5077,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 				pokemon.tryTrap();
 			},
 		},
-		secondary: null,
 		target: "field",
 		type: "Fairy",
 		zMove: { boost: { def: 1 } },
@@ -5875,7 +5872,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		boosts: {
 			def: 1,
 		},
-		secondary: null,
 		target: "all",
 		type: "Fairy",
 		zMove: { boost: { def: 1 } },
@@ -6495,7 +6491,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 			atk: 1,
 			spa: 1,
 		},
-		secondary: null,
 		target: "allies",
 		type: "Steel",
 		zMove: { boost: { spa: 1 } },
@@ -7728,7 +7723,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 				this.add('-fieldend', 'move: Grassy Terrain');
 			},
 		},
-		secondary: null,
 		target: "field",
 		type: "Grass",
 		zMove: { boost: { def: 1 } },
@@ -7841,7 +7835,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 				this.add('-fieldend', 'move: Gravity');
 			},
 		},
-		secondary: null,
 		target: "field",
 		type: "Psychic",
 		zMove: { boost: { spa: 1 } },
@@ -8082,7 +8075,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		priority: 0,
 		flags: { metronome: 1 },
 		weather: 'hail',
-		secondary: null,
 		target: "field",
 		type: "Ice",
 		zMove: { boost: { spe: 1 } },
@@ -8174,7 +8166,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 				pokemon.clearBoosts();
 			}
 		},
-		secondary: null,
 		target: "field",
 		type: "Ice",
 		zMove: { effect: 'heal' },
@@ -9706,7 +9697,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 				}
 			},
 		},
-		secondary: null,
 		target: "field",
 		type: "Electric",
 		zMove: { boost: { spa: 1 } },
@@ -10805,7 +10795,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 				this.add('-fieldend', 'move: Magic Room', '[of] ' + this.effectState.source);
 			},
 		},
-		secondary: null,
 		target: "field",
 		type: "Psychic",
 		zMove: { boost: { spd: 1 } },
@@ -10855,7 +10844,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 			def: 1,
 			spd: 1,
 		},
-		secondary: null,
 		target: "allies",
 		type: "Electric",
 		zMove: { boost: { spd: 1 } },
@@ -12221,7 +12209,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 				this.add('-fieldend', 'Misty Terrain');
 			},
 		},
-		secondary: null,
 		target: "field",
 		type: "Fairy",
 		zMove: { boost: { spd: 1 } },
@@ -12502,7 +12489,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 				this.add('-fieldend', 'move: Mud Sport');
 			},
 		},
-		secondary: null,
 		target: "field",
 		type: "Ground",
 		zMove: { boost: { spd: 1 } },
@@ -14168,7 +14154,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 				this.add('-fieldend', 'move: Psychic Terrain');
 			},
 		},
-		secondary: null,
 		target: "field",
 		type: "Psychic",
 		zMove: { boost: { spa: 1 } },
@@ -14712,7 +14697,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		priority: 0,
 		flags: { metronome: 1 },
 		weather: 'RainDance',
-		secondary: null,
 		target: "field",
 		type: "Water",
 		zMove: { boost: { spe: 1 } },
@@ -15513,7 +15497,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 			atk: 1,
 			spa: 1,
 		},
-		secondary: null,
 		target: "all",
 		type: "Ground",
 		zMove: { boost: { atk: 1 } },
@@ -15730,7 +15713,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		priority: 0,
 		flags: { metronome: 1, wind: 1 },
 		weather: 'Sandstorm',
-		secondary: null,
 		target: "field",
 		type: "Rock",
 		zMove: { boost: { spe: 1 } },
@@ -17207,7 +17189,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		priority: 0,
 		flags: {},
 		weather: 'snowscape',
-		secondary: null,
 		target: "field",
 		type: "Ice",
 	},
@@ -18460,7 +18441,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		priority: 0,
 		flags: { metronome: 1 },
 		weather: 'sunnyday',
-		secondary: null,
 		target: "field",
 		type: "Fire",
 		zMove: { boost: { spe: 1 } },
@@ -20007,7 +19987,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 				this.add('-fieldend', 'move: Trick Room');
 			},
 		},
-		secondary: null,
 		target: "field",
 		type: "Psychic",
 		zMove: { boost: { accuracy: 1 } },
@@ -20689,7 +20668,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 				this.add('-fieldend', 'move: Water Sport');
 			},
 		},
-		secondary: null,
 		target: "field",
 		type: "Water",
 		zMove: { boost: { spd: 1 } },
@@ -21051,7 +21029,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 				this.add('-fieldend', 'move: Wonder Room');
 			},
 		},
-		secondary: null,
 		target: "field",
 		type: "Psychic",
 		zMove: { boost: { spd: 1 } },
