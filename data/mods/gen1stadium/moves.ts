@@ -184,7 +184,6 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	recover: {
 		inherit: true,
-		heal: null,
 		onHit(target) {
 			if (target.hp === target.maxhp) {
 				return false;
@@ -207,7 +206,6 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	softboiled: {
 		inherit: true,
-		heal: null,
 		onHit(target) {
 			// Fail when health is 255 or 511 less than max
 			if (target.hp === target.maxhp) {
@@ -277,7 +275,6 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				return 0;
 			},
 		},
-		secondary: null,
 		target: "self",
 		type: "Normal",
 	},
