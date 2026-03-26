@@ -610,8 +610,8 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		flags: { sound: 1, distance: 1, metronome: 1 },
 		volatileStatus: undefined,
-		onHit() {},
-		onTryHit() {},
+		onHit: undefined, // no inherit
+		onTryHit: undefined, // no inherit
 		onHitField(target, source, move) {
 			let result = false;
 			let message = false;
