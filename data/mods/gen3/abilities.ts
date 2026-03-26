@@ -5,7 +5,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onAfterEntryHazard(pokemon) {
 			((this.effect as any).onStart as (p: Pokemon) => void).call(this, pokemon);
 		},
-		onSwitchIn() {},
+		onSwitchIn: undefined, // no inherit
 	},
 	cloudnine: {
 		inherit: true,
@@ -13,7 +13,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onAfterEntryHazard(pokemon) {
 			((this.effect as any).onStart as (p: Pokemon) => void).call(this, pokemon);
 		},
-		onSwitchIn() {},
+		onSwitchIn: undefined, // no inherit
 	},
 	cutecharm: {
 		inherit: true,
@@ -31,7 +31,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onAfterEntryHazard(pokemon) {
 			((this.effect as any).onStart as (p: Pokemon) => void).call(this, pokemon);
 		},
-		onSwitchIn() {},
+		onSwitchIn: undefined, // no inherit
 	},
 	drought: {
 		inherit: true,
@@ -39,7 +39,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onAfterEntryHazard(pokemon) {
 			((this.effect as any).onStart as (p: Pokemon) => void).call(this, pokemon);
 		},
-		onSwitchIn() {},
+		onSwitchIn: undefined, // no inherit
 	},
 	effectspore: {
 		inherit: true,
@@ -89,7 +89,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onAfterEntryHazard(pokemon) {
 			((this.effect as any).onStart as (p: Pokemon) => void).call(this, pokemon);
 		},
-		onSwitchIn() {},
+		onSwitchIn: undefined, // no inherit
 		flags: {},
 	},
 	hustle: {
@@ -217,7 +217,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onAfterEntryHazard(pokemon) {
 			((this.effect as any).onStart as (p: Pokemon) => void).call(this, pokemon);
 		},
-		onSwitchIn() {},
+		onSwitchIn: undefined, // no inherit
 	},
 	shadowtag: {
 		inherit: true,
@@ -231,7 +231,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onAfterEntryHazard(pokemon) {
 			((this.effect as any).onStart as (p: Pokemon) => void).call(this, pokemon);
 		},
-		onSwitchIn() {},
+		onSwitchIn: undefined, // no inherit
 	},
 	static: {
 		inherit: true,
