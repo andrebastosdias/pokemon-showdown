@@ -385,7 +385,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			onResidualOrder: 10,
 			onResidualSubOrder: 14,
 			// hardcoded in sim/pokemon.ts
-			onDisableMove() {},
+			onDisableMove: undefined, // no inherit
 		},
 	},
 	endeavor: {
