@@ -66,11 +66,11 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	},
 	immunity: {
 		inherit: true,
-		onSwitchOut() {},
+		onSwitchOut: undefined, // no inherit
 	},
 	insomnia: {
 		inherit: true,
-		onSwitchOut() {},
+		onSwitchOut: undefined, // no inherit
 	},
 	intimidate: {
 		inherit: true,
@@ -111,11 +111,11 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	},
 	limber: {
 		inherit: true,
-		onSwitchOut() {},
+		onSwitchOut: undefined, // no inherit
 	},
 	magmaarmor: {
 		inherit: true,
-		onSwitchOut() {},
+		onSwitchOut: undefined, // no inherit
 	},
 	magnetpull: {
 		inherit: true,
@@ -235,7 +235,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	},
 	vitalspirit: {
 		inherit: true,
-		onSwitchOut() {},
+		onSwitchOut: undefined, // no inherit
 	},
 	voltabsorb: {
 		inherit: true,
@@ -250,6 +250,6 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	},
 	waterveil: {
 		inherit: true,
-		onSwitchOut() {},
+		onSwitchOut: undefined, // no inherit
 	},
 };
