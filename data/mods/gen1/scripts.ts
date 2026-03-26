@@ -158,7 +158,7 @@ export const Scripts: ModdedBattleScriptsData = {
 
 			this.battle.setActiveMove(move, pokemon, target);
 
-			if (pokemon.moveThisTurn || move.id === 'cantmove' || !this.battle.runEvent('BeforeMove', pokemon, target, move)) {
+			if (pokemon.moveThisTurn || !this.battle.runEvent('BeforeMove', pokemon, target, move) || move.id === 'cantmove') {
 				this.battle.clearActiveMove(true);
 				// This is only run for sleep.
 				this.battle.runEvent('AfterMoveSelf', pokemon, target, move);
