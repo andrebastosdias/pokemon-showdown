@@ -1115,17 +1115,17 @@ export class Side {
 		if (this.battle.gen === 1) {
 			for (const choice of this.choice.actions) {
 				if (choice.choice !== 'move' || !choice.pokemon) continue;
-				const pokemon = choice.pokemon;
 				const move = choice.moveid;
 				if (!move) {
+					const pokemon = choice.pokemon;
 					if (['frz', 'slp'].includes(pokemon.status)) {
 						// do nothing
 					} else if (pokemon.volatiles['partiallytrapped']) {
-						// 'cantmove' is what is set in the cartridge
-						this.lastSelectedMove = 'cantmove' as ID;
+						// 'cannotmove' is what is set in the cartridge
+						this.lastSelectedMove = 'cannotmove' as ID;
 					}
 					/**
-					 * if partially trapped: put 'cantmove' in lastSelectedMove
+					 * if partially trapped: put 'cannotmove' in lastSelectedMove
 					 * if frozen or asleep: try to reuse the last move,
 					 *   which can fail if the Pokemon thaws and the move doesn't match lastSelectedMoveSlot
 					 *
@@ -1141,13 +1141,6 @@ export class Side {
 					this.lastSelectedMoveSlot = choice.moveSlot;
 				}
 				// locked moves (including mustrecharge) dont set lastSelectedMove
-
-				if (this.lastSelectedMove === 'cantmove' && !pokemon.getVolatile('partiallytrapped')) {
-					// It could happen that lastSelectedMove is 'cantmove' even though the Pokémon isn't partially trapped
-					// If this happens, add the 'partiallytrapped' volatile so the trapping occurs in the correct effect order
-					pokemon.addVolatile('partiallytrapped');
-					pokemon.volatiles['partiallytrapped'].duration = 1;
-				}
 			}
 		}
 		this.battle.queue.addChoice(this.choice.actions);

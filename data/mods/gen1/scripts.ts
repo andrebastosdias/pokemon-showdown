@@ -146,6 +146,16 @@ export const Scripts: ModdedBattleScriptsData = {
 				}
 			}
 
+			if (move.id === 'cannotmove') {
+				if (pokemon.status === 'slp') {
+					this.battle.hint(
+						"In Gen 1, if a partially trapped Pokémon switches to a Pokémon that is asleep, " +
+						"the sleep counter will not decrease while the Pokémon is trapped."
+					);
+				}
+				return;
+			}
+
 			// If a faster partial trapping move misses against a user of Hyper Beam during a recharge turn,
 			// the user of Hyper Beam will automatically use Hyper Beam during that turn.
 			if (move.id === 'recharge' && !pokemon.volatiles['mustrecharge'] && !pokemon.volatiles['partiallytrapped']) {
@@ -187,7 +197,7 @@ export const Scripts: ModdedBattleScriptsData = {
 					this.battle.hint("Desync Clause Mod activated!");
 					this.battle.hint(
 						"In Gen 1, a Pokémon that thaws out might try to use a move that doesn't match the move " +
-						"of the slot it last selected (switches reset to the first slot).",
+						"of the slot it last selected.",
 					);
 					this.battle.clearActiveMove(true);
 					return;
