@@ -1020,10 +1020,10 @@ export class Battle {
 	getCallback(target: Pokemon | Side | Field | Battle, effect: Effect, callbackName: string) {
 		let callback: Function | undefined = (effect as any)[callbackName];
 
+		// Abilities and items Start at different times during the SwitchIn event, so we run their onStart handlers
+		// during the SwitchIn event instead of running the Start event during switch-ins
+		// gens 4 and before still use the old system, though
 		if (
-			// Abilities and items Start at different times during the SwitchIn event, so we run their onStart handlers
-			// during the SwitchIn event instead of running the Start event during switch-ins
-			// gens 4 and before still use the old system, though
 			callback === undefined && target instanceof Pokemon && callbackName === 'onSwitchIn' &&
 			!(effect as any).onAnySwitchIn && (['Ability', 'Item'].includes(effect.effectType) || (
 				// Innate abilities/items
@@ -1033,9 +1033,9 @@ export class Battle {
 			callback = (effect as any).onStart;
 		}
 
+		// In Gen 3, on turn 0, Weather related abilities that usually activate right after entry hazards
+		// need to be triggered during the SwitchIn event
 		if (
-			// In Gen 3, on turn 0, Weather related abilities that usually activate right after entry hazards
-			// need to be triggered manually
 			this.gen === 3 && target instanceof Pokemon && callbackName === 'onSwitchIn' &&
 			effect.effectType === 'Ability' && (effect as any).onAfterEntryHazard
 		) {
