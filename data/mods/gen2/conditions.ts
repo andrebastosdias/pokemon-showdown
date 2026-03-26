@@ -227,7 +227,7 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 		},
 		// if Protect is used and the user gets paralyzed, the stall counter doesn't change
 		onBeforeMovePriority: 300,
-		onMoveAborted() {},
+		onMoveAborted: undefined, // no inherit
 		onStallMove(pokemon) {
 			const counter = Math.floor(this.effectState.counter) || 127;
 			this.debug(`Success chance: ${Math.round(counter * 1000 / 255) / 10}% (${counter}/255)`);
