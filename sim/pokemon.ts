@@ -2197,6 +2197,7 @@ export class Pokemon {
 		case 'primordialsea':
 			if (this.hasItem('utilityumbrella')) return '';
 		}
+		if (this.hasAbility('megasol') && this.battle.activePokemon === this) return 'sunnyday';
 		return weather;
 	}
 
