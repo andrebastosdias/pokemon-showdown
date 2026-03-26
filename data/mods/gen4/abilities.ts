@@ -2,9 +2,6 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	airlock: {
 		inherit: true,
 		onSwitchIn: undefined, // no inherit
-		onStart(pokemon) {
-			pokemon.abilityState.ending = false;
-		},
 	},
 	angerpoint: {
 		inherit: true,
@@ -37,9 +34,6 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	cloudnine: {
 		inherit: true,
 		onSwitchIn: undefined, // no inherit
-		onStart(pokemon) {
-			pokemon.abilityState.ending = false;
-		},
 	},
 	colorchange: {
 		inherit: true,
