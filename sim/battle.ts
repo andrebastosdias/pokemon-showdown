@@ -1022,24 +1022,20 @@ export class Battle {
 
 		// Abilities and items Start at different times during the SwitchIn event, so we run their onStart handlers
 		// during the SwitchIn event instead of running the Start event during switch-ins
-		// gens 4 and before still use the old system, though
-		if (
-			callback === undefined && target instanceof Pokemon && callbackName === 'onSwitchIn' &&
-			!(effect as any).onAnySwitchIn && (['Ability', 'Item'].includes(effect.effectType) || (
-				// Innate abilities/items
-				effect.effectType === 'Status' && ['ability', 'item'].includes(effect.id.split(':')[0])
-			))
-		) {
-			callback = (effect as any).onStart;
-		}
-
-		// In Gen 3, on turn 0, Weather related abilities that usually activate right after entry hazards
-		// need to be triggered during the SwitchIn event
-		if (
-			this.gen === 3 && target instanceof Pokemon && callbackName === 'onSwitchIn' &&
-			effect.effectType === 'Ability' && (effect as any).onAfterEntryHazard
-		) {
-			callback = this.turn === 0 ? (effect as any).onAfterEntryHazard : undefined;
+		if (target instanceof Pokemon && callbackName === 'onSwitchIn') {
+			if (callback === undefined && !(effect as any).onAnySwitchIn && (
+				['Ability', 'Item'].includes(effect.effectType) ||
+				(effect.effectType === 'Status' && ['ability', 'item'].includes(effect.id.split(':')[0]))
+			)) {
+				callback = (effect as any).onStart;
+			}
+			// In Gen 3, on turn 0, Weather related abilities that usually activate right after entry hazards
+			// need to be triggered during the SwitchIn event
+			if (this.gen === 3 && (effect as any).onAfterEntryHazard && (effect.effectType === 'Ability' ||
+				(effect.effectType === 'Status' && effect.id.split(':')[0] === 'ability')
+			)) {
+				callback = this.turn === 0 ? (effect as any).onAfterEntryHazard : undefined;
+			}
 		}
 
 		return callback;
