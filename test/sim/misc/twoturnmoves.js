@@ -115,11 +115,11 @@ describe('Two Turn Moves [Gen 1]', () => {
 		// Golem is locked into Solar Beam, but the move will never execute
 		for (let i = 0; i < 3; i++) {
 			assert.throws(() => battle.choose('p1', 'switch 2'));
-			const request = battle.p1.activeRequest;
 			assert(battle.p1.active[0].volatiles['twoturnmove']);
+			const request = battle.p1.activeRequest;
 			assert.equal(request.active[0].moves.length, 1);
-			assert.equal(request.active[0].moves[0].id, 'solarbeam');
-			battle.makeChoices('move solarbeam', 'move swordsdance');
+			assert.equal(request.active[0].moves[0].id, 'fight');
+			battle.makeChoices('move fight', 'move swordsdance');
 		}
 		assert.fullHP(battle.p2.active[0]);
 		assert.equal(battle.p2.active[0].boosts.atk, 6);

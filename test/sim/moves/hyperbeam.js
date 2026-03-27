@@ -117,4 +117,24 @@ describe(`Hyper Beam [Gen 1]`, () => {
 		assert.false(battle.p2.active[0].volatiles['partiallytrapped']);
 		assert(battle.p2.active[0].volatiles['mustrecharge']);
 	});
+
+	it(`should be soft-locked if it was frozen during the recharge turn`, () => {
+		battle = common.gen(1).createBattle({ forceRandomChance: true }, [[
+			{ species: 'cloyster', moves: ['icebeam', 'splash'] },
+		], [
+			{ species: 'alakazam', moves: ['hyperbeam'] },
+			{ species: 'magikarp', moves: ['splash'] },
+		]]);
+		battle.makeChoices();
+		const hp = battle.p1.active[0].hp;
+		for (let i = 0; i < 5; i++) {
+			assert.throws(() => battle.choose('p2', 'switch 2'));
+			assert(battle.p2.active[0].volatiles['mustrecharge']);
+			const request = battle.p2.activeRequest;
+			assert.equal(request.active[0].moves.length, 1);
+			assert.equal(request.active[0].moves[0].id, 'fight');
+			battle.makeChoices('move splash', 'move fight');
+		}
+		assert.equal(battle.p1.active[0].hp, hp);
+	});
 });

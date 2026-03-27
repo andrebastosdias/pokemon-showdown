@@ -283,7 +283,7 @@ describe('Partial Trapping Moves [Gen 1]', () => {
 		assert(cloyster.volatiles['partiallytrapped']);
 	});
 
-	it(`should skip sleep turns if switched in after a Pokemon was trapped`, () => {
+	it(`should stay asleep if it switched in after a Pokemon was trapped`, () => {
 		battle = common.gen(1).createBattle({ seed: [0, 0, 0, 2] }, [[
 			{ species: 'dragonite', moves: ['wrap', 'spore', 'splash'] },
 		], [
