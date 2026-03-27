@@ -150,9 +150,15 @@ export const Scripts: ModdedBattleScriptsData = {
 				if (pokemon.status === 'slp') {
 					this.battle.hint(
 						"In Gen 1, if a partially trapped Pokémon switches to a Pokémon that is asleep, " +
-						"the sleep counter will not decrease while the Pokémon is trapped."
+						"the sleep counter will not decrease until you select a move with a different Pokémon."
+					);
+				} else if (pokemon.getLockedMove()) {
+					this.battle.hint(
+						"In Gen 1, a Pokémon can get soft-locked if Haze clears its status during a multi-turn move."
 					);
 				}
+				this.battle.clearActiveMove(true);
+				this.battle.runEvent('AfterMoveSelf', pokemon, target, move);
 				return;
 			}
 
@@ -170,7 +176,6 @@ export const Scripts: ModdedBattleScriptsData = {
 
 			if (pokemon.moveThisTurn || !this.battle.runEvent('BeforeMove', pokemon, target, move)) {
 				this.battle.clearActiveMove(true);
-				// This is only run for sleep.
 				this.battle.runEvent('AfterMoveSelf', pokemon, target, move);
 				return;
 			}

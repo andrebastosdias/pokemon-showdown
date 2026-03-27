@@ -1139,8 +1139,10 @@ export class Side {
 					// not locked
 					this.lastSelectedMove = move as ID;
 					this.lastSelectedMoveSlot = choice.moveSlot;
+				} else {
+					// locked moves (including mustrecharge) dont set lastSelectedMove
+					choice.moveid = this.lastSelectedMove || '00' as ID;
 				}
-				// locked moves (including mustrecharge) dont set lastSelectedMove
 			}
 		}
 		this.battle.queue.addChoice(this.choice.actions);

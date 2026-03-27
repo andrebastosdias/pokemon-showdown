@@ -282,4 +282,32 @@ describe('Partial Trapping Moves [Gen 1]', () => {
 		assert.hurts(cloyster, () => battle.makeChoices());
 		assert(cloyster.volatiles['partiallytrapped']);
 	});
+
+	it(`should skip sleep turns if switched in after a Pokemon was trapped`, () => {
+		battle = common.gen(1).createBattle({ seed: [0, 0, 0, 2] }, [[
+			{ species: 'dragonite', moves: ['wrap', 'spore', 'splash'] },
+		], [
+			{ species: 'rhydon', moves: ['swordsdance'] },
+			{ species: 'exeggutor', moves: ['splash'] },
+		]]);
+		const rhydon = battle.p2.active[0];
+
+		battle.makeChoices('move spore', 'move swordsdance');
+		battle.makeChoices('move wrap', 'switch 2');
+		battle.makeChoices('move wrap', 'move splash'); // Exeggutor needs to spend a turn trapped to select a move
+		battle.makeChoices('move wrap', 'switch 2');
+		for (let i = 0; i < 20; i++) {
+			battle.makeChoices('move splash', 'move fight');
+		}
+		assert.equal(rhydon.boosts.atk, 0); // it never woke up
+		battle.makeChoices('move splash', 'switch 2');
+		battle.makeChoices('move splash', 'move splash'); // using a move frees Rhydon from being locked
+		battle.makeChoices('move splash', 'switch 2');
+		for (let i = 0; i < 5; i++) {
+			battle.makeChoices('move splash', 'move fight');
+			if (rhydon.status !== 'slp') break;
+		}
+		battle.makeChoices('move splash', 'move swordsdance'); // it was able to wake up after the switch
+		assert.equal(rhydon.boosts.atk, 2);
+	});
 });
