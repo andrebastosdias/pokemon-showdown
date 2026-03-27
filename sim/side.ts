@@ -742,9 +742,7 @@ export class Side {
 			if (pokemon.volatiles['dynamax']) {
 				dynamax = false;
 			} else {
-				if (this.battle.gen !== 8) {
-					return this.emitChoiceError(`Can't move: Dynamaxing doesn't outside of Gen 8.`);
-				} else if (this.battle.actions.canDynamax(pokemon)) {
+				if (this.battle.actions.canDynamax(pokemon)) {
 					return this.emitChoiceError(`Can't move: ${pokemon.name} can't Dynamax now.`);
 				} else if (pokemon.side.allySide && this.battle.actions.canDynamaxSide(pokemon.side.allySide)) {
 					return this.emitChoiceError(`Can't move: It's your partner's turn to Dynamax.`);
@@ -759,10 +757,6 @@ export class Side {
 		}
 		if (terastallize && this.choice.terastallize) {
 			return this.emitChoiceError(`Can't move: You can only Terastallize once per battle.`);
-		}
-		if (terastallize && this.battle.gen !== 9) {
-			// Make this work properly
-			return this.emitChoiceError(`Can't move: You can only Terastallize in Gen 9.`);
 		}
 
 		this.choice.actions.push({
