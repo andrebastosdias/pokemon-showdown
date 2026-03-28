@@ -1873,13 +1873,13 @@ export class BattleActions {
 			pokemon.baseMoves.includes(toID(altForme.requiredMove)) && !item.zMove) {
 			return altForme.name;
 		}
+		if (!item.megaStone) return false;
+		let megaEvolution = item.megaStone[species.name];
 		// FIXME: Temporary hardcode until generation shift
-		if (species.baseSpecies === "Floette" || species.baseSpecies === "Zygarde") {
-			return item.megaStone?.[species.name] || false;
-		}
+		if (megaEvolution && this.dex.species.get(megaEvolution).gen >= 9) return megaEvolution;
 		// a hacked-in Megazard X can mega evolve into Megazard Y, but not into Megazard X
 		// FIXME: Change to species.name when champions comes
-		const megaEvolution = item.megaStone?.[species.baseSpecies];
+		megaEvolution = item.megaStone[species.baseSpecies];
 		return megaEvolution && megaEvolution !== species.name ? megaEvolution : false;
 	}
 
