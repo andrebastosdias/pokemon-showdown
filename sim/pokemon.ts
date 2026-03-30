@@ -1068,6 +1068,7 @@ export class Pokemon {
 
 	getMoveRequestData() {
 		let lockedMove = this.maybeLocked ? null : this.getLockedMove();
+		const hardLocked = !!lockedMove;
 
 		// Information should be restricted for the last active Pokémon
 		const isLastActive = this.isLastActive();
@@ -1091,7 +1092,12 @@ export class Pokemon {
 		};
 
 		if (isLastActive) {
-			this.maybeDisabled = this.maybeDisabled && !lockedMove;
+			if (hardLocked) {
+				// if it is hardLocked, maybe flags don't matter
+				this.maybeDisabled = false;
+				this.maybeLocked = false;
+				this.maybeTrapped = false;
+			}
 			this.maybeLocked = this.maybeLocked || this.maybeDisabled;
 			if (this.maybeDisabled) {
 				data.maybeDisabled = this.maybeDisabled;
@@ -1175,7 +1181,7 @@ export class Pokemon {
 		if (!this.isActive) return false;
 		const allyActive = this.side.active;
 		for (let i = this.position + 1; i < allyActive.length; i++) {
-			if (allyActive[i] && !allyActive[i].fainted && !allyActive[i].volatiles['commanding']) {
+			if (allyActive[i] && !allyActive[i].fainted && !allyActive[i].getLockedMove() && !allyActive[i].volatiles['commanding']) {
 				return false;
 			}
 		}
