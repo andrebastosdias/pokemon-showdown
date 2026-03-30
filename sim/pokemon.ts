@@ -949,7 +949,6 @@ export class Pokemon {
 	getMoves(lockedMove?: ID | null, restrictData?: boolean): MoveRequestData[] {
 		if (lockedMove) {
 			lockedMove = toID(lockedMove);
-			this.trapped = true;
 			if (lockedMove === 'recharge') {
 				return [{
 					move: 'Recharge',
@@ -1069,6 +1068,7 @@ export class Pokemon {
 	getMoveRequestData() {
 		let lockedMove = this.maybeLocked ? null : this.getLockedMove();
 		const hardLocked = !!lockedMove;
+		if (hardLocked) this.trapped = true;
 
 		// Information should be restricted for the last active Pokémon
 		const isLastActive = this.isLastActive();
@@ -1091,13 +1091,15 @@ export class Pokemon {
 			moves,
 		};
 
-		if (isLastActive) {
-			if (hardLocked) {
-				// if it is hardLocked, maybe flags don't matter
-				this.maybeDisabled = false;
-				this.maybeLocked = false;
-				this.maybeTrapped = false;
+		if (hardLocked || !isLastActive) {
+			this.maybeDisabled = false;
+			this.maybeLocked = false;
+			this.maybeTrapped = false;
+			if (hardLocked || canSwitchIn) {
+				// Discovered by selecting a valid Pokémon as a switch target and cancelling.
+				if (this.trapped) data.trapped = true;
 			}
+		} else {
 			this.maybeLocked = this.maybeLocked || this.maybeDisabled;
 			if (this.maybeDisabled) {
 				data.maybeDisabled = this.maybeDisabled;
@@ -1112,14 +1114,6 @@ export class Pokemon {
 					data.maybeTrapped = true;
 				}
 			}
-		} else {
-			this.maybeDisabled = false;
-			this.maybeLocked = false;
-			if (canSwitchIn) {
-				// Discovered by selecting a valid Pokémon as a switch target and cancelling.
-				if (this.trapped) data.trapped = true;
-			}
-			this.maybeTrapped = false;
 		}
 
 		if (!lockedMove) {
