@@ -1237,7 +1237,7 @@ export class Side {
 				if (!this.chooseMove(data, targetLoc, event)) return false;
 				break;
 			case 'switch':
-				this.chooseSwitch(data);
+				if (!this.chooseSwitch(data)) return false;
 				break;
 			case 'shift':
 				if (data) return this.emitChoiceError(`Unrecognized data after "shift": ${data}`);
@@ -1253,7 +1253,7 @@ export class Side {
 				break;
 			case 'auto':
 			case 'default':
-				this.autoChoose();
+				if (!this.autoChoose()) return false;
 				break;
 			default:
 				this.emitChoiceError(`Unrecognized choice: ${choiceString}`);
