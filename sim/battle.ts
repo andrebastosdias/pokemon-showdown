@@ -1927,7 +1927,7 @@ export class Battle {
 			this.add('rated', typeof this.rated === 'string' ? this.rated : '');
 		}
 
-		if (this.gen === 1) {
+		if (this.gen === 1 && this.dex.currentMod !== 'gen1stadium') {
 			// If a desync would happen, the move fails instead. This rule currently covers Bide, Counter, and Psywave.
 			this.add('rule', 'Desync Clause Mod: Desyncs changed to move failure.');
 		}
