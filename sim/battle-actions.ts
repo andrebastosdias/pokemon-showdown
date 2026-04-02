@@ -1874,8 +1874,8 @@ export class BattleActions {
 			return altForme.name;
 		}
 		if (!item.megaStone) return false;
+    // TODO confirm with generation shift
 		let megaEvolution = item.megaStone[species.name];
-		// FIXME: Temporary hardcode until generation shift
 		if (megaEvolution && this.dex.species.get(megaEvolution).gen >= 9) return megaEvolution;
 		// a hacked-in Megazard X can mega evolve into Megazard Y, but not into Megazard X
 		// FIXME: Change to species.name when champions comes
