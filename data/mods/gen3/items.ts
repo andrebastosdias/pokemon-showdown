@@ -337,9 +337,9 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	shellbell: {
 		inherit: true,
 		onAfterMoveSecondarySelf: undefined, // no inherit
-		onSourceAfterMoveSecondary(target, pokemon, move) {
-			if (move.totalDamage && !pokemon.forceSwitchFlag) {
-				this.heal(move.totalDamage / 8, pokemon);
+		onSourceDamagingHit(damage, target, pokemon, move) {
+			if (damage && !pokemon.forceSwitchFlag) {
+				this.heal(damage / 8, pokemon);
 			}
 		},
 	},
