@@ -437,7 +437,6 @@ export interface EventMethods {
 	onAnyFaintPriority?: number;
 	onAnyPrepareHitPriority?: number;
 	onAnySwitchInPriority?: number;
-	onAnySwitchInSubOrder?: number;
 	onAllyBasePowerPriority?: number;
 	onAllyModifyAtkPriority?: number;
 	onAllyModifySpAPriority?: number;
@@ -484,7 +483,6 @@ export interface EventMethods {
 	onSourceModifyDamagePriority?: number;
 	onSourceModifySpAPriority?: number;
 	onSwitchInPriority?: number;
-	onSwitchInSubOrder?: number;
 	onTrapPokemonPriority?: number;
 	onTryBoostPriority?: number;
 	onTryEatItemPriority?: number;
