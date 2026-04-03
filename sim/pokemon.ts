@@ -1762,6 +1762,8 @@ export class Pokemon {
 			this.battle.add('-enditem', this, item, '[eat]');
 
 			this.battle.singleEvent('Eat', item, this.itemState, this, source, sourceEffect);
+
+			// delay activation message of damage-reducing berries
 			if (!this.volatiles['weakenberry']) {
 				this.battle.runEvent('EatItem', this, source, sourceEffect, item);
 			}

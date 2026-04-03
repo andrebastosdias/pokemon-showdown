@@ -39,6 +39,5 @@ describe(`Cheek Pouch`, () => {
 		]]);
 		battle.makeChoices();
 		assert.fullHP(battle.p1.active[0]);
-		console.log(battle.getDebugLog());
 	});
 });
