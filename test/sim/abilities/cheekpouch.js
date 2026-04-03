@@ -30,4 +30,15 @@ describe(`Cheek Pouch`, () => {
 		battle.makeChoices();
 		assert(battle.log.every(line => !line.startsWith('|-heal')));
 	});
+
+	it(`should activate after a damage-reducing Berry is eaten, even if the user was originally at full HP`, () => {
+		battle = common.createBattle([[
+			{ species: 'dedenne', item: 'shucaberry', ability: 'cheekpouch', moves: ['sleeptalk'] },
+		], [
+			{ species: 'pichu', moves: ['earthquake'] },
+		]]);
+		battle.makeChoices();
+		assert.fullHP(battle.p1.active[0]);
+		console.log(battle.getDebugLog());
+	});
 });
