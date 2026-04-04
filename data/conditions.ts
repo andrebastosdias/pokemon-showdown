@@ -475,7 +475,7 @@ export const Conditions: import('../sim/dex-conditions').ConditionDataTable = {
 		duration: 1,
 		onDamagingHit(damage, target, source, move) {
 			this.add('-enditem', target, this.effect, '[weaken]');
-			this.runEvent('EatItem', target, source, this.effectState.sourceEffect, this.dex.items.get(this.effectState.sourceEffect));
+			this.runEvent('EatItem', target, target, this.effectState.sourceEffect, this.dex.items.get(this.effectState.sourceEffect));
 			delete target.volatiles['weakenberry'];
 		},
 	},

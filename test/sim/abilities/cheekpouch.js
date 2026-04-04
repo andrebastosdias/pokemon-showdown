@@ -40,4 +40,17 @@ describe(`Cheek Pouch`, () => {
 		battle.makeChoices();
 		assert.fullHP(battle.p1.active[0]);
 	});
+	
+	it(`can activate multiple times if the user eats multiple Berries in a row`, () => {
+		battle = common.createBattle([[
+			{ species: 'darkrai', ability: 'cheekpouch', item: 'sitrusberry', moves: ['fling'] },
+		], [
+			{ species: 'deoxys', ability: 'cheekpouch', level: 27, item: 'colburberry', moves: ['sleeptalk'] },
+		]]);
+		battle.makeChoices();
+		assert.equal(
+			battle.getDebugLog().split('\n').filter(line => line.startsWith('|-heal|p2a: Deoxys') && line.endsWith('[from] ability: Cheek Pouch')).length,
+			2,
+		);
+	});
 });
