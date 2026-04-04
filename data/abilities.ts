@@ -391,7 +391,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			return this.chainModify(0.75);
 		},
 		onSwitchOut(pokemon) {
-			((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
+			// #11371 ((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
 		},
 		flags: {},
 		name: "Beads of Ruin",
@@ -4820,7 +4820,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			return this.chainModify(0.75);
 		},
 		onSwitchOut(pokemon) {
-			((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
+			// #11371 ((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
 		},
 		flags: {},
 		name: "Sword of Ruin",
@@ -4876,7 +4876,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			return this.chainModify(0.75);
 		},
 		onSwitchOut(pokemon) {
-			((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
+			// #11371 ((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
 		},
 		flags: {},
 		name: "Tablets of Ruin",
@@ -5293,7 +5293,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			return this.chainModify(0.75);
 		},
 		onSwitchOut(pokemon) {
-			((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
+			// #11371 ((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
 		},
 		flags: {},
 		name: "Vessel of Ruin",
