@@ -148,6 +148,21 @@ describe('Symbiosis', () => {
 			assert.equal(battle.p1.active[1].item, 'leftovers');
 		});
 
+		it('should trigger even if the ally fainted', () => {
+			battle = common.gen(6).createBattle({ gameType: 'doubles' }, [[
+				{ species: 'oranguru', ability: 'symbiosis', item: 'sitrusberry', moves: ['sleeptalk'] },
+				{ species: 'wynaut', level: 1, item: 'colburberry', moves: ['sleeptalk'] },
+			], [
+				{ species: 'wynaut', moves: ['darkpulse'] },
+				{ species: 'wynaut', moves: ['sleeptalk'] },
+			]]);
+			battle.makeChoices('auto', 'move darkpulse 2, move sleeptalk');
+
+			assert.equal(battle.p1.active[0].item, '');
+			assert.equal(battle.p1.active[1].item, 'sitrusberry');
+			assert.fainted(battle.p1.active[1]);
+		});
+
 		// See Marty's research for many more examples: https://www.smogon.com/forums/threads/battle-mechanics-research.3489239/post-6401506
 		describe.skip('Symbiosis Eject Button Glitch', () => {
 			it('should cause Leftovers to restore HP 4 times', () => {
