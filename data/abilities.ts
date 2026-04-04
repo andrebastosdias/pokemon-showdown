@@ -101,6 +101,9 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			pokemon.abilityState.ending = true;
 			this.eachEvent('WeatherChange', this.effect);
 		},
+		onSwitchOut(pokemon) {
+			((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
+		},
 		suppressWeather: true,
 		flags: {},
 		name: "Air Lock",
@@ -387,6 +390,9 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			this.debug('Beads of Ruin SpD drop');
 			return this.chainModify(0.75);
 		},
+		onSwitchOut(pokemon) {
+			((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
+		},
 		flags: {},
 		name: "Beads of Ruin",
 		rating: 4.5,
@@ -551,6 +557,9 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onEnd(pokemon) {
 			pokemon.abilityState.ending = true;
 			this.eachEvent('WeatherChange', this.effect);
+		},
+		onSwitchOut(pokemon) {
+			((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
 		},
 		suppressWeather: true,
 		flags: {},
@@ -936,6 +945,9 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			}
 			this.field.clearWeather();
 		},
+		onSwitchOut(pokemon) {
+			((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
+		},
 		flags: {},
 		name: "Delta Stream",
 		rating: 4,
@@ -959,6 +971,9 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				}
 			}
 			this.field.clearWeather();
+		},
+		onSwitchOut(pokemon) {
+			((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
 		},
 		flags: {},
 		name: "Desolate Land",
@@ -1312,7 +1327,6 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			}
 		},
 		onEnd(pokemon) {
-			if (pokemon.beingCalledBack) return;
 			pokemon.removeVolatile('flashfire');
 		},
 		condition: {
@@ -1363,7 +1377,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		},
 		onEnd(pokemon) {
 			if (!pokemon.isActive || !pokemon.hp || pokemon.baseSpecies.baseSpecies !== 'Cherrim' ||
-				pokemon.transformed || pokemon.beingCalledBack) return;
+				pokemon.transformed) return;
 			if (pokemon.species.id !== 'cherrim') {
 				pokemon.formeChange('Cherrim', this.effect, false, '0', '[msg]');
 			}
@@ -1470,7 +1484,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		},
 		onEnd(pokemon) {
 			if (!pokemon.isActive || !pokemon.hp || pokemon.baseSpecies.baseSpecies !== 'Castform' ||
-				pokemon.transformed || pokemon.beingCalledBack) return;
+				pokemon.transformed) return;
 			if (pokemon.species.id !== 'castform') {
 				pokemon.formeChange('Castform', this.effect, false, '0', '[msg]');
 			}
@@ -2053,7 +2067,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			}
 		},
 		onEnd(pokemon) {
-			if (pokemon.illusion && !pokemon.beingCalledBack) {
+			if (pokemon.illusion) {
 				this.debug('illusion cleared');
 				pokemon.illusion = null;
 				const details = pokemon.getUpdatedDetails();
@@ -2930,6 +2944,9 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				}
 			}
 		},
+		onSwitchOut(pokemon) {
+			((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
+		},
 		flags: { failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1, notransform: 1 },
 		name: "Neutralizing Gas",
 		rating: 3.5,
@@ -3419,6 +3436,9 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				}
 			}
 			this.field.clearWeather();
+		},
+		onSwitchOut(pokemon) {
+			((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
 		},
 		flags: {},
 		name: "Primordial Sea",
@@ -4317,7 +4337,6 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			}
 		},
 		onEnd(pokemon) {
-			if (pokemon.beingCalledBack) return;
 			this.add('-end', pokemon, 'Slow Start', '[silent]');
 		},
 		flags: {},
@@ -4708,7 +4727,6 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			}
 		},
 		onEnd(pokemon) {
-			if (pokemon.beingCalledBack) return;
 			this.add('-end', pokemon, `fallen${this.effectState.fallen}`, '[silent]');
 		},
 		onBasePowerPriority: 21,
@@ -4801,6 +4819,9 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			this.debug('Sword of Ruin Def drop');
 			return this.chainModify(0.75);
 		},
+		onSwitchOut(pokemon) {
+			((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
+		},
 		flags: {},
 		name: "Sword of Ruin",
 		rating: 4.5,
@@ -4853,6 +4874,9 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			if (move.ruinedAtk !== abilityHolder) return;
 			this.debug('Tablets of Ruin Atk drop');
 			return this.chainModify(0.75);
+		},
+		onSwitchOut(pokemon) {
+			((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
 		},
 		flags: {},
 		name: "Tablets of Ruin",
@@ -5268,6 +5292,9 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			this.debug('Vessel of Ruin SpA drop');
 			return this.chainModify(0.75);
 		},
+		onSwitchOut(pokemon) {
+			((this.effect as any).onEnd as (p: Pokemon) => void).call(this, pokemon);
+		},
 		flags: {},
 		name: "Vessel of Ruin",
 		rating: 4.5,
@@ -5572,7 +5599,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		},
 		onEnd(pokemon) {
 			if (!pokemon.isActive || !pokemon.hp || pokemon.baseSpecies.baseSpecies !== 'Darmanitan' ||
-				pokemon.transformed || pokemon.beingCalledBack) return;
+				pokemon.transformed) return;
 			if (pokemon.species.baseSpecies === 'Darmanitan' && pokemon.species.battleOnly) {
 				pokemon.formeChange(pokemon.species.battleOnly as string);
 			}
