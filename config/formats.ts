@@ -4831,11 +4831,16 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 			if (species.isNonstandard === 'Future') {
 				return [`${species.name} does not exist in XY.`];
 			}
-			if (!species.types.includes('Flying') && set.ability !== 'Levitate') {
-				return [`${species.name} is not a Flying type and does not have the ability Levitate.`];
+			if (species.baseSpecies === 'Gengar') {
+				return [`${species.name} is ineligible for Sky Battles even if it has the ability Levitate.`];
 			}
-			if (ineligiblePokemon.includes(species.name)) {
-				return [`${species.name} is ineligible for Sky Battles.`];
+			if (set.ability !== 'Levitate') {
+				if (ineligiblePokemon.includes(species.name)) {
+					return [`${species.name} is ineligible for Sky Battles.`];
+				}
+				if (!species.types.includes('Flying')) {
+					return [`${species.name} is not a Flying type and does not have the ability Levitate.`];
+				}
 			}
 
 			const problems: string[] = [];
