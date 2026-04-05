@@ -106,6 +106,17 @@ export class BattleActions {
 			// if a pokemon is forced out by Whirlwind/etc or Eject Button/Pack, it can't use its chosen move
 			this.battle.queue.cancelAction(oldActive);
 
+			if (this.battle.gen === 1 && oldActive.volatiles['partiallytrapped']) {
+				const trapper = oldActive.volatiles['partiallytrapped'].source;
+				if (trapper.moveSlots[trapper.side.lastSelectedMoveSlot].id === 'metronome') {
+					// this is not done for Mirror Move, potentially resulting in a desync
+					trapper.side.lastSelectedMove = 'metronome' as ID;
+					if (this.battle.queue.willMove(trapper)) {
+						this.battle.queue.changeAction(trapper, { choice: 'move', poke: trapper, moveid: 'metronome' });
+					}
+				}
+			}
+
 			let newMove = null;
 			if (this.battle.gen === 4 && sourceEffect) {
 				newMove = oldActive.lastMove;
@@ -139,6 +150,11 @@ export class BattleActions {
 		for (const moveSlot of pokemon.moveSlots) {
 			moveSlot.used = false;
 		}
+		if (this.battle.gen <= 2) {
+			// pokemon.lastMove is reset for all Pokemon on the field after a switch. This affects Mirror Move.
+			for (const poke of this.battle.getAllActive()) poke.lastMove = null;
+			if (this.battle.gen === 1) pokemon.side.lastSelectedMoveSlot = 0;
+		}
 		pokemon.abilityState = this.battle.initEffectState({ id: pokemon.ability, target: pokemon });
 		pokemon.itemState = this.battle.initEffectState({ id: pokemon.item, target: pokemon });
 		this.battle.runEvent('BeforeSwitchIn', pokemon);
@@ -152,13 +168,8 @@ export class BattleActions {
 		if (this.battle.gen <= 4) {
 			// Gen 4 Healing Wish and Lunar Dance activate here
 			this.battle.runEvent('EntryHazard', pokemon);
-			if (this.battle.gen <= 2) {
-				// pokemon.lastMove is reset for all Pokemon on the field after a switch. This affects Mirror Move.
-				for (const poke of this.battle.getAllActive()) poke.lastMove = null;
-				if (this.battle.gen === 1) pokemon.side.lastSelectedMoveSlot = 0;
-				if (!pokemon.side.faintedThisTurn && !isDrag) {
-					this.battle.runEvent('AfterSwitchInSelf', pokemon);
-				}
+			if (this.battle.gen <= 2 && !pokemon.side.faintedThisTurn && !isDrag) {
+				this.battle.runEvent('AfterSwitchInSelf', pokemon);
 			}
 			if (!pokemon.hp) return false;
 			if (this.battle.turn > 0) {
@@ -1892,13 +1903,12 @@ export class BattleActions {
 			return altForme.name;
 		}
 		if (!item.megaStone) return null;
-		// Temporary hardcode until generation shift
-		if ((species.baseSpecies === "Floette" || species.baseSpecies === "Zygarde") && item.megaStone[species.name]) {
-			return item.megaStone[species.name];
-		}
+		// TODO confirm with generation shift
+		let megaEvolution = item.megaStone[species.name];
+		if (megaEvolution && this.dex.species.get(megaEvolution).gen >= 9) return megaEvolution;
 		// a hacked-in Megazard X can mega evolve into Megazard Y, but not into Megazard X
 		// FIXME: Change to species.name when champions comes
-		const megaEvolution = item.megaStone[species.baseSpecies];
+		megaEvolution = item.megaStone[species.baseSpecies];
 		return megaEvolution && megaEvolution !== species.name ? megaEvolution : null;
 	}
 
@@ -1946,7 +1956,7 @@ export class BattleActions {
 	terastallize(pokemon: Pokemon) {
 		if (pokemon.species.baseSpecies === 'Ogerpon' && !['Fire', 'Grass', 'Rock', 'Water'].includes(pokemon.teraType) &&
 			(!pokemon.illusion || pokemon.illusion.species.baseSpecies === 'Ogerpon')) {
-			this.battle.hint("If Ogerpon Terastallizes into a type other than Fire, Grass, Rock, or Water, the game softlocks.", false, pokemon.side);
+			this.battle.hint("If Ogerpon Terastallizes into a type other than Fire, Grass, Rock, or Water, the game crashes.", false, pokemon.side);
 			return;
 		}
 

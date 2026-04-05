@@ -58,6 +58,7 @@ export interface EventMethods {
 	onHit?: MoveEventMethods['onHit'];
 	onImmunity?: (this: Battle, type: string, pokemon: Pokemon) => void;
 	onLockMove?: string | ((this: Battle, pokemon: Pokemon) => void | string);
+	onSemiLockMove?: string | ((this: Battle, pokemon: Pokemon) => void | string);
 	onMaybeTrapPokemon?: (this: Battle, pokemon: Pokemon) => void;
 	onModifyAccuracy?: CommonHandlers['ModifierMove'];
 	onModifyAtk?: CommonHandlers['ModifierSourceMove'];
@@ -450,6 +451,7 @@ export interface EventMethods {
 	onChangeBoostPriority?: number;
 	onDamagePriority?: number;
 	onDragOutPriority?: number;
+	onDisableMovePriority?: number;
 	onEffectivenessPriority?: number;
 	onEntryHazardPriority?: number;
 	onFoeBasePowerPriority?: number;
