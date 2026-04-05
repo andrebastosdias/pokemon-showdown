@@ -1872,13 +1872,12 @@ export class BattleActions {
 			return altForme.name;
 		}
 		if (!item.megaStone) return null;
-		// Temporary hardcode until generation shift
-		if ((species.baseSpecies === "Floette" || species.baseSpecies === "Zygarde") && item.megaStone[species.name]) {
-			return item.megaStone[species.name];
-		}
+		// TODO confirm with generation shift
+		let megaEvolution = item.megaStone[species.name];
+		if (megaEvolution && this.dex.species.get(megaEvolution).gen >= 9) return megaEvolution;
 		// a hacked-in Megazard X can mega evolve into Megazard Y, but not into Megazard X
 		// FIXME: Change to species.name when champions comes
-		const megaEvolution = item.megaStone[species.baseSpecies];
+		megaEvolution = item.megaStone[species.baseSpecies];
 		return megaEvolution && megaEvolution !== species.name ? megaEvolution : null;
 	}
 
@@ -1926,7 +1925,7 @@ export class BattleActions {
 	terastallize(pokemon: Pokemon) {
 		if (pokemon.species.baseSpecies === 'Ogerpon' && !['Fire', 'Grass', 'Rock', 'Water'].includes(pokemon.teraType) &&
 			(!pokemon.illusion || pokemon.illusion.species.baseSpecies === 'Ogerpon')) {
-			this.battle.hint("If Ogerpon Terastallizes into a type other than Fire, Grass, Rock, or Water, the game softlocks.", false, pokemon.side);
+			this.battle.hint("If Ogerpon Terastallizes into a type other than Fire, Grass, Rock, or Water, the game crashes.", false, pokemon.side);
 			return;
 		}
 
