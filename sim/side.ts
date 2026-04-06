@@ -557,7 +557,7 @@ export class Side {
 		let targetType: string | undefined = undefined;
 		if (autoChoose) moveText = 1;
 		if (typeof moveText === 'number' || (moveText && /^[0-9]+$/.test(moveText))) {
-			chosenBySlot = true;
+			chosenBySlot = this.battle.gen <= 3; // after Gen 3, the slot doesnt matter because it always uses the first available
 			// Parse a one-based move index.
 			const moveIndex = Number(moveText) - 1;
 			if (moveIndex < 0 || moveIndex >= request.moves.length || !request.moves[moveIndex]) {
@@ -666,7 +666,7 @@ export class Side {
 				lockedMoveTargetLoc = pokemon.volatiles[lockedMoveID].targetLoc;
 			}
 			if (semiLockedMove && pokemon.volatiles['encore'] && this.battle.gen <= 4) {
-				lockedMoveTargetLoc = undefined;
+				lockedMoveTargetLoc = undefined; // Encore always targets a random Pokemon
 			}
 			if (pokemon.maybeLocked) this.choice.cantUndo = true;
 			this.choice.actions.push({
@@ -1138,7 +1138,6 @@ export class Side {
 			if (this.battle.gen === 1) {
 				const move = choice.moveid;
 				if (move === 'fight') {
-					const pokemon = choice.pokemon;
 					if (['frz', 'slp'].includes(pokemon.status)) {
 						// do nothing
 					} else if (pokemon.volatiles['partiallytrapped']) {

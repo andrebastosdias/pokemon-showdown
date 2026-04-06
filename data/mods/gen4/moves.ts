@@ -1181,7 +1181,15 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				const ppDrop = this.runEvent('DeductPP', source, snatchUser, this.effectState.sourceEffect);
 				const extraPP = ppDrop !== true ? ppDrop : 0;
 				if (extraPP > 0) {
-					snatchUser.deductPP('snatch', extraPP);
+					// we need to get the first instance of the move used
+					// and put the move slot in an ActiveMove object
+					// this is for Gen 3, since in Gen 4 it already uses the first move slot
+					const moveSlot = snatchUser.moves.indexOf('snatch');
+					if (moveSlot < 0) return false;
+					const snatchMove = this.dex.getActiveMove('snatch');
+					snatchMove.moveSlot = moveSlot;
+
+					snatchUser.deductPP(snatchMove, extraPP);
 				}
 
 				this.actions.useMove(move.id, snatchUser);

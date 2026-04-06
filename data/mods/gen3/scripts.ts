@@ -16,28 +16,25 @@ export const Scripts: ModdedBattleScriptsData = {
 	pokemon: {
 		inherit: true,
 		deductPP(move, amount) {
-			// in Gens 2 and 3, PP can be deducted separately from duplicate moves
-			move = this.battle.dex.moves.get(move);
-			const moveSlots = this.moveSlots.slice();
-
-			// try to deduct PP from the selected move slot first
+			// a lot of checks just to make sure the move slot is always available
 			const moveSlot = (move as ActiveMove).moveSlot;
-			if (typeof moveSlot === 'number') {
-				// change check order
-				moveSlots.unshift(moveSlots.splice(moveSlot, 1)[0]);
+			if (typeof moveSlot !== 'number') {
+				throw new Error(`Non-locked move ${move} doesn't have a move slot - cannot deduct PP!`);
 			}
-
-			for (const ppData of moveSlots) {
-				if (ppData.id !== move.id) continue;
-				ppData.used = true;
-				if (!ppData.pp) return 0;
-
-				if (!amount) amount = 1;
-				amount = Math.min(amount, ppData.pp);
-				ppData.pp -= amount;
-				return amount;
+			const ppData = this.getMoveSlot(moveSlot);
+			if (!ppData) {
+				throw new Error(`Move slot ${moveSlot} does not exist on this Pokémon - cannot deduct PP!`);
 			}
-			return 0;
+			if (ppData.id !== toID(move)) {
+				throw new Error(`Move slot ${moveSlot} contains ${ppData.id}, not ${toID(move)} - cannot deduct PP!`);
+			}
+			ppData.used = true;
+			if (!ppData.pp) return 0;
+
+			if (!amount) amount = 1;
+			amount = Math.min(amount, ppData.pp);
+			ppData.pp -= amount;
+			return amount;
 		},
 		getActionSpeed() {
 			let speed = this.getStat('spe', false, false);

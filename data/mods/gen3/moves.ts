@@ -620,9 +620,19 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	spite: {
 		inherit: true,
 		onHit(target) {
+			let move = target.lastMove;
+			if (!move) return false;
+
+			// we need to get the first instance of the move used
+			// and put the move slot in an ActiveMove object
+			const moveSlot = target.moves.indexOf(move.id);
+			if (moveSlot < 0) return false;
+			move = this.dex.getActiveMove(move.id);
+			move.moveSlot = moveSlot;
+
 			const roll = this.random(2, 6);
-			if (target.lastMove && target.deductPP(target.lastMove.id, roll)) {
-				this.add("-activate", target, 'move: Spite', target.lastMove.id, roll);
+			if (target.deductPP(move, roll)) {
+				this.add("-activate", target, 'move: Spite', move.id, roll);
 				return;
 			}
 			return false;
