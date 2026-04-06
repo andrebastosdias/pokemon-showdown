@@ -273,7 +273,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				delete move.volatileStatus;
 				delete move.onHit;
 				move.self = { boosts: { atk: 1, def: 1, spe: -1 } };
-				move.target = move.nonGhostTarget!;
+				move.target = 'self';
 			} else if (target?.volatiles['substitute']) {
 				delete move.volatileStatus;
 				delete move.onHit;
@@ -384,8 +384,12 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			},
 			onResidualOrder: 10,
 			onResidualSubOrder: 14,
-			// hardcoded in sim/pokemon.ts
 			onDisableMove: undefined, // no inherit
+			onSemiLockMove(pokemon) {
+				if (this.effectState.move && pokemon.hasMove(this.effectState.move)) {
+					return this.effectState.move;
+				}
+			},
 		},
 	},
 	endeavor: {

@@ -977,7 +977,7 @@ export class Pokemon {
 		}
 		const moves = [];
 		let hasValidMove = false;
-		for (const [i, moveSlot] of this.moveSlots.entries()) {
+		for (const moveSlot of this.moveSlots) {
 			let moveName = moveSlot.move;
 			if (moveSlot.id === 'hiddenpower') {
 				moveName = `Hidden Power ${this.hpType}`;
@@ -986,22 +986,11 @@ export class Pokemon {
 				const basePowerCallback = this.battle.dex.moves.get(moveSlot.id).basePowerCallback as (pokemon: Pokemon) => number;
 				moveName += ` ${basePowerCallback(this)}`;
 			}
-			let target: string | undefined = moveSlot.target;
-			if (this.battle.gen <= 4 && this.volatiles['encore']) {
-				// In gens 2-4, Encore automatically selects when the Fight Button is pressed
-				if (this.battle.gen === 4) {
-					// submit first slot
-					if (this.volatiles['encore'].move !== moveSlot.id || this.moves.indexOf(moveSlot.id) !== i) continue;
-				} else {
-					// submit seletected slot
-					if (this.volatiles['encore'].slotIndex !== i) continue;
-				}
-				target = undefined;
-			}
+			let target = moveSlot.target;
 			switch (moveSlot.id) {
 			case 'curse':
 				if (!this.hasType('Ghost')) {
-					target = this.battle.dex.moves.get('curse').nonGhostTarget;
+					target = 'self';
 				}
 				break;
 			case 'pollenpuff':

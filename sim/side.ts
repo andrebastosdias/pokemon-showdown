@@ -657,12 +657,16 @@ export class Side {
 			}
 		}
 
-		const lockedMove = pokemon.getLockedMove() || pokemon.getSemiLockedMove();
-		if (lockedMove) {
-			let lockedMoveTargetLoc = pokemon.lastMoveTargetLoc || 0;
-			const lockedMoveID = toID(lockedMove);
+		const lockedMove = pokemon.getLockedMove();
+		const semiLockedMove = pokemon.getSemiLockedMove();
+		if (lockedMove || semiLockedMove) {
+			let lockedMoveTargetLoc: number | undefined = pokemon.lastMoveTargetLoc || 0;
+			const lockedMoveID = toID(lockedMove || semiLockedMove);
 			if (pokemon.volatiles[lockedMoveID]?.targetLoc) {
 				lockedMoveTargetLoc = pokemon.volatiles[lockedMoveID].targetLoc;
+			}
+			if (semiLockedMove && pokemon.volatiles['encore'] && this.battle.gen <= 4) {
+				lockedMoveTargetLoc = undefined;
 			}
 			if (pokemon.maybeLocked) this.choice.cantUndo = true;
 			this.choice.actions.push({
@@ -1128,9 +1132,10 @@ export class Side {
 	}
 
 	commitChoices() {
-		if (this.battle.gen === 1) {
-			for (const choice of this.choice.actions) {
-				if (choice.choice !== 'move' || !choice.pokemon) continue;
+		for (const choice of this.choice.actions) {
+			if (choice.choice !== 'move' || !choice.pokemon) continue;
+			const pokemon = choice.pokemon;
+			if (this.battle.gen === 1) {
 				const move = choice.moveid;
 				if (move === 'fight') {
 					const pokemon = choice.pokemon;
@@ -1154,6 +1159,9 @@ export class Side {
 				 * if a Pokémon is recharging, this ensures it tries to use Hyper Beam again
 				 */
 				choice.moveid = this.lastSelectedMove;
+			} else if (this.battle.gen <= 3) {
+				// deduct PP from the original slot
+				choice.moveSlot = pokemon.volatiles['encore']?.slotIndex ?? choice.moveSlot;
 			}
 		}
 		this.battle.queue.addChoice(this.choice.actions);
