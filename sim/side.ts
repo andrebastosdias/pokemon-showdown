@@ -209,7 +209,7 @@ export class Side {
 	 * lastSelectedMove never resets
 	 * lastSelectedMoveSlot resets on every switch
 	 */
-	lastSelectedMove: ID = '';
+	lastSelectedMove: ID = '00' as ID;
 	lastSelectedMoveSlot = 0;
 
 	constructor(name: string, battle: Battle, sideNum: number, team: PokemonSet[]) {
@@ -657,7 +657,7 @@ export class Side {
 			}
 		}
 
-		const lockedMove = pokemon.getLockedMove();
+		const lockedMove = pokemon.getLockedMove() || pokemon.getSemiLockedMove();
 		if (lockedMove) {
 			let lockedMoveTargetLoc = pokemon.lastMoveTargetLoc || 0;
 			const lockedMoveID = toID(lockedMove);
@@ -678,7 +678,7 @@ export class Side {
 			this.choice.actions.push({
 				choice: 'move',
 				pokemon,
-				// don't send a move, handled side.commitChoices
+				moveid: 'fight',
 			});
 			return true;
 		} else if (!moves.length) {
@@ -1128,26 +1128,18 @@ export class Side {
 	}
 
 	commitChoices() {
-		for (const choice of this.choice.actions) {
-			if (choice.choice !== 'move' || !choice.pokemon) continue;
-			const move = choice.moveid;
-			const pokemon = choice.pokemon;
-			if (this.battle.gen === 1) {
-				if (!move) {
+		if (this.battle.gen === 1) {
+			for (const choice of this.choice.actions) {
+				if (choice.choice !== 'move' || !choice.pokemon) continue;
+				const move = choice.moveid;
+				if (move === 'fight') {
+					const pokemon = choice.pokemon;
 					if (['frz', 'slp'].includes(pokemon.status)) {
 						// do nothing
 					} else if (pokemon.volatiles['partiallytrapped']) {
-						// 'cantmove' is what is set in the cartridge
-						this.lastSelectedMove = 'cantmove' as ID;
+						// 'cannotmove' is what is set in the cartridge
+						this.lastSelectedMove = 'cannotmove' as ID;
 					}
-					/**
-					 * if partially trapped: put 'cantmove' in lastSelectedMove
-					 * if frozen or asleep: try to reuse the last move,
-					 *   which can fail if the Pokemon thaws and the move doesn't match lastSelectedMoveSlot
-					 *
-					 * if this happens in the first move selection of a player, put '00' as a placeholder to avoid errors
-					 */
-					choice.moveid = this.lastSelectedMove || '00' as ID;
 				} else if (move === 'struggle') {
 					// saves Struggle
 					this.lastSelectedMove = move as ID;
@@ -1156,10 +1148,12 @@ export class Side {
 					this.lastSelectedMove = move as ID;
 					this.lastSelectedMoveSlot = choice.moveSlot;
 				}
-				// locked moves (including mustrecharge) dont set lastSelectedMove
-			} else if (this.battle.gen <= 3) {
-				// deduct PP from the original slot
-				choice.moveSlot = pokemon.volatiles['encore']?.slotIndex ?? choice.moveSlot;
+				/**
+				 * choice.moveid should be synced with lastSelectedMove
+				 * if a Pokémon is frozen or asleep, this ensures it tries to use the last move used
+				 * if a Pokémon is recharging, this ensures it tries to use Hyper Beam again
+				 */
+				choice.moveid = this.lastSelectedMove;
 			}
 		}
 		this.battle.queue.addChoice(this.choice.actions);
@@ -1256,7 +1250,7 @@ export class Side {
 				if (!this.chooseMove(data, targetLoc, event)) return false;
 				break;
 			case 'switch':
-				this.chooseSwitch(data);
+				if (!this.chooseSwitch(data)) return false;
 				break;
 			case 'shift':
 				if (data) return this.emitChoiceError(`Unrecognized data after "shift": ${data}`);
@@ -1272,7 +1266,7 @@ export class Side {
 				break;
 			case 'auto':
 			case 'default':
-				this.autoChoose();
+				if (!this.autoChoose()) return false;
 				break;
 			default:
 				this.emitChoiceError(`Unrecognized choice: ${choiceString}`);
