@@ -22,7 +22,7 @@ export const Scripts: ModdedBattleScriptsData = {
 
 			if (pokemon.species.baseSpecies === 'Ogerpon' && !['Fire', 'Grass', 'Rock', 'Water'].includes(pokemon.teraType) &&
 				(!pokemon.illusion || pokemon.illusion.species.baseSpecies === 'Ogerpon')) {
-				this.battle.hint("If Ogerpon Terastallizes into a type other than Fire, Grass, Rock, or Water, the game softlocks.", false, pokemon.side);
+				this.battle.hint("If Ogerpon Terastallizes into a type other than Fire, Grass, Rock, or Water, the game crashes.", false, pokemon.side);
 				return false;
 			}
 
