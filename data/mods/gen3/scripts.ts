@@ -125,7 +125,6 @@ export const Scripts: ModdedBattleScriptsData = {
 
 			let move = this.dex.getActiveMove(moveOrMoveName);
 			pokemon.lastMoveUsed = move;
-			pokemon.lastMoveEncore = move; // Gen 2
 
 			if (this.battle.activeMove) {
 				move.priority = this.battle.activeMove.priority;
