@@ -86,9 +86,11 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		damageCallback(pokemon, target) {
 			const lastAttackedBy = pokemon.getLastAttackedBy();
 			if (!lastAttackedBy?.move || !lastAttackedBy.thisTurn) return false;
+			const lastMove = lastAttackedBy.source.lastMove;
+			if (!lastMove || lastAttackedBy.move !== lastMove.id) return false;
 
 			// Hidden Power counts as physical
-			if (this.getCategory(lastAttackedBy.move) === 'Physical' && target.lastMove?.id !== 'sleeptalk') {
+			if (this.getCategory(lastAttackedBy.move) === 'Physical') {
 				return 2 * lastAttackedBy.damage;
 			}
 			return false;
@@ -351,9 +353,11 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		damageCallback(pokemon, target) {
 			const lastAttackedBy = pokemon.getLastAttackedBy();
 			if (!lastAttackedBy?.move || !lastAttackedBy.thisTurn) return false;
+			const lastMove = lastAttackedBy.source.lastMove;
+			if (!lastMove || lastAttackedBy.move !== lastMove.id) return false;
 
 			// Hidden Power counts as physical
-			if (this.getCategory(lastAttackedBy.move) === 'Special' && target.lastMove?.id !== 'sleeptalk') {
+			if (this.getCategory(lastAttackedBy.move) === 'Special') {
 				return 2 * lastAttackedBy.damage;
 			}
 			return false;
