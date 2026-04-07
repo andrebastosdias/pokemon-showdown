@@ -602,7 +602,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	sketch: {
 		inherit: true,
 		flags: { bypasssub: 1, failencore: 1, noassist: 1, nosketch: 1 },
-		onHit(target, source) {
+		onHit() {
 			// Sketch always fails in Link Battles
 			this.add('-nothing');
 		},
@@ -779,7 +779,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	triattack: {
 		inherit: true,
 		onHit(target, source, move) {
-			move.statusRoll = ['par', 'frz', 'brnr'][this.random(3)];
+			move.statusRoll = ['par', 'frz', 'brn'][this.random(3)];
 		},
 		secondary: {
 			chance: 20,

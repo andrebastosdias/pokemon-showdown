@@ -73,4 +73,16 @@ describe('Conversion2', () => {
 			assert.equal(battle.p1.active[0].getTypes()[0], 'Steel');
 		});
 	});
+
+	describe('[Gen 2]', () => {
+		it('should not succeed after moves that clear the last move used', () => {
+			battle = common.gen(2).createBattle([
+				[{ species: 'forretress', moves: ['conversion2'] }],
+				[{ species: 'salamence', moves: ['metronome'] }],
+			]);
+			battle.makeChoices();
+			assert.equal(battle.p1.active[0].getTypes()[0], 'Bug');
+			assert.equal(battle.p1.active[0].getTypes()[1], 'Steel');
+		});
+	});
 });
