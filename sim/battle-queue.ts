@@ -136,7 +136,7 @@ export interface ActionChoice {
 export class BattleQueue {
 	battle: Battle;
 	list: Action[];
-	static readonly orders: { [choice: string]: number } = {
+	readonly orders: { [choice: string]: number } = {
 		team: 1,
 		start: 2,
 		instaswitch: 3,
@@ -194,7 +194,7 @@ export class BattleQueue {
 		if (!action.side && action.pokemon) action.side = action.pokemon.side;
 		if (!action.move && action.moveid) action.move = this.battle.dex.getActiveMove(action.moveid);
 		if (!action.order) {
-			action.order = BattleQueue.orders[action.choice];
+			action.order = this.orders[action.choice];
 			if (!action.order) {
 				throw new Error(`Unexpected orderless action ${action.choice}`);
 			}
