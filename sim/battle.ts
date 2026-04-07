@@ -2494,9 +2494,9 @@ export class Battle {
 		// when used without an explicit target.
 
 		move = this.dex.moves.get(move);
-		if (move.target === 'adjacentAllyOrSelf') {
+		if (move.target === 'adjacentAllyOrSelf' && this.gen <= 4) {
 			return this.sample([pokemon, ...pokemon.adjacentAllies()]);
-		} else if (['self', 'all', 'allySide', 'allyTeam'].includes(move.target)) {
+		} else if (['self', 'all', 'allySide', 'allyTeam', 'adjacentAllyOrSelf'].includes(move.target)) {
 			return pokemon;
 		} else if (move.target === 'adjacentAlly') {
 			if (this.gameType === 'singles') return null;
