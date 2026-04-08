@@ -145,7 +145,7 @@ describe('Snatch [Gen 4]', () => {
 			{ species: 'wynaut', moves: ['calmmind'] },
 		]]);
 		battle.makeChoices();
-		battle.makeChoices('move sleeptalk', 'auto');
+		assert.doesNotThrow(() => battle.makeChoices('move sleeptalk', 'auto'));
 	});
 
 	it("should lock the user into the stolen move after using Snatch if it has the move", () => {
@@ -156,7 +156,7 @@ describe('Snatch [Gen 4]', () => {
 		]]);
 		battle.makeChoices();
 		assert.throws(() => battle.choose('p1', 'move snatch'));
-		battle.makeChoices('move calmmind', 'auto');
+		assert.doesNotThrow(() => battle.makeChoices('move calmmind', 'auto'));
 	});
 
 	it("should lock the user into Snatch if it fails to steal a move", () => {
@@ -167,6 +167,6 @@ describe('Snatch [Gen 4]', () => {
 		]]);
 		battle.makeChoices();
 		assert.throws(() => battle.choose('p1', 'move watergun'));
-		battle.makeChoices('move snatch', 'auto');
+		assert.doesNotThrow(() => battle.makeChoices('move snatch', 'auto'));
 	});
 });

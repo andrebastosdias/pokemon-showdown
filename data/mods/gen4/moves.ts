@@ -1242,8 +1242,9 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 					snatchUser.deductPP(this.effectState.sourceEffect.id, extraPP);
 				}
 
-				this.actions.useMove(move.id, snatchUser);
-
+				const snatchedMove = this.dex.getActiveMove(move.id);
+				snatchUser.lastMove = snatchedMove;
+				this.actions.useMove(snatchedMove, snatchUser);
 				if (snatchUser.getItem().isChoice) {
 					delete snatchUser.volatiles['choicelock'];
 					snatchUser.addVolatile('choicelock');
