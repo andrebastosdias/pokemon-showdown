@@ -271,7 +271,7 @@ export class BattleQueue {
 	/**
 	 * Makes the passed action happen next (skipping speed order).
 	 */
-	prioritizeAction(action: MoveAction, sourceEffect?: Effect, desprioritize = false) {
+	prioritizeAction(action: MoveAction, sourceEffect?: Effect, decreasePriority = false) {
 		for (const [i, curAction] of this.list.entries()) {
 			if (curAction === action) {
 				this.list.splice(i, 1);
@@ -279,10 +279,13 @@ export class BattleQueue {
 			}
 		}
 		action.sourceEffect = sourceEffect;
-		action.order = desprioritize ? 201 : 199;
+		action.order = decreasePriority ? 201 : 199;
 
+		// before Gen 8, prioritization follows insertion order
+		// in Gens 8+, the queue is sorted after every action
 		for (const [i, curAction] of this.list.entries()) {
-			if (curAction.order >= action.order) {
+			if ((!decreasePriority && curAction.order >= action.order) ||
+				(decreasePriority && curAction.order > action.order)) {
 				this.list.splice(i, 0, action);
 				return;
 			}
