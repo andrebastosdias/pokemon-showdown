@@ -1244,7 +1244,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 
 				this.actions.useMove(move.id, snatchUser);
 
-        if (snatchUser.getItem().isChoice) {
+				if (snatchUser.getItem().isChoice) {
 					delete snatchUser.volatiles['choicelock'];
 					snatchUser.addVolatile('choicelock');
 				}
