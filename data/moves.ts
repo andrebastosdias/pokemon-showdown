@@ -15563,7 +15563,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 			for (const action of this.queue.list as MoveAction[]) {
 				if (!action.pokemon || !action.move || action.maxMove || action.zmove) continue;
 				if (action.move.id === 'round') {
-					this.queue.prioritizeAction(action, move);
+					this.queue.prioritizeAction(action);
 					return;
 				}
 			}
