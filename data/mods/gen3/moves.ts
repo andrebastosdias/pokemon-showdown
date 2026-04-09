@@ -42,8 +42,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			onModifySpAPriority: -101,
 			onModifySpA(atk, pokemon, defender, move) {
 				if (!this.ruleTable.has('beatupnicknamesmod')) {
-					// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-					this.add('-activate', pokemon, 'move: Beat Up', '[of] ' + move.allies![0]!.name);
+					this.add('-activate', pokemon, 'move: Beat Up', '[of] ' + move.allies![0].name);
 				}
 				this.event.modifier = 1;
 				return this.dex.species.get(move.allies!.shift()!.set.species).baseStats.atk;
@@ -61,7 +60,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		priority: 0,
 		condition: {
 			inherit: true,
-			onAfterSetStatus() {},
+			onAfterSetStatus: undefined, // no inherit
 			onBeforeMove(pokemon, target, move) {
 				if (this.effectState.duration === 1) {
 					this.add('-end', pokemon, 'move: Bide');
@@ -103,7 +102,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	blizzard: {
 		inherit: true,
-		onModifyMove() { },
+		onModifyMove: undefined, // no inherit
 	},
 	brickbreak: {
 		inherit: true,
@@ -116,7 +115,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	charge: {
 		inherit: true,
-		boosts: null,
+		boosts: undefined, // no inherit
 	},
 	conversion: {
 		inherit: true,
@@ -169,7 +168,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				if (source !== this.effectState.target || !this.effectState.slot) return;
 				return this.getAtSlot(this.effectState.slot);
 			},
-			onDamagingHit() {},
+			onDamagingHit: undefined, // no inherit
 			onDamagePriority: -101,
 			onDamage(damage, target, source, effect) {
 				if (
@@ -208,8 +207,8 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			durationCallback() {
 				return this.random(2, 6);
 			},
-			"onResidualOrder": undefined,
-			"onResidualSubOrder": undefined,
+			"onResidualOrder": undefined, // no inherit
+			"onResidualSubOrder": undefined, // no inherit
 		},
 	},
 	dive: {
@@ -303,7 +302,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	followme: {
 		inherit: true,
-		volatileStatus: undefined,
+		volatileStatus: undefined, // no inherit
 		slotCondition: 'followme',
 		condition: {
 			inherit: true,
@@ -414,7 +413,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				if (source !== this.effectState.target || !this.effectState.slot) return;
 				return this.getAtSlot(this.effectState.slot);
 			},
-			onDamagingHit() {},
+			onDamagingHit: undefined, // no inherit
 			onDamagePriority: -101,
 			onDamage(damage, target, source, effect) {
 				if (
@@ -430,7 +429,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	mirrormove: {
 		inherit: true,
 		flags: { metronome: 1, failencore: 1, nosleeptalk: 1, noassist: 1 },
-		onTryHit() { },
+		onTryHit: undefined, // no inherit
 		onHit(pokemon) {
 			const noMirror = [
 				'assist', 'curse', 'doomdesire', 'focuspunch', 'futuresight', 'magiccoat', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'psychup', 'roleplay', 'sketch', 'sleeptalk', 'spikes', 'spitup', 'taunt', 'teeterdance', 'transform',
@@ -592,11 +591,11 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		condition: {
 			inherit: true,
 			duration: 2,
-			durationCallback: undefined,
+			durationCallback: undefined, // no inherit
 			onEnd(target) {
 				this.add('-end', target, 'move: Taunt', '[silent]');
 			},
-			onBeforeMovePriority: undefined,
+			onBeforeMovePriority: undefined, // no inherit
 		},
 	},
 	teeterdance: {
@@ -622,11 +621,11 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	volttackle: {
 		inherit: true,
-		secondary: null,
+		secondary: undefined, // no inherit
 	},
 	waterfall: {
 		inherit: true,
-		secondary: null,
+		secondary: undefined, // no inherit
 	},
 	weatherball: {
 		inherit: true,

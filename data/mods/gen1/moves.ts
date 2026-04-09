@@ -32,7 +32,6 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	bide: {
 		inherit: true,
-		priority: 0,
 		accuracy: true,
 		condition: {
 			onStart(pokemon) {
@@ -60,15 +59,9 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				this.add('-activate', pokemon, 'Bide');
 				return false;
 			},
-			onDisableMove(pokemon) {
-				if (!pokemon.hasMove('bide')) {
-					return;
-				}
-				for (const moveSlot of pokemon.moveSlots) {
-					if (moveSlot.id !== 'bide') {
-						pokemon.disableMove(moveSlot.id);
-					}
-				}
+			onSemiLockMove: 'bide',
+			onDisableMove(target) {
+				target.maybeLocked = false; // the player knows it is locked
 			},
 		},
 		type: "???", // Will look as Normal but it's STAB-less
@@ -163,14 +156,14 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			// - if Counter is used by the opponent, it will succeed if the player's last selected move is Counterable
 			// - (Counter will thus desync if the target's last used move is not as counterable as the target's last selected move)
 			// - if Counter succeeds it will deal twice the last move damage dealt in battle (even if it's from a different pokemon because of a switch)
+			const isCounterable = (move: Move | null) => move && move.basePower > 0 &&
+				['Normal', 'Fighting'].includes(move.type) && move.id !== 'counter';
 
 			const lastMove = target.side.lastMove && this.dex.moves.get(target.side.lastMove.id);
-			const lastMoveIsCounterable = lastMove && lastMove.basePower > 0 &&
-				['Normal', 'Fighting'].includes(lastMove.type) && lastMove.id !== 'counter';
+			const lastMoveIsCounterable = isCounterable(lastMove);
 
 			const lastSelectedMove = target.side.lastSelectedMove && this.dex.moves.get(target.side.lastSelectedMove);
-			const lastSelectedMoveIsCounterable = lastSelectedMove && lastSelectedMove.basePower > 0 &&
-				['Normal', 'Fighting'].includes(lastSelectedMove.type) && lastSelectedMove.id !== 'counter';
+			const lastSelectedMoveIsCounterable = isCounterable(lastSelectedMove || null);
 
 			if (!lastMoveIsCounterable && !lastSelectedMoveIsCounterable) {
 				this.debug("Gen 1 Counter: last move was not Counterable");
@@ -218,12 +211,14 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		},
 		condition: {
 			inherit: true,
-			durationCallback: undefined,
+			durationCallback: undefined, // no inherit
 			onStart(pokemon) {
 				// disable can only select moves that have pp > 0, hence the onTryHit modification
-				const moveSlot = this.sample(pokemon.moveSlots.filter(ms => ms.pp > 0));
+				const [slotIndex, moveSlot] = this.sample(Array.from(pokemon.moveSlots.entries()).filter(([i, ms]) => ms.pp > 0));
+				this.debug(`Disable: disabling move ${moveSlot.move} in slot ${slotIndex}`);
 				this.add('-start', pokemon, 'Disable', moveSlot.move);
 				this.effectState.move = moveSlot.id;
+				this.effectState.slotIndex = slotIndex;
 				// 1-8 turns (which will in effect translate to 0-7 missed turns for the target)
 				this.effectState.time = this.random(1, 9);
 			},
@@ -241,11 +236,18 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 					return false;
 				}
 			},
+			onDisableMove(pokemon) {
+				// disable the move slot
+				if (pokemon.moveSlots.length > this.effectState.slotIndex) {
+					pokemon.moveSlots[this.effectState.slotIndex].disabled = true;
+					pokemon.moveSlots[this.effectState.slotIndex].disabledSource = this.effect.name;
+				}
+			},
 		},
 	},
 	dizzypunch: {
 		inherit: true,
-		secondary: null,
+		secondary: undefined, // no inherit
 	},
 	doubleedge: {
 		inherit: true,
@@ -300,7 +302,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		condition: {
 			inherit: true,
 			// This does nothing as it's dealt with on critical hit calculation.
-			onModifyCritRatio() {},
+			onModifyCritRatio: undefined, // no inherit
 		},
 	},
 	glare: {
@@ -326,6 +328,12 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			for (const pokemon of this.getAllActive()) {
 				pokemon.clearBoosts();
 				if (pokemon !== source) {
+					if (['frz', 'slp'].includes(pokemon.status)) {
+						pokemon.side.lastSelectedMove = 'cannotmove' as ID;
+						if (this.queue.willMove(pokemon)) {
+							this.queue.changeAction(pokemon, { choice: 'move', pokemon, moveid: 'cannotmove' });
+						}
+					}
 					pokemon.cureStatus(true);
 				}
 				if (pokemon.status === 'tox') {
@@ -383,7 +391,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	leechseed: {
 		inherit: true,
-		onHit() {},
+		onHit: undefined, // no inherit
 		condition: {
 			inherit: true,
 			onAfterMoveSelfPriority: 1,
@@ -413,7 +421,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	lightscreen: {
 		inherit: true,
 		volatileStatus: 'lightscreen',
-		sideCondition: undefined,
+		sideCondition: undefined, // no inherit
 		onTryHit(pokemon) {
 			if (pokemon.volatiles['lightscreen']) {
 				return false;
@@ -446,8 +454,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		flags: { protect: 1, bypasssub: 1, metronome: 1 },
 		onHit(target, source) {
-			const moveslot = source.moves.indexOf('mimic');
-			if (moveslot < 0) return false;
+			const moveslot = source.side.lastSelectedMoveSlot;
 			const moves = target.moves;
 			const moveid = this.sample(moves);
 			if (!moveid) return false;
@@ -456,7 +463,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				move: move.name,
 				id: move.id,
 				pp: source.moveSlots[moveslot].pp,
-				maxpp: move.pp * 8 / 5,
+				maxpp: this.calculatePP(move, source.ppUps[moveslot] || 0),
 				target: move.target,
 				disabled: false,
 				used: false,
@@ -469,7 +476,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		condition: {
 			inherit: true,
-			onSourceModifyDamage() {},
+			onSourceModifyDamage: undefined, // no inherit
 		},
 	},
 	mirrormove: {
@@ -512,7 +519,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	petaldance: {
 		inherit: true,
-		onMoveFail() {},
+		onMoveFail: undefined, // no inherit
 	},
 	poisonsting: {
 		inherit: true,
@@ -535,9 +542,15 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		basePower: 1,
 		damageCallback(pokemon) {
+			if ([0, 1, 171].includes(pokemon.level)) {
+				this.hint("Desync Clause Mod activated!");
+				this.hint("In Gen 1, if a Pokémon at level 0, 1 or 171 uses Psywave, the game softlocks.");
+				return false;
+			}
 			const psywaveDamage = (this.random(0, this.trunc(1.5 * pokemon.level)));
 			if (psywaveDamage <= 0) {
 				this.hint("Desync Clause Mod activated!");
+				this.hint("In Gen 1, Psywave can roll 0 damage.");
 				return false;
 			}
 			return psywaveDamage;
@@ -584,7 +597,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	recover: {
 		inherit: true,
-		heal: null,
+		heal: undefined, // no inherit
 		onHit(target) {
 			if (target.hp === target.maxhp) return false;
 			// Fail when health is 255 or 511 less than max, unless it is divisible by 256
@@ -604,7 +617,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	reflect: {
 		inherit: true,
 		volatileStatus: 'reflect',
-		sideCondition: undefined,
+		sideCondition: undefined, // no inherit
 		onTryHit(pokemon) {
 			if (pokemon.volatiles['reflect']) {
 				return false;
@@ -619,7 +632,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	rest: {
 		inherit: true,
-		onTry() {},
+		onTry: undefined, // no inherit
 		onHit(target, source, move) {
 			if (target.hp === target.maxhp) return false;
 			// Fail when health is 255 or 511 less than max, unless it is divisible by 256
@@ -642,12 +655,12 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	roar: {
 		inherit: true,
 		forceSwitch: false,
-		onTryHit() {},
+		onTryHit: undefined, // no inherit
 		priority: 0,
 	},
 	rockslide: {
 		inherit: true,
-		secondary: null,
+		secondary: undefined, // no inherit
 		target: "normal",
 	},
 	rockthrow: {
@@ -723,7 +736,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	softboiled: {
 		inherit: true,
-		heal: null,
+		heal: undefined, // no inherit
 		onHit(target) {
 			if (target.hp === target.maxhp) return false;
 			// Fail when health is 255 or 511 less than max, unless it is divisible by 256
@@ -744,7 +757,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		pp: 10,
 		recoil: [1, 2],
-		onModifyMove() {},
+		onModifyMove: undefined, // no inherit
 	},
 	substitute: {
 		inherit: true,
@@ -776,7 +789,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 					delete target.volatiles['partiallytrapped'];
 				}
 			},
-			onTryPrimaryHit() {},
+			onTryPrimaryHit: undefined, // no inherit
 			onTryHitPriority: -1,
 			onTryHit(target, source, move) {
 				if (move.category === 'Status') {
@@ -849,7 +862,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	thrash: {
 		inherit: true,
-		onMoveFail() {},
+		onMoveFail: undefined, // no inherit
 	},
 	thunder: {
 		inherit: true,
@@ -860,14 +873,14 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	triattack: {
 		inherit: true,
-		onHit() {},
-		secondary: null,
+		onHit: undefined, // no inherit
+		secondary: undefined, // no inherit
 	},
 	whirlwind: {
 		inherit: true,
 		accuracy: 85,
 		forceSwitch: false,
-		onTryHit() {},
+		onTryHit: undefined, // no inherit
 		priority: 0,
 	},
 	wingattack: {

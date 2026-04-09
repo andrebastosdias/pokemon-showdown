@@ -2373,6 +2373,13 @@ export class Battle {
 		return stat;
 	}
 
+	calculatePP(move: Move, ppUps = 3) {
+		if (move.noPPBoosts) return move.pp;
+		let pp = move.pp * (5 + ppUps) / 5;
+		if (this.gen <= 2 && move.pp === 40) pp -= ppUps;
+		return pp;
+	}
+
 	finalModify(relayVar: number) {
 		relayVar = this.modify(relayVar, this.event.modifier);
 		this.event.modifier = 1;
@@ -2644,8 +2651,9 @@ export class Battle {
 			// (instead of compounding every time `getActionSpeed` is called)
 			let priority = this.dex.moves.get(move.id).priority;
 			// Grassy Glide priority
-			priority = this.singleEvent('ModifyPriority', move, null, action.pokemon, null, null, priority);
-			priority = this.runEvent('ModifyPriority', action.pokemon, null, move, priority);
+			const target = this.getTarget(action.pokemon, action.move, action.targetLoc);
+			priority = this.singleEvent('ModifyPriority', move, null, action.pokemon, target, null, priority);
+			priority = this.runEvent('ModifyPriority', action.pokemon, target, move, priority);
 			action.priority = priority + action.fractionalPriority;
 			// In Gen 6, Quick Guard blocks moves with artificially enhanced priority.
 			if (this.gen > 5) action.move.priority = priority;
@@ -3007,7 +3015,7 @@ export class Battle {
 			if (choice) this.inputLog.push(`>${side.id} ${choice}`);
 		}
 		for (const side of this.sides) {
-			this.queue.addChoice(side.choice.actions);
+			side.commitChoices();
 		}
 		this.clearRequest();
 
