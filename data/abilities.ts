@@ -1053,7 +1053,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		flags: {},
 		name: "Dragonize",
 		rating: 4,
-		num: 312, // TODO confirm
+		num: 312,
 	},
 	dragonsmaw: {
 		onModifyAtkPriority: 5,
@@ -1111,7 +1111,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			}
 		},
 		onWeather(target, source, effect) {
-			if (target.hasItem('utilityumbrella')) return;
+			if (target.effectiveWeather() !== effect.id) return;
 			if (effect.id === 'raindance' || effect.id === 'primordialsea') {
 				this.heal(target.baseMaxhp / 8);
 			} else if (effect.id === 'sunnyday' || effect.id === 'desolateland') {
@@ -1146,14 +1146,14 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	effectspore: {
 		onDamagingHit(damage, target, source, move) {
-			if (this.checkMoveMakesContact(move, source, target) && !source.status && source.runStatusImmunity('powder')) {
+			if (this.checkMoveMakesContact(move, source, target) && source.runStatusImmunity('powder')) {
 				const r = this.random(100);
 				if (r < 11) {
-					source.setStatus('slp', target);
+					source.trySetStatus('slp', target);
 				} else if (r < 21) {
-					source.setStatus('par', target);
+					source.trySetStatus('par', target);
 				} else if (r < 30) {
-					source.setStatus('psn', target);
+					source.trySetStatus('psn', target);
 				}
 			}
 		},
@@ -2524,7 +2524,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		flags: {},
 		name: "Mega Sol",
 		rating: 3,
-		num: 311, // TODO confirm
+		num: 315,
 		// Partially implemented in Pokemon.effectiveWeather() in sim/pokemon.ts
 	},
 	merciless: {
@@ -3237,6 +3237,17 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		rating: 0.5,
 		num: 53,
 	},
+	piercingdrill: {
+		isNonstandard: "Future",
+		onModifyMove(move) {
+			if (move.flags['contact']) delete move.flags['protect'];
+		},
+		// breaking protect handled in Battle#checkMoveBreaksProtect()
+		flags: {},
+		name: "Piercing Drill",
+		rating: 1,
+		num: 311,
+	},
 	pixilate: {
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
@@ -3702,7 +3713,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	raindish: {
 		onWeather(target, source, effect) {
-			if (target.hasItem('utilityumbrella')) return;
+			if (target.effectiveWeather() !== effect.id) return;
 			if (effect.id === 'raindance' || effect.id === 'primordialsea') {
 				this.heal(target.baseMaxhp / 16);
 			}
@@ -4145,7 +4156,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	sheerforce: {
 		onModifyMove(move, pokemon) {
-			if (move.secondaries) {
+			if (move.secondaries && !move.hasSheerForceBoost) {
 				delete move.secondaries;
 				// Technically not a secondary effect, but it is negated
 				delete move.self;
@@ -4156,7 +4167,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		},
 		onBasePowerPriority: 21,
 		onBasePower(basePower, pokemon, target, move) {
-			if (move.hasSheerForce) return this.chainModify([5325, 4096]);
+			if (move.hasSheerForce || move.hasSheerForceBoost) return this.chainModify([5325, 4096]);
 		},
 		flags: {},
 		name: "Sheer Force",
@@ -4345,7 +4356,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			}
 		},
 		onWeather(target, source, effect) {
-			if (target.hasItem('utilityumbrella')) return;
+			if (target.effectiveWeather() !== effect.id) return;
 			if (effect.id === 'sunnyday' || effect.id === 'desolateland') {
 				this.damage(target.baseMaxhp / 8, target, target);
 			}
@@ -4406,6 +4417,16 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		name: "Speed Boost",
 		rating: 4.5,
 		num: 3,
+	},
+	spicyspray: {
+		isNonstandard: "Future",
+		onDamagingHit(damage, target, source, move) {
+			source.trySetStatus('brn', target);
+		},
+		flags: {},
+		name: "Spicy Spray",
+		rating: 3,
+		num: 318,
 	},
 	stakeout: {
 		onModifyAtkPriority: 5,
