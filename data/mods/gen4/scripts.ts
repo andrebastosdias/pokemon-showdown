@@ -15,6 +15,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				this.modData('Moves', i).flags = { mirror: 1, ...move.flags };
 			}
 		}
+	},
 	pokemon: {
 		inherit: true,
 		getActionSpeed() {
