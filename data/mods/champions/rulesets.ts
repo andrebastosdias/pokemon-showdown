@@ -3,14 +3,14 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 		inherit: true,
 		ruleset: [
 			'Obtainable', 'Team Preview', 'Cancel Mod', 'Endless Battle Clause',
-			'Adjust Level = 50', 'Item Clause = 1',
+			'Adjust Level = 50', 'Species Clause', 'Item Clause = 1',
 		],
 	},
 	standard: {
 		inherit: true,
 		ruleset: [
 			'Standard AG',
-			'Sleep Moves Clause', 'Species Clause', 'Nickname Clause', 'OHKO Clause',
+			'Sleep Moves Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause',
 		],
 	},
 	standarddraft: {
