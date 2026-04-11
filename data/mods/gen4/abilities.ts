@@ -305,7 +305,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	moldbreaker: {
 		inherit: true,
 		onSwitchInPriority: 4,
-  },
+	},
 	multitype: {
 		inherit: true,
 		onTakeItem: false,
