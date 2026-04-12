@@ -287,7 +287,6 @@ interface ModdedBattlePokemon {
 	hasType?: (this: Pokemon, type: string | string[]) => boolean;
 	getAbility?: (this: Pokemon) => Ability;
 	getActionSpeed?: (this: Pokemon) => number;
-	getHealth?: (this: Pokemon) => { side: SideID, secret: string, shared: string };
 	getItem?: (this: Pokemon) => Item;
 	getMoveRequestData?: (this: Pokemon) => {
 		moves: { move: string, id: ID, target?: string, disabled?: boolean }[],

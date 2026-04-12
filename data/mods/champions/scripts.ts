@@ -41,30 +41,6 @@ export const Scripts: ModdedBattleScriptsData = {
 		return true;
 	},
 	pokemon: {
-		getHealth() {
-			if (!this.hp) return { side: this.side.id, secret: '0 fnt', shared: '0 fnt' };
-			let secret = `${this.hp}/${this.maxhp}`;
-			let shared;
-			if (this.battle.reportExactHP) {
-				shared = secret;
-			} else {
-				let percentage = Math.floor(100 * this.hp / this.maxhp);
-				if (percentage === 0 && this.hp > 0) {
-					percentage = 1;
-				}
-				shared = `${percentage}/100`;
-				if (percentage === 20) {
-					shared += this.hp * 5 > this.maxhp ? 'y' : 'r';
-				} else if (percentage === 50) {
-					shared += this.hp * 2 > this.maxhp ? 'g' : 'y';
-				}
-			}
-			if (this.status) {
-				secret += ` ${this.status}`;
-				shared += ` ${this.status}`;
-			}
-			return { side: this.side.id, secret, shared };
-		},
 		// Remove Trick Room underflow
 		getActionSpeed() {
 			let speed = this.getStat('spe', false, false);
