@@ -92,5 +92,23 @@ describe('Flower Gift', () => {
 			assert.equal(battle.field.weather, 'raindance');
 			assert.species(battle.p1.active[0], 'Cherrim');
 		});
+
+		it(`transformed Cherrim should transform without Flower Gift`, () => {
+			battle = common.gen(4).createBattle([[
+				{ species: 'Ditto', moves: ['transform'] },
+			], [
+				{ species: 'Cherrim', moves: ['sleeptalk'] },
+				{ species: 'Torkoal', ability: 'drought', moves: ['sleeptalk'] },
+				{ species: 'Bulbasaur', ability: 'drizzle', moves: ['sleeptalk'] },
+			]]);
+			battle.makeChoices();
+			battle.makeChoices('move sleeptalk', 'switch 2');
+
+			assert.equal(battle.field.weather, 'sunnyday');
+			assert.species(battle.p1.active[0], 'Cherrim-Sunshine');
+			battle.makeChoices('auto', 'switch 3');
+			assert.equal(battle.field.weather, 'raindance');
+			assert.species(battle.p1.active[0], 'Cherrim');
+		});
 	});
 });
