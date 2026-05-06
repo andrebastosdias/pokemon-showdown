@@ -301,7 +301,7 @@ interface MoveHitData {
 		 * Is this move a Z-Move that broke the target's protection?
 		 * (does 0.25x regular damage)
 		 */
-		zBrokeProtect: boolean,
+		bypassProtect: boolean | Effect,
 	};
 }
 
@@ -339,7 +339,6 @@ export interface ActiveMove extends MutableMove {
 	stellarBoosted?: boolean;
 	totalDamage?: number | false;
 	typeChangerBoosted?: Effect;
-	willChangeForme?: boolean;
 	infiltrates?: boolean;
 	ruinedAtk?: Pokemon;
 	ruinedDef?: Pokemon;
