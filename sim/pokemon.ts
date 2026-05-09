@@ -863,7 +863,7 @@ export class Pokemon {
 	}
 
 	ignoringAbility() {
-		if (this.battle.gen >= 5 && !this.isActive) return true;
+		if (!this.isActive && (this.battle.gen >= 5 || this.fainted)) return true;
 
 		// Certain Abilities won't activate while Transformed, even if they ordinarily couldn't be suppressed (e.g. Disguise)
 		if (this.getAbility().flags['notransform'] && this.transformed) return true;
@@ -885,7 +885,7 @@ export class Pokemon {
 
 	ignoringItem(isFling = false) {
 		if (this.getItem().isPrimalOrb) return false;
-		if (this.battle.gen >= 5 && !this.isActive) return true;
+		if (!this.isActive && (this.battle.gen >= 5 || this.fainted)) return true;
 		if (this.volatiles['embargo'] || this.battle.field.pseudoWeather['magicroom']) return true;
 		// check Fling first to avoid infinite recursion
 		if (isFling) return this.battle.gen >= 5 && this.hasAbility('klutz');
