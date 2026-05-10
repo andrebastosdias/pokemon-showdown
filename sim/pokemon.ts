@@ -852,7 +852,7 @@ export class Pokemon {
 
 		// Resolve apparent targets for Pressure.
 		let pressureTargets = targets;
-		if (move.target === 'foeSide') {
+		if (move.target === 'foeSide' || (move.target === 'all' && move.id !== 'perishsong' && this.battle.gen <= 3)) {
 			pressureTargets = [];
 		}
 		if (move.flags['mustpressure']) {
@@ -884,8 +884,8 @@ export class Pokemon {
 	}
 
 	ignoringItem(isFling = false) {
-		if (this.getItem().isPrimalOrb) return false;
 		if ((this.battle.gen >= 5 && !this.isActive) || this.fainted) return true;
+		if (this.getItem().isPrimalOrb) return false;
 		if (this.volatiles['embargo'] || this.battle.field.pseudoWeather['magicroom']) return true;
 		// check Fling first to avoid infinite recursion
 		if (isFling) return this.battle.gen >= 5 && this.hasAbility('klutz');
