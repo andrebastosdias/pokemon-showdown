@@ -281,10 +281,6 @@ type ModdedMoveFlags = MoveFlags | ({
 
 export type ModdedMoveData = MoveData | Partial<Omit<MoveData, 'condition' | 'flags' | 'name'>> & {
 	inherit: true,
-	igniteBoosted?: boolean,
-	settleBoosted?: boolean,
-	bodyofwaterBoosted?: boolean,
-	longWhipBoost?: boolean,
 	gen?: number,
 	condition?: ModdedConditionData,
 	flags?: ModdedMoveFlags,

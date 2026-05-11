@@ -9,7 +9,10 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	},
 	hadronengine: {
 		inherit: true,
-		flags: { inherit: true, cantsuppress: 1, failroleplay: 1, failskillswap: 1, noentrain: 1, noreceiver: 1, notrace: 1, notransform: 1 },
+		flags: {
+			inherit: true,
+			cantsuppress: 1, failroleplay: 1, failskillswap: 1, noentrain: 1, noreceiver: 1, notrace: 1, notransform: 1,
+		},
 	},
 	illuminate: {
 		inherit: true,
@@ -24,7 +27,10 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	},
 	orichalcumpulse: {
 		inherit: true,
-		flags: { inherit: true, cantsuppress: 1, failroleplay: 1, failskillswap: 1, noentrain: 1, noreceiver: 1, notrace: 1, notransform: 1 },
+		flags: {
+			inherit: true,
+			cantsuppress: 1, failroleplay: 1, failskillswap: 1, noentrain: 1, noreceiver: 1, notrace: 1, notransform: 1,
+		},
 	},
 	supersweetsyrup: {
 		inherit: true,

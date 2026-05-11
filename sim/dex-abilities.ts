@@ -28,7 +28,7 @@ type ModdedAbilityFlags = AbilityFlags | ({
 	[K in keyof AbilityFlags]?: 0 | 1;
 } & { inherit: true });
 
-export type ModdedAbilityData = AbilityData | Partial<Omit<AbilityData, 'condition' | 'flags'>> & {
+export type ModdedAbilityData = AbilityData | Partial<Omit<AbilityData, 'condition' | 'flags' | 'name'>> & {
 	inherit: true,
 	condition?: ModdedConditionData,
 	flags?: ModdedAbilityFlags,
