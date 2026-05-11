@@ -656,7 +656,7 @@ export class ModdedDex {
 						delete childTypedData[entryId].inherit;
 
 						// {inherit: true} can also be used to inherit parts of nested objects
-						for (const key of ['condition', 'flags'] as const) {
+						for (const key of ['condition', 'flags']) {
 							if (childTypedData[entryId][key]?.inherit) {
 								delete childTypedData[entryId][key].inherit;
 								childTypedData[entryId][key] = {
