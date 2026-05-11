@@ -176,7 +176,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	crushclaw: {
 		inherit: true,
-		flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1 },
+		flags: { inherit: true, slicing: 1 },
 	},
 	crushgrip: {
 		inherit: true,
@@ -204,7 +204,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	direclaw: {
 		inherit: true,
-		flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1 },
+		flags: { inherit: true, slicing: 1 },
 		secondary: {
 			chance: 30,
 			onHit(target, source) {
@@ -254,11 +254,11 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	dragoncheer: {
 		inherit: true,
-		flags: { bypasssub: 1, allyanim: 1, metronome: 1, sound: 1 },
+		flags: { inherit: true, sound: 1 },
 	},
 	dragonclaw: {
 		inherit: true,
-		flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1 },
+		flags: { inherit: true, slicing: 1 },
 	},
 	dragonenergy: {
 		inherit: true,
@@ -635,7 +635,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	metalclaw: {
 		inherit: true,
 		isNonstandard: "Past",
-		flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1 },
+		flags: { inherit: true, slicing: 1 },
 	},
 	metronome: {
 		inherit: true,
@@ -882,7 +882,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	shadowclaw: {
 		inherit: true,
-		flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1 },
+		flags: { inherit: true, slicing: 1 },
 	},
 	shadowforce: {
 		inherit: true,

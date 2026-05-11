@@ -182,7 +182,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 
 			return 2 * this.lastDamage;
 		},
-		flags: { contact: 1, protect: 1, metronome: 1 },
+		flags: { inherit: true, metronome: 1 },
 	},
 	crabhammer: {
 		inherit: true,
@@ -451,7 +451,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	mimic: {
 		inherit: true,
-		flags: { protect: 1, bypasssub: 1, metronome: 1 },
+		flags: { inherit: true, metronome: 1 },
 		onHit(target, source) {
 			const moveslot = source.side.lastSelectedMoveSlot;
 			const moves = target.moves;

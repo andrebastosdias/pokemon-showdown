@@ -495,7 +495,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	asoneglastrier: {
 		inherit: true,
 		// removing these flags allows Frozen Armor to correctly set Caly-Ice ability as As One
-		flags: {},
+		flags: { inherit: true, cantsuppress: 0, failroleplay: 0, failskillswap: 0, noentrain: 0, noreceiver: 0, notrace: 0 },
 	},
 	protean: {
 		inherit: true,
