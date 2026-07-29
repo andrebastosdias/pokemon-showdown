@@ -3274,9 +3274,10 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		flags: { bypasssub: 1, metronome: 1 },
 		volatileStatus: 'curse',
 		onModifyMove(move, source, target) {
+			this.debug(source, target, move);
 			if (!source.hasType('Ghost')) {
-				move.target = move.nonGhostTarget!;
-			} else if (source.isAlly(target)) {
+				move.target = 'self';
+			} else if (!target || source.isAlly(target)) {
 				move.target = 'randomNormal';
 			}
 		},
@@ -3302,7 +3303,6 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 			},
 		},
 		target: "normal",
-		nonGhostTarget: "self",
 		type: "Ghost",
 		zMove: { effect: 'curse' },
 		contestType: "Tough",

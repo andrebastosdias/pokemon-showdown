@@ -220,7 +220,9 @@ export class BattleActions {
 		const externalMove = options?.externalMove;
 		const originalTarget = options?.originalTarget;
 		let sourceEffect = options?.sourceEffect;
+		// if (toID(moveOrMoveName) === 'curse') this.battle.debug("AAAA", pokemon, moveOrMoveName, targetLoc, originalTarget);
 		let target = this.battle.getTarget(pokemon, maxMove || zMove || moveOrMoveName, targetLoc, originalTarget);
+		// if (toID(moveOrMoveName) === 'curse') this.battle.debug("LILI", target);
 		let baseMove = this.dex.getActiveMove(moveOrMoveName);
 		const priority = baseMove.priority;
 		const pranksterBoosted = baseMove.pranksterBoosted;
@@ -381,6 +383,7 @@ export class BattleActions {
 		},
 	) {
 		let target = options?.target;
+		// if (toID(moveOrMoveName) === 'curse') this.battle.debug("LALA", target);
 		let sourceEffect = options?.sourceEffect;
 		const zMove = options?.zMove;
 		const maxMove = options?.maxMove;
@@ -419,6 +422,7 @@ export class BattleActions {
 		if (move.target === 'self' || move.target === 'allies') {
 			target = pokemon;
 		}
+		// if (toID(move) === 'curse') this.battle.debug("LELE", target);
 		if (sourceEffect) {
 			move.sourceEffect = sourceEffect.id;
 			move.ignoreAbility = (sourceEffect as ActiveMove).ignoreAbility;

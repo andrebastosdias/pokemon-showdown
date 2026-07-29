@@ -2702,6 +2702,7 @@ export class Battle {
 		case 'move':
 			if (!action.pokemon.isActive) return false;
 			if (action.pokemon.fainted) return false;
+			if (toID(action.move) === 'curse') this.debug("Removed from queue in Battle.runAction", action.pokemon, action.move, action.targetLoc, action.originalTarget);
 			this.actions.runMove(action.move, action.pokemon, action.targetLoc, {
 				sourceEffect: action.sourceEffect, zMove: action.zmove,
 				maxMove: action.maxMove, originalTarget: action.originalTarget,

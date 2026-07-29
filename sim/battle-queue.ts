@@ -14,6 +14,7 @@
  */
 
 import type { Battle } from './battle';
+import { toID } from './dex';
 
 /** Actions are sorted based on order (lower first)
  * followed by priority (higher first)
@@ -264,10 +265,13 @@ export class BattleQueue {
 				target = this.battle.getRandomTarget(action.pokemon, action.move);
 				// TODO: what actually happens here?
 				if (target) action.targetLoc = action.pokemon.getLocOf(target);
+				// if (toID(action.move) === 'curse') this.battle.debug("LOLO", action.targetLoc, target);
 			}
 			action.originalTarget = action.pokemon.getAtLoc(action.targetLoc);
+			// if (toID(action.move) === 'curse') this.battle.debug("Inserted into queue in BattleQueue.resolveAction", action.pokemon, action.move, action.targetLoc, action.originalTarget);
 		}
 		if (!deferPriority) this.battle.getActionSpeed(action);
+		if (toID(action.move) === 'curse') this.battle.debug("Inserted into queue in BattleQueue.resolveAction", action.pokemon, action.move, action.targetLoc, action.originalTarget);
 		return actions as any;
 	}
 
