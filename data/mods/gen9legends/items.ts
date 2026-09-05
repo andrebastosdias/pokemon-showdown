@@ -341,7 +341,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	garchompitez: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: null,
 	},
 	gardevoirite: {
 		inherit: true,
