@@ -5379,11 +5379,9 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 						randomMove = this.sample(moves).id;
 					}
 					if (!randomMove) return false;
-					if ([
-						'bodyslam', 'bulldoze', 'dig', 'dive', 'earthpower', 'earthquake', 'electricterrain', 'firepledge', 'fissure', 'flyingpress', 'frenzyplant', 'geomancy', 'grassknot', 'grasspledge', 'grassyterrain', 'gravity', 'heatcrash', 'heavyslam', 'ingrain', 'landswrath', 'magnitude', 'matblock', 'mistyterrain', 'mudsport', 'muddywater', 'rototiller', 'seismictoss', 'slam', 'smackdown', 'spikes', 'stomp', 'substitute', 'surf', 'thousandarrows', 'thousandwaves', 'toxicspikes', 'waterpledge', 'watersport',
-					].includes(randomMove)) {
-						const movename = dex.moves.get(randomMove).name;
-						this.addMove('move', pokemon, movename, `${null}|[from] move: Metronome`);
+					const move = dex.moves.get(randomMove);
+					if (move.flags['nonsky']) {
+						this.addMove('move', pokemon, move.name, `${null}|[from] move: Metronome`);
 						this.add('-fail', pokemon);
 						this.attrLastMove('[still]');
 						this.hint(`Certain prohibited moves won't work in Sky Battles.`);
