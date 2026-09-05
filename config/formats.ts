@@ -1405,6 +1405,86 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		ruleset: ['-Nonexistent', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause', 'EV limit = 510'],
 	},
 
+	// Legends: Z-A
+	///////////////////////////////////////////////////////////////////
+
+	{
+		section: "Legends: Z-A",
+		column: 2,
+	},
+	{
+		name: "[Gen 9 Legends] No Restrictions",
+		mod: 'gen9legends',
+		searchShow: false,
+		ruleset: ['Obtainable'],
+	},
+	{
+		name: "[Gen 9 Legends] Normal Rules",
+		mod: 'gen9legends',
+		searchShow: false,
+		ruleset: ['Flat Rules'],
+	},
+	{
+		name: "[Gen 9 Legends] Casual Rules",
+		mod: 'gen9legends',
+		searchShow: false,
+		ruleset: ['Flat Rules', 'Limit One Restricted'],
+		restricted: ['Restricted Legendary'],
+	},
+
+	// Legends: Arceus
+	///////////////////////////////////////////////////////////////////
+
+	{
+		section: "Legends: Arceus",
+		column: 2,
+	},
+	{
+		name: "[Gen 8 Legends] Random Battle",
+		desc: `Randomized teams of level-balanced Pok&eacute;mon with sets that are generated to be competitively viable.`,
+		mod: 'gen8legends',
+		team: 'random',
+		ruleset: ['[Gen 8] Random Battle', '!PotD'],
+	},
+	{
+		name: "[Gen 8 Legends] OU",
+		mod: 'gen8legends',
+		ruleset: ['Standard', 'Evasion Moves Clause'],
+		banlist: ['Uber'],
+	},
+	{
+		name: "[Gen 8 Legends] Ubers",
+		mod: 'gen8legends',
+		searchShow: false,
+		ruleset: ['Standard'],
+	},
+	{
+		name: "[Gen 8 Legends] LC",
+		mod: 'gen8legends',
+		searchShow: false,
+		ruleset: ['Little Cup', 'Standard', 'Evasion Moves Clause'],
+	},
+	{
+		name: "[Gen 8 Legends] Monotype",
+		mod: 'gen8legends',
+		searchShow: false,
+		ruleset: ['[Gen 8 Legends] OU', 'Same Type Clause'],
+	},
+	{
+		name: "[Gen 8 Legends] Doubles",
+		mod: 'gen8legends',
+		gameType: 'doubles',
+		searchShow: false,
+		ruleset: ['Standard Doubles'],
+	},
+	{
+		name: "[Gen 8 Legends] Triples",
+		mod: 'gen8legends',
+		gameType: 'triples',
+		searchShow: false,
+		ruleset: ['Standard Doubles'],
+	},
+
 	// Challengeable OMs
 	///////////////////////////////////////////////////////////////////
 
@@ -4616,7 +4696,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		name: "[Gen 5] OU",
 		mod: 'gen5',
 		ruleset: ['Standard', 'Evasion Abilities Clause', 'Sleep Moves Clause', 'Gems Clause', 'Baton Pass Stat Clause'],
-		banlist: ['Uber', 'Arena Trap', 'Drizzle ++ Swift Swim', 'Drought ++ Chlorophyll', 'Sand Rush', 'Shadow Tag', 'King\'s Rock', 'Razor Fang', 'Soul Dew', 'Assist', 'Swagger'],
+		banlist: ['Uber', 'Arena Trap', 'Drought', 'Shadow Tag', 'King\'s Rock', 'Razor Fang', 'Soul Dew', 'Assist', 'Swagger'],
 	},
 	{
 		name: "[Gen 4] OU",
@@ -5225,6 +5305,92 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		bestOfDefault: true,
 		ruleset: ['Flat Rules', 'Min Source Gen = 6'],
 		banlist: ['Soul Dew'],
+	},
+	{
+		name: "[Gen 6] Inverse Battle",
+		desc: `The type chart is inverted; weaknesses become resistances, while resistances and immunities become weaknesses.`,
+		mod: 'gen6',
+		searchShow: false,
+		ruleset: ['Standard', 'Inverse Mod'],
+		banlist: [
+			'Arceus', 'Blaziken', 'Darkrai', 'Deoxys', 'Deoxys-Attack', 'Deoxys-Defense', 'Deoxys-Speed', 'Diggersby', 'Gengar-Mega',
+			'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Hoopa-Unbound', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Lugia',
+			'Mewtwo', 'Palkia', 'Rayquaza', 'Reshiram', 'Salamence-Mega', 'Serperior', 'Shaymin-Sky', 'Snorlax', 'Xerneas', 'Yveltal',
+			'Zekrom', 'Shadow Tag', 'Soul Dew', 'Baton Pass', 'Swagger',
+		],
+	},
+	{
+		name: "[Gen 6] Sky Battle",
+		desc: `Most Flying types and Pokémon with the Ability Levitate are eligible, while certain moves are prohibited.`,
+		mod: 'gen6',
+		searchShow: false,
+		ruleset: ['Standard'],
+		banlist: ['Arceus-Flying', 'Giratina-Origin', 'Ho-Oh', 'Lugia', 'Rayquaza', 'Yveltal', 'Soul Dew'],
+		onValidateSet(set) {
+			const ineligiblePokemon = [
+				'Archen', 'Chatot', 'Delibird', 'Dodrio', 'Doduo', 'Ducklett', "Farfetch'd", 'Fletchling', 'Gengar', 'Hawlucha', 'Hoothoot', 'Murkrow', 'Natu', 'Pidgey', 'Pidove', 'Pinsir-Mega', 'Rufflet', 'Shaymin-Sky', 'Spearow', 'Starly', 'Taillow', 'Vullaby',
+			];
+
+			const dex = this.dex.mod('gen6xy');
+			const species = dex.species.get(set.species || set.name);
+			if (species.isNonstandard === 'Future') {
+				return [`${species.name} does not exist in XY.`];
+			}
+			if (species.baseSpecies === 'Gengar') {
+				return [`${species.name} is ineligible for Sky Battles even if it has the ability Levitate.`];
+			}
+			if (set.ability !== 'Levitate') {
+				if (ineligiblePokemon.includes(species.name)) {
+					return [`${species.name} is ineligible for Sky Battles.`];
+				}
+				if (!species.types.includes('Flying')) {
+					return [`${species.name} is not a Flying type and does not have the ability Levitate.`];
+				}
+			}
+
+			const problems: string[] = [];
+			const item = dex.items.get(set.item);
+			if (item.isNonstandard === 'Future') {
+				problems.push(`${set.name}'s item ${item.name} does not exist in XY.`);
+			}
+			for (const moveid of set.moves) {
+				const move = dex.moves.get(moveid);
+				if (move.isNonstandard === 'Future') {
+					problems.push(`${set.name}'s move ${move.name} does not exist in XY.`);
+				}
+				if (move.flags['nonsky']) {
+					problems.push(`${set.name}'s move ${move.name} is ineligible for Sky Battles.`);
+				}
+			}
+			if (problems.length) return problems;
+		},
+		onModifyMovePriority: 999,
+		onModifyMove(m) {
+			if (m.id === 'metronome') {
+				m.onHit = function (pokemon) {
+					const dex = this.dex.mod('gen6xy');
+					const moves = dex.moves.all().filter(move => (
+						(!move.isNonstandard || move.isNonstandard === 'Unobtainable') &&
+						move.flags['metronome']
+					));
+					let randomMove = '';
+					if (moves.length) {
+						moves.sort((a, b) => a.num - b.num);
+						randomMove = this.sample(moves).id;
+					}
+					if (!randomMove) return false;
+					const move = dex.moves.get(randomMove);
+					if (move.flags['nonsky']) {
+						this.addMove('move', pokemon, move.name, `${null}|[from] move: Metronome`);
+						this.add('-fail', pokemon);
+						this.attrLastMove('[still]');
+						this.hint(`Certain prohibited moves won't work in Sky Battles.`);
+						return;
+					}
+					this.actions.useMove(randomMove, pokemon);
+				};
+			}
+		},
 	},
 	{
 		name: "[Gen 6] Custom Game",

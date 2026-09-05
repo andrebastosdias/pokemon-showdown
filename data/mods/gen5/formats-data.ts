@@ -230,7 +230,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "DUU",
 	},
 	politoed: {
-		tier: "OU",
+		tier: "Uber",
 		doublesTier: "DOU",
 	},
 	abra: {
@@ -1976,7 +1976,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "LC",
 	},
 	excadrill: {
-		tier: "OU",
+		tier: "Uber",
 		doublesTier: "DOU",
 	},
 	audino: {
