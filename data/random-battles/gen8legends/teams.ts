@@ -1,3 +1,4 @@
+import { toID } from '../../../sim/dex-data';
 import { RandomGen8Teams, type TeamData, type BattleFactorySpecies } from '../gen8/teams';
 
 export class RandomLegendsTeams extends RandomGen8Teams {

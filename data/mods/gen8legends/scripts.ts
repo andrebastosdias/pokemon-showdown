@@ -1,3 +1,4 @@
+import { toID } from '../../../sim/dex-data';
 import { Field } from '../../../sim/field';
 import { Pokemon } from '../../../sim/pokemon';
 import {
@@ -286,7 +287,7 @@ export const Scripts: ModdedBattleScriptsData = {
 
 			if (typeof move === 'number') {
 				const basePower = move;
-				move = new Dex.Move({
+				move = new this.dex.Move({
 					basePower,
 					type: '???',
 					category: 'Physical',
@@ -539,8 +540,12 @@ export const Scripts: ModdedBattleScriptsData = {
 			// Final modifier. Modifiers that modify damage after min damage check, such as Life Orb.
 			baseDamage = this.battle.runEvent('ModifyDamage', pokemon, target, move, baseDamage);
 
-			if (move.isZOrMaxPowered && target.getMoveHitData(move).zBrokeProtect) {
+			const bypassProtect = target.getMoveHitData(move).bypassProtect;
+			if (bypassProtect) {
 				baseDamage = this.battle.modify(baseDamage, 0.25);
+				if (bypassProtect !== true && bypassProtect.effectType === 'Ability') {
+					this.battle.add('-ability', pokemon, bypassProtect.name);
+				}
 				this.battle.add('-zbroken', target);
 			}
 
@@ -846,6 +851,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				if (hit > 1 && pokemon.status === 'slp' && (!isSleepUsable || this.battle.gen === 4)) break;
 				if (targets.every(target => !target?.hp)) break;
 				move.hit = hit;
+				move.lastHit = move.hit === targetHits;
 				if (move.smartTarget && targets.length > 1) {
 					targetsCopy = [targets[hit - 1]];
 					damage = [damage[hit - 1]];
@@ -917,14 +923,6 @@ export const Scripts: ModdedBattleScriptsData = {
 					// Total damage dealt is accumulated for the purposes of recoil (Parental Bond).
 					move.totalDamage += damage[i];
 				}
-				if (move.mindBlownRecoil) {
-					const hpBeforeRecoil = pokemon.hp;
-					this.battle.damage(Math.round(pokemon.maxhp / 2), pokemon, pokemon, this.dex.conditions.get(move.id), true);
-					move.mindBlownRecoil = false;
-					if (pokemon.hp <= pokemon.maxhp / 2 && hpBeforeRecoil > pokemon.maxhp / 2) {
-						this.battle.runEvent('EmergencyExit', pokemon, pokemon);
-					}
-				}
 				this.battle.eachEvent('Update');
 				if (!pokemon.hp && targets.length === 1) {
 					hit++; // report the correct number of hits for multihit moves
@@ -939,26 +937,8 @@ export const Scripts: ModdedBattleScriptsData = {
 				this.battle.add('-hitcount', targets[0], hit - 1);
 			}
 
-			if ((move.recoil || ['chloroblast', 'selfdestruct', 'steelbeam'].includes(move.id)) && move.totalDamage) {
-				const hpBeforeRecoil = pokemon.hp;
-				this.battle.damage(this.calcRecoilDamage(move.totalDamage, move, pokemon), pokemon, pokemon, 'recoil');
-				if (pokemon.hp <= pokemon.maxhp / 2 && hpBeforeRecoil > pokemon.maxhp / 2) {
-					this.battle.runEvent('EmergencyExit', pokemon, pokemon);
-				}
-			}
-
-			if (move.struggleRecoil) {
-				const hpBeforeRecoil = pokemon.hp;
-				let recoilDamage;
-				if (this.dex.gen >= 5) {
-					recoilDamage = this.battle.clampIntRange(Math.round(pokemon.baseMaxhp / 4), 1);
-				} else {
-					recoilDamage = this.battle.clampIntRange(this.battle.trunc(pokemon.maxhp / 4), 1);
-				}
-				this.battle.directDamage(recoilDamage, pokemon, pokemon, { id: 'strugglerecoil' } as Condition);
-				if (pokemon.hp <= pokemon.maxhp / 2 && hpBeforeRecoil > pokemon.maxhp / 2) {
-					this.battle.runEvent('EmergencyExit', pokemon, pokemon);
-				}
+			if (move.totalDamage) {
+				this.applyRecoilDamage(move.totalDamage, move, pokemon);
 			}
 
 			// smartTarget messes up targetsCopy, but smartTarget should in theory ensure that targets will never fail, anyway
@@ -1002,10 +982,27 @@ export const Scripts: ModdedBattleScriptsData = {
 		/**
 		 * Implement Self-Destruct and Steel Beam recoil like Chloroblast.
 		 */
-		calcRecoilDamage(damageDealt, move, pokemon) {
-			if (['chloroblast', 'steelbeam'].includes(move.id)) return Math.round(pokemon.maxhp / 2);
-			if (move.id === 'selfdestruct') return Math.round(pokemon.maxhp * 0.8);
-			return this.battle.clampIntRange(Math.round(damageDealt * move.recoil![0] / move.recoil![1]), 1);
+		applyRecoilDamage(damageDealt: number, move: Move, pokemon: Pokemon): number | null {
+			let recoilDamage = null;
+			if (move.struggleRecoil) recoilDamage = this.battle.clampIntRange(Math.round(pokemon.baseMaxhp / 4), 1);
+			else if (move.id === 'selfdestruct') recoilDamage = Math.round(pokemon.maxhp * 0.8);
+			else if (move.mindBlownRecoil || move.chloroblastRecoil) recoilDamage = Math.round(pokemon.maxhp / 2);
+			else if (move.recoil) {
+				recoilDamage = this.battle.clampIntRange(Math.round(damageDealt * move.recoil[0] / move.recoil[1]), 1);
+			} else return null;
+
+			const hpBeforeRecoil = pokemon.hp;
+			if (move.struggleRecoil) {
+				this.battle.directDamage(recoilDamage, pokemon, pokemon, { id: 'strugglerecoil' } as Condition);
+			} else {
+				const effect = move.mindBlownRecoil ? this.dex.conditions.get(move.name) : 'recoil';
+				this.battle.damage(recoilDamage, pokemon, pokemon, effect);
+			}
+			if (pokemon.hp <= pokemon.maxhp / 2 && hpBeforeRecoil > pokemon.maxhp / 2) {
+				this.battle.runEvent('EmergencyExit', pokemon, pokemon);
+			}
+
+			return recoilDamage;
 		},
 	},
 	side: {
