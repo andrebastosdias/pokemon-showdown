@@ -3,7 +3,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Ability Shield",
 		shortDesc: "Holder's Ability cannot be changed, suppressed, or ignored by any effect.",
 
-		block: "  [POKEMON]'s Ability is protected by the effects of its Ability Shield!",
+		block: "  {POKEMON}'s Ability is protected by the effects of its Ability Shield!",
 	},
 	abomasite: {
 		name: "Abomasite",
@@ -11,7 +11,11 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 	},
 	absolite: {
 		name: "Absolite",
-		shortDesc: "If held by an Absol, this item allows it to Mega Evolve in battle.",
+		shortDesc: "If held by an Absol, this item allows it to Mega Evolve into Mega Absol in battle.",
+	},
+	absolitez: {
+		name: "Absolite Z",
+		shortDesc: "If held by an Absol, this item allows it to Mega Evolve into Mega Absol Z in battle.",
 	},
 	absorbbulb: {
 		name: "Absorb Bulb",
@@ -51,8 +55,8 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Air Balloon",
 		shortDesc: "Holder is immune to Ground-type attacks. Pops when holder is hit.",
 
-		start: "  [POKEMON] floats in the air with its Air Balloon!",
-		end: "  [POKEMON]'s Air Balloon popped!",
+		start: "  {POKEMON} floats in the air with its Air Balloon!",
+		end: "  {POKEMON}'s Air Balloon popped!",
 	},
 	alakazite: {
 		name: "Alakazite",
@@ -106,6 +110,10 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Barbaracite",
 		shortDesc: "If held by a Barbaracle, this item allows it to Mega Evolve in battle.",
 	},
+	baxcalibrite: {
+		name: "Baxcalibrite",
+		shortDesc: "If held by a Baxcalibur, this item allows it to Mega Evolve in battle.",
+	},
 	beastball: {
 		name: "Beast Ball",
 		shortDesc: "A special Poke Ball designed to catch Ultra Beasts.",
@@ -152,7 +160,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Black Sludge",
 		shortDesc: "Each turn, if holder is a Poison type, restores 1/16 max HP; loses 1/8 if not.",
 
-		heal: "  [POKEMON] restored a little HP using its Black Sludge!",
+		heal: "  {POKEMON} restored a little HP using its Black Sludge!",
 	},
 	blackglasses: {
 		name: "Black Glasses",
@@ -236,11 +244,11 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 	},
 	charizarditex: {
 		name: "Charizardite X",
-		shortDesc: "If held by a Charizard, this item allows it to Mega Evolve in battle.",
+		shortDesc: "If held by a Charizard, this item allows it to Mega Evolve into Mega Charizard X.",
 	},
 	charizarditey: {
 		name: "Charizardite Y",
-		shortDesc: "If held by a Charizard, this item allows it to Mega Evolve in battle.",
+		shortDesc: "If held by a Charizard, this item allows it to Mega Evolve into Mega Charizard Y.",
 	},
 	chartiberry: {
 		name: "Charti Berry",
@@ -270,6 +278,10 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Chill Drive",
 		shortDesc: "Holder's Techno Blast is Ice type.",
 	},
+	chimechite: {
+		name: "Chimechite",
+		shortDesc: "If held by a Chimecho, this item allows it to Mega Evolve in battle.",
+	},
 	chippedpot: {
 		name: "Chipped Pot",
 		shortDesc: "Evolves Sinistea-Antique into Polteageist-Antique when used.",
@@ -298,7 +310,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Clear Amulet",
 		shortDesc: "Prevents other Pokemon from lowering the holder's stat stages.",
 
-		block: "  The effects of [POKEMON]'s Clear Amulet prevent its stats from being lowered!",
+		block: "  The effects of {POKEMON}'s Clear Amulet prevent its stats from being lowered!",
 	},
 	clefablite: {
 		name: "Clefablite",
@@ -333,6 +345,10 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		desc: "The holder is not affected by the secondary effect of another Pokemon's attack. Attacks with secondary effects that are prevented include those with a chance (even 100%) to paralyze, sleep, freeze, burn, poison, confuse, cause the holder to flinch, cause the holder's stat stages to be lowered, as well as Anchor Shot, Eerie Spell, Fling, Psychic Noise, Salt Cure, Spirit Shackle, Syrup Bomb, and Throat Chop. The effect of Sparkling Aria is prevented if the holder is the only target. Secondary effects added by King's Rock, Razor Fang, and the Poison Touch, Stench, and Toxic Chain Abilities are also prevented against the holder.",
 		shortDesc: "Holder is not affected by the secondary effect of another Pokemon's attack.",
 	},
+	crabominite: {
+		name: "Crabominite",
+		shortDesc: "If held by a Crabominable, this item allows it to Mega Evolve in battle.",
+	},
 	crackedpot: {
 		name: "Cracked Pot",
 		shortDesc: "Evolves Sinistea into Polteageist when used.",
@@ -341,7 +357,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Custap Berry",
 		shortDesc: "Holder moves first in its priority bracket when at 1/4 max HP or less. Single use.",
 
-		activate: "  [POKEMON] can act faster than normal, thanks to its Custap Berry!",
+		activate: "  {POKEMON} can act faster than normal, thanks to its Custap Berry!",
 	},
 	damprock: {
 		name: "Damp Rock",
@@ -361,6 +377,10 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 	darkmemory: {
 		name: "Dark Memory",
 		shortDesc: "Holder's Multi-Attack is Dark type.",
+	},
+	darkranite: {
+		name: "Darkranite",
+		shortDesc: "If held by a Darkrai, this item allows it to Mega Evolve in battle.",
 	},
 	dawnstone: {
 		name: "Dawn Stone",
@@ -497,13 +517,13 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Eject Button",
 		shortDesc: "If holder survives a hit, it immediately switches out to a chosen ally. Single use.",
 
-		end: "  [POKEMON] is switched out with the Eject Button!",
+		end: "  {POKEMON} is switched out with the Eject Button!",
 	},
 	ejectpack: {
 		name: "Eject Pack",
 		shortDesc: "If the holder's stat stages are lowered, it switches to a chosen ally. Single use.",
 
-		end: "  [POKEMON] is switched out by the Eject Pack!",
+		end: "  {POKEMON} is switched out by the Eject Pack!",
 	},
 	electirizer: {
 		name: "Electirizer",
@@ -670,7 +690,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 			shortDesc: "Holder has a ~11.7% chance to survive an attack that would KO it with 1 HP.",
 		},
 
-		activate: "  [POKEMON] hung on using its Focus Band!",
+		activate: "  {POKEMON} hung on using its Focus Band!",
 	},
 	focussash: {
 		name: "Focus Sash",
@@ -679,7 +699,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 			shortDesc: "If holder's HP is full, survives all hits of one attack with at least 1 HP. Single use.",
 		},
 
-		end: "  [POKEMON] hung on using its Focus Sash!",
+		end: "  {POKEMON} hung on using its Focus Sash!",
 	},
 	fossilizedbird: {
 		name: "Fossilized Bird",
@@ -727,7 +747,11 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 	},
 	garchompite: {
 		name: "Garchompite",
-		shortDesc: "If held by a Garchomp, this item allows it to Mega Evolve in battle.",
+		shortDesc: "If held by a Garchomp, this item allows it to Mega Evolve into Mega Garchomp.",
+	},
+	garchompitez: {
+		name: "Garchompite Z",
+		shortDesc: "If held by a Garchomp, this item allows it to Mega Evolve into Mega Garchomp Z.",
 	},
 	gardevoirite: {
 		name: "Gardevoirite",
@@ -756,9 +780,21 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Glalitite",
 		shortDesc: "If held by a Glalie, this item allows it to Mega Evolve in battle.",
 	},
+	glimmoranite: {
+		name: "Glimmoranite",
+		shortDesc: "If held by a Glimmora, this item allows it to Mega Evolve in battle.",
+	},
 	goldbottlecap: {
 		name: "Gold Bottle Cap",
 		shortDesc: "Used for Hyper Training. All of a Pokemon's stats are calculated with an IV of 31.",
+	},
+	golisopite: {
+		name: "Golisopite",
+		shortDesc: "If held by a Golisopod, this item allows it to Mega Evolve in battle.",
+	},
+	golurkite: {
+		name: "Golurkite",
+		shortDesc: "If held by a Golurk, this item allows it to Mega Evolve in battle.",
 	},
 	grassgem: {
 		name: "Grass Gem",
@@ -847,6 +883,10 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 	hearthflamemask: {
 		name: "Hearthflame Mask",
 		shortDesc: "Ogerpon-Hearthflame: 1.2x power attacks; Terastallize to gain Embody Aspect.",
+	},
+	heatranite: {
+		name: "Heatranite",
+		shortDesc: "If held by a Heatran, this item allows it to Mega Evolve in battle.",
 	},
 	heatrock: {
 		name: "Heat Rock",
@@ -1015,13 +1055,13 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Leftovers",
 		shortDesc: "At the end of every turn, holder restores 1/16 of its max HP.",
 
-		heal: "  [POKEMON] restored a little HP using its Leftovers!",
+		heal: "  {POKEMON} restored a little HP using its Leftovers!",
 	},
 	leppaberry: {
 		name: "Leppa Berry",
 		shortDesc: "Restores 10 PP to the first of the holder's moves to reach 0 PP. Single use.",
 
-		activate: "  [POKEMON] restored PP to its move [MOVE] using its Leppa Berry!",
+		activate: "  {POKEMON} restored PP to its move {MOVE} using its Leppa Berry!",
 	},
 	levelball: {
 		name: "Level Ball",
@@ -1035,7 +1075,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Life Orb",
 		shortDesc: "Holder's attacks do 1.3x damage, and it loses 1/10 its max HP after the attack.",
 
-		damage: "  [POKEMON] lost some of its HP!",
+		damage: "  {POKEMON} lost some of its HP!",
 	},
 	lightball: {
 		name: "Light Ball",
@@ -1073,7 +1113,11 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 	},
 	lucarionite: {
 		name: "Lucarionite",
-		shortDesc: "If held by a Lucario, this item allows it to Mega Evolve in battle.",
+		shortDesc: "If held by a Lucario, this item allows it to Mega Evolve into Mega Lucario in battle.",
+	},
+	lucarionitez: {
+		name: "Lucarionite Z",
+		shortDesc: "If held by a Lucario, this item allows it to Mega Evolve into Mega Lucario Z in battle.",
 	},
 	luckypunch: {
 		name: "Lucky Punch",
@@ -1117,6 +1161,10 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 	machobrace: {
 		name: "Macho Brace",
 		shortDesc: "Holder's Speed is halved. The Klutz Ability does not ignore this effect.",
+	},
+	magearnite: {
+		name: "Magearnite",
+		shortDesc: "If held by a Magearna, this item allows it to Mega Evolve in battle.",
 	},
 	magmarizer: {
 		name: "Magmarizer",
@@ -1198,6 +1246,10 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 			shortDesc: "Holder is cured if it is infatuated. Single use.",
 		},
 	},
+	meowsticite: {
+		name: "Meowsticite",
+		shortDesc: "If held by a Meowstic, this item allows it to Mega Evolve in battle.",
+	},
 	metagrossite: {
 		name: "Metagrossite",
 		shortDesc: "If held by a Metagross, this item allows it to Mega Evolve in battle.",
@@ -1235,11 +1287,11 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 	},
 	mewtwonitex: {
 		name: "Mewtwonite X",
-		shortDesc: "If held by a Mewtwo, this item allows it to Mega Evolve in battle.",
+		shortDesc: "If held by a Mewtwo, this item allows it to Mega Evolve into Mega Mewtwo X in battle.",
 	},
 	mewtwonitey: {
 		name: "Mewtwonite Y",
-		shortDesc: "If held by a Mewtwo, this item allows it to Mega Evolve in battle.",
+		shortDesc: "If held by a Mewtwo, this item allows it to Mega Evolve into Mega Mewtwo Y in battle.",
 	},
 	micleberry: {
 		name: "Micle Berry",
@@ -1264,7 +1316,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Mirror Herb",
 		shortDesc: "When an opposing Pokemon raises a stat stage, the holder copies it. Single use.",
 
-		activate: "  [POKEMON] used its Mirror Herb to mirror its opponent's stat changes!",
+		activate: "  {POKEMON} used its Mirror Herb to mirror its opponent's stat changes!",
 	},
 	mistyseed: {
 		name: "Misty Seed",
@@ -1450,7 +1502,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Power Herb",
 		shortDesc: "Holder's two-turn moves complete in one turn (except Sky Drop). Single use.",
 
-		end: "  [POKEMON] became fully charged due to its Power Herb!",
+		end: "  {POKEMON} became fully charged due to its Power Herb!",
 	},
 	powerlens: {
 		name: "Power Lens",
@@ -1480,7 +1532,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Protective Pads",
 		shortDesc: "Holder's moves are protected from adverse contact effects, except Pickpocket.",
 
-		block: "  [POKEMON] protected itself with its Protective Pads!",
+		block: "  {POKEMON} protected itself with its Protective Pads!",
 	},
 	protector: {
 		name: "Protector",
@@ -1528,7 +1580,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 			shortDesc: "Each turn, holder has a ~23.4% chance to move first in its priority bracket.",
 		},
 
-		activate: "  [POKEMON] can act faster than normal, thanks to its Quick Claw!",
+		activate: "  {POKEMON} can act faster than normal, thanks to its Quick Claw!",
 	},
 	quickpowder: {
 		name: "Quick Powder",
@@ -1537,6 +1589,14 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 	rabutaberry: {
 		name: "Rabuta Berry",
 		shortDesc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck.",
+	},
+	raichunitex: {
+		name: "Raichunite X",
+		shortDesc: "If held by a Raichu, this item allows it to Mega Evolve into Mega Raichu X in battle.",
+	},
+	raichunitey: {
+		name: "Raichunite Y",
+		shortDesc: "If held by a Raichu, this item allows it to Mega Evolve into Mega Raichu Y in battle.",
 	},
 	rarebone: {
 		name: "Rare Bone",
@@ -1568,7 +1628,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Red Card",
 		shortDesc: "If holder survives a hit, attacker is forced to switch to a random ally. Single use.",
 
-		end: "  [POKEMON] held up its Red Card against [TARGET]!",
+		end: "  {POKEMON} held up its Red Card against {TARGET}!",
 	},
 	redorb: {
 		name: "Red Orb",
@@ -1613,7 +1673,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Rocky Helmet",
 		shortDesc: "If holder is hit by a contact move, the attacker loses 1/6 of its max HP.",
 
-		damage: "  [POKEMON] was hurt by the Rocky Helmet!",
+		damage: "  {POKEMON} was hurt by the Rocky Helmet!",
 	},
 	roomservice: {
 		name: "Room Service",
@@ -1659,7 +1719,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Safety Goggles",
 		shortDesc: "Holder is immune to powder moves and damage from Sandstorm or Hail.",
 
-		block: "  [POKEMON] is not affected by [MOVE] thanks to its Safety Goggles!",
+		block: "  {POKEMON} is not affected by {MOVE} thanks to its Safety Goggles!",
 	},
 	sailfossil: {
 		name: "Sail Fossil",
@@ -1688,6 +1748,10 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 	scopelens: {
 		name: "Scope Lens",
 		shortDesc: "Holder's critical hit ratio is raised by 1 stage.",
+	},
+	scovillainite: {
+		name: "Scovillainite",
+		shortDesc: "If held by a Scovillain, this item allows it to Mega Evolve in battle.",
 	},
 	scraftinite: {
 		name: "Scraftinite",
@@ -1719,7 +1783,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Shell Bell",
 		shortDesc: "After an attack, holder gains 1/8 of the damage in HP dealt to other Pokemon.",
 
-		heal: "  [POKEMON] restored a little HP using its Shell Bell!",
+		heal: "  {POKEMON} restored a little HP using its Shell Bell!",
 	},
 	shinystone: {
 		name: "Shiny Stone",
@@ -1770,6 +1834,9 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 	slowbronite: {
 		name: "Slowbronite",
 		shortDesc: "If held by a Slowbro, this item allows it to Mega Evolve in battle.",
+		champions: {
+			shortDesc: "If held by a Slowbro (not Galarian Slowbro), this item allows it to Mega Evolve.",
+		},
 	},
 	smoothrock: {
 		name: "Smooth Rock",
@@ -1823,6 +1890,10 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 	sportball: {
 		name: "Sport Ball",
 		shortDesc: "A special Poke Ball for the Bug-Catching Contest.",
+	},
+	staraptite: {
+		name: "Staraptite",
+		shortDesc: "If held by a Staraptor, this item allows it to Mega Evolve in battle.",
 	},
 	starfberry: {
 		name: "Starf Berry",
@@ -1910,6 +1981,10 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 	tartapple: {
 		name: "Tart Apple",
 		shortDesc: "Evolves Applin into Flapple when used.",
+	},
+	tatsugirinite: {
+		name: "Tatsugirinite",
+		shortDesc: "If held by a Tatsugiri, this item allows it to Mega Evolve in battle.",
 	},
 	terrainextender: {
 		name: "Terrain Extender",
@@ -2362,8 +2437,8 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Ultranecrozium Z",
 		shortDesc: "Dusk Mane/Dawn Wings Necrozma: Ultra Burst, then Z-Move w/ Photon Geyser.",
 
-		transform: "  Bright light is about to burst out of [POKEMON]!",
-		activate: "[POKEMON] regained its true power through Ultra Burst!",
+		transform: "  Bright light is about to burst out of {POKEMON}!",
+		activate: "{POKEMON} regained its true power through Ultra Burst!",
 	},
 	unremarkableteacup: {
 		name: "Unremarkable Teacup",
@@ -2441,7 +2516,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "White Herb",
 		shortDesc: "Restores all lowered stat stages to 0 when one is less than 0. Single use.",
 
-		end: "  [POKEMON] returned its stats to normal using its White Herb!",
+		end: "  {POKEMON} returned its stats to normal using its White Herb!",
 	},
 	widelens: {
 		name: "Wide Lens",
@@ -2468,6 +2543,10 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 	zapplate: {
 		name: "Zap Plate",
 		shortDesc: "Holder's Electric-type attacks have 1.2x power. Judgment is Electric type.",
+	},
+	zeraorite: {
+		name: "Zeraorite",
+		shortDesc: "If held by a Zeraora, this item allows it to Mega Evolve in battle.",
 	},
 	zoomlens: {
 		name: "Zoom Lens",
@@ -2516,7 +2595,7 @@ export const ItemsText: { [id: IDEntry]: ItemText } = {
 		name: "Mystery Berry",
 		shortDesc: "(Gen 2) Restores 5 PP to the first of the holder's moves to reach 0 PP. Single use.",
 
-		activate: "  [POKEMON] restored PP to its [MOVE] move using Mystery Berry!",
+		activate: "  {POKEMON} restored PP to its {MOVE} move using Mystery Berry!",
 	},
 	pinkbow: {
 		name: "Pink Bow",

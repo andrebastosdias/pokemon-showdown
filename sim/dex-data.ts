@@ -5,6 +5,7 @@
  * @license MIT
  */
 import { Utils } from '../lib/utils';
+import type { TagData } from '../data/tags';
 
 /**
 * Converts anything to an ID. An ID must have only lowercase alphanumeric
@@ -40,6 +41,120 @@ export function assignMissingFields(self: AnyObject, data: AnyObject) {
 	}
 }
 
+export type EffectText =
+	ResolvedAbilityText | ResolvedItemText | ResolvedMoveText | ResolvedNameText | ResolvedSpeciesText;
+export type TextLanguage = 'en' | 'en-afd' | 'de' | 'es' | 'fr' | 'it' | 'ja' | 'ko' | 'zh-cn' | 'zh-tw';
+
+export const OTHER_NAME_TABLES = [
+	'TermNames', 'TypeNames', 'NatureNames', 'GenderNames',
+	'EggGroupNames', 'ColorNames', 'StatusNames', 'TargetNames',
+	'StatNames', 'StatMediumNames', 'StatShortNames',
+] as const;
+export type OtherNameTable = typeof OTHER_NAME_TABLES[number];
+
+export type TextEffect = Species | Item | Ability | Move | Nature | TypeInfo | TagData;
+
+/** English-only text for custom effects defined by mods. */
+export interface ModdedEffectText {
+	desc?: string;
+	shortDesc?: string;
+}
+
+type EffectTextTable = 'Abilities' | 'Items' | 'Moves';
+
+export class DexText {
+	readonly dex: ModdedDex;
+
+	constructor(dex: ModdedDex) {
+		this.dex = dex;
+	}
+
+	get(effect: Item, lang?: TextLanguage): ResolvedItemText;
+	get(effect: Ability, lang?: TextLanguage): ResolvedAbilityText;
+	get(effect: Move, lang?: TextLanguage): ResolvedMoveText;
+	get(effect: Species, lang?: TextLanguage): ResolvedSpeciesText;
+	get(effect: Nature | TypeInfo | TagData, lang?: TextLanguage): ResolvedNameText;
+	get(effect: TextEffect, lang?: TextLanguage): EffectText;
+	get(
+		effect: TextEffect, lang: TextLanguage = 'en'
+	): EffectText {
+		if (!('effectType' in effect)) {
+			return { name: this.tagName(effect.name, lang) };
+		}
+		let table: EffectTextTable;
+		switch (effect.effectType) {
+		case 'Pokemon': {
+			const species = effect;
+			return this.dex.loadTextData(lang).Pokedex[effect.id] || {
+				name: species.name,
+				baseSpecies: species.baseSpecies,
+				...(species.forme ? { forme: species.forme } : {}),
+			};
+		}
+		case 'Nature': return { name: this.otherName('NatureNames', effect.name, lang) };
+		case 'Type': case 'EffectType': return { name: this.otherName('TypeNames', effect.name, lang) };
+		case 'Item': table = 'Items'; break;
+		case 'Ability': table = 'Abilities'; break;
+		case 'Move': table = 'Moves'; break;
+		default: throw new Error(`Unsupported effect type`);
+		}
+
+		const entry = this.dex.loadTextData(lang)[table][effect.id];
+		const customText = effect as ModdedEffectText;
+		if (customText.desc !== undefined || customText.shortDesc !== undefined) {
+			const desc = customText.desc || customText.shortDesc || '';
+			const shortDesc = customText.shortDesc || customText.desc || '';
+			return { ...entry, name: effect.name, desc, shortDesc };
+		}
+
+		return entry || {
+			name: effect.name,
+			desc: '',
+			shortDesc: '',
+		};
+	}
+
+	termName(name: string, lang: TextLanguage = 'en'): string {
+		return this.otherName('TermNames', name, lang);
+	}
+
+	typeName(name: string, lang: TextLanguage = 'en'): string {
+		return this.otherName('TypeNames', name, lang);
+	}
+
+	natureName(name: string, lang: TextLanguage = 'en'): string {
+		return this.otherName('NatureNames', name, lang);
+	}
+
+	categoryName(name: string, lang: TextLanguage = 'en'): string {
+		return this.tagName(name, lang);
+	}
+
+	tagName(name: string, lang: TextLanguage = 'en'): string {
+		return this.dex.loadTextData(lang).Tags[toID(name)]?.name || name;
+	}
+
+	genderName(name: string, lang: TextLanguage = 'en'): string {
+		return this.otherName('GenderNames', name, lang);
+	}
+
+	eggGroupName(name: string, lang: TextLanguage = 'en'): string {
+		return this.otherName('EggGroupNames', name, lang);
+	}
+
+	colorName(name: string, lang: TextLanguage = 'en'): string {
+		return this.otherName('ColorNames', name, lang);
+	}
+
+	private otherName(table: OtherNameTable, name: string, lang: TextLanguage): string {
+		let id: string = toID(name);
+		if (table === 'GenderNames') {
+			id = ({ m: 'male', f: 'female', n: 'genderless' } as Record<string, string>)[id] || id;
+		}
+		return this.dex.loadTextData(lang)[table][id] || name;
+	}
+}
+
 export abstract class BasicEffect implements EffectData {
 	/**
 	 * ID. This will be a lowercase version of the name with all the
@@ -59,7 +174,7 @@ export abstract class BasicEffect implements EffectData {
 	 * condition would be "confusion", etc.
 	 */
 	fullname: string;
-	/** Effect type. */
+	/** Whether it's a move, item, ability, etc. */
 	effectType: EffectType;
 	/**
 	 * Does it exist? For historical reasons, when you use an accessor
@@ -82,18 +197,13 @@ export abstract class BasicEffect implements EffectData {
 	 */
 	gen: number;
 	/**
-	 * A shortened form of the description of this effect.
-	 * Not all effects have this.
-	 */
-	shortDesc: string;
-	/** The full description for this effect. */
-	desc: string;
-	/**
 	 * Is this item/move/ability/pokemon nonstandard? Specified for effects
 	 * that have no use in standard formats: made-up pokemon (CAP),
 	 * glitches (MissingNo etc), Pokestar pokemon, etc.
 	 */
 	isNonstandard: Nonstandard | null;
+	/** For Hidden Power and Gigantamax forms - see NONSTANDARD.md */
+	placeholderFor?: string;
 	/** The duration of the condition - only for pure conditions. */
 	duration?: number;
 	/** Whether or not the condition is ignored by Baton Pass - only for pure conditions. */
@@ -104,19 +214,18 @@ export abstract class BasicEffect implements EffectData {
 	status?: ID;
 	/** Moves only: what weather does it set? */
 	weather?: ID;
+	tags?: TableTag[];
 	/** ??? */
 	sourceEffect: string;
 
 	constructor(data: AnyObject) {
 		this.name = Utils.getString(data.name).trim();
-		this.id = data.realMove ? toID(data.realMove) : toID(this.name); // Hidden Power hack
+		this.id = toID(this.name);
 		this.fullname = Utils.getString(data.fullname) || this.name;
 		this.effectType = Utils.getString(data.effectType) as EffectType || 'Condition';
 		this.exists = data.exists ?? !!this.id;
 		this.num = data.num || 0;
 		this.gen = data.gen || 0;
-		this.shortDesc = data.shortDesc || '';
-		this.desc = data.desc || '';
 		this.isNonstandard = data.isNonstandard || null;
 		this.duration = data.duration;
 		this.noCopy = !!data.noCopy;
